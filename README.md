@@ -87,7 +87,7 @@ git checkout -b feat/issueName-description
 ```
 
 6. Commit changes
-7. Pull-request to develop → Use template
+7. Pull-request to develop → Use [template](https://github.com/ElenaYrm/eCommerce-App/blob/main/.github/pull_request_template.md)
 8. You are awesome!
 <br></br>
 # 👯‍♂️ Team
