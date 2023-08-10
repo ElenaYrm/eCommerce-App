@@ -2,9 +2,9 @@
   @font-face {
     font-family: '#{$font-family}';
     src: local('#{$font-family}'),
-    url("../../../src/assets/fonts/#{$url}.woff2") format('woff2'),
-    url("../../../src/assets/fonts/#{$url}.woff") format('woff'),
-    url("../../../src/assets/fonts/#{$url}.ttf") format('ttf');
+    url("../fonts/#{$url}.woff2") format('woff2'),
+    url("../fonts/#{$url}.woff") format('woff'),
+    url("../fonts/#{$url}.ttf") format('ttf');
     font-display: block;
     font-style: normal;
   }
