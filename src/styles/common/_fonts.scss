@@ -1,0 +1,15 @@
+@mixin font-face($font-family, $url) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: local('#{$font-family}'),
+    url("../../../src/assets/fonts/#{$url}.woff2") format('woff2'),
+    url("../../../src/assets/fonts/#{$url}.woff") format('woff'),
+    url("../../../src/assets/fonts/#{$url}.ttf") format('ttf');
+    font-display: block;
+    font-style: normal;
+  }
+}
+
+@include font-face('Inter', 'Inter-Regular');
+@include font-face('Inter', 'Inter-Medium');
+@include font-face('Inter', 'Inter-Bold');
