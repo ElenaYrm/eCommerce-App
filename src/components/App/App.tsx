@@ -1,8 +1,13 @@
 import { ReactElement } from 'react';
-import { Router } from '../../router/';
+import Router from '../../router/';
+import AuthProvider from '../../router/AuthProvider/AuthProvider';
 
 function App(): ReactElement {
-  return <Router />;
+  return (
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
+  );
 }
 
 export default App;
