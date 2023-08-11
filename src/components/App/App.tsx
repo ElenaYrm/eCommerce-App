@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 import reactLogo from '../../assets/icons/react.svg';
 import viteLogo from '/images/vite.svg';
 import './App.css';
+import LoginForm from '../LoginForm';
 
 function App(): ReactElement {
   const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ function App(): ReactElement {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <LoginForm />
       <div className="card">
         <button onClick={(): void => setCount((count) => count + 1)}>count is {count}</button>
         <p>
