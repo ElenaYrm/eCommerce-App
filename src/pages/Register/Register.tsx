@@ -1,5 +1,9 @@
 import { ReactElement } from 'react';
 
 export default function Register(): ReactElement {
-  return <div>Register</div>;
+  return (
+    <div>
+      <h1>Register</h1>
+    </div>
+  );
 }
