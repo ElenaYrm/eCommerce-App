@@ -7,7 +7,7 @@ import NotFound from '../../pages/NotFound';
 import Layout from '../../components/Layout';
 import Cart from '../../pages/Cart';
 import Profile from '../../pages/Profile';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../hoc/ProtectedRoute';
 import PAGE from '../constants/pages';
 
 export default function Router(): ReactElement {

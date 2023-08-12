@@ -1,5 +1,5 @@
 import { ReactElement, createContext, useState } from 'react';
-import { IAuthContext, Children } from '../types';
+import { IAuthContext, Children } from '../../types';
 
 export const AuthContext = createContext({} as IAuthContext);
 
