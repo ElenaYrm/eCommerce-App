@@ -1,12 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { IAuthContext } from '../types';
 
-interface AuthContextType {
-  isAuth: boolean;
-  logIn: () => void;
-  logOut: () => void;
-}
-
-export function useAuthContext(): AuthContextType {
+export function useAuthContext(): IAuthContext {
   return useContext(AuthContext);
 }
