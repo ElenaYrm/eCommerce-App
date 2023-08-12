@@ -1,16 +1,7 @@
 import { ReactElement, createContext, useState } from 'react';
+import { IAuthContext, Children } from '../types';
 
-interface Children {
-  children: ReactElement;
-}
-
-interface AuthContextType {
-  isAuth: boolean;
-  logIn: () => void;
-  logOut: () => void;
-}
-
-export const AuthContext = createContext({} as AuthContextType);
+export const AuthContext = createContext({} as IAuthContext);
 
 export default function AuthProvider({ children }: Children): ReactElement {
   const [isAuth, setIsAuth] = useState(false);
