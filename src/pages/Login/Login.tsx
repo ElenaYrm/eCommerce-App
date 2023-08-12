@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { useAuthContext } from '../../router/hooks/useAuth';
 import styles from './Login.module.scss';
 import { useNavigate } from 'react-router-dom';
-import PAGE from '../../router/constants/pages';
+import { PATH } from '../../router/constants/paths';
 
 export default function Login(): ReactElement {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function Login(): ReactElement {
 
   function handleLogin(): void {
     logIn();
-    navigate(PAGE.home.link, { replace: true });
+    navigate(PATH.home, { replace: true });
   }
 
   return (

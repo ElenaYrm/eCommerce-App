@@ -8,21 +8,21 @@ import Layout from '../../components/Layout';
 import Cart from '../../pages/Cart';
 import Profile from '../../pages/Profile';
 import ProtectedRoute from '../hoc/ProtectedRoute';
-import PAGE from '../constants/pages';
+import { PATH } from '../constants/paths';
 
 export default function Router(): ReactElement {
   return (
     <Routes>
-      <Route path={PAGE.home.path} element={<Layout />}>
+      <Route path={PATH.home} element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path={PAGE.login.path} element={<Login />} />
-        <Route path={PAGE.register.path} element={<Register />} />
-        <Route path={PAGE.cart.path} element={<Cart />} />
-        <Route path={PAGE['not-found'].path} element={<NotFound />} />
+        <Route path={PATH.login} element={<Login />} />
+        <Route path={PATH.register} element={<Register />} />
+        <Route path={PATH.cart} element={<Cart />} />
+        <Route path={PATH['not-found']} element={<NotFound />} />
         <Route
-          path={PAGE.profile.path}
+          path={PATH.profile}
           element={
-            <ProtectedRoute redirectLink={PAGE.login.link}>
+            <ProtectedRoute redirectLink={PATH.login}>
               <Profile />
             </ProtectedRoute>
           }

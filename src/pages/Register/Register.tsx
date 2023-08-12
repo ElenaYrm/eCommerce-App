@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../router/hooks/useAuth';
 import styles from './Register.module.scss';
-import PAGE from '../../router/constants/pages';
+import { PATH } from '../../router/constants/paths';
 
 export default function Register(): ReactElement {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function Register(): ReactElement {
 
   function handleRegister(): void {
     logIn();
-    navigate(PAGE.home.link, { replace: true });
+    navigate(PATH.home, { replace: true });
   }
 
   return (
