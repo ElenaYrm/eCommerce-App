@@ -1,11 +1,10 @@
-export enum ValidatableElements {
+export enum Input {
   Email = 'email',
-  PasswordLogin = 'passwordLogin',
-  PasswordSignIn = 'passwordSignIn',
+  Password = 'password',
   FirstName = 'firstName',
   LastName = 'lastName',
   DateOfBirth = 'dateOfBirth',
-  Street = 'deliveryAddressStreet',
-  City = 'deliveryAddressCity',
-  ZipCode = 'deliveryAddressZipCode',
+  Street = 'street',
+  City = 'city',
+  ZipCode = 'zipCode',
 }

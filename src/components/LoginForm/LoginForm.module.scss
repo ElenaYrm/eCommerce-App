@@ -12,7 +12,7 @@
       border: none;
       border-bottom: 0.1rem solid $dark-primary;
 
-      &_coloredPassword {
+      &_coloredPassword:focus {
         color: $neutral-primary;
       }
     }

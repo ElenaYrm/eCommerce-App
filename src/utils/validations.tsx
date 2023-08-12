@@ -1,92 +1,74 @@
-import { ValidatableElements } from '../types/enums';
+import { Input } from '../types/enums';
 import { IValidationErrors } from '../types/interfaces';
+import { errorMsg } from './variables';
 
-const validate = (elements: ValidatableElements, value: string): IValidationErrors => {
+const validate = (values: IValidationErrors): IValidationErrors => {
   const errors: IValidationErrors = {};
-  const isEmptyValue = value.trim().length === 0;
+  const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(values[Input.Email].trim());
+  const hasUppercase = /[A-Z]/.test(values[Input.Password]);
+  const hasLowercase = /[a-z]/.test(values[Input.Password]);
+  const hasDigit = /\d/.test(values[Input.Password]);
+  const hasSpecialCharacter = /[!@#$%^&*]/.test(values[Input.Password]);
+  const isValidFirstName = /^[a-zA-Z]+$/.test(values[Input.FirstName]);
+  const isValidLastName = /^[a-zA-Z]+$/.test(values[Input.LastName]);
+  const isValidCity = /^[a-zA-Z]+$/.test(values[Input.City]);
+  const isValidZipCode = /^\d{5}$/.test(values[Input.ZipCode]);
 
-  if (elements === ValidatableElements.Email) {
-    const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(value.trim());
-
-    if (isEmptyValue) {
-      errors.email = 'Email address cannot be empty.';
-    } else if (!isValidEmail) {
-      errors.email = 'Email is not valid.';
-    }
+  if (!values[Input.Email]) {
+    errors[Input.Email] = errorMsg.email.empty;
+  } else if (!isValidEmail) {
+    errors.email = errorMsg.email.invalid;
   }
 
-  if (elements === ValidatableElements.PasswordLogin) {
-    if (isEmptyValue) {
-      errors.passwordLogin = 'Password cannot be empty.';
-    }
+  if (!values[Input.Password]) {
+    errors[Input.Password] = errorMsg.pass.empty;
+  } else if (values[Input.Password].length < 8) {
+    errors[Input.Password] = errorMsg.pass.invalid;
+  } else if (!hasUppercase) {
+    errors[Input.Password] = errorMsg.pass.invalid;
+  } else if (!hasLowercase) {
+    errors[Input.Password] = errorMsg.pass.invalid;
+  } else if (!hasDigit) {
+    errors[Input.Password] = errorMsg.pass.invalid;
+  } else if (!hasSpecialCharacter) {
+    errors[Input.Password] = errorMsg.pass.invalid;
   }
 
-  if (elements === ValidatableElements.PasswordSignIn) {
-    const hasUppercase = /[A-Z]/.test(value);
-    const hasLowercase = /[a-z]/.test(value);
-    const hasDigit = /\d/.test(value);
-    const hasSpecialCharacter = /[!@#$%^&*]/.test(value);
-
-    if (isEmptyValue) {
-      errors.passwordSignIn = 'Password cannot be empty.';
-    } else if (value.length < 8) {
-      errors.passwordSignIn = 'Password must be at least 8 characters long.';
-    } else if (!hasUppercase) {
-      errors.passwordSignIn = 'Password must contain at least one uppercase letter.';
-    } else if (!hasLowercase) {
-      errors.passwordSignIn = 'Password must contain at least one lowercase letter.';
-    } else if (!hasDigit) {
-      errors.passwordSignIn = 'Password must contain at least one digit.';
-    } else if (!hasSpecialCharacter) {
-      errors.passwordSignIn = 'Password must contain at least one special character (e.g., !@#$%^&*)';
-    }
+  if (!values[Input.FirstName]) {
+    errors[Input.FirstName] = errorMsg.firstName.empty;
+  } else if (!isValidFirstName) {
+    errors[Input.FirstName] = errorMsg.firstName.invalid;
   }
 
-  if (elements === ValidatableElements.FirstName || elements === ValidatableElements.LastName) {
-    const isValidFirstName = /^[a-zA-Z]+$/.test(value);
-
-    if (isEmptyValue) {
-      errors.firstNameLastName = 'First name or Last name cannot be empty';
-    } else if (!isValidFirstName) {
-      errors.firstNameLastName = 'Must contain at least one character and no special characters or numbers';
-    }
+  if (!values[Input.LastName]) {
+    errors[Input.LastName] = errorMsg.lastName.empty;
+  } else if (!isValidLastName) {
+    errors[Input.FirstName] = errorMsg.lastName.invalid;
   }
 
-  if (elements === ValidatableElements.Street) {
-    const isValidStreet = value.trim().length > 0;
-
-    if (isEmptyValue || !isValidStreet) {
-      errors.street = 'Must contain at least one character';
-    }
+  if (!values[Input.Street]) {
+    errors[Input.Street] = errorMsg.street.empty;
   }
 
-  if (elements === ValidatableElements.City) {
-    const isValidCity = /^[a-zA-Z]+$/.test(value);
-
-    if (isEmptyValue || !isValidCity) {
-      errors.city = 'Must contain at least one character and no special characters or numbers';
-    }
+  if (!values[Input.City] || !isValidCity) {
+    errors[Input.City] = errorMsg.city.invalid;
   }
 
-  if (elements === ValidatableElements.DateOfBirth) {
+  if (values[Input.DateOfBirth]) {
     const minAge = 13;
-    const birthDate = new Date(value); // value format YYYY-MM-DD
+    const birthDate = new Date(values[Input.DateOfBirth]); // value format YYYY-MM-DD
     const currentDate = new Date();
     const age = currentDate.getFullYear() - birthDate.getFullYear();
 
     if (age >= minAge) {
-      errors.age = 'Customers must be at least 13 years old.';
+      errors[Input.DateOfBirth] = errorMsg.dateOfBirth.invalid;
     }
   }
 
-  if (elements === ValidatableElements.ZipCode) {
-    const isValid = /^\d{5}$/.test(value);
-
-    if (isEmptyValue) {
-      errors.zipCode = 'ZipCode address cannot be empty.';
-    } else if (!isValid) {
-      errors.zipCode = 'The Zip Code should consist of exactly 5 digits.';
-    }
+  if (!values[Input.ZipCode]) {
+    errors[Input.ZipCode] = errorMsg.zipCode.empty;
+  } else if (!isValidZipCode) {
+    errors[Input.ZipCode] = errorMsg.zipCode.invalid;
   }
 
   return errors;
