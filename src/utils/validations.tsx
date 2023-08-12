@@ -60,7 +60,9 @@ const validate = (values: IValidationErrors): IValidationErrors => {
     const currentDate = new Date();
     const age = currentDate.getFullYear() - birthDate.getFullYear();
 
-    if (age >= minAge) {
+    if (!values[Input.DateOfBirth]) {
+      errors[Input.DateOfBirth] = errorMsg.dateOfBirth.empty;
+    } else if (age >= minAge) {
       errors[Input.DateOfBirth] = errorMsg.dateOfBirth.invalid;
     }
   }

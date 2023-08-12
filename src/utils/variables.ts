@@ -2,7 +2,7 @@ const cantBeEmpty = 'cannot be empty';
 const notValid = 'is not valid';
 
 export const errorMsg = {
-  email: { empty: `Email ${cantBeEmpty}`, invalid: `Email ${notValid}` },
+  email: { empty: `Email ${cantBeEmpty}`, invalid: 'Email must match the pattern: user@example.com' },
   pass: {
     empty: `Password ${cantBeEmpty}`,
     invalid: `Your password is not strong enough. 
@@ -13,6 +13,9 @@ export const errorMsg = {
   lastName: { empty: `Last name ${cantBeEmpty}`, invalid: `Last name ${notValid}` },
   street: { empty: 'Street must contain at least one character' },
   city: { invalid: 'Must contain at least one character and no special characters or numbers' },
-  dateOfBirth: { invalid: 'Customers must be at least 13 years old.' },
+  dateOfBirth: {
+    empty: 'Date, month and year of your birth must be selected.',
+    invalid: 'Customers must be at least 13 years old.',
+  },
   zipCode: { empty: `Zip Code ${cantBeEmpty}`, invalid: 'The Zip Code should consist of exactly 5 digits.' },
 };
