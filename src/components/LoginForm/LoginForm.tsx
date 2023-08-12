@@ -12,7 +12,7 @@ const LoginForm: React.FC = () => {
       <Formik
         initialValues={initialValues}
         validate={(values): IValidationErrors => validate(values)}
-        onSubmit={(values, { setSubmitting }): void => {
+        onSubmit={(_, { setSubmitting }): void => {
           setTimeout(() => {
             setSubmitting(false);
           }, 400);
@@ -27,24 +27,30 @@ const LoginForm: React.FC = () => {
           /* and other goodies */
         }): JSX.Element => (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <div>
-              <input
-                className={`${styles.form__inputs}`}
-                placeholder="Email"
-                type="email"
-                name={Input.Email}
-                value={values[Input.Email]}
-                onChange={(e): void => {
-                  if (!e.target.value.includes(' ')) {
-                    handleChange(e);
-                  }
-                }}
-              />
-            </div>
+            <label className="visually-hidden" htmlFor={Input.Email}>
+              {Input.Email}
+            </label>
+            <input
+              className={`${styles.form__inputs}`}
+              id={Input.Email}
+              placeholder="Email"
+              type="email"
+              name={Input.Email}
+              value={values[Input.Email]}
+              onChange={(e): void => {
+                if (!e.target.value.includes(' ')) {
+                  handleChange(e);
+                }
+              }}
+            />
             <ErrorMessage name={Input.Email} component="div" />
             <div className={`${styles.form__passwordContainer} ${styles.passwordContainer}`}>
+              <label className="visually-hidden" htmlFor={Input.Password}>
+                {Input.Password}
+              </label>
               <input
                 className={`${styles.form__inputs} ${styles.form__inputs_coloredPassword}`}
+                id={Input.Password}
                 placeholder="Password"
                 type={values.showPassword ? 'password' : 'text'}
                 name={Input.Password}
@@ -61,6 +67,7 @@ const LoginForm: React.FC = () => {
                 onClick={(): void => {
                   setFieldValue('showPassword', !values.showPassword);
                 }}
+                aria-label={values.showPassword ? 'Show Password' : 'Hide Password'}
               >
                 {values.showPassword ? 'Show' : 'Hide'}
               </button>
