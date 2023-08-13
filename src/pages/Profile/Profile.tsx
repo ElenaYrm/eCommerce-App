@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export default function Profile(): ReactElement {
+export function Profile(): ReactElement {
   return (
     <div>
       <h1>Profile</h1>

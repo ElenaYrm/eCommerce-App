@@ -4,7 +4,7 @@ import styles from './Login.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../router/constants/paths';
 
-export default function Login(): ReactElement {
+export function Login(): ReactElement {
   const navigate = useNavigate();
   const { logIn } = useAuthContext();
 

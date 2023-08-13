@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import styles from './Footer.module.scss';
 
-export default function Footer(): ReactElement {
+export function Footer(): ReactElement {
   return <footer className={styles.footer}>Footer</footer>;
 }

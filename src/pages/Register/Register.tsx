@@ -4,7 +4,7 @@ import { useAuthContext } from '../../router/hooks/useAuth';
 import styles from './Register.module.scss';
 import { PATH } from '../../router/constants/paths';
 
-export default function Register(): ReactElement {
+export function Register(): ReactElement {
   const navigate = useNavigate();
   const { logIn } = useAuthContext();
 

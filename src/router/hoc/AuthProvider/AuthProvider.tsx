@@ -3,7 +3,7 @@ import { IAuthContext, Children } from '../../types';
 
 export const AuthContext = createContext({} as IAuthContext);
 
-export default function AuthProvider({ children }: Children): ReactElement {
+export function AuthProvider({ children }: Children): ReactElement {
   const [isAuth, setIsAuth] = useState(false);
 
   function logIn(): void {
