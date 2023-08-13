@@ -4,7 +4,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
 import { PATH } from '../../router/constants/paths';
 
-export function Header(): ReactElement {
+export default function Header(): ReactElement {
   const navigate = useNavigate();
   const { isAuth, logout } = useContext(AuthContext);
 

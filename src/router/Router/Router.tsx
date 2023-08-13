@@ -10,7 +10,7 @@ import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';
 import { PATH } from '../constants/paths';
 
-export function Router(): ReactElement {
+export default function Router(): ReactElement {
   return (
     <Routes>
       <Route path={PATH.home} element={<Layout />}>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
 import { PATH } from '../../router/constants/paths';
 
-export function Register(): ReactElement {
+export default function Register(): ReactElement {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 

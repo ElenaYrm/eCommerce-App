@@ -9,7 +9,7 @@ const defaultContext = {
 
 export const AuthContext = createContext<IAuthContext>(defaultContext);
 
-export function AuthProvider({ children }: Children): ReactElement {
+export default function AuthProvider({ children }: Children): ReactElement {
   const [isAuth, setIsAuth] = useState(false);
 
   function login(): void {

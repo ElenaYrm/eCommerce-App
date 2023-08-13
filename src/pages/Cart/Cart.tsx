@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export function Cart(): ReactElement {
+export default function Cart(): ReactElement {
   return (
     <div>
       <h1>Cart</h1>
