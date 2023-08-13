@@ -18,7 +18,7 @@ export function Router(): ReactElement {
         <Route path={PATH.login} element={<Login />} />
         <Route path={PATH.register} element={<Register />} />
         <Route path={PATH.cart} element={<Cart />} />
-        <Route path={PATH['not-found']} element={<NotFound />} />
+        <Route path={PATH.notFound} element={<NotFound />} />
         <Route
           path={PATH.profile}
           element={

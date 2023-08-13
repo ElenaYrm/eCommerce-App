@@ -21,5 +21,5 @@ export enum Page {
   Register = 'register',
   Profile = 'profile',
   Cart = 'cart',
-  NotFound = 'not-found',
+  NotFound = 'notFound',
 }
