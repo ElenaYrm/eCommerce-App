@@ -1,15 +1,15 @@
-import { ReactElement } from 'react';
-import { useAuthContext } from '../../router/hooks/useAuth';
 import styles from './Login.module.scss';
+import { ReactElement, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
 import { PATH } from '../../router/constants/paths';
 
 export function Login(): ReactElement {
   const navigate = useNavigate();
-  const { logIn } = useAuthContext();
+  const { login } = useContext(AuthContext);
 
   function handleLogin(): void {
-    logIn();
+    login();
     navigate(PATH.home, { replace: true });
   }
 

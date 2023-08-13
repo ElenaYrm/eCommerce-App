@@ -1,16 +1,16 @@
 import styles from './Header.module.scss';
-import { ReactElement, MouseEvent } from 'react';
+import { ReactElement, MouseEvent, useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../router/hooks/useAuth';
+import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
 import { PATH } from '../../router/constants/paths';
 
 export function Header(): ReactElement {
   const navigate = useNavigate();
-  const { isAuth, logOut } = useAuthContext();
+  const { isAuth, logout } = useContext(AuthContext);
 
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
-    logOut();
+    logout();
     navigate(PATH.home, { replace: true });
   }
 

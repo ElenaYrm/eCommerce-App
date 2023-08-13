@@ -1,20 +1,26 @@
 import { ReactElement, createContext, useState } from 'react';
 import { IAuthContext, Children } from '../../types';
 
-export const AuthContext = createContext<IAuthContext | null>(null);
+const defaultContext = {
+  isAuth: false,
+  login: (): void => {},
+  logout: (): void => {},
+};
+
+export const AuthContext = createContext<IAuthContext>(defaultContext);
 
 export function AuthProvider({ children }: Children): ReactElement {
   const [isAuth, setIsAuth] = useState(false);
 
-  function logIn(): void {
+  function login(): void {
     setIsAuth(true);
   }
 
-  function logOut(): void {
+  function logout(): void {
     setIsAuth(false);
   }
 
-  const value = { isAuth, logIn, logOut };
+  const value = { isAuth, login, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

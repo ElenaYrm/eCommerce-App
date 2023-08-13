@@ -6,8 +6,8 @@ export interface Children {
 
 export interface IAuthContext {
   isAuth: boolean;
-  logIn: () => void;
-  logOut: () => void;
+  login: () => void;
+  logout: () => void;
 }
 
 export interface IProtectedRoute {

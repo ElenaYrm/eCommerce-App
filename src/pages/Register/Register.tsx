@@ -1,15 +1,15 @@
-import { ReactElement } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../router/hooks/useAuth';
 import styles from './Register.module.scss';
+import { ReactElement, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
 import { PATH } from '../../router/constants/paths';
 
 export function Register(): ReactElement {
   const navigate = useNavigate();
-  const { logIn } = useAuthContext();
+  const { login } = useContext(AuthContext);
 
   function handleRegister(): void {
-    logIn();
+    login();
     navigate(PATH.home, { replace: true });
   }
 
