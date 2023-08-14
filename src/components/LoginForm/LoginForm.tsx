@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
               type="email"
               name={Input.Email}
               value={values[Input.Email]}
-              onChange={(e): void => {
+              onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
                 if (!e.target.value.includes(' ')) {
                   handleChange(e);
                 }
@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
                 type={values.showPassword ? 'password' : 'text'}
                 name={Input.Password}
                 value={values[Input.Password]}
-                onChange={(e): void => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
                   if (!e.target.value.includes(' ')) {
                     handleChange(e);
                   }
