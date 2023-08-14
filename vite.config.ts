@@ -3,9 +3,15 @@ import react from '@vitejs/plugin-react';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    checker({
+      typescript: true,
+    }),
+  ],
   resolve: {
     alias: {
       util: 'rollup-plugin-node-polyfills/polyfills/util',
