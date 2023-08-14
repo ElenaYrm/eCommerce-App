@@ -1,0 +1,17 @@
+import { ChangeEvent } from 'react';
+import { INewAddress } from '../../../types';
+import { FormikErrors, FormikTouched } from 'formik';
+
+export interface IAddressForm {
+  type: 'billing' | 'shipping';
+  onchange: (e: ChangeEvent<HTMLInputElement>) => void;
+  values: INewAddress | undefined;
+  touched: FormikTouched<INewAddress> | undefined;
+  errors: FormikErrors<INewAddress> | undefined;
+  className?: string;
+}
+
+export interface IRegisterForm {
+  shipping: INewAddress;
+  billing: INewAddress;
+}
