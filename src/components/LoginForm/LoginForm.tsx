@@ -18,14 +18,7 @@ const LoginForm: React.FC = () => {
           }, 400);
         }}
       >
-        {({
-          values,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-          setFieldValue,
-          /* and other goodies */
-        }): JSX.Element => (
+        {({ values, handleChange, handleSubmit, isSubmitting, setFieldValue }): JSX.Element => (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <label className="visually-hidden" htmlFor={Input.Email}>
               {Input.Email}
