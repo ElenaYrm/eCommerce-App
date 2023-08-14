@@ -1,3 +1,5 @@
+import { Address } from '@commercetools/platform-sdk';
+
 export type TStatus = 'loading' | 'error' | 'success' | 'initial';
 
 export interface INewUser {
@@ -5,17 +7,24 @@ export interface INewUser {
   password: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string; // YYYY-MM-DD
+  dateOfBirth: string;
+  addresses: Address[];
 }
 
 export interface IUser extends INewUser {
   id: string;
   version: number;
-  // addresses: IAddress[];
   // defaultShippingAddressId: string;
   // shippingAddressIds: string[];
   // defaultBillingAddressId: string;
   // billingAddressIds: string[];
   // isEmailVerified: boolean;
   // authenticationMode: 'Password' | 'ExternalAuth';
+}
+
+export interface INewAddress {
+  streetName: string;
+  city: string;
+  postalCode: string;
+  country: string;
 }

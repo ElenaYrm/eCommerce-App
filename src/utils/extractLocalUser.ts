@@ -1,7 +1,7 @@
-import { CustomerSignInResult } from '@commercetools/platform-sdk';
+import { Customer } from '@commercetools/platform-sdk';
 import { IUser } from '../types';
 
-export function extractLocalUser({ customer }: CustomerSignInResult): IUser {
+export function extractLocalUser(customer: Customer): IUser {
   return {
     email: customer.email,
     password: customer.password || '',
@@ -10,5 +10,6 @@ export function extractLocalUser({ customer }: CustomerSignInResult): IUser {
     dateOfBirth: customer.dateOfBirth || '',
     id: customer.id,
     version: customer.version,
+    addresses: customer.addresses,
   };
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { registerCustomer } from '../../../services/sdk/auth/methods';
+import { registerCustomer, setAddresses } from '../../../services/sdk/auth/methods';
 import { checkError, extractLocalUser } from '../../../utils';
 import { INewUser, IUser } from '../../../types';
 import { IAuthSlice } from '../types';
@@ -16,7 +16,13 @@ export const registerThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       const user = await registerCustomer(body);
-      return extractLocalUser(user.body);
+      const addresses = await setAddresses(
+        user.body.customer.id,
+        user.body.customer.version,
+        user.body.customer.addresses,
+      );
+
+      return extractLocalUser(addresses.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

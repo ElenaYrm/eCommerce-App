@@ -11,6 +11,7 @@ const initialUser: IUser = {
   lastName: '',
   password: '',
   dateOfBirth: '',
+  addresses: [],
 };
 
 const initialState: IAuthSlice = {

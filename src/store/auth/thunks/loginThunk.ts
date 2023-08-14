@@ -17,7 +17,7 @@ export const loginThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       const user = await loginCustomer(body);
-      return extractLocalUser(user.body);
+      return extractLocalUser(user.body.customer);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }
