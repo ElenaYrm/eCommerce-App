@@ -4,8 +4,8 @@ import { FormikErrors, FormikTouched } from 'formik';
 
 export interface IAddressForm {
   type: 'billing' | 'shipping';
-  onchange: (e: ChangeEvent<HTMLInputElement>) => void;
-  values: INewAddress | undefined;
+  handleChange: (e?: ChangeEvent<HTMLInputElement>) => void;
+  values: INewAddress;
   touched: FormikTouched<INewAddress> | undefined;
   errors: FormikErrors<INewAddress> | undefined;
   className?: string;

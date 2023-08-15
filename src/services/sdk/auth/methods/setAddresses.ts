@@ -2,7 +2,7 @@ import { authRoot } from '../roots';
 import { Address, ClientResponse, Customer } from '@commercetools/platform-sdk';
 import { projectKey } from '../../index.ts';
 //
-export const setAddresses = (id: string, version: number, adresses: Address[]): Promise<ClientResponse<Customer>> => {
+export const setAddresses = (id: string, version: number, addresses: Address[]): Promise<ClientResponse<Customer>> => {
   return authRoot
     .withProjectKey({ projectKey })
     .customers()
@@ -13,11 +13,11 @@ export const setAddresses = (id: string, version: number, adresses: Address[]): 
         actions: [
           {
             action: 'setDefaultShippingAddress',
-            addressId: adresses[0].id,
+            addressId: addresses[0].id,
           },
           {
             action: 'setDefaultBillingAddress',
-            addressId: adresses.length === 2 ? adresses[1].id : adresses[0].id,
+            addressId: addresses.length === 2 ? addresses[1].id : addresses[0].id,
           },
         ],
       },

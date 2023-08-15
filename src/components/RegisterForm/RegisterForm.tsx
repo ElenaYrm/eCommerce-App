@@ -1,9 +1,9 @@
 import { ReactElement, useState } from 'react';
-import { FormikHelpers, useFormik } from 'formik';
+import { FormikErrors, FormikHelpers, useFormik } from 'formik';
 import { AddressForm } from './AddressForm';
 import { validateAddresses } from '../../utils';
 import { initialFormValues } from '../../constant';
-import { useAppDispatch } from '../../store/store.ts';
+import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
 import { IRegisterForm } from './types';
 import { INewAddress, INewUser } from '../../types';
@@ -14,7 +14,7 @@ function RegisterForm(): ReactElement {
   const [isSameAddress, setIsSameAddress] = useState(true);
   const dispatch = useAppDispatch();
   function onSubmit(values: IRegisterForm, options: FormikHelpers<IRegisterForm>): void {
-    const adresses: INewAddress[] = [
+    const addresses: INewAddress[] = [
       {
         streetName: values.shipping.streetName,
         city: values.shipping.city,
@@ -23,7 +23,7 @@ function RegisterForm(): ReactElement {
       },
     ];
     if (!isSameAddress) {
-      adresses.push({
+      addresses.push({
         streetName: values.billing.streetName,
         city: values.billing.city,
         postalCode: values.billing.postalCode,
@@ -38,7 +38,7 @@ function RegisterForm(): ReactElement {
       firstName: 'ooo',
       lastName: 'jjjj',
       dateOfBirth: '2000-01-01',
-      addresses: adresses,
+      addresses,
     };
 
     dispatch(registerThunk(newUser));
@@ -47,7 +47,7 @@ function RegisterForm(): ReactElement {
 
   const registerForm = useFormik<IRegisterForm>({
     initialValues: initialFormValues,
-    validate: (values) => {
+    validate: (values): void | object | Promise<FormikErrors<IRegisterForm>> => {
       return validateAddresses(values, isSameAddress);
     },
     onSubmit,
@@ -58,7 +58,7 @@ function RegisterForm(): ReactElement {
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <AddressForm
         type="shipping"
-        onchange={handleChange}
+        handleChange={handleChange}
         values={values.shipping}
         touched={touched.shipping}
         errors={errors.shipping}
@@ -77,8 +77,8 @@ function RegisterForm(): ReactElement {
       {!isSameAddress && (
         <AddressForm
           type="billing"
-          onchange={handleChange}
-          values={isSameAddress ? values.shipping : values.billing}
+          handleChange={handleChange}
+          values={values.billing}
           touched={touched.billing}
           errors={errors.billing}
           className={styles.form__subform}

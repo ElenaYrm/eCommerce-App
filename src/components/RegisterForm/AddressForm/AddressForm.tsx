@@ -3,7 +3,7 @@ import { IAddressForm } from '../types';
 import classNames from 'classnames';
 
 import styles from './addressForm.module.scss';
-function AddressForm({ type, values, errors, onchange, touched, className }: IAddressForm): ReactElement {
+function AddressForm({ type, values, errors, handleChange, touched, className }: IAddressForm): ReactElement {
   return (
     <div className={classNames(className, styles.address)}>
       <h3>{`${type[0].toUpperCase() + type.slice(1).toLowerCase()} address`}</h3>
@@ -14,8 +14,8 @@ function AddressForm({ type, values, errors, onchange, touched, className }: IAd
           name={`${type}.streetName`}
           type="text"
           placeholder="Street"
-          onChange={onchange}
-          value={values?.streetName}
+          onChange={handleChange}
+          value={values.streetName}
           className={styles.address__input}
         />
         {touched?.streetName && errors?.streetName ? (
@@ -30,8 +30,8 @@ function AddressForm({ type, values, errors, onchange, touched, className }: IAd
             name={`${type}.city`}
             type="text"
             placeholder="City"
-            onChange={onchange}
-            value={values?.city}
+            onChange={handleChange}
+            value={values.city}
             className={styles.address__input}
           />
           {touched?.city && errors?.city ? <span className={styles.address__error}>{errors.city}</span> : null}
@@ -43,8 +43,8 @@ function AddressForm({ type, values, errors, onchange, touched, className }: IAd
             name={`${type}.postalCode`}
             type="text"
             placeholder="ZIP code"
-            onChange={onchange}
-            value={values?.postalCode}
+            onChange={handleChange}
+            value={values.postalCode}
             className={styles.address__input}
           />
           {touched?.postalCode && errors?.postalCode ? (
@@ -60,8 +60,8 @@ function AddressForm({ type, values, errors, onchange, touched, className }: IAd
           name={`${type}.country`}
           type="text"
           placeholder="Country"
-          onChange={onchange}
-          value={values?.country}
+          onChange={handleChange}
+          value={values.country}
           disabled={true}
           className={styles.address__input}
         />

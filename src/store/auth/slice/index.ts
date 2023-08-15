@@ -1,40 +1,20 @@
-import { IAuthSlice } from '../types';
-import { loginThunk, registerThunk } from '../thunks';
 import { createSlice } from '@reduxjs/toolkit';
-import { IUser } from '../../../types';
-
-const initialUser: IUser = {
-  id: '',
-  version: 0,
-  email: '',
-  firstName: '',
-  lastName: '',
-  password: '',
-  dateOfBirth: '',
-  addresses: [],
-};
-
-const initialState: IAuthSlice = {
-  isAuthorized: false,
-  isNewUser: false,
-  status: 'initial',
-  error: '',
-  user: initialUser,
-};
+import { loginThunk, registerThunk } from '../thunks';
+import { initialAuthState, initialUser } from '../../../constant';
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: initialAuthState,
   reducers: {
     deleteNotice: (state): void => {
       state.isNewUser = false;
     },
-    // logout: (state): void => {
-    //   state.isAuthorized = false;
-    //   state.user = initialUser;
-    //   state.status = 'initial';
-    //   state.error = '';
-    // },
+    logout: (state): void => {
+      state.isAuthorized = false;
+      state.user = initialUser;
+      state.status = 'initial';
+      state.error = '';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -71,4 +51,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { deleteNotice } = authSlice.actions;
+export const { deleteNotice, logout } = authSlice.actions;
