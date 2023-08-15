@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { registerCustomer, setAddresses } from '../../../services/sdk/auth/methods';
 import { checkError, extractLocalUser } from '../../../utils';
-import { INewUser, IUser } from '../../../types';
+import { INewUser, IUser } from '../../../types/interfaces';
 import { IAuthSlice } from '../types';
 
 export const registerThunk = createAsyncThunk<

@@ -1,4 +1,4 @@
-import { IUser } from '../types';
+import { IUser } from '../types/interfaces';
 import { IAuthSlice } from '../store/auth/types';
 
 export const initialUser: IUser = {

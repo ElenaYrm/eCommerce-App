@@ -1,6 +1,8 @@
 import { Address } from '@commercetools/platform-sdk';
 
-export type TStatus = 'loading' | 'error' | 'success' | 'initial';
+export interface IValidationErrors {
+  [key: string]: string;
+}
 
 export interface INewUser {
   email: string;

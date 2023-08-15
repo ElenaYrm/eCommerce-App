@@ -6,7 +6,7 @@ import { initialFormValues } from '../../constant';
 import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
 import { IRegisterForm } from './types';
-import { INewAddress, INewUser } from '../../types';
+import { INewAddress, INewUser } from '../../types/interfaces';
 
 import styles from './registerForm.module.scss';
 

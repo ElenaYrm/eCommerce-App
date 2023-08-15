@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { INewAddress } from '../../../types';
+import { INewAddress } from '../../../types/interfaces';
 import { FormikErrors, FormikTouched } from 'formik';
 
 export interface IAddressForm {

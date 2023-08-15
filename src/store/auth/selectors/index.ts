@@ -1,6 +1,6 @@
 import { RootState } from '../../store.ts';
 import { IAuthSlice } from '../types';
-import { IUser } from '../../../types';
+import { IUser } from '../../../types/interfaces';
 
 export const selectIsAuthorized = (state: RootState): boolean => state.auth.isAuthorized;
 export const selectIsNewUser = (status: RootState): boolean => status.auth.isNewUser;

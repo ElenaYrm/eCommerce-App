@@ -1,5 +1,5 @@
 import { Customer } from '@commercetools/platform-sdk';
-import { IUser } from '../types';
+import { IUser } from '../types/interfaces';
 
 export function extractLocalUser(customer: Customer): IUser {
   return {

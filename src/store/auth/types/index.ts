@@ -1,4 +1,5 @@
-import { IUser, TStatus } from '../../../types';
+import { TStatus } from '../../../types/types';
+import { IUser } from '../../../types/interfaces';
 
 export interface IAuthSlice {
   isAuthorized: boolean;

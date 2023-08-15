@@ -3,7 +3,7 @@ import { UserAuthOptions } from '@commercetools/sdk-client-v2';
 import { loginCustomer } from '../../../services/sdk/auth/methods';
 import { checkError, extractLocalUser } from '../../../utils';
 import { IAuthSlice } from '../types';
-import { IUser } from '../../../types';
+import { IUser } from '../../../types/interfaces';
 
 export const loginThunk = createAsyncThunk<
   IUser,
