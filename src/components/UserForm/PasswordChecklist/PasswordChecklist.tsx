@@ -14,7 +14,7 @@ export default function PasswordChecklist({ password }: { password: string }): R
     <div className={styles.checkItems}>
       <ul>
         {rules.map((rule, index) => (
-          <li className={`${styles.checkItem} ${rule.isValid ? 'valid' : ''}`} key={index}>
+          <li className={`${styles.checkItem} ${rule.isValid ? styles.valid : ''}`} key={index}>
             <span>{rule.rule}</span>
           </li>
         ))}

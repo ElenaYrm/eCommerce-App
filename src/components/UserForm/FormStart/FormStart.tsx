@@ -101,7 +101,7 @@ export default function FormStart(): ReactElement {
         ) : null}
       </div>
 
-      <div className="form__field field__selects">
+      <div className={styles.formField}>
         <div className={styles.selects}>
           {/* Date */}
           <div className={styles.formSelect}>
