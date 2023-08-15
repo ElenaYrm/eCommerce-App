@@ -1,20 +1,6 @@
 function getMonthIndex(month: string): number {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  return months.indexOf(month);
+  const date = new Date(`${month} 1, 2023`);
+  return date.getMonth();
 }
 
 export function getUserAge(date: string, month: string, year: string): number {
