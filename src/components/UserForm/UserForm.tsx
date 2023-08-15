@@ -1,10 +1,33 @@
-import styles from './FormStart.module.scss';
+import styles from './UserForm.module.scss';
 import { ReactElement } from 'react';
 import { useFormik } from 'formik';
-import { Input } from '../../../types/enums';
-import { PasswordChecklist } from '../PasswordChecklist';
-import { dates, months, years } from './constants';
-import validate from '../../../utils/validations';
+import { Input } from '../../types/enums';
+import { PasswordChecklist } from './PasswordChecklist';
+import validate from '../../utils/validations';
+
+const currentYear = new Date().getFullYear();
+export const years = Array(90)
+  .fill('')
+  .map((_, index) => `${currentYear - index}`);
+
+export const dates = Array(31)
+  .fill('')
+  .map((_, index) => `${index + 1}`);
+
+export const months = [
+  'February',
+  'January',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 const initialValues = {
   email: '',
@@ -16,7 +39,7 @@ const initialValues = {
   year: '',
 };
 
-export default function FormStart(): ReactElement {
+export default function UserForm(): ReactElement {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
