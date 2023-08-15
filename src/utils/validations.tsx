@@ -1,6 +1,7 @@
 import { Input } from '../types/enums';
 import { IValidationErrors } from '../types/interfaces';
 import { errorMsg } from './variables';
+import { getUserAge } from './getUserAge';
 
 const validate = (values: IValidationErrors): IValidationErrors => {
   const errors: IValidationErrors = {};
@@ -14,6 +15,10 @@ const validate = (values: IValidationErrors): IValidationErrors => {
   const isValidCity = /^[a-zA-Z]+$/.test(values[Input.City]);
   const isValidZipCode = /^\d{5}$/.test(values[Input.ZipCode]);
 
+  const date = values[Input.Date];
+  const month = values[Input.Month];
+  const year = values[Input.Year];
+
   if (!values[Input.Email]) {
     errors[Input.Email] = errorMsg.email.empty;
   } else if (!isValidEmail) {
@@ -21,17 +26,17 @@ const validate = (values: IValidationErrors): IValidationErrors => {
   }
 
   if (!values[Input.Password]) {
-    errors[Input.Password] = errorMsg.pass.empty;
+    errors[Input.Password] = errorMsg.password.empty;
   } else if (values[Input.Password].length < 8) {
-    errors[Input.Password] = errorMsg.pass.invalid;
+    errors[Input.Password] = errorMsg.password.invalid;
   } else if (!hasUppercase) {
-    errors[Input.Password] = errorMsg.pass.invalid;
+    errors[Input.Password] = errorMsg.password.invalid;
   } else if (!hasLowercase) {
-    errors[Input.Password] = errorMsg.pass.invalid;
+    errors[Input.Password] = errorMsg.password.invalid;
   } else if (!hasDigit) {
-    errors[Input.Password] = errorMsg.pass.invalid;
+    errors[Input.Password] = errorMsg.password.invalid;
   } else if (!hasSpecialCharacter) {
-    errors[Input.Password] = errorMsg.pass.invalid;
+    errors[Input.Password] = errorMsg.password.invalid;
   }
 
   if (!values[Input.FirstName]) {
@@ -54,16 +59,16 @@ const validate = (values: IValidationErrors): IValidationErrors => {
     errors[Input.City] = errorMsg.city.invalid;
   }
 
-  if (values[Input.DateOfBirth]) {
-    const minAge = 13;
-    const birthDate = new Date(values[Input.DateOfBirth]); // value format YYYY-MM-DD
-    const currentDate = new Date();
-    const age = currentDate.getFullYear() - birthDate.getFullYear();
+  if (!date || !month || !year) {
+    errors[Input.Date] = errorMsg.date.empty;
+  }
 
-    if (!values[Input.DateOfBirth]) {
-      errors[Input.DateOfBirth] = errorMsg.dateOfBirth.empty;
-    } else if (age >= minAge) {
-      errors[Input.DateOfBirth] = errorMsg.dateOfBirth.invalid;
+  if (date && month && year) {
+    const minAge = 13;
+    const userAge = getUserAge(date, month, year);
+
+    if (userAge < minAge) {
+      errors[Input.Date] = errorMsg.date.invalid;
     }
   }
 
