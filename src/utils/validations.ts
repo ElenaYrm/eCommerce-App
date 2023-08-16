@@ -1,85 +1,124 @@
-import { Input } from '../types/enums';
 import { errorMsg } from './variables';
 import { getUserAge } from './getUserAge';
-import { IFormInputs } from '../types/interfaces';
-import { FormikErrors } from 'formik';
 
-const validate = (values: IFormInputs): FormikErrors<IFormInputs> => {
-  const errors: FormikErrors<IFormInputs> = {};
-  const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(values[Input.Email].trim());
-  const hasUppercase = /[A-Z]/.test(values[Input.Password]);
-  const hasLowercase = /[a-z]/.test(values[Input.Password]);
-  const hasDigit = /\d/.test(values[Input.Password]);
-  const hasSpecialCharacter = /[!@#$%^&*]/.test(values[Input.Password]);
-  const isValidFirstName = /^[a-zA-Z]+$/.test(values[Input.FirstName]);
-  const isValidLastName = /^[a-zA-Z]+$/.test(values[Input.LastName]);
-  const isValidCity = /^[a-zA-Z]+$/.test(values[Input.City]);
-  const isValidZipCode = /^\d{5}$/.test(values[Input.ZipCode]);
+export function emailValidation(value: string): string {
+  let error: string = '';
+  const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(value.trim());
 
-  const date = values[Input.Date];
-  const month = values[Input.Month];
-  const year = values[Input.Year];
-
-  if (!values[Input.Email]) {
-    errors[Input.Email] = errorMsg.email.empty;
+  if (!value) {
+    error = errorMsg.email.empty;
   } else if (!isValidEmail) {
-    errors.email = errorMsg.email.invalid;
+    error = errorMsg.email.invalid;
   }
 
-  if (!values[Input.Password]) {
-    errors[Input.Password] = errorMsg.password.empty;
-  } else if (values[Input.Password].length < 8) {
-    errors[Input.Password] = errorMsg.password.invalid;
+  return error;
+}
+
+export function passwordValidation(value: string): string {
+  let error: string = '';
+  const MIN_PASSWORD_LENGTH = 8;
+  const hasUppercase = /[A-Z]/.test(value);
+  const hasLowercase = /[a-z]/.test(value);
+  const hasDigit = /\d/.test(value);
+  const hasSpecialCharacter = /[!@#$%^&*]/.test(value);
+
+  if (!value) {
+    error = errorMsg.password.empty;
+  } else if (value.length < MIN_PASSWORD_LENGTH) {
+    error = errorMsg.password.invalid;
   } else if (!hasUppercase) {
-    errors[Input.Password] = errorMsg.password.invalid;
+    error = errorMsg.password.invalid;
   } else if (!hasLowercase) {
-    errors[Input.Password] = errorMsg.password.invalid;
+    error = errorMsg.password.invalid;
   } else if (!hasDigit) {
-    errors[Input.Password] = errorMsg.password.invalid;
+    error = errorMsg.password.invalid;
   } else if (!hasSpecialCharacter) {
-    errors[Input.Password] = errorMsg.password.invalid;
+    error = errorMsg.password.invalid;
   }
 
-  if (!values[Input.FirstName]) {
-    errors[Input.FirstName] = errorMsg.firstName.empty;
+  return error;
+}
+
+export function nameValidate(value: string): string {
+  let error: string = '';
+  const isValidFirstName = /^[a-zA-Z]+$/.test(value);
+
+  if (!value) {
+    error = errorMsg.firstName.empty;
   } else if (!isValidFirstName) {
-    errors[Input.FirstName] = errorMsg.firstName.invalid;
+    error = errorMsg.firstName.invalid;
   }
 
-  if (!values[Input.LastName]) {
-    errors[Input.LastName] = errorMsg.lastName.empty;
-  } else if (!isValidLastName) {
-    errors[Input.FirstName] = errorMsg.lastName.invalid;
+  return error;
+}
+
+export function lastNameValidate(value: string): string {
+  let error: string = '';
+  const isValidFirstName = /^[a-zA-Z]+$/.test(value);
+
+  if (!value) {
+    error = errorMsg.lastName.empty;
+  } else if (!isValidFirstName) {
+    error = errorMsg.lastName.invalid;
   }
 
-  if (!values[Input.Street]) {
-    errors[Input.Street] = errorMsg.street.empty;
+  return error;
+}
+
+export function streetValidate(value: string): string {
+  let error: string = '';
+
+  if (!value) {
+    error = errorMsg.street.empty;
   }
 
-  if (!values[Input.City] || !isValidCity) {
-    errors[Input.City] = errorMsg.city.invalid;
+  return error;
+}
+
+export function cityValidate(value: string): string {
+  let error: string = '';
+  const isValidCity = /^[a-zA-Z]+$/.test(value);
+
+  if (!value || !isValidCity) {
+    error = errorMsg.city.invalid;
   }
 
-  if (!date || !month || !year) {
-    errors[Input.Date] = errorMsg.date.empty;
-  }
+  return error;
+}
 
-  if (date && month && year) {
-    const minAge = 13;
-    const userAge = getUserAge(date, month, year);
+export function dateMYValidate(value: string): string {
+  let error: string = '';
+  const trimValue = value.trim();
+  const regex = /^\d{1,2}\p{L}+\d{4}$/u;
+  const isValid = regex.test(trimValue);
 
-    if (userAge < minAge) {
-      errors[Input.Date] = errorMsg.date.invalid;
+  if (!isValid) {
+    error = errorMsg.date.empty;
+  } else if (isValid) {
+    const parts = trimValue.match(/\d+|[a-zA-Z]+/g);
+    if (parts) {
+      const [date, month, year] = parts;
+      const MIN_AGE = 13;
+      const userAge = getUserAge(date, month, year);
+
+      if (userAge < MIN_AGE) {
+        error = errorMsg.date.invalid;
+      }
     }
   }
 
-  if (!values[Input.ZipCode]) {
-    errors[Input.ZipCode] = errorMsg.zipCode.empty;
+  return error;
+}
+
+export function zipCodeValidate(value: string): string {
+  let error: string = '';
+  const isValidZipCode = /^\d{5}$/.test(value);
+
+  if (!value) {
+    error = errorMsg.zipCode.empty;
   } else if (!isValidZipCode) {
-    errors[Input.ZipCode] = errorMsg.zipCode.invalid;
+    error = errorMsg.zipCode.invalid;
   }
 
-  return errors;
-};
-
-export default validate;
+  return error;
+}
