@@ -1,9 +1,9 @@
 import styles from './LoginForm.module.scss';
-import React from 'react';
-import { ErrorMessage, Formik } from 'formik';
+import React, { ReactElement } from 'react';
+import { ErrorMessage, Formik, FormikErrors } from 'formik';
 import validate from '../../utils/validations.ts';
 import { Input } from '../../types/enums';
-import { IValidationErrors } from '../../types/interfaces';
+import { IFormInputs } from '../../types/interfaces';
 import { initialValues } from './variables';
 
 const LoginForm: React.FC = () => {
@@ -11,14 +11,14 @@ const LoginForm: React.FC = () => {
     <div className={styles.root}>
       <Formik
         initialValues={initialValues}
-        validate={(values): IValidationErrors => validate(values)}
+        validate={(values): FormikErrors<IFormInputs> => validate(values)}
         onSubmit={(_, { setSubmitting }): void => {
           setTimeout(() => {
             setSubmitting(false);
           }, 400);
         }}
       >
-        {({ values, handleChange, handleSubmit, isSubmitting, setFieldValue }): JSX.Element => (
+        {({ values, handleChange, handleSubmit, isSubmitting, setFieldValue }): ReactElement => (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <label className="visually-hidden" htmlFor={Input.Email}>
               {Input.Email}
