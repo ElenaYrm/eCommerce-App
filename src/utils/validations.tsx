@@ -1,10 +1,11 @@
 import { Input } from '../types/enums';
-import { IValidationErrors } from '../types/interfaces';
 import { errorMsg } from './variables';
 import { getUserAge } from './getUserAge';
+import { IFormInputs } from '../types/interfaces';
+import { FormikErrors } from 'formik';
 
-const validate = (values: IValidationErrors): IValidationErrors => {
-  const errors: IValidationErrors = {};
+const validate = (values: IFormInputs): FormikErrors<IFormInputs> => {
+  const errors: FormikErrors<IFormInputs> = {};
   const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(values[Input.Email].trim());
   const hasUppercase = /[A-Z]/.test(values[Input.Password]);
   const hasLowercase = /[a-z]/.test(values[Input.Password]);
