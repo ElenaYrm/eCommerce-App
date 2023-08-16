@@ -8,9 +8,8 @@ export const errorMsg = {
   },
   password: {
     empty: `Password ${isRequired}`,
-    invalid: `Your password is not strong enough. 
-  Password must be at least 8 character long, and contain at least
-  1 uppercase letter, 1 lowercase letter and 1 number.`,
+    invalid: `Password must be at least 8 character long, and contain at least
+  1 uppercase and 1 lowercase letter and 1 number`,
   },
   firstName: {
     empty: `First name ${isRequired}`,
@@ -27,11 +26,11 @@ export const errorMsg = {
     invalid: 'Must contain at least one character and no special characters or numbers',
   },
   date: {
-    empty: 'Date, month and year of your birth must be selected.',
-    invalid: 'User must be at least 13 years old.',
+    empty: 'Date, month and year of your birth must be selected',
+    invalid: 'User must be at least 13 years old',
   },
   zipCode: {
     empty: `Zip Code ${isRequired}`,
-    invalid: 'The Zip Code should consist of exactly 5 digits.',
+    invalid: 'The Zip Code should consist of exactly 5 digits',
   },
 };

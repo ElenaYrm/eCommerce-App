@@ -4,18 +4,20 @@ import { SelectFieldProps } from './types';
 
 export default function SelectField(props: SelectFieldProps): ReactElement {
   const { values, handleChange } = props.formik;
-  const { name, options } = props;
+  const { name, options, className } = props;
+
+  const selectProps = {
+    name,
+    value: values[name],
+    onChange: handleChange,
+    className: values[name] ? `${styles.selected}` : '',
+  };
 
   return (
-    <div className={styles.form__select}>
+    <div className={`${styles.form__select} ${className ? className : ''}`}>
       <label htmlFor={name}>{name}</label>
 
-      <select
-        name={name}
-        value={values[name]}
-        onChange={handleChange}
-        className={values[name] ? `${styles.selected}` : ''}
-      >
+      <select {...selectProps}>
         <option value="" disabled>
           {name}
         </option>

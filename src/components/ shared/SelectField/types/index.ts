@@ -5,4 +5,5 @@ export interface SelectFieldProps {
   formik: FormikValues;
   name: Input;
   options: string[];
+  className?: string;
 }
