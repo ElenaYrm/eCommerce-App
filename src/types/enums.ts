@@ -3,8 +3,10 @@ export enum Input {
   Password = 'password',
   FirstName = 'firstName',
   LastName = 'lastName',
-  DateOfBirth = 'dateOfBirth',
   Street = 'street',
   City = 'city',
   ZipCode = 'zipCode',
+  Date = 'date',
+  Month = 'month',
+  Year = 'year',
 }

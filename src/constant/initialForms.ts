@@ -1,4 +1,6 @@
 import { IRegisterForm } from '../components/RegisterForm/types';
+import { IFormInputs } from '../types/interfaces';
+
 export const initialFormValues: IRegisterForm = {
   shipping: {
     streetName: '',
@@ -12,4 +14,14 @@ export const initialFormValues: IRegisterForm = {
     postalCode: '',
     city: '',
   },
+};
+
+export const initialUserValues: IFormInputs = {
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: '',
+  date: '',
+  month: '',
+  year: '',
 };
