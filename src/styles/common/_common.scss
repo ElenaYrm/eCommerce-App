@@ -62,13 +62,3 @@ ul {
   padding: 0 2rem;
   margin: 0 auto;
 }
-
-input {
-  width: inherit;
-  background-color: transparent;
-
-  &::placeholder {
-    color: $dark-primary;
-    opacity: 0.5;
-  }
-}

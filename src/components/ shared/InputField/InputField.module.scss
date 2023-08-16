@@ -4,9 +4,15 @@
   width: inherit;
 
   input {
+    width: inherit;
     border: none;
     border-bottom: 0.1rem solid $dark-primary;
     padding: 2rem 0 0.5rem;
+    background-color: transparent;
+
+    &::placeholder {
+      color: $placeholder-grey;
+    }
   }
 
   .message__error {
@@ -14,5 +20,11 @@
     display: block;
     text-align: right;
     margin-top: 0.5rem;
+  }
+
+  label {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
   }
 }

@@ -15,6 +15,7 @@
     height: 0.5em;
     background-color: $dark-primary;
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    pointer-events: none;
     transition: all 0.2s ease-in;
   }
 
@@ -27,6 +28,7 @@
     -webkit-appearance: none;
     position: relative;
     padding: 2rem 0 0.5rem;
+    width: 100%;
     display: flex;
     flex: 1;
     background-color: transparent;
