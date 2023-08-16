@@ -1,7 +1,7 @@
 import styles from './LoginForm.module.scss';
 import React from 'react';
 import { ErrorMessage, Formik } from 'formik';
-import validate from '../../utils/validations';
+import validate from '../../utils/validations.ts';
 import { Input } from '../../types/enums';
 import { IValidationErrors } from '../../types/interfaces';
 import { initialValues } from './variables';
