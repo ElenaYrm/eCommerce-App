@@ -7,18 +7,18 @@ import { PasswordFieldProps } from '../types';
 
 export default function PasswordField({ formik, formName }: PasswordFieldProps): ReactElement {
   const password = formik.values[Input.Password];
-  const [type, setType] = useState('password');
+  const [hidden, setHidden] = useState(true);
 
   function togglePasswordType(e: MouseEvent<HTMLButtonElement>): void {
     e.preventDefault();
-    setType((prevType) => (prevType === 'password' ? 'text' : 'password'));
+    setHidden((hidden) => (hidden = !hidden));
   }
 
   return (
     <>
-      <InputField formik={formik} name={Input.Password} type={type} placeholder="Password">
+      <InputField formik={formik} name={Input.Password} type={hidden ? 'password' : 'text'} placeholder="Password">
         <button className={styles.button__toggle} onClick={togglePasswordType}>
-          {type === 'password' ? 'Show' : 'Hide'}
+          {hidden ? 'Show' : 'Hide'}
         </button>
       </InputField>
 

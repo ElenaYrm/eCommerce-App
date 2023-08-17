@@ -1,4 +1,5 @@
 import styles from './InputField.module.scss';
+import classnames from 'classnames';
 import { ReactElement } from 'react';
 import { InputFieldProps } from '../types';
 
@@ -15,8 +16,8 @@ export default function InputField(props: InputFieldProps): ReactElement {
   };
 
   return (
-    <div className={`${styles.form__input} ${className ? className : ''}`}>
-      <label htmlFor={name}>
+    <div className={classnames(styles.form__input, className ? className : '')}>
+      <label>
         <span className="visually-hidden">{name}</span>
         <input {...inputProps} />
 

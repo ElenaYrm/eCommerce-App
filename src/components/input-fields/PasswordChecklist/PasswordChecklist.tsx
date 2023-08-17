@@ -1,4 +1,5 @@
 import styles from './PasswordChecklist.module.scss';
+import classnames from 'classnames';
 import { ReactElement } from 'react';
 import { IPassword } from '../../../types/interfaces';
 
@@ -15,7 +16,7 @@ export default function PasswordChecklist({ password }: IPassword): ReactElement
     <div className={styles['check-items']}>
       <ul>
         {rules.map((rule, index) => (
-          <li className={`${styles['check-item']} ${rule.isValid ? styles.valid : ''}`} key={index}>
+          <li className={classnames(styles['check-item'], rule.isValid ? styles.valid : '')} key={index}>
             <span>{rule.rule}</span>
           </li>
         ))}

@@ -1,4 +1,5 @@
 import styles from './SelectField.module.scss';
+import classnames from 'classnames';
 import { ReactElement } from 'react';
 import { SelectFieldProps } from '../types';
 
@@ -14,8 +15,8 @@ export default function SelectField(props: SelectFieldProps): ReactElement {
   };
 
   return (
-    <div className={`${styles.form__select} ${className ? className : ''}`}>
-      <label htmlFor={name}>
+    <div className={classnames(styles.form__select, className ? className : '')}>
+      <label>
         <span className="visually-hidden">{name}</span>
 
         <select {...selectProps}>
