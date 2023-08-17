@@ -11,7 +11,7 @@ import { INewAddress, INewUser } from '../../types/interfaces';
 
 import styles from './registerForm.module.scss';
 
-interface IRegisterForm {
+export interface IRegisterForm {
   user: IUserForm;
   shipping: INewAddress;
   billing: INewAddress;

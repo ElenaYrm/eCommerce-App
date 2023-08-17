@@ -1,79 +1,64 @@
-import styles from './LoginForm.module.scss';
-import React, { ReactElement } from 'react';
-import { ErrorMessage, Formik, FormikErrors } from 'formik';
-import validate from '../../utils/validations.ts';
+import { ReactElement } from 'react';
+import { Formik, FormikHelpers } from 'formik';
+import { UserAuthOptions } from '@commercetools/sdk-client-v2';
+import { InputField } from '../input-fields/InputField';
+import { PasswordField } from '../input-fields/PasswordField';
+import { loginThunk } from '../../store/auth/thunks';
+import { useAppDispatch } from '../../store/store';
+import { initialLoginForm } from '../../constant';
 import { Input } from '../../types/enums';
-import { IFormInputs } from '../../types/interfaces';
-import { initialValues } from './variables';
+import { validateLoginForm } from '../../utils';
 
-const LoginForm: React.FC = () => {
+import styles from './loginForm.module.scss';
+
+export interface ILoginForm {
+  email: string;
+  password: string;
+}
+
+function LoginForm(): ReactElement {
+  const dispatch = useAppDispatch();
+
+  function handleSubmit(values: ILoginForm, { resetForm }: FormikHelpers<ILoginForm>): void {
+    const user: UserAuthOptions = {
+      username: values.email,
+      password: values.password,
+    };
+
+    dispatch(loginThunk(user));
+    resetForm();
+  }
+
   return (
     <div className={styles.root}>
-      <Formik
-        initialValues={initialValues}
-        validate={(values): FormikErrors<IFormInputs> => validate(values)}
-        onSubmit={(_, { setSubmitting }): void => {
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({ values, handleChange, handleSubmit, isSubmitting, setFieldValue }): ReactElement => (
+      <Formik initialValues={initialLoginForm} validate={validateLoginForm} onSubmit={handleSubmit}>
+        {({ values, handleChange, handleSubmit, errors, touched }): ReactElement => (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <label className="visually-hidden" htmlFor={Input.Email}>
-              {Input.Email}
-            </label>
-            <input
-              className={`${styles.form__inputs}`}
-              id={Input.Email}
-              placeholder="Email"
+            <InputField
+              fieldName={Input.Email}
               type="email"
-              name={Input.Email}
+              placeholder="Email"
               value={values[Input.Email]}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
-                if (!e.target.value.includes(' ')) {
-                  handleChange(e);
-                }
-              }}
+              error={errors?.[Input.Email]}
+              touched={touched?.[Input.Email]}
+              handleChange={handleChange}
             />
-            <ErrorMessage name={Input.Email} component="div" />
-            <div className={`${styles.form__passwordContainer} ${styles.passwordContainer}`}>
-              <label className="visually-hidden" htmlFor={Input.Password}>
-                {Input.Password}
-              </label>
-              <input
-                className={`${styles.form__inputs} ${styles.form__inputs_coloredPassword}`}
-                id={Input.Password}
-                placeholder="Password"
-                type={values.showPassword ? 'password' : 'text'}
-                name={Input.Password}
-                value={values[Input.Password]}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
-                  if (!e.target.value.includes(' ')) {
-                    handleChange(e);
-                  }
-                }}
-              />
-              <button
-                className={styles.form__passwordContainer__showBtn}
-                type="button"
-                onClick={(): void => {
-                  setFieldValue('showPassword', !values.showPassword);
-                }}
-                aria-label={values.showPassword ? 'Show Password' : 'Hide Password'}
-              >
-                {values.showPassword ? 'Show' : 'Hide'}
-              </button>
-            </div>
-            <ErrorMessage name={Input.Password} component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              Login
-            </button>
+
+            <PasswordField
+              fieldName={Input.Password}
+              placeholder="Password"
+              value={values[Input.Password]}
+              error={errors?.[Input.Password]}
+              touched={touched?.[Input.Password]}
+              handleChange={handleChange}
+            />
+
+            <button type="submit">Login</button>
           </form>
         )}
       </Formik>
     </div>
   );
-};
+}
 
 export default LoginForm;

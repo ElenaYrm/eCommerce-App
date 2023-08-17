@@ -1,5 +1,5 @@
-import { IRegisterForm } from '../components/RegisterForm/types';
-import { ILoginForm } from '../components/LoginForm/types';
+import { IRegisterForm } from '../components/RegisterForm/RegisterForm';
+import { ILoginForm } from '../components/LoginForm/LoginForm';
 import { Input } from '../types/enums';
 
 export const initialRegisterForm: IRegisterForm = {
