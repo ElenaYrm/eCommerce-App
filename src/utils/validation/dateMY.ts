@@ -1,5 +1,5 @@
+import { errorMsg } from '../../constant';
 import { getUserAge } from '../getUserAge';
-import { errorMsg } from '../variables';
 
 export function dateMYValidate(value: string): string {
   let error: string = '';

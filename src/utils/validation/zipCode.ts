@@ -1,4 +1,4 @@
-import { errorMsg } from '../variables';
+import { errorMsg } from '../../constant';
 
 export function zipCodeValidate(value: string): string {
   let error: string = '';
