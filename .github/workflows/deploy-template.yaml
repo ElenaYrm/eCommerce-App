@@ -1,0 +1,24 @@
+on:
+  workflow_call:
+    inputs:
+      deploy-dir:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build.tar.gz
+          path: ./
+      - name: Deploy
+        run: |
+          set -xe
+          echo "Deploy app"
+          tar -xzf build.tar.gz
+          rm -rf ${{ inputs.deploy-dir }} || true
+          mkdir -pv ${{ inputs.deploy-dir }}
+          mv dist ${{ inputs.deploy-dir }}/
+          rm build.tar.gz
