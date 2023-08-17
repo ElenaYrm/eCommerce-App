@@ -1,7 +1,4 @@
-function getMonthIndex(month: string): number {
-  const date = new Date(`${month} 1, 2023`);
-  return date.getMonth();
-}
+import { getMonthIndex } from './getMonthIndex.ts';
 
 export function getUserAge(date: string, month: string, year: string): number {
   const now = new Date();

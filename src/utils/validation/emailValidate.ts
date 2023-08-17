@@ -1,6 +1,6 @@
 import { errorMsg } from '../../constant';
 
-export function emailValidation(value: string): string {
+export function emailValidate(value: string): string {
   let error: string = '';
   const isValidEmail = /^[^\s@]+@[^@\s]+\.[^.\s]+$/.test(value.trim());
 

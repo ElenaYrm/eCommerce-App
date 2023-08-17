@@ -1,6 +1,6 @@
 import { errorMsg } from '../../constant';
 
-export function passwordValidation(value: string): string {
+export function passwordValidate(value: string): string {
   let error: string = '';
   const MIN_PASSWORD_LENGTH = 8;
   const hasUppercase = /[A-Z]/.test(value);
