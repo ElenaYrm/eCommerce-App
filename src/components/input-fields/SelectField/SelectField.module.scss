@@ -1,0 +1,46 @@
+@import '../../../styles/index.scss';
+
+.form__select {
+  position: relative;
+  width: 100%;
+  border-bottom: 0.1rem solid $dark-primary;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% + 0.2rem);
+    right: 0;
+    width: 0.8em;
+    height: 0.5em;
+    background-color: $dark-primary;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    pointer-events: none;
+    transition: all 0.2s ease-in;
+  }
+
+  &:hover::after {
+    background-color: $primary;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    padding: 2rem 0 0.5rem;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    background-color: transparent;
+    color: $placeholder-grey;
+    font-size: 2rem;
+    text-transform: capitalize;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+
+    &.selected {
+      color: $dark-primary;
+    }
+  }
+}
