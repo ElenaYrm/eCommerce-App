@@ -7,7 +7,6 @@ import { initialUserValues, dates, months, years } from '../../constant';
 import { InputField } from '../input-fields/InputField';
 import { SelectField } from '../input-fields/SelectField';
 import { PasswordField } from '../input-fields/PasswordField';
-import validate from '../../utils/validations';
 
 export default function UserForm(): ReactElement {
   const formik = useFormik({
@@ -15,7 +14,7 @@ export default function UserForm(): ReactElement {
     onSubmit: (values: IFormInputs): void => {
       console.log('Submit:', values);
     },
-    validate,
+    validate: () => {},
   });
 
   return (

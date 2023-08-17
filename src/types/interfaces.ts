@@ -1,5 +1,10 @@
 import { Address } from '@commercetools/platform-sdk';
+
 import { Input } from './enums';
+
+export interface IValidationErrors {
+  [key: string]: string;
+}
 
 export interface IFormInputs {
   [key: string]: Input | string;
