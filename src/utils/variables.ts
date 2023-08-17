@@ -9,7 +9,7 @@ export const errorMsg = {
   password: {
     empty: `Password ${isRequired}`,
     invalid: `Password must be at least 8 character long, and contain at least
-  1 uppercase and 1 lowercase letter and 1 number`,
+  1 uppercase and 1 lowercase letter, 1 number and 1 special character`,
   },
   firstName: {
     empty: `First name ${isRequired}`,

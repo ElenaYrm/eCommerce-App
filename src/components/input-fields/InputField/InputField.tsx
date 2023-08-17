@@ -5,26 +5,28 @@ import { InputFieldProps } from '../types';
 
 export default function InputField(props: InputFieldProps): ReactElement {
   const { values, errors, handleChange, touched } = props.formik;
-  const { name, type, placeholder, className, children } = props;
+  const { fieldName, type, placeholder, className, children } = props;
 
   const inputProps = {
-    name,
+    name: fieldName,
     type: type || 'text',
     placeholder,
-    value: values[name],
+    value: values[fieldName],
     onChange: handleChange,
   };
 
   return (
     <div className={classnames(styles.form__input, className ? className : '')}>
       <label>
-        <span className="visually-hidden">{name}</span>
+        <span className="visually-hidden">{fieldName}</span>
         <input {...inputProps} />
 
         {children ? children : null}
       </label>
 
-      {errors[name] && touched[name] ? <span className={styles.message__error}>{errors[name]}</span> : null}
+      {errors[fieldName] && touched[fieldName] ? (
+        <span className={styles.message__error}>{errors[fieldName]}</span>
+      ) : null}
     </div>
   );
 }

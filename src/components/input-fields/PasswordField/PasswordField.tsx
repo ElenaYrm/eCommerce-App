@@ -16,7 +16,7 @@ export default function PasswordField({ formik, formName }: PasswordFieldProps):
 
   return (
     <>
-      <InputField formik={formik} name={Input.Password} type={hidden ? 'password' : 'text'} placeholder="Password">
+      <InputField formik={formik} fieldName={Input.Password} type={hidden ? 'password' : 'text'} placeholder="Password">
         <button className={styles.button__toggle} onClick={togglePasswordType}>
           {hidden ? 'Show' : 'Hide'}
         </button>

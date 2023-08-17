@@ -5,27 +5,27 @@ import { SelectFieldProps } from '../types';
 
 export default function SelectField(props: SelectFieldProps): ReactElement {
   const { values, handleChange } = props.formik;
-  const { name, options, className } = props;
+  const { fieldName, options, className } = props;
 
   const selectProps = {
-    name,
-    value: values[name],
+    name: fieldName,
+    value: values[fieldName],
     onChange: handleChange,
-    className: values[name] ? `${styles.selected}` : '',
+    className: values[fieldName] ? `${styles.selected}` : '',
   };
 
   return (
     <div className={classnames(styles.form__select, className ? className : '')}>
       <label>
-        <span className="visually-hidden">{name}</span>
+        <span className="visually-hidden">{fieldName}</span>
 
         <select {...selectProps}>
           <option value="" disabled>
-            {name}
+            {fieldName}
           </option>
 
           {options.map((option) => (
-            <option key={`${name}-${option}`} value={option}>
+            <option key={`${fieldName}-${option}`} value={option}>
               {option}
             </option>
           ))}

@@ -20,16 +20,16 @@ export default function UserForm(): ReactElement {
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
-      <InputField formik={formik} name={Input.Email} type="email" placeholder="Email" />
+      <InputField formik={formik} fieldName={Input.Email} type="email" placeholder="Email" />
       <PasswordField formik={formik} formName="register" />
-      <InputField formik={formik} name={Input.FirstName} placeholder="First name" />
-      <InputField formik={formik} name={Input.LastName} placeholder="Last name" />
+      <InputField formik={formik} fieldName={Input.FirstName} placeholder="First name" />
+      <InputField formik={formik} fieldName={Input.LastName} placeholder="Last name" />
 
       <div className="selects__container">
         <div className={styles.selects}>
-          <SelectField formik={formik} name={Input.Date} options={dates} />
-          <SelectField formik={formik} name={Input.Month} options={months} />
-          <SelectField formik={formik} name={Input.Year} options={years} />
+          <SelectField formik={formik} fieldName={Input.Date} options={dates} />
+          <SelectField formik={formik} fieldName={Input.Month} options={months} />
+          <SelectField formik={formik} fieldName={Input.Year} options={years} />
         </div>
 
         {formik.errors.date && formik.touched.date ? (

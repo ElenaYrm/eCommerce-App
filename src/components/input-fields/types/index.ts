@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 
 export interface InputFieldProps {
   formik: FormikValues;
-  name: Input;
+  fieldName: Input;
   type?: string;
   placeholder: string;
   className?: string;
@@ -18,7 +18,7 @@ export interface PasswordFieldProps {
 
 export interface SelectFieldProps {
   formik: FormikValues;
-  name: Input;
+  fieldName: Input;
   options: string[];
   className?: string;
 }
