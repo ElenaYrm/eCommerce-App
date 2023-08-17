@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import classnames from 'classnames';
-import { PasswordFieldProps } from '../PasswordField/PasswordField';
+import { PasswordFieldProps } from '../PasswordField/PasswordField.tsx';
 
 import styles from './inputField.module.scss';
 
