@@ -1,12 +1,21 @@
-import styles from './PasswordField.module.scss';
-import { ReactElement, useState, MouseEvent } from 'react';
-import { Input } from '../../../types/enums';
+import { ReactElement, useState, MouseEvent, ChangeEvent } from 'react';
 import { InputField } from '../InputField';
-import { PasswordChecklist } from '../PasswordChecklist';
-import { PasswordFieldProps } from '../types';
+import { PasswordChecklist } from './PasswordChecklist';
 
-export default function PasswordField({ formik, formName }: PasswordFieldProps): ReactElement {
-  const password = formik.values[Input.Password];
+import styles from './passwordField.module.scss';
+
+export interface PasswordFieldProps {
+  fieldName: string;
+  value: string;
+  error: string | undefined;
+  touched: boolean | undefined;
+  handleChange: (e?: ChangeEvent) => void;
+  placeholder: string;
+  className?: string;
+  formName?: string;
+}
+
+export default function PasswordField(props: PasswordFieldProps): ReactElement {
   const [hidden, setHidden] = useState(true);
 
   function togglePasswordType(e: MouseEvent<HTMLButtonElement>): void {
@@ -16,13 +25,13 @@ export default function PasswordField({ formik, formName }: PasswordFieldProps):
 
   return (
     <>
-      <InputField formik={formik} fieldName={Input.Password} type={hidden ? 'password' : 'text'} placeholder="Password">
+      <InputField type={hidden ? 'password' : 'text'} {...props}>
         <button className={styles.button__toggle} onClick={togglePasswordType}>
           {hidden ? 'Show' : 'Hide'}
         </button>
       </InputField>
 
-      {formName === 'register' && <PasswordChecklist password={password} />}
+      {props.formName === 'register' && <PasswordChecklist password={props.value} />}
     </>
   );
 }

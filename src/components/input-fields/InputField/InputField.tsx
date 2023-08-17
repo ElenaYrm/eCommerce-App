@@ -1,17 +1,22 @@
-import styles from './InputField.module.scss';
-import classnames from 'classnames';
 import { ReactElement } from 'react';
-import { InputFieldProps } from '../types';
+import classnames from 'classnames';
+import { PasswordFieldProps } from '../PasswordField/PasswordField';
+
+import styles from './inputField.module.scss';
+
+interface InputFieldProps extends PasswordFieldProps {
+  type?: string;
+  children?: ReactElement;
+}
 
 export default function InputField(props: InputFieldProps): ReactElement {
-  const { values, errors, handleChange, touched } = props.formik;
-  const { fieldName, type, placeholder, className, children } = props;
+  const { fieldName, type, placeholder, className, children, touched, error, handleChange, value } = props;
 
   const inputProps = {
     name: fieldName,
     type: type || 'text',
     placeholder,
-    value: values[fieldName],
+    value,
     onChange: handleChange,
   };
 
@@ -24,9 +29,7 @@ export default function InputField(props: InputFieldProps): ReactElement {
         {children ? children : null}
       </label>
 
-      {errors[fieldName] && touched[fieldName] ? (
-        <span className={styles.message__error}>{errors[fieldName]}</span>
-      ) : null}
+      {error && touched ? <span className={styles.message__error}>{error}</span> : null}
     </div>
   );
 }

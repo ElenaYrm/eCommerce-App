@@ -1,17 +1,30 @@
-import styles from './SelectField.module.scss';
+import { ChangeEvent, ReactElement } from 'react';
 import classnames from 'classnames';
-import { ReactElement } from 'react';
-import { SelectFieldProps } from '../types';
 
-export default function SelectField(props: SelectFieldProps): ReactElement {
-  const { values, handleChange } = props.formik;
-  const { fieldName, options, className } = props;
+import styles from './selectField.module.scss';
 
+interface SelectFieldProps {
+  value: string;
+  handleChange: (e?: ChangeEvent) => void;
+  fieldName: string;
+  placeholder: string;
+  options: string[];
+  className?: string;
+}
+
+export default function SelectField({
+  value,
+  handleChange,
+  fieldName,
+  options,
+  className,
+  placeholder,
+}: SelectFieldProps): ReactElement {
   const selectProps = {
     name: fieldName,
-    value: values[fieldName],
+    value,
     onChange: handleChange,
-    className: values[fieldName] ? `${styles.selected}` : '',
+    className: value ? `${styles.selected}` : '',
   };
 
   return (
@@ -21,7 +34,7 @@ export default function SelectField(props: SelectFieldProps): ReactElement {
 
         <select {...selectProps}>
           <option value="" disabled>
-            {fieldName}
+            {placeholder}
           </option>
 
           {options.map((option) => (
