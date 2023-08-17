@@ -37,7 +37,7 @@ export default function UserForm(): ReactElement {
         ) : null}
       </div>
 
-      <button className={styles.button__primary}>Submit</button>
+      <button className={styles.button__primary}>Register ( ^ω^)*</button>
     </form>
   );
 }
