@@ -1,54 +1,61 @@
 import { ReactElement, useState } from 'react';
 import { FormikErrors, FormikHelpers, useFormik } from 'formik';
+import { UserForm } from './UserForm';
+import { IUserForm } from './UserForm/UserForm';
 import { AddressForm } from './AddressForm';
-import { validateAddresses } from '../../utils';
-import { initialFormValues } from '../../constant';
 import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
-import { IRegisterForm } from './types';
+import { initialRegisterForm } from '../../constant';
+import { getMonthIndex, validateRegisterForm } from '../../utils';
 import { INewAddress, INewUser } from '../../types/interfaces';
 
 import styles from './registerForm.module.scss';
 
+interface IRegisterForm {
+  user: IUserForm;
+  shipping: INewAddress;
+  billing: INewAddress;
+}
+
 function RegisterForm(): ReactElement {
   const [isSameAddress, setIsSameAddress] = useState(true);
   const dispatch = useAppDispatch();
-  function onSubmit(values: IRegisterForm, options: FormikHelpers<IRegisterForm>): void {
+  function onSubmit(values: IRegisterForm, { resetForm }: FormikHelpers<IRegisterForm>): void {
+    const { user, shipping, billing } = values;
     const addresses: INewAddress[] = [
       {
-        streetName: values.shipping.streetName,
-        city: values.shipping.city,
-        postalCode: values.shipping.postalCode,
-        country: values.shipping.country,
+        streetName: shipping.streetName,
+        city: shipping.city,
+        postalCode: shipping.postalCode,
+        country: shipping.country,
       },
     ];
     if (!isSameAddress) {
       addresses.push({
-        streetName: values.billing.streetName,
-        city: values.billing.city,
-        postalCode: values.billing.postalCode,
-        country: values.billing.country,
+        streetName: billing.streetName,
+        city: billing.city,
+        postalCode: billing.postalCode,
+        country: billing.country,
       });
     }
 
-    // change for data from user data form
     const newUser: INewUser = {
-      email: 'dd55dddd@lll.com',
-      password: 'lllll',
-      firstName: 'ooo',
-      lastName: 'jjjj',
-      dateOfBirth: '2000-01-01',
+      email: user.email,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      dateOfBirth: `${user.year}-${getMonthIndex(user.month)}-${user.date}`,
       addresses,
     };
 
     dispatch(registerThunk(newUser));
-    options.resetForm();
+    resetForm();
   }
 
   const registerForm = useFormik<IRegisterForm>({
-    initialValues: initialFormValues,
+    initialValues: initialRegisterForm,
     validate: (values): void | object | Promise<FormikErrors<IRegisterForm>> => {
-      return validateAddresses(values, isSameAddress);
+      return validateRegisterForm(values, isSameAddress);
     },
     onSubmit,
   });
@@ -56,6 +63,8 @@ function RegisterForm(): ReactElement {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
+      <UserForm handleChange={handleChange} values={values.user} touched={touched.user} errors={errors.user} />
+
       <AddressForm
         type="shipping"
         handleChange={handleChange}

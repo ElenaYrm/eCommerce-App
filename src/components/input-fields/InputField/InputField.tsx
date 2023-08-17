@@ -7,10 +7,22 @@ import styles from './inputField.module.scss';
 interface InputFieldProps extends PasswordFieldProps {
   type?: string;
   children?: ReactElement;
+  disabled?: boolean;
 }
 
 export default function InputField(props: InputFieldProps): ReactElement {
-  const { fieldName, type, placeholder, className, children, touched, error, handleChange, value } = props;
+  const {
+    fieldName,
+    type,
+    placeholder,
+    className,
+    children,
+    touched,
+    error,
+    handleChange,
+    value,
+    disabled = false,
+  } = props;
 
   const inputProps = {
     name: fieldName,
@@ -18,6 +30,7 @@ export default function InputField(props: InputFieldProps): ReactElement {
     placeholder,
     value,
     onChange: handleChange,
+    disabled,
   };
 
   return (

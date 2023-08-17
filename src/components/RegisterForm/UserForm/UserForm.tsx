@@ -1,13 +1,30 @@
-import { ReactElement } from 'react';
+import { ChangeEvent, ReactElement } from 'react';
 import classNames from 'classnames';
+import { FormikErrors, FormikTouched } from 'formik';
 import { InputField } from '../../input-fields/InputField';
 import { SelectField } from '../../input-fields/SelectField';
 import { PasswordField } from '../../input-fields/PasswordField';
 import { Input } from '../../../types/enums';
 import { dates, months, years } from '../../../constant';
-import { IUserFormProps } from '../types';
 
 import styles from './userForm.module.scss';
+
+export interface IUserForm {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  date: string;
+  month: string;
+  year: string;
+}
+interface IUserFormProps {
+  handleChange: (e?: ChangeEvent) => void;
+  values: IUserForm;
+  touched: FormikTouched<IUserForm> | undefined;
+  errors: FormikErrors<IUserForm> | undefined;
+  className?: string;
+}
 
 export default function UserForm({ handleChange, className, values, touched, errors }: IUserFormProps): ReactElement {
   return (

@@ -1,27 +1,32 @@
 import { IRegisterForm } from '../components/RegisterForm/types';
-import { IFormInputs } from '../types/interfaces';
+import { ILoginForm } from '../components/LoginForm/types';
+import { Input } from '../types/enums';
 
-export const initialFormValues: IRegisterForm = {
+export const initialRegisterForm: IRegisterForm = {
+  user: {
+    [Input.Email]: '',
+    [Input.Password]: '',
+    [Input.FirstName]: '',
+    [Input.LastName]: '',
+    [Input.Date]: '',
+    [Input.Month]: '',
+    [Input.Year]: '',
+  },
   shipping: {
-    streetName: '',
-    country: 'US',
-    postalCode: '',
-    city: '',
+    [Input.Street]: '',
+    [Input.Country]: 'US',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
   },
   billing: {
-    streetName: '',
-    country: 'US',
-    postalCode: '',
-    city: '',
+    [Input.Street]: '',
+    [Input.Country]: 'US',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
   },
 };
 
-export const initialUserValues: IFormInputs = {
-  email: '',
-  password: '',
-  firstName: '',
-  lastName: '',
-  date: '',
-  month: '',
-  year: '',
+export const initialLoginForm: ILoginForm = {
+  [Input.Email]: '',
+  [Input.Password]: '',
 };
