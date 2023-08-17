@@ -1,5 +1,5 @@
 import { zipCodeValidate } from '../../../utils/validation';
-import { errorMsg } from '../../../utils/variables';
+import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
 describe(`Zip Code ${validFunc}`, () => {
