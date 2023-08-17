@@ -1,8 +1,9 @@
 import { ReactElement, useState } from 'react';
-import { FormikErrors, FormikHelpers, useFormik } from 'formik';
+import { FormikErrors, useFormik } from 'formik';
 import { UserForm } from './UserForm';
 import { IUserForm } from './UserForm/UserForm';
 import { AddressForm } from './AddressForm';
+import { Button } from '../shared/Button';
 import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
 import { initialRegisterForm } from '../../constant';
@@ -19,8 +20,9 @@ export interface IRegisterForm {
 
 function RegisterForm(): ReactElement {
   const [isSameAddress, setIsSameAddress] = useState(true);
+
   const dispatch = useAppDispatch();
-  function onSubmit(values: IRegisterForm, { resetForm }: FormikHelpers<IRegisterForm>): void {
+  function onSubmit(values: IRegisterForm): void {
     const { user, shipping, billing } = values;
     const addresses: INewAddress[] = [
       {
@@ -49,7 +51,6 @@ function RegisterForm(): ReactElement {
     };
 
     dispatch(registerThunk(newUser));
-    resetForm();
   }
 
   const registerForm = useFormik<IRegisterForm>({
@@ -94,7 +95,7 @@ function RegisterForm(): ReactElement {
         />
       )}
 
-      <button type="submit">Register</button>
+      <Button type="submit" name="Register" />
     </form>
   );
 }

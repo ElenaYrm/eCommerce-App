@@ -1,16 +1,21 @@
-import styles from './Header.module.scss';
-import { ReactElement, MouseEvent, useContext } from 'react';
+import { ReactElement, MouseEvent } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
+import { useSelector } from 'react-redux';
+import { selectIsAuthorized } from '../../store/auth/selectors';
+import { useAppDispatch } from '../../store/store';
+import { logout } from '../../store/auth/slice';
 import { PATH } from '../../router/constants/paths';
+
+import styles from './header.module.scss';
 
 export default function Header(): ReactElement {
   const navigate = useNavigate();
-  const { isAuth, logout } = useContext(AuthContext);
+  const isAuthorized = useSelector(selectIsAuthorized);
+  const dispatch = useAppDispatch();
 
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
-    logout();
+    dispatch(logout());
     navigate(PATH.home, { replace: true });
   }
 
@@ -19,7 +24,7 @@ export default function Header(): ReactElement {
       <Link to={PATH.home}>Scoop</Link>
 
       <nav className={styles.header__nav}>
-        {isAuth ? (
+        {isAuthorized ? (
           <>
             <Link to={PATH.home} onClick={handleLogout}>
               Logout

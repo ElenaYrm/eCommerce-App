@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import styles from './button.module.scss';
+
 interface IButtonProps {
   type: 'submit' | 'reset' | 'button';
   name: string;

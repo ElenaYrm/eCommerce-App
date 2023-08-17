@@ -1,7 +1,7 @@
 import { ChangeEvent, ReactElement } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import classNames from 'classnames';
-import { InputField } from '../../input-fields/InputField';
+import { InputField } from '../../shared/InputField';
 import { Input } from '../../../types/enums';
 import { INewAddress } from '../../../types/interfaces';
 

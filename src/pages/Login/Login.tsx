@@ -1,24 +1,34 @@
-import styles from './Login.module.scss';
-import { ReactElement, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../router/hoc/AuthProvider/AuthProvider';
+import { ReactElement, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { LoginForm } from '../../components/LoginForm';
+import { ErrorMessage } from '../../components/shared/ErrorMessage';
 import { PATH } from '../../router/constants/paths';
+import { selectAuthError, selectIsAuthorized } from '../../store/auth/selectors';
+import { Page } from '../../router/types';
+
+import styles from './login.module.scss';
 
 export default function Login(): ReactElement {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const isAuthorized = useSelector(selectIsAuthorized);
+  const error = useSelector(selectAuthError);
 
-  function handleLogin(): void {
-    login();
-    navigate(PATH.home, { replace: true });
-  }
+  useEffect(() => {
+    if (isAuthorized) {
+      navigate(PATH.home, { replace: true });
+    }
+  }, [isAuthorized, navigate]);
 
   return (
     <div className={styles.container}>
-      <h1>Login</h1>
-      <button className={styles.button} onClick={handleLogin}>
-        Login
-      </button>
+      <Link to={PATH[Page.Register]}>Register</Link>
+
+      <h1>Login to your account</h1>
+
+      {error && <ErrorMessage text={error} />}
+
+      <LoginForm />
     </div>
   );
 }

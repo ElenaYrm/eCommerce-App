@@ -1,9 +1,9 @@
 import { ChangeEvent, ReactElement } from 'react';
 import classNames from 'classnames';
 import { FormikErrors, FormikTouched } from 'formik';
-import { InputField } from '../../input-fields/InputField';
-import { SelectField } from '../../input-fields/SelectField';
-import { PasswordField } from '../../input-fields/PasswordField';
+import { InputField } from '../../shared/InputField';
+import { SelectField } from '../../shared/SelectField';
+import { PasswordField } from '../../shared/PasswordField';
 import { Input } from '../../../types/enums';
 import { dates, months, years } from '../../../constant';
 
