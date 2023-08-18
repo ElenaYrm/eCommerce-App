@@ -81,15 +81,6 @@ h3 {
   @include font(semibold, h3, $dark);
 }
 
-a {
-  color: inherit;
-  transition: all 0.2s ease-in;
-
-  &:hover {
-    color: $primary;
-  }
-}
-
 img {
   max-width: 100%;
 }
