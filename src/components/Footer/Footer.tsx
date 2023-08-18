@@ -14,7 +14,9 @@ export default function Footer(): ReactElement {
     <footer className={classnames(styles.footer, 'container')}>
       <div className={styles.footer__container}>
         <span>{currentDate} → You're here &#40;•ᴗ•&#41;</span>
-        <Link to={SCHOOL_URL}>©2023 RS School</Link>
+        <Link to={SCHOOL_URL} target="_blanc">
+          ©2023 RS School
+        </Link>
       </div>
     </footer>
   );
