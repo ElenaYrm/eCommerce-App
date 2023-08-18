@@ -1,5 +1,5 @@
 import { dateMYValidate } from '../../../utils/validation';
-import { errorMsg } from '../../../utils/variables';
+import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
 describe(`Date month year ${validFunc}`, () => {

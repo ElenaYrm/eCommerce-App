@@ -4,7 +4,7 @@ import { Home } from '../../pages/Home';
 import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
 import { NotFound } from '../../pages/NotFound';
-import { Layout } from '../../components/Layout';
+import { Layout } from '../hoc/Layout';
 import { Cart } from '../../pages/Cart';
 import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';

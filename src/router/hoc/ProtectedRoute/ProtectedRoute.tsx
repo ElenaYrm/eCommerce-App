@@ -1,12 +1,13 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsAuthorized } from '../../../store/auth/selectors';
 import { IProtectedRoute } from '../../types';
-import { AuthContext } from '../AuthProvider/AuthProvider';
 
 export default function ProtectedRoute({ children, redirectLink }: IProtectedRoute): ReactElement {
-  const { isAuth } = useContext(AuthContext);
+  const isAuthorized = useSelector(selectIsAuthorized);
 
-  if (!isAuth) return <Navigate to={redirectLink} />;
+  if (!isAuthorized) return <Navigate to={redirectLink} />;
 
   return children;
 }
