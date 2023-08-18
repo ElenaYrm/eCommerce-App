@@ -1,7 +1,7 @@
-@import "src/styles/common";
+@import '../../../styles/index.scss';
 
 .form__input {
-  width: inherit;
+  width: 100%;
 
   label {
     width: inherit;
@@ -10,7 +10,7 @@
     input {
       width: inherit;
       border: none;
-      border-bottom: 0.1rem solid $dark-primary;
+      border-bottom: 0.1rem solid $dark;
       padding: 2rem 0 0.5rem;
       background-color: transparent;
 
@@ -18,12 +18,5 @@
         color: $placeholder-grey;
       }
     }
-  }
-
-  .message__error {
-    @include font(regular, p2, $eye-catching-primary);
-    display: block;
-    text-align: right;
-    margin-top: 0.5rem;
   }
 }
