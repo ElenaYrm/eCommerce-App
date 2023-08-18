@@ -1,3 +1,8 @@
-.message {
-  color: red;
-}
+  @import '../../../styles/index.scss';
+  
+  // .message__error {
+  //   @include font(regular, p2, $error-color);
+  //   display: block;
+  //   text-align: right;
+  //   margin-top: 0.5rem;
+  // }

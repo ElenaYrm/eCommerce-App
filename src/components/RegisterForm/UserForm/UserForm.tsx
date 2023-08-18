@@ -28,7 +28,7 @@ interface IUserFormProps {
 
 export default function UserForm({ handleChange, className, values, touched, errors }: IUserFormProps): ReactElement {
   return (
-    <div className={classNames(styles.form, className)}>
+    <div className={classNames(styles.form__user, className)}>
       <InputField
         fieldName={`user.${Input.Email}`}
         type="email"

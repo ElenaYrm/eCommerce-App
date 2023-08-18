@@ -18,7 +18,7 @@ interface IAddressFormProps {
 
 function AddressForm({ type, values, errors, handleChange, touched, className }: IAddressFormProps): ReactElement {
   return (
-    <div className={classNames(className, styles.address)}>
+    <div className={classNames(className, styles.form__address)}>
       <h3>{`${type[0].toUpperCase() + type.slice(1).toLowerCase()} address`}</h3>
 
       <InputField
@@ -30,25 +30,23 @@ function AddressForm({ type, values, errors, handleChange, touched, className }:
         placeholder="Street"
       />
 
-      <div className={classNames(styles.address__item, styles.address__double)}>
-        <InputField
-          fieldName={`${type}.${Input.City}`}
-          value={values[Input.City]}
-          error={errors?.[Input.City]}
-          touched={touched?.[Input.City]}
-          handleChange={handleChange}
-          placeholder="City"
-        />
+      <InputField
+        fieldName={`${type}.${Input.City}`}
+        value={values[Input.City]}
+        error={errors?.[Input.City]}
+        touched={touched?.[Input.City]}
+        handleChange={handleChange}
+        placeholder="City"
+      />
 
-        <InputField
-          fieldName={`${type}.${Input.PostalCode}`}
-          value={values[Input.PostalCode]}
-          error={errors?.[Input.PostalCode]}
-          touched={touched?.[Input.PostalCode]}
-          handleChange={handleChange}
-          placeholder="Postal code"
-        />
-      </div>
+      <InputField
+        fieldName={`${type}.${Input.PostalCode}`}
+        value={values[Input.PostalCode]}
+        error={errors?.[Input.PostalCode]}
+        touched={touched?.[Input.PostalCode]}
+        handleChange={handleChange}
+        placeholder="Postal code"
+      />
 
       <InputField
         fieldName={`${type}.${Input.Country}`}
