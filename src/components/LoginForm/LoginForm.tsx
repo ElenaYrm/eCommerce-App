@@ -52,7 +52,7 @@ function LoginForm(): ReactElement {
             handleChange={handleChange}
           />
 
-          <Button type="submit" name="Login" />
+          <Button type="submit" name="Login ( ^ω^)" className={styles.button__primary} />
         </form>
       )}
     </Formik>
