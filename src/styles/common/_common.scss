@@ -1,8 +1,4 @@
-html {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  font-size: 10px;
-}
+@import './variables';
 
 *,
 *::before,
@@ -10,30 +6,55 @@ html {
   box-sizing: inherit;
 }
 
+html,
 body {
-  min-width: 390px;
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+
+body {
+  min-width: 375px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  @include font(regular, p1, $dark-primary);
-  background-color: $background-main-primary;
+  @include font(regular, p1, $dark);
+  background-color: $light;
   overflow-x: hidden;
 }
 
-img {
-  max-width: 100%;
+@media all and (max-width: 480px) {
+  body,
+  input,
+  select,
+  button,
+  a {
+    @include font(regular, p1-mob, $dark);
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+#root {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-:active,
-:hover,
-:focus,
-:focus-visible {
-  outline: none;
-  outline-offset: 0;
+main {
+  flex-grow: 1;
+  padding: 0;
 }
+
+// :active,
+// :hover,
+// :focus,
+// :focus-visible {
+//   outline: none;
+//   outline-offset: 0;
+// }
 
 button {
   padding: 0;
@@ -48,16 +69,29 @@ ul {
   list-style: none;
 }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 500;
+}
 
-  main {
-    flex-grow: 1;
-    padding: 0;
+h3 {
+  @include font(semibold, h3, $dark);
+}
+
+a {
+  color: inherit;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    color: $primary;
   }
+}
+
+img {
+  max-width: 100%;
 }
 
 .container {
@@ -65,7 +99,7 @@ ul {
   padding: 0 2rem;
   margin: 0 auto;
 
-  @media all and (max-width: 620px) {
+  @media all and (max-width: 480px) {
     padding: 0 1rem;
   }
 }
