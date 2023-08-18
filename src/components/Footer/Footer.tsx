@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { getCurrentDate } from '../../utils/getCurrentDate';
+import { getCurrentDate } from '../../utils';
 import { Link } from 'react-router-dom';
 
 import styles from './footer.module.scss';

@@ -4,6 +4,8 @@ import { selectIsNewUser } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { deleteNotice } from '../../store/auth/slice';
 
+import styles from './home.module.scss';
+
 interface INoticeReturnType {
   payload: undefined;
   type: 'auth/deleteNotice';
@@ -14,9 +16,7 @@ export default function Home(): ReactElement {
   const dispatch = useAppDispatch();
 
   return (
-    <div style={{ width: '100%' }}>
-      <h1>Home</h1>
-
+    <div className={styles.home__container}>
       {isNewUser && (
         <div>
           <span>Hello!</span>
