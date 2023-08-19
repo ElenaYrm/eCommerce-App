@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  min-width: 375px;
+  // min-width: 375px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   @include font(regular, p1, $dark);
   background-color: $light;
@@ -74,7 +74,12 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
 }
 
 h3 {
