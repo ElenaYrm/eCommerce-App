@@ -15,9 +15,15 @@
     justify-content: space-between;
     gap: 2rem;
 
-    a:hover {
-      color: $light;
-      opacity: 0.5;
+    a {
+      &:hover {
+        color: $light;
+        opacity: 0.5;
+      }
+
+      &::after {
+        display: none;
+      }
     }
 
     @media all and (max-width: 620px) {
