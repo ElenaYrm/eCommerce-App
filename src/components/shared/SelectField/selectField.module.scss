@@ -4,6 +4,7 @@
   position: relative;
   width: 100%;
   border-bottom: 0.1rem solid $dark;
+  margin-top: 0.5rem;
   cursor: pointer;
 
   &::after {
@@ -27,7 +28,7 @@
     appearance: none;
     -webkit-appearance: none;
     position: relative;
-    padding: 1.5rem 0 0.5rem;
+    padding: 0.5rem 0 0.5rem;
     width: 100%;
     display: flex;
     flex: 1;
@@ -41,5 +42,9 @@
     &.selected {
       color: $dark;
     }
+
+    &:focus {
+        background-color: rgba($primary, 0.05);
+      }
   }
 }

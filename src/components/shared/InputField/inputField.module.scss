@@ -3,6 +3,7 @@
 .form__input {
   width: 100%;
   position: relative;
+  margin-top: 0.5rem;
 
   label {
     width: inherit;
@@ -12,11 +13,15 @@
       width: inherit;
       border: none;
       border-bottom: 0.1rem solid $dark;
-      padding: 1.5rem 0 0.5rem;
+      padding: 0.5rem 0 0.5rem;
       background-color: transparent;
 
       &::placeholder {
         color: $placeholder-grey;
+      }
+
+      &:focus {
+        background-color: rgba($primary, 0.1);
       }
     }
   }

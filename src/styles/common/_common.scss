@@ -48,13 +48,13 @@ main {
   padding: 0;
 }
 
-// :active,
-// :hover,
-// :focus,
-// :focus-visible {
-//   outline: none;
-//   outline-offset: 0;
-// }
+:active,
+:hover,
+:focus,
+:focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
 
 button {
   padding: 0;
