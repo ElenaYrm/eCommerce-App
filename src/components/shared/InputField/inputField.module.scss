@@ -2,6 +2,7 @@
 
 .form__input {
   width: 100%;
+  position: relative;
 
   label {
     width: inherit;
@@ -11,7 +12,7 @@
       width: inherit;
       border: none;
       border-bottom: 0.1rem solid $dark;
-      padding: 2rem 0 0.5rem;
+      padding: 1.5rem 0 0.5rem;
       background-color: transparent;
 
       &::placeholder {

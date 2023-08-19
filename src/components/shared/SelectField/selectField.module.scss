@@ -9,7 +9,7 @@
   &::after {
     content: '';
     position: absolute;
-    top: calc(50% + 0.4rem);
+    bottom: 1rem;
     right: 0;
     width: 0.8em;
     height: 0.5em;
@@ -27,7 +27,7 @@
     appearance: none;
     -webkit-appearance: none;
     position: relative;
-    padding: 2rem 0 0.5rem;
+    padding: 1.5rem 0 0.5rem;
     width: 100%;
     display: flex;
     flex: 1;

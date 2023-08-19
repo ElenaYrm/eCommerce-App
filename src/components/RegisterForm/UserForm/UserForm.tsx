@@ -67,7 +67,7 @@ export default function UserForm({ handleChange, className, values, touched, err
         handleChange={handleChange}
       />
 
-      <div className="selects__container">
+      <div className={styles.selects__container}>
         <div className={styles.selects}>
           <SelectField
             handleChange={handleChange}
