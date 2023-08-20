@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { FormikErrors, useFormik } from 'formik';
+import { Formik } from 'formik';
 import { UserForm } from './UserForm';
 import { IUserForm } from './UserForm/UserForm';
 import { AddressForm } from './AddressForm';
@@ -7,7 +7,7 @@ import { Button } from '../shared/Button';
 import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
 import { initialRegisterForm } from '../../constant';
-import { getMonthIndex, validateRegisterForm } from '../../utils';
+import { getMonthIndex } from '../../utils';
 import { INewAddress, INewUser } from '../../types/interfaces';
 
 import styles from './registerForm.module.scss';
@@ -54,50 +54,53 @@ function RegisterForm(): ReactElement {
     dispatch(registerThunk(newUser));
   }
 
-  const registerForm = useFormik<IRegisterForm>({
-    initialValues: initialRegisterForm,
-    validate: (values): void | object | Promise<FormikErrors<IRegisterForm>> => {
-      return validateRegisterForm(values, isSameAddress);
-    },
-    onSubmit,
-  });
-  const { handleChange, handleSubmit, values, touched, errors } = registerForm;
-
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <UserForm handleChange={handleChange} values={values.user} touched={touched.user} errors={errors.user} />
+    <Formik initialValues={initialRegisterForm} onSubmit={onSubmit} validateOnBlur={false}>
+      {({ handleChange, handleSubmit, values, touched, setFieldTouched, errors }): ReactElement => (
+        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+          <UserForm
+            handleChange={handleChange}
+            values={values.user}
+            touched={touched.user}
+            errors={errors.user}
+            setFieldTouched={setFieldTouched}
+          />
 
-      <AddressForm
-        type="shipping"
-        handleChange={handleChange}
-        values={values.shipping}
-        touched={touched.shipping}
-        errors={errors.shipping}
-      />
+          <AddressForm
+            type="shipping"
+            handleChange={handleChange}
+            values={values.shipping}
+            touched={touched.shipping}
+            errors={errors.shipping}
+            setFieldTouched={setFieldTouched}
+          />
 
-      <label className={styles.checkbox__container}>
-        <input
-          type="checkbox"
-          checked={isSameAddress}
-          onChange={(): void => setIsSameAddress(!isSameAddress)}
-          className={styles.checkbox}
-        />
-        <span>Use as a billing address</span>
-      </label>
+          <label className={styles.checkbox__container}>
+            <input
+              type="checkbox"
+              checked={isSameAddress}
+              onChange={(): void => setIsSameAddress(!isSameAddress)}
+              className={styles.checkbox}
+            />
+            <span>Use as a billing address</span>
+          </label>
 
-      {!isSameAddress && (
-        <AddressForm
-          type="billing"
-          handleChange={handleChange}
-          values={values.billing}
-          touched={touched.billing}
-          errors={errors.billing}
-          className={styles.form__subform}
-        />
+          {!isSameAddress && (
+            <AddressForm
+              type="billing"
+              handleChange={handleChange}
+              values={values.billing}
+              touched={touched.billing}
+              errors={errors.billing}
+              className={styles.form__subform}
+              setFieldTouched={setFieldTouched}
+            />
+          )}
+
+          <Button type="submit" name="Register ( ^ω^)" className={styles.button__primary} />
+        </form>
       )}
-
-      <Button type="submit" name="Register ( ^ω^)" className={styles.button__primary} />
-    </form>
+    </Formik>
   );
 }
 

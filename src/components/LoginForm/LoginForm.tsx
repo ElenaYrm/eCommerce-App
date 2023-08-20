@@ -8,7 +8,7 @@ import { loginThunk } from '../../store/auth/thunks';
 import { useAppDispatch } from '../../store/store';
 import { initialLoginForm } from '../../constant';
 import { Input } from '../../types/enums';
-import { validateLoginForm } from '../../utils';
+import { emailValidate } from '../../utils/validation';
 
 import styles from './loginForm.module.scss';
 
@@ -30,17 +30,16 @@ function LoginForm(): ReactElement {
   }
 
   return (
-    <Formik initialValues={initialLoginForm} validate={validateLoginForm} onSubmit={handleSubmit}>
-      {({ values, handleChange, handleSubmit, errors, touched }): ReactElement => (
+    <Formik initialValues={initialLoginForm} onSubmit={handleSubmit} validateOnBlur={false}>
+      {({ values, handleSubmit, errors, touched, setFieldTouched }): ReactElement => (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <InputField
             fieldName={Input.Email}
-            type="text"
             placeholder="Email"
-            value={values[Input.Email]}
             error={errors?.[Input.Email]}
             touched={touched?.[Input.Email]}
-            handleChange={handleChange}
+            validate={emailValidate}
+            setFieldTouched={setFieldTouched}
           />
 
           <PasswordField
@@ -49,7 +48,7 @@ function LoginForm(): ReactElement {
             value={values[Input.Password]}
             error={errors?.[Input.Password]}
             touched={touched?.[Input.Password]}
-            handleChange={handleChange}
+            setFieldTouched={setFieldTouched}
           />
 
           <Button type="submit" name="Login ( ^ω^)" className={styles.button__primary} />
