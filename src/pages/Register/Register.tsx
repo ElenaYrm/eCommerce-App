@@ -21,14 +21,22 @@ export default function Register(): ReactElement {
   }, [isAuthorized, navigate]);
 
   return (
-    <div className={styles.container}>
-      <Link to={PATH[Page.Login]}>Login</Link>
+    <div className={styles.auth}>
+      <div className={styles.auth__container}>
+        <div className={styles.form__container}>
+          <Link to={PATH[Page.Login]}>Login</Link>
 
-      <h1>Register a new account</h1>
+          <div className={styles.title}>
+            <span>Register</span>
+            <span>a new account</span>
+          </div>
 
-      {error && <ErrorMessage text={error} />}
+          {error && <ErrorMessage text={error} />}
 
-      <RegisterForm />
+          <RegisterForm />
+        </div>
+      </div>
+      <div className={styles.image}></div>
     </div>
   );
 }

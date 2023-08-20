@@ -1,15 +1,14 @@
 import { ReactElement } from 'react';
 
-import styles from './button.module.scss';
-
 interface IButtonProps {
   type: 'submit' | 'reset' | 'button';
   name: string;
+  className?: string;
 }
 
-function Button({ type, name }: IButtonProps): ReactElement {
+function Button({ type, name, className }: IButtonProps): ReactElement {
   return (
-    <button type={type} className={styles.btn}>
+    <button type={type} className={className}>
       {name}
     </button>
   );

@@ -4,12 +4,16 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
 import checker from 'vite-plugin-checker';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [
     react(),
     checker({
       typescript: true,
+    }),
+    svgr({
+      exportAsDefault: true,
     }),
   ],
   resolve: {

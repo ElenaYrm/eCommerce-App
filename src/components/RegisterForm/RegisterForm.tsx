@@ -32,6 +32,7 @@ function RegisterForm(): ReactElement {
         country: shipping.country,
       },
     ];
+
     if (!isSameAddress) {
       addresses.push({
         streetName: billing.streetName,
@@ -74,12 +75,12 @@ function RegisterForm(): ReactElement {
         errors={errors.shipping}
       />
 
-      <label>
+      <label className={styles.checkbox__container}>
         <input
           type="checkbox"
           checked={isSameAddress}
           onChange={(): void => setIsSameAddress(!isSameAddress)}
-          className={styles.form__checkbox}
+          className={styles.checkbox}
         />
         <span>Use as a billing address</span>
       </label>
@@ -95,7 +96,7 @@ function RegisterForm(): ReactElement {
         />
       )}
 
-      <Button type="submit" name="Register" />
+      <Button type="submit" name="Register ( ^ω^)" className={styles.button__primary} />
     </form>
   );
 }

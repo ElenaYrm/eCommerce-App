@@ -6,7 +6,7 @@ export function lastNameValidate(value: string): string {
 
   if (!value) {
     error = errorMsg.lastName.empty;
-  } else if (!isValidFirstName) {
+  } else if (!isValidLastName) {
     error = errorMsg.lastName.invalid;
   }
 

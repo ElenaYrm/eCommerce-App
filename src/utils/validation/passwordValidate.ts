@@ -3,8 +3,8 @@ import { errorMsg } from '../../constant';
 export function passwordValidate(value: string): string {
   let error: string = '';
   const MIN_PASSWORD_LENGTH = 8;
-  const hasUppercase = /[A-Z]/.test(value);
-  const hasLowercase = /[a-z]/.test(value);
+  const hasUppercase = /\p{Lu}/u.test(value);
+  const hasLowercase = /\p{Ll}/u.test(value);
   const hasDigit = /\d/.test(value);
   const hasSpecialCharacter = /[!@#$%^&*]/.test(value);
   const hasSpaces = /\s/.test(value);
