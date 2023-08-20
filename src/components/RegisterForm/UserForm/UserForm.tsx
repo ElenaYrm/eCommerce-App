@@ -31,7 +31,7 @@ export default function UserForm({ handleChange, className, values, touched, err
     <div className={classNames(styles.form, className)}>
       <InputField
         fieldName={`user.${Input.Email}`}
-        type="email"
+        type="text"
         placeholder="Email"
         value={values[Input.Email]}
         error={errors?.[Input.Email]}

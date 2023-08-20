@@ -35,7 +35,7 @@ function LoginForm(): ReactElement {
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <InputField
             fieldName={Input.Email}
-            type="email"
+            type="text"
             placeholder="Email"
             value={values[Input.Email]}
             error={errors?.[Input.Email]}
