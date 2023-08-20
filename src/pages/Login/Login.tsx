@@ -21,14 +21,22 @@ export default function Login(): ReactElement {
   }, [isAuthorized, navigate]);
 
   return (
-    <div className={styles.container}>
-      <Link to={PATH[Page.Register]}>Register</Link>
+    <div className={styles.auth}>
+      <div className={styles.auth__container}>
+        <div className={styles.form__container}>
+          <Link to={PATH[Page.Register]}>Register</Link>
 
-      <h1>Login to your account</h1>
+          <div className={styles.title}>
+            <span>Login</span>
+            <span>to your account</span>
+          </div>
 
-      {error && <ErrorMessage text={error} />}
+          {error && <ErrorMessage text={error} />}
 
-      <LoginForm />
+          <LoginForm />
+        </div>
+      </div>
+      <div className={styles.image}></div>
     </div>
   );
 }

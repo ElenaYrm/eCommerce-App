@@ -1,0 +1,44 @@
+@import '../../styles/common';
+
+.checkbox__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: transparent;
+  border: 0.1rem solid $dark;
+  border-radius: 0.5rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $green;
+    border-radius: 0.3rem;
+    transform: scale(0);
+    transition: all 0.1s ease-in;
+  }
+
+  &:checked {
+    background-color: rgba($green, 0.3);
+    border: none;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
