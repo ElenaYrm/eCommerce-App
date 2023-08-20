@@ -2,8 +2,10 @@ import { ChangeEvent, ReactElement } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import classNames from 'classnames';
 import { InputField } from '../../shared/InputField';
+import { SelectField } from '../../shared/SelectField';
 import { Input } from '../../../types/enums';
 import { INewAddress } from '../../../types/interfaces';
+import { countries } from '../../../constant';
 
 import styles from './addressForm.module.scss';
 
@@ -48,15 +50,19 @@ function AddressForm({ type, values, errors, handleChange, touched, className }:
         placeholder="Postal code"
       />
 
-      <InputField
-        fieldName={`${type}.${Input.Country}`}
-        value={values[Input.Country]}
-        error={errors?.[Input.Country]}
-        touched={touched?.[Input.Country]}
-        handleChange={handleChange}
-        placeholder="Country"
-        disabled
-      />
+      <div className={styles.selects__container}>
+        <SelectField
+          handleChange={handleChange}
+          value={values[Input.Country]}
+          fieldName={`${type}.${Input.Country}`}
+          options={countries}
+          placeholder={'Country'}
+        />
+
+        {errors?.[Input.Country] && touched?.[Input.Country] ? (
+          <span className={styles.message__error}>{errors[Input.Country]}</span>
+        ) : null}
+      </div>
     </div>
   );
 }

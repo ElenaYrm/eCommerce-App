@@ -50,7 +50,7 @@ export function validateRegisterForm(values: IRegisterForm, isSame: boolean): Fo
     billing[Input.Street] = streetValidate(values.billing.streetName);
     billing[Input.City] = cityValidate(values.billing.city);
     billing[Input.PostalCode] = zipCodeValidate(values.billing.postalCode);
-    billing[Input.Country] = countryValidate(values.shipping.country);
+    billing[Input.Country] = countryValidate(values.billing.country);
 
     let isBillingValid = true;
     Object.values(billing).forEach((item) => {

@@ -14,13 +14,13 @@ export const initialRegisterForm: IRegisterForm = {
   },
   shipping: {
     [Input.Street]: '',
-    [Input.Country]: 'US',
+    [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
   },
   billing: {
     [Input.Street]: '',
-    [Input.Country]: 'US',
+    [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
   },
