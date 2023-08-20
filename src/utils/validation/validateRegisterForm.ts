@@ -9,6 +9,7 @@ import {
   passwordValidate,
   streetValidate,
   zipCodeValidate,
+  countryValidate,
 } from './index.ts';
 import { Input } from '../../types/enums.ts';
 
@@ -34,6 +35,7 @@ export function validateRegisterForm(values: IRegisterForm, isSame: boolean): Fo
   shipping[Input.Street] = streetValidate(values.shipping.streetName);
   shipping[Input.City] = cityValidate(values.shipping.city);
   shipping[Input.PostalCode] = zipCodeValidate(values.shipping.postalCode);
+  shipping[Input.Country] = countryValidate(values.shipping.country);
 
   let isShippingValid = true;
   Object.values(shipping).forEach((item) => {
@@ -48,6 +50,7 @@ export function validateRegisterForm(values: IRegisterForm, isSame: boolean): Fo
     billing[Input.Street] = streetValidate(values.billing.streetName);
     billing[Input.City] = cityValidate(values.billing.city);
     billing[Input.PostalCode] = zipCodeValidate(values.billing.postalCode);
+    billing[Input.Country] = countryValidate(values.shipping.country);
 
     let isBillingValid = true;
     Object.values(billing).forEach((item) => {
