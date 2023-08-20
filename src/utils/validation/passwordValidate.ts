@@ -7,6 +7,7 @@ export function passwordValidate(value: string): string {
   const hasLowercase = /[a-z]/.test(value);
   const hasDigit = /\d/.test(value);
   const hasSpecialCharacter = /[!@#$%^&*]/.test(value);
+  const hasSpaces = /\s/.test(value);
 
   if (!value) {
     error = errorMsg.password.empty;
@@ -19,6 +20,8 @@ export function passwordValidate(value: string): string {
   } else if (!hasDigit) {
     error = errorMsg.password.invalid;
   } else if (!hasSpecialCharacter) {
+    error = errorMsg.password.invalid;
+  } else if (hasSpaces) {
     error = errorMsg.password.invalid;
   }
 
