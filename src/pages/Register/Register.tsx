@@ -8,16 +8,23 @@ import { selectAuthError, selectIsAuthorized } from '../../store/auth/selectors'
 import { Page } from '../../router/types';
 
 import styles from './register.module.scss';
+import { useAppDispatch } from '../../store/store.ts';
+import { resetError } from '../../store/auth/slice';
 
 export default function Register(): ReactElement {
   const navigate = useNavigate();
   const isAuthorized = useSelector(selectIsAuthorized);
   const error = useSelector(selectAuthError);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isAuthorized) {
       navigate(PATH.home, { replace: true });
     }
+
+    return (): void => {
+      dispatch(resetError());
+    };
   }, [isAuthorized, navigate]);
 
   return (

@@ -15,6 +15,10 @@ const authSlice = createSlice({
       state.status = 'initial';
       state.error = '';
     },
+    resetError: (state): void => {
+      state.status = 'initial';
+      state.error = '';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,4 +55,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { deleteNotice, logout } = authSlice.actions;
+export const { deleteNotice, logout, resetError } = authSlice.actions;
