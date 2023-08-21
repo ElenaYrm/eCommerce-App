@@ -22,8 +22,8 @@ function LoginForm(): ReactElement {
 
   function handleSubmit(values: ILoginForm): void {
     const user: UserAuthOptions = {
-      username: values.email,
-      password: values.password,
+      username: values.email.trim(),
+      password: values.password.trim(),
     };
 
     dispatch(loginThunk(user));

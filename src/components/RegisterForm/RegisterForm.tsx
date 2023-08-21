@@ -27,18 +27,18 @@ function RegisterForm(): ReactElement {
     const { user, shipping, billing } = values;
     const addresses: INewAddress[] = [
       {
-        streetName: shipping.streetName,
-        city: shipping.city,
-        postalCode: shipping.postalCode,
-        country: shipping.country,
+        streetName: shipping.streetName.trim(),
+        city: shipping.city.trim(),
+        postalCode: shipping.postalCode.trim(),
+        country: shipping.country.trim(),
       },
     ];
     if (!isSameAddress) {
       addresses.push({
-        streetName: billing.streetName,
-        city: billing.city,
-        postalCode: billing.postalCode,
-        country: billing.country,
+        streetName: billing.streetName.trim(),
+        city: billing.city.trim(),
+        postalCode: billing.postalCode.trim(),
+        country: billing.country.trim(),
       });
     }
 
@@ -51,10 +51,10 @@ function RegisterForm(): ReactElement {
     }
 
     const newUser: INewUser = {
-      email: user.email,
-      password: user.password,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      email: user.email.trim(),
+      password: user.password.trim(),
+      firstName: user.firstName.trim(),
+      lastName: user.lastName.trim(),
       dateOfBirth: `${user.year}-${getMonthIndex(user.month)}-${user.date}`,
       addresses,
       shippingAddresses: [0],
