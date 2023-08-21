@@ -13,7 +13,7 @@
   align-items: center;
 
   .content {
-    max-width: 40rem;
+    max-width: 37rem;
     width: 100%;
     position: relative;
     padding: 5rem;
@@ -35,4 +35,22 @@
       position: relative;
     }
   }
+}
+
+.message {
+  max-width: 37rem;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  background-color: $primary;
+  border-radius: $border-radius-btn;
+  box-shadow: 0 5px 5px rgba($dark, 0.2);
+  color: $light;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 6rem;
+
+  transition: $transition-set;
 }

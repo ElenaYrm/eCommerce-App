@@ -1,8 +1,8 @@
-  // @import '../../../styles/common/index.scss';
+@import '../../../styles/common/index.scss';
   
-  // .message__error {
-  //   @include font(regular, p2, $error-color);
-  //   display: block;
-  //   text-align: right;
-  //   margin-top: 0.5rem;
-  // }
+  .message__error {
+    @include font(regular, p2, $error-color);
+    display: block;
+    text-align: left;
+    margin: -1.5rem 0 1.5rem;
+  }
