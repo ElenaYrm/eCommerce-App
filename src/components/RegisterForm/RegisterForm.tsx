@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikErrors } from 'formik';
 import { UserForm } from './UserForm';
 import { IUserForm } from './UserForm/UserForm';
 import { AddressForm } from './AddressForm';
@@ -12,6 +12,8 @@ import { getMonthIndex } from '../../utils';
 import { INewAddress, INewUser } from '../../types/interfaces';
 
 import styles from './registerForm.module.scss';
+import { dateMYValidate } from '../../utils/validation';
+import { Input } from '../../types/enums.ts';
 
 export interface IRegisterForm {
   user: IUserForm;
@@ -66,8 +68,23 @@ function RegisterForm(): ReactElement {
     dispatch(registerThunk(newUser));
   }
 
+  function validateDate(values: IRegisterForm): void | object | Promise<FormikErrors<IRegisterForm>> {
+    const errors: FormikErrors<IRegisterForm> = {};
+    const user: Record<string, string> = {};
+
+    user[Input.Date] = dateMYValidate(
+      `${values.user[Input.Date]}${values.user[Input.Month]}${values.user[Input.Year]}`,
+    );
+
+    if (user[Input.Date]) {
+      errors.user = user;
+    }
+
+    return errors;
+  }
+
   return (
-    <Formik initialValues={initialRegisterForm} onSubmit={onSubmit}>
+    <Formik initialValues={initialRegisterForm} validate={validateDate} onSubmit={onSubmit}>
       {({ handleChange, handleSubmit, values, touched, setFieldTouched, errors }): ReactElement => (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <UserForm

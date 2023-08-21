@@ -11,12 +11,11 @@ interface SelectFieldProps {
   placeholder: string;
   options: string[];
   className?: string;
-  validate: (value: string) => string;
+  validate?: (value: string) => string;
 }
 
 export default function SelectField({
   value,
-  // handleChange,
   fieldName,
   options,
   className,
@@ -39,18 +38,6 @@ export default function SelectField({
             </option>
           ))}
         </Field>
-
-        {/*<select {...selectProps}>*/}
-        {/*  <option value="" disabled>*/}
-        {/*    {placeholder}*/}
-        {/*  </option>*/}
-
-        {/*  {options.map((option) => (*/}
-        {/*    <option key={`${fieldName}-${option}`} value={option}>*/}
-        {/*      {option}*/}
-        {/*    </option>*/}
-        {/*  ))}*/}
-        {/*</select>*/}
       </label>
     </div>
   );
