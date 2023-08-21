@@ -8,8 +8,8 @@ export const dates: string[] = Array(31)
   .map((_, index) => `${index + 1}`);
 
 export const months: string[] = [
-  'February',
   'January',
+  'February',
   'March',
   'April',
   'May',
