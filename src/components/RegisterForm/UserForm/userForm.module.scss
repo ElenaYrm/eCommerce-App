@@ -1,3 +1,5 @@
+@import '../../../styles/components';
+
 .form__user {
   width: 100%;
   display: flex;
@@ -11,7 +13,6 @@
       position: relative;
       display: flex;
       width: 100%;
-      display: flex;
       justify-content: space-between;
       gap: 2.5rem;
     }

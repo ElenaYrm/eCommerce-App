@@ -1,10 +1,10 @@
-@import '../../../styles/common/index.scss';
+@import '../../../styles/common';
 
 .form__select {
   position: relative;
   width: 100%;
   border-bottom: 0.1rem solid $dark;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   cursor: pointer;
 
   &::after {

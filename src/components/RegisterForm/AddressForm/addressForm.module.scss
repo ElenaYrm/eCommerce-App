@@ -1,10 +1,15 @@
-@import '../../../styles';
+@import '../../../styles/components';
 
 .form__address {
   max-width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 6rem;
+
+  .checkbox__container {
+    width: max-content;
+    padding-top: 2rem;
+  }
 
   h3 {
     line-height: 1;
@@ -19,7 +24,6 @@
 }
 
 .selects__container {
-  margin-bottom: 1.5rem;
   width: 100%;
   position: relative;
 }

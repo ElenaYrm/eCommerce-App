@@ -55,15 +55,6 @@ function AddressForm({
         setFieldTouched={setFieldTouched}
       />
 
-      <InputField
-        fieldName={`${type}.${Input.PostalCode}`}
-        error={errors?.[Input.PostalCode]}
-        touched={touched?.[Input.PostalCode]}
-        placeholder="Postal code"
-        validate={zipCodeValidate}
-        setFieldTouched={setFieldTouched}
-      />
-
       <div className={styles.selects__container}>
         <SelectField
           handleChange={handleChange}
@@ -78,6 +69,15 @@ function AddressForm({
           <span className={styles.message__error}>{errors[Input.Country]}</span>
         ) : null}
       </div>
+
+      <InputField
+        fieldName={`${type}.${Input.PostalCode}`}
+        error={errors?.[Input.PostalCode]}
+        touched={touched?.[Input.PostalCode]}
+        placeholder="Postal code"
+        validate={zipCodeValidate}
+        setFieldTouched={setFieldTouched}
+      />
 
       <label className={styles.checkbox__container}>
         <Field
