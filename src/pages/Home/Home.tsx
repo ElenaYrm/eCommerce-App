@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsNewUser } from '../../store/auth/selectors';
@@ -9,14 +9,21 @@ import { deleteNotice } from '../../store/auth/slice';
 
 import styles from './home.module.scss';
 
-interface INoticeReturnType {
-  payload: undefined;
-  type: 'auth/deleteNotice';
-}
-
 export default function Home(): ReactElement {
   const isNewUser = useSelector(selectIsNewUser);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isNewUser) {
+      const timer = setTimeout(() => {
+        dispatch(deleteNotice());
+      }, 1500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [isNewUser, dispatch]);
 
   return (
     <div className={styles.home__container}>
@@ -26,14 +33,12 @@ export default function Home(): ReactElement {
         </Link>
         <Link to={PATH[Page.Login]}>Login</Link>
         <Link to={PATH[Page.Register]}>Register</Link>
-        <Link to={PATH[Page.Profile]}>Profile</Link>
         <Link to={PATH[Page.Cart]}>Cart</Link>
       </div>
 
       {isNewUser && (
-        <div>
-          <span>Hello!</span>
-          <button onClick={(): INoticeReturnType => dispatch(deleteNotice())}>Close</button>
+        <div className={styles.message}>
+          <span>Hello and welcome!ヾ(☆▽☆)</span>
         </div>
       )}
     </div>
