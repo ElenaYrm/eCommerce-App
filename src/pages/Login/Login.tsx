@@ -6,10 +6,10 @@ import { ErrorMessage } from '../../components/shared/ErrorMessage';
 import { PATH } from '../../router/constants/paths';
 import { selectAuthError, selectIsAuthorized } from '../../store/auth/selectors';
 import { Page } from '../../router/types';
+import { useAppDispatch } from '../../store/store';
+import { resetError } from '../../store/auth/slice';
 
 import styles from './login.module.scss';
-import { useAppDispatch } from '../../store/store.ts';
-import { resetError } from '../../store/auth/slice';
 
 export default function Login(): ReactElement {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Login(): ReactElement {
     return (): void => {
       dispatch(resetError());
     };
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized, navigate, dispatch]);
 
   return (
     <div className={styles.auth}>
