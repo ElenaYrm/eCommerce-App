@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { UserForm } from './UserForm';
 import { IUserForm } from './UserForm/UserForm';
 import { AddressForm } from './AddressForm';
+import { IAddressForm } from './AddressForm/AddressForm';
 import { Button } from '../shared/Button';
 import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
@@ -14,8 +15,8 @@ import styles from './registerForm.module.scss';
 
 export interface IRegisterForm {
   user: IUserForm;
-  shipping: INewAddress;
-  billing: INewAddress;
+  shipping: IAddressForm;
+  billing: IAddressForm;
 }
 
 function RegisterForm(): ReactElement {
@@ -32,7 +33,6 @@ function RegisterForm(): ReactElement {
         country: shipping.country,
       },
     ];
-
     if (!isSameAddress) {
       addresses.push({
         streetName: billing.streetName,
@@ -42,6 +42,14 @@ function RegisterForm(): ReactElement {
       });
     }
 
+    const billingIndex: number = isSameAddress ? 0 : 1;
+    let defaultBillIndex: number | undefined;
+    if (isSameAddress) {
+      defaultBillIndex = values.shipping.isDefault ? billingIndex : undefined;
+    } else {
+      defaultBillIndex = values.billing.isDefault ? billingIndex : undefined;
+    }
+
     const newUser: INewUser = {
       email: user.email,
       password: user.password,
@@ -49,6 +57,10 @@ function RegisterForm(): ReactElement {
       lastName: user.lastName,
       dateOfBirth: `${user.year}-${getMonthIndex(user.month)}-${user.date}`,
       addresses,
+      shippingAddresses: [0],
+      defaultShippingAddress: values.shipping.isDefault ? 0 : undefined,
+      billingAddresses: [billingIndex],
+      defaultBillingAddress: defaultBillIndex,
     };
 
     dispatch(registerThunk(newUser));

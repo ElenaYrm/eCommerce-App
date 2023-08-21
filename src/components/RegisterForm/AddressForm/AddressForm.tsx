@@ -1,5 +1,5 @@
 import { ChangeEvent, ReactElement } from 'react';
-import { FormikErrors, FormikTouched } from 'formik';
+import { Field, FormikErrors, FormikTouched } from 'formik';
 import classNames from 'classnames';
 import { InputField } from '../../shared/InputField';
 import { SelectField } from '../../shared/SelectField';
@@ -10,12 +10,16 @@ import { cityValidate, countryValidate, streetValidate, zipCodeValidate } from '
 
 import styles from './addressForm.module.scss';
 
+export interface IAddressForm extends INewAddress {
+  isDefault: boolean;
+}
+
 interface IAddressFormProps {
   type: 'billing' | 'shipping';
   handleChange: (e?: ChangeEvent) => void;
-  values: INewAddress;
-  touched: FormikTouched<INewAddress> | undefined;
-  errors: FormikErrors<INewAddress> | undefined;
+  values: IAddressForm;
+  touched: FormikTouched<IAddressForm> | undefined;
+  errors: FormikErrors<IAddressForm> | undefined;
   setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
   className?: string;
 }
@@ -74,6 +78,16 @@ function AddressForm({
           <span className={styles.message__error}>{errors[Input.Country]}</span>
         ) : null}
       </div>
+
+      <label className={styles.checkbox__container}>
+        <Field
+          name={`${type}.${Input.IsDefault}`}
+          type="checkbox"
+          checked={values[Input.IsDefault]}
+          className={styles.checkbox}
+        />
+        <span>Use as default address</span>
+      </label>
     </div>
   );
 }

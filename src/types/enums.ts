@@ -10,4 +10,5 @@ export enum Input {
   Date = 'date',
   Month = 'month',
   Year = 'year',
+  IsDefault = 'isDefault',
 }

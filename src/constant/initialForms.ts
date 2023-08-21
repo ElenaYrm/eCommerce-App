@@ -17,12 +17,14 @@ export const initialRegisterForm: IRegisterForm = {
     [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
+    [Input.IsDefault]: false,
   },
   billing: {
     [Input.Street]: '',
     [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
+    [Input.IsDefault]: false,
   },
 };
 
