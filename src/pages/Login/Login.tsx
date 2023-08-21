@@ -16,7 +16,7 @@ export default function Login(): ReactElement {
 
   useEffect(() => {
     if (isAuthorized) {
-      navigate(PATH.home, { replace: true });
+      navigate(PATH.home);
     }
   }, [isAuthorized, navigate]);
 
