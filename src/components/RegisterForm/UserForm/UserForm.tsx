@@ -6,7 +6,7 @@ import { SelectField } from '../../shared/SelectField';
 import { PasswordField } from '../../shared/PasswordField';
 import { Input } from '../../../types/enums';
 import { dates, months, years } from '../../../constant';
-import { emailValidate, lastNameValidate, nameValidate } from '../../../utils/validation';
+import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../utils/validation';
 
 import styles from './userForm.module.scss';
 
@@ -36,6 +36,10 @@ export default function UserForm({
   setFieldTouched,
   errors,
 }: IUserFormProps): ReactElement {
+  function validateDate(): string {
+    return dateMYValidate(`${values[Input.Date]}${values[Input.Month]}${values[Input.Year]}`);
+  }
+
   return (
     <div className={classNames(styles.form__user, className)}>
       <InputField
@@ -83,6 +87,7 @@ export default function UserForm({
             fieldName={`user.${Input.Date}`}
             options={dates}
             placeholder={Input.Date}
+            validate={validateDate}
           />
           <SelectField
             handleChange={handleChange}
@@ -90,6 +95,7 @@ export default function UserForm({
             fieldName={`user.${Input.Month}`}
             options={months}
             placeholder={Input.Month}
+            validate={validateDate}
           />
           <SelectField
             handleChange={handleChange}
@@ -97,10 +103,13 @@ export default function UserForm({
             fieldName={`user.${Input.Year}`}
             options={years}
             placeholder={Input.Year}
+            validate={validateDate}
           />
         </div>
 
-        {errors?.date && touched?.date ? <span className={styles.message__error}>{errors.date}</span> : null}
+        {errors?.date || errors?.month || errors?.year ? (
+          <span className={styles.message__error}>{errors.date || errors.month || errors.year}</span>
+        ) : null}
       </div>
     </div>
   );

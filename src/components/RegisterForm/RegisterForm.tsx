@@ -55,7 +55,7 @@ function RegisterForm(): ReactElement {
   }
 
   return (
-    <Formik initialValues={initialRegisterForm} onSubmit={onSubmit} validateOnBlur={false}>
+    <Formik initialValues={initialRegisterForm} onSubmit={onSubmit}>
       {({ handleChange, handleSubmit, values, touched, setFieldTouched, errors }): ReactElement => (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <UserForm

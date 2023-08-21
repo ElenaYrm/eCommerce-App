@@ -6,7 +6,7 @@ import { SelectField } from '../../shared/SelectField';
 import { Input } from '../../../types/enums';
 import { INewAddress } from '../../../types/interfaces';
 import { countries } from '../../../constant';
-import { cityValidate, streetValidate, zipCodeValidate } from '../../../utils/validation';
+import { cityValidate, countryValidate, streetValidate, zipCodeValidate } from '../../../utils/validation';
 
 import styles from './addressForm.module.scss';
 
@@ -67,6 +67,7 @@ function AddressForm({
           fieldName={`${type}.${Input.Country}`}
           options={countries}
           placeholder={'Country'}
+          validate={countryValidate}
         />
 
         {errors?.[Input.Country] && touched?.[Input.Country] ? (
