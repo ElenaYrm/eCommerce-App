@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, registerThunk } from '../thunks';
+import { loginThunk, registerThunk, logoutThunk } from '../thunks';
 import { initialAuthState, initialUser } from '../../../constant';
 
 const authSlice = createSlice({
@@ -8,12 +8,6 @@ const authSlice = createSlice({
   reducers: {
     deleteNotice: (state): void => {
       state.isNewUser = false;
-    },
-    logout: (state): void => {
-      state.isAuthorized = false;
-      state.user = initialUser;
-      state.status = 'initial';
-      state.error = '';
     },
     resetError: (state): void => {
       state.status = 'initial';
@@ -50,9 +44,15 @@ const authSlice = createSlice({
         state.isAuthorized = false;
         state.status = 'error';
         state.error = payload || 'Something was wrong';
+      })
+      .addCase(logoutThunk.pending, (state) => {
+        state.isAuthorized = false;
+        state.user = initialUser;
+        state.status = 'initial';
+        state.error = '';
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { deleteNotice, logout, resetError } = authSlice.actions;
+export const { deleteNotice, resetError } = authSlice.actions;

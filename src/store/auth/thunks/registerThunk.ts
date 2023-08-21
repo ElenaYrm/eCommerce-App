@@ -3,6 +3,7 @@ import { registerCustomer } from '../../../services/sdk/auth/methods';
 import { checkError, extractLocalUser } from '../../../utils';
 import { INewUser, IUser } from '../../../types/interfaces';
 import { IAuthSlice } from '../types';
+import { tokenData } from '../../../services/sdk/auth/token';
 
 export const registerThunk = createAsyncThunk<
   IUser,
@@ -16,6 +17,11 @@ export const registerThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       const user = await registerCustomer(body);
+      const token = tokenData.get().token;
+      if (token) {
+        localStorage.setItem('access-token', token);
+      }
+
       return extractLocalUser(user.body.customer);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));

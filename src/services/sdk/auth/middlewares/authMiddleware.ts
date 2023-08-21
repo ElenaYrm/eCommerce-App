@@ -1,5 +1,6 @@
 import { type AuthMiddlewareOptions } from '@commercetools/sdk-client-v2';
-import { projectKey } from '../../index.ts';
+import { projectKey } from '../../index';
+import { tokenData } from '../token';
 
 export const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: import.meta.env.VITE_CTP_AUTH_URL,
@@ -8,5 +9,6 @@ export const authMiddlewareOptions: AuthMiddlewareOptions = {
     clientId: import.meta.env.VITE_CTP_CLIENT_ID,
     clientSecret: import.meta.env.VITE_CTP_CLIENT_SECRET,
   },
+  tokenCache: tokenData,
   fetch,
 };

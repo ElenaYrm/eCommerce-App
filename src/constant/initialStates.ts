@@ -13,7 +13,7 @@ export const initialUser: IUser = {
 };
 
 export const initialAuthState: IAuthSlice = {
-  isAuthorized: false,
+  isAuthorized: !!localStorage.getItem('access-token'),
   isNewUser: false,
   status: 'initial',
   error: '',

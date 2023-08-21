@@ -3,11 +3,11 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
-import { logout } from '../../store/auth/slice';
+import { logoutThunk } from '../../store/auth/thunks';
 import { PATH } from '../../router/constants/paths';
+import Logo from '../../assets/icons/logo.svg';
 
 import styles from './header.module.scss';
-import Logo from '../../assets/icons/logo.svg';
 
 export default function Header(): ReactElement {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function Header(): ReactElement {
 
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(logoutThunk());
     navigate(PATH.home, { replace: true });
   }
 
