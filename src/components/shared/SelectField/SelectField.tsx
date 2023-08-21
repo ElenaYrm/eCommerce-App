@@ -1,5 +1,6 @@
 import { ChangeEvent, ReactElement } from 'react';
 import classnames from 'classnames';
+import { Field } from 'formik';
 
 import styles from './selectField.module.scss';
 
@@ -10,29 +11,23 @@ interface SelectFieldProps {
   placeholder: string;
   options: string[];
   className?: string;
+  validate?: (value: string) => string;
 }
 
 export default function SelectField({
   value,
-  handleChange,
   fieldName,
   options,
   className,
   placeholder,
+  validate,
 }: SelectFieldProps): ReactElement {
-  const selectProps = {
-    name: fieldName,
-    value,
-    onChange: handleChange,
-    className: value ? `${styles.selected}` : '',
-  };
-
   return (
     <div className={classnames(styles.form__select, className ? className : '')}>
       <label>
         <span className="visually-hidden">{fieldName}</span>
 
-        <select {...selectProps}>
+        <Field as="select" name={fieldName} className={value ? `${styles.selected}` : ''} validate={validate}>
           <option value="" disabled>
             {placeholder}
           </option>
@@ -42,7 +37,7 @@ export default function SelectField({
               {option}
             </option>
           ))}
-        </select>
+        </Field>
       </label>
     </div>
   );

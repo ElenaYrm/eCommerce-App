@@ -1,9 +1,10 @@
-@import '../../../styles/common/index.scss';
+@import '../../../styles/common';
+@import '../../../styles/components';
 
 .form__input {
   width: 100%;
   position: relative;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 
   label {
     width: inherit;

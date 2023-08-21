@@ -6,6 +6,7 @@ import { SelectField } from '../../shared/SelectField';
 import { PasswordField } from '../../shared/PasswordField';
 import { Input } from '../../../types/enums';
 import { dates, months, years } from '../../../constant';
+import { emailValidate, lastNameValidate, nameValidate } from '../../../utils/validation';
 
 import styles from './userForm.module.scss';
 
@@ -23,20 +24,27 @@ interface IUserFormProps {
   values: IUserForm;
   touched: FormikTouched<IUserForm> | undefined;
   errors: FormikErrors<IUserForm> | undefined;
+  setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
   className?: string;
 }
 
-export default function UserForm({ handleChange, className, values, touched, errors }: IUserFormProps): ReactElement {
+export default function UserForm({
+  handleChange,
+  className,
+  values,
+  touched,
+  setFieldTouched,
+  errors,
+}: IUserFormProps): ReactElement {
   return (
     <div className={classNames(styles.form__user, className)}>
       <InputField
         fieldName={`user.${Input.Email}`}
-        type="text"
         placeholder="Email"
-        value={values[Input.Email]}
         error={errors?.[Input.Email]}
         touched={touched?.[Input.Email]}
-        handleChange={handleChange}
+        validate={emailValidate}
+        setFieldTouched={setFieldTouched}
       />
 
       <PasswordField
@@ -46,25 +54,25 @@ export default function UserForm({ handleChange, className, values, touched, err
         value={values[Input.Password]}
         error={errors?.[Input.Password]}
         touched={touched?.[Input.Password]}
-        handleChange={handleChange}
+        setFieldTouched={setFieldTouched}
       />
 
       <InputField
         fieldName={`user.${Input.FirstName}`}
         placeholder="First name"
-        value={values[Input.FirstName]}
         error={errors?.[Input.FirstName]}
         touched={touched?.[Input.FirstName]}
-        handleChange={handleChange}
+        validate={nameValidate}
+        setFieldTouched={setFieldTouched}
       />
 
       <InputField
         fieldName={`user.${Input.LastName}`}
         placeholder="Last name"
-        value={values[Input.LastName]}
         error={errors?.[Input.LastName]}
         touched={touched?.[Input.LastName]}
-        handleChange={handleChange}
+        validate={lastNameValidate}
+        setFieldTouched={setFieldTouched}
       />
 
       <div className={styles.selects__container}>

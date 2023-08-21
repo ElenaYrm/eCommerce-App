@@ -4,7 +4,7 @@ export function countryValidate(value: string): string {
   let error: string = '';
 
   if (!value) {
-    error = errorMsg.date.empty;
+    error = errorMsg.country.empty;
   }
 
   return error;

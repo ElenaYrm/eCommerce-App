@@ -7,5 +7,3 @@ export * from './passwordValidate';
 export * from './streetValidate';
 export * from './zipCodeValidate';
 export * from './countryValidate';
-export * from './validateLoginForm';
-export * from './validateRegisterForm';

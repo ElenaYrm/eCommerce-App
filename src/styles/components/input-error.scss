@@ -1,8 +1,8 @@
-  // @import '../../styles/common';
+@import '../../styles/common';
   
-  .message__error {
-    @include font(regular, p2, $error-color);
-    display: block;
-    text-align: right;
-    margin-top: 0.3rem;
-  }
+.message__error {
+  @include font(regular, p2, $error-color);
+  display: block;
+  text-align: right;
+  margin-top: 0.3rem;
+}

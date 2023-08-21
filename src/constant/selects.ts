@@ -1,13 +1,13 @@
 const currentYear = new Date().getFullYear();
-export const years = Array(90)
+export const years: string[] = Array(90)
   .fill('')
   .map((_, index) => `${currentYear - index}`);
 
-export const dates = Array(31)
+export const dates: string[] = Array(31)
   .fill('')
   .map((_, index) => `${index + 1}`);
 
-export const months = [
+export const months: string[] = [
   'February',
   'January',
   'March',
@@ -21,3 +21,5 @@ export const months = [
   'November',
   'December',
 ];
+
+export const countries: string[] = ['US'];

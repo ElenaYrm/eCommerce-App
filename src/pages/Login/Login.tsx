@@ -6,6 +6,8 @@ import { ErrorMessage } from '../../components/shared/ErrorMessage';
 import { PATH } from '../../router/constants/paths';
 import { selectAuthError, selectIsAuthorized } from '../../store/auth/selectors';
 import { Page } from '../../router/types';
+import { useAppDispatch } from '../../store/store';
+import { resetError } from '../../store/auth/slice';
 
 import styles from './login.module.scss';
 
@@ -13,12 +15,17 @@ export default function Login(): ReactElement {
   const navigate = useNavigate();
   const isAuthorized = useSelector(selectIsAuthorized);
   const error = useSelector(selectAuthError);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isAuthorized) {
       navigate(PATH.home);
     }
-  }, [isAuthorized, navigate]);
+
+    return (): void => {
+      dispatch(resetError());
+    };
+  }, [isAuthorized, navigate, dispatch]);
 
   return (
     <div className={styles.auth}>

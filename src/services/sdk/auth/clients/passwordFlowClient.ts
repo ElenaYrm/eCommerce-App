@@ -5,5 +5,4 @@ export const passwordFlowClient = (user: UserAuthOptions): Client =>
   new ClientBuilder()
     .withPasswordFlow(passwordMiddlewareOptions(user))
     .withHttpMiddleware(httpMiddlewareOptions)
-    .withLoggerMiddleware()
     .build();

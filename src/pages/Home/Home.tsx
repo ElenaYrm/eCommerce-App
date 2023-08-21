@@ -17,7 +17,7 @@ export default function Home(): ReactElement {
     if (isNewUser) {
       const timer = setTimeout(() => {
         dispatch(deleteNotice());
-      }, 1500);
+      }, 3000);
 
       return () => {
         clearTimeout(timer);

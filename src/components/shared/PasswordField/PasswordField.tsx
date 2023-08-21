@@ -1,17 +1,13 @@
-import { ReactElement, useState, MouseEvent, ChangeEvent } from 'react';
+import { ReactElement, useState, MouseEvent } from 'react';
 import { InputField } from '../InputField';
+import { InputFieldProps } from '../InputField/InputField';
 import { PasswordChecklist } from './PasswordChecklist';
+import { passwordValidate } from '../../../utils/validation';
 
 import styles from './passwordField.module.scss';
 
-export interface PasswordFieldProps {
-  fieldName: string;
+interface PasswordFieldProps extends Omit<InputFieldProps, 'type' | 'validate'> {
   value: string;
-  error: string | undefined;
-  touched: boolean | undefined;
-  handleChange: (e?: ChangeEvent) => void;
-  placeholder: string;
-  className?: string;
   formName?: string;
 }
 
@@ -20,13 +16,17 @@ export default function PasswordField(props: PasswordFieldProps): ReactElement {
 
   function togglePasswordType(e: MouseEvent<HTMLButtonElement>): void {
     e.preventDefault();
-    setHidden((hidden) => (hidden = !hidden));
+    setHidden((hidden) => !hidden);
+  }
+
+  function validate(value: string): string {
+    return passwordValidate(value, props.formName === 'register');
   }
 
   return (
     <>
-      <InputField type={hidden ? 'password' : 'text'} {...props}>
-        <button className={styles.button__toggle} onClick={togglePasswordType}>
+      <InputField type={hidden ? 'password' : 'text'} {...props} validate={validate}>
+        <button type="button" className={styles.button__toggle} onClick={togglePasswordType}>
           {hidden ? 'Show' : 'Hide'}
         </button>
       </InputField>
