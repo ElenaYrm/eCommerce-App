@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { registerCustomer, setAddresses } from '../../../services/sdk/auth/methods';
+import { registerCustomer } from '../../../services/sdk/auth/methods';
 import { checkError, extractLocalUser } from '../../../utils';
 import { INewUser, IUser } from '../../../types/interfaces';
 import { IAuthSlice } from '../types';
+import { tokenData } from '../../../services/sdk/auth/token';
 
 export const registerThunk = createAsyncThunk<
   IUser,
@@ -16,13 +17,12 @@ export const registerThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       const user = await registerCustomer(body);
-      const addresses = await setAddresses(
-        user.body.customer.id,
-        user.body.customer.version,
-        user.body.customer.addresses,
-      );
+      const token = tokenData.get().token;
+      if (token) {
+        localStorage.setItem('access-token', token);
+      }
 
-      return extractLocalUser(addresses.body);
+      return extractLocalUser(user.body.customer);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

@@ -1,33 +1,29 @@
-.address {
+@import '../../../styles/components';
+
+.form__address {
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 6rem;
 
-  &__item{
-    margin-bottom: 2rem;
-    width: 100%;
+  .checkbox__container {
+    width: max-content;
+    padding-top: 2rem;
   }
 
-  &__double {
+  h3 {
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  &_double {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    gap: 2.5rem;
   }
+}
 
-  &__subitem {
-    width: 48%;
-  }
-
-  &__input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid black;
-    background-color: transparent;
-  }
-
-  &__error {
-    display: block;
-    width: 100%;
-    color: red;
-  }
+.selects__container {
+  width: 100%;
+  position: relative;
 }

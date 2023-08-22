@@ -14,15 +14,17 @@ export const initialRegisterForm: IRegisterForm = {
   },
   shipping: {
     [Input.Street]: '',
-    [Input.Country]: 'US',
+    [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
+    [Input.IsDefault]: false,
   },
   billing: {
     [Input.Street]: '',
-    [Input.Country]: 'US',
+    [Input.Country]: '',
     [Input.PostalCode]: '',
     [Input.City]: '',
+    [Input.IsDefault]: false,
   },
 };
 

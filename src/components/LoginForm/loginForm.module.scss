@@ -1,6 +1,10 @@
-@import '../../styles/common/index.scss';
+@import '../../styles/components';
 
 .form {
   display: flex;
   flex-direction: column;
+
+  button {
+    margin-top: 6rem;
+  }
 }

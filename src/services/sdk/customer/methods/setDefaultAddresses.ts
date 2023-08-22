@@ -1,8 +1,12 @@
-import { authRoot } from '../roots';
+import { authRoot } from '../../auth/roots';
 import { Address, ClientResponse, Customer } from '@commercetools/platform-sdk';
 import { projectKey } from '../../index.ts';
-//
-export const setAddresses = (id: string, version: number, addresses: Address[]): Promise<ClientResponse<Customer>> => {
+
+export const setDefaultAddresses = (
+  id: string,
+  version: number,
+  addresses: Address[],
+): Promise<ClientResponse<Customer>> => {
   return authRoot
     .withProjectKey({ projectKey })
     .customers()

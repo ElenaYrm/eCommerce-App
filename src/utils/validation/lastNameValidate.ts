@@ -2,11 +2,11 @@ import { errorMsg } from '../../constant';
 
 export function lastNameValidate(value: string): string {
   let error: string = '';
-  const isValidLastName = /^\p{L}+$/u.test(value);
+  const isValidValue = /^[\p{L}\s]+$/u.test(value.trim());
 
   if (!value) {
     error = errorMsg.lastName.empty;
-  } else if (!isValidLastName) {
+  } else if (!isValidValue) {
     error = errorMsg.lastName.invalid;
   }
 

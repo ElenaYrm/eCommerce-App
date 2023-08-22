@@ -7,9 +7,17 @@ export interface INewUser {
   lastName: string;
   dateOfBirth: string;
   addresses: Address[];
+  defaultShippingAddress: number | undefined;
+  shippingAddresses: number[];
+  defaultBillingAddress: number | undefined;
+  billingAddresses: number[];
 }
 
-export interface IUser extends INewUser {
+export interface IUser
+  extends Omit<
+    INewUser,
+    'defaultBillingAddress' | 'defaultShippingAddress' | 'shippingAddresses' | 'billingAddresses'
+  > {
   id: string;
   version: number;
   // defaultShippingAddressId: string;

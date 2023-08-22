@@ -1,0 +1,39 @@
+@import '../../styles/common';
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $dark;
+  color: $light;
+
+  &__container {
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    a {
+      &:hover {
+        color: $light;
+        opacity: 0.5;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    @media all and (max-width: 620px) {
+      padding: 2rem;
+      flex-direction: column-reverse;
+      gap: 0;
+    }
+
+    @media all and (max-width: 480px) {
+      padding: 2rem 1rem;
+    }
+  }
+}

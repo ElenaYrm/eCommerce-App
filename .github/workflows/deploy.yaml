@@ -3,6 +3,8 @@ name: Build
 on:
   push:
     branches: [ 'sprint_2/login-registration-main' ]
+  pull_request:
+    branches: [ 'sprint_2/login-registration-main' ]
 
 jobs:
   build:
@@ -26,7 +28,7 @@ jobs:
           retention-days: 7
   deploy_v1:
     needs: build
-    if: github.ref_name == 'sprint_2/login-registration-main'
+    if: github.ref_name == 'sprint_2/login-registration-main' && github.event_name != 'pull_request'
     uses: "./.github/workflows/deploy-template.yaml"
     with:
       deploy-dir: "/var/www/ecommerse/v1"

@@ -2,11 +2,11 @@ import { errorMsg } from '../../constant';
 
 export function nameValidate(value: string): string {
   let error: string = '';
-  const isValidFirstName = /^\p{L}+$/u.test(value);
+  const isValidValue = /^[\p{L}\s]+$/u.test(value.trim());
 
   if (!value) {
     error = errorMsg.firstName.empty;
-  } else if (!isValidFirstName) {
+  } else if (!isValidValue) {
     error = errorMsg.firstName.invalid;
   }
 
