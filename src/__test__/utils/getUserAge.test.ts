@@ -8,6 +8,4 @@ describe('getUserAge function', () => {
       expect(result).toBe(testCase.expectedAge);
     }
   });
-
-  // Add more test cases if needed
 });

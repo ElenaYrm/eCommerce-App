@@ -3,7 +3,8 @@ import { getCurrentDate } from '../../utils/getCurrentDate';
 describe('getCurrentDate function', () => {
   test('should return the current date in the correct format', () => {
     const currentDate = new Date();
-    const expectedDayShort = 'Saturday';
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const expectedDayShort = daysOfWeek[currentDate.getDay()];
     const expectedFormattedDate = `${expectedDayShort}, Aug ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
     const result = getCurrentDate();
 

@@ -6,7 +6,7 @@ export function getUserAge(date: string, month: string, year: string): number {
   const currentMonth = now.getMonth();
   const currentDate = now.getDate();
   const birthYear = Number(year);
-  const birthMonth = getMonthIndex(month);
+  const birthMonth = getMonthIndex(month) - 1;
   const birthDate = Number(date);
 
   let userAge = currentYear - birthYear;

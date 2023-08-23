@@ -12,7 +12,7 @@ describe(`City ${validFunc}`, () => {
   it(`${shouldReturnError} an empty city`, () => {
     const emptyCity = '';
     const result = cityValidate(emptyCity);
-    expect(result).toBe(errorMsg.city.invalid);
+    expect(result).toBe(errorMsg.city.empty);
   });
   it(`${shouldReturnError} a city name containing non-alphabetic characters`, () => {
     const invalidCity = 'Los Angeles 123';
