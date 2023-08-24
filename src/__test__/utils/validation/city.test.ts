@@ -2,6 +2,8 @@ import { cityValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test City ${validFunc}`, () => {
   it('Should return empty string for a valid city', () => {
     const validCity = 'MyCity';
