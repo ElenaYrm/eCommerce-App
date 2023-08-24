@@ -26,7 +26,7 @@ export default function Home(): ReactElement {
   }, [isNewUser, dispatch]);
 
   return (
-    <div className={styles.home__container}>
+    <div className={styles.home__container} data-testid="home">
       <div className={styles.content}>
         <Link to={PATH[Page.Home]} className="active">
           Main
