@@ -2,7 +2,7 @@ import { lastNameValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
-describe(`Last name ${validFunc}`, () => {
+describe(`Test Last name ${validFunc}`, () => {
   it('Should return empty string for a valid Last name', () => {
     const validLastName = 'g';
     const result = lastNameValidate(validLastName);
