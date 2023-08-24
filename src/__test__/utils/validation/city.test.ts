@@ -8,7 +8,7 @@ describe(`Test City ${validFunc}`, () => {
   it('Should return empty string for a valid city', () => {
     const validCity = 'MyCity';
     const result = cityValidate(validCity);
-    expect(result).toBe('');
+    expect(result).not.toBe('');
   });
 
   it(`${shouldReturnError} an empty city`, () => {

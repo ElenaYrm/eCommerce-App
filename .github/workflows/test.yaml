@@ -5,7 +5,7 @@ on:
     branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile' ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
