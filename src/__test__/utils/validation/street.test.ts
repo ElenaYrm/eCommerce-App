@@ -2,7 +2,7 @@ import { streetValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
-describe(`Street ${validFunc}`, () => {
+describe(`Test Street ${validFunc}`, () => {
   it('Should return empty string for a valid street', () => {
     const validStreet = '1';
     const result = streetValidate(validStreet);

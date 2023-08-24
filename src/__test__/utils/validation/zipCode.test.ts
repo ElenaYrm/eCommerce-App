@@ -2,7 +2,7 @@ import { zipCodeValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
-describe(`Zip Code ${validFunc}`, () => {
+describe(`Test Zip Code ${validFunc}`, () => {
   it('should return an empty string for a valid zip code', () => {
     const validZipCode = '12345';
     const result = zipCodeValidate(validZipCode);

@@ -2,7 +2,7 @@ import { emailValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
-describe(`Email ${validFunc}`, () => {
+describe(`Test Email ${validFunc}`, () => {
   it('Should return empty string for a valid email', () => {
     const validEmail = 'test@example.com';
     const result = emailValidate(validEmail);
