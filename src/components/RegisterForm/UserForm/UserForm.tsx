@@ -19,7 +19,8 @@ export interface IUserForm {
   month: string;
   year: string;
 }
-interface IUserFormProps {
+
+export interface IUserFormProps {
   handleChange: (e?: ChangeEvent) => void;
   values: IUserForm;
   touched: FormikTouched<IUserForm> | undefined;
