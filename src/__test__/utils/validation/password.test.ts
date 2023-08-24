@@ -2,6 +2,8 @@ import { passwordValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test Password ${validFunc}`, () => {
   it('should return empty string for a valid password', () => {
     const validPassword = 'P@ssw0rd';

@@ -2,6 +2,8 @@ import { dateMYValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test Date month year ${validFunc}`, () => {
   it('should return empty string for a valid date format and age', () => {
     const validDate = '20may1993';

@@ -2,6 +2,8 @@ import { emailValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test Email ${validFunc}`, () => {
   it('Should return empty string for a valid email', () => {
     const validEmail = 'test@example.com';

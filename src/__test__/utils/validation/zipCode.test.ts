@@ -2,6 +2,8 @@ import { zipCodeValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test Zip Code ${validFunc}`, () => {
   it('should return an empty string for a valid zip code', () => {
     const validZipCode = '12345';

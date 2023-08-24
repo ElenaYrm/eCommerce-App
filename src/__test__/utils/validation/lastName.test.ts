@@ -2,6 +2,8 @@ import { lastNameValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
+jest.mock('../../../constant/metaData', () => {});
+
 describe(`Test Last name ${validFunc}`, () => {
   it('Should return empty string for a valid Last name', () => {
     const validLastName = 'g';
