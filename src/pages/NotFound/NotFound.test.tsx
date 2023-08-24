@@ -6,7 +6,7 @@ import { ReactElement } from 'react';
 
 jest.mock('../../constant/metaData', () => {});
 
-describe('Test profile page: ', () => {
+describe('Test NotFound page: ', () => {
   test('should render NotFound page', () => {
     const component = render(
       <MemoryRouter initialEntries={['/notfound']}>

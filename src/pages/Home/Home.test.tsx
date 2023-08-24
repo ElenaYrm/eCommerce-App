@@ -9,7 +9,7 @@ jest.mock('../../services/sdk/auth/methods', () => {});
 
 const useDispatchSpy = jest.spyOn(reduxHooks, 'useDispatch');
 
-describe('Test profile page: ', () => {
+describe('Test Home page: ', () => {
   test('should render Home page without success register message', () => {
     jest.spyOn(reduxHooks, 'useSelector').mockReturnValue(false);
     useDispatchSpy.mockReturnValue(jest.fn());
