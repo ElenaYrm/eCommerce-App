@@ -3,6 +3,8 @@ import { projectKey } from '../../index';
 import { tokenData } from '../token';
 import { VITE_CTP_AUTH_URL, VITE_CTP_CLIENT_ID, VITE_CTP_CLIENT_SECRET } from '../../../../constant';
 
+import { VITE_CTP_CLIENT_SECRET, VITE_CTP_AUTH_URL, VITE_CTP_CLIENT_ID } from '../../../../constant/metaData';
+
 export const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: VITE_CTP_AUTH_URL,
   projectKey: projectKey,
