@@ -10,12 +10,12 @@ jest.mock('react-router-dom');
 
 const mockedUseSelector = jest.spyOn(reduxHooks, 'useSelector');
 
-describe('ProtectedRoute', () => {
+describe('Test ProtectedRoute component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('render children when isAuthorized is true', () => {
+  it('should render children when isAuthorized is true', () => {
     mockedUseSelector.mockReturnValue(true);
 
     const protectedContent = 'Protected content';
@@ -30,7 +30,7 @@ describe('ProtectedRoute', () => {
     expect(Navigate).not.toHaveBeenCalled();
   });
 
-  it('redirect when isAuthorized is false', () => {
+  it('should redirect when isAuthorized is false', () => {
     mockedUseSelector.mockReturnValue(false);
 
     const protectedContent = 'Protected content';
