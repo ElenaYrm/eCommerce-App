@@ -3,6 +3,8 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { NotFound } from './index';
 import { ReactElement } from 'react';
+import { PATH } from '../../router/constants/paths.ts';
+import { Page } from '../../router/types';
 
 jest.mock('../../constant/metaData', () => {});
 
@@ -23,8 +25,8 @@ describe('Test NotFound page: ', () => {
     render(
       <MemoryRouter initialEntries={['/notfound']}>
         <Routes>
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path={PATH[Page.NotFound]} element={<NotFound />} />
+          <Route path={PATH[Page.Home]} element={<HomePage />} />
         </Routes>
       </MemoryRouter>,
     );

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test profile page:  should render Home page with success register message 1`] = `
+exports[`Test Home page:  should render Home page with success register message 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -137,7 +137,7 @@ exports[`Test profile page:  should render Home page with success register messa
 }
 `;
 
-exports[`Test profile page:  should render Home page without success register message 1`] = `
+exports[`Test Home page:  should render Home page without success register message 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

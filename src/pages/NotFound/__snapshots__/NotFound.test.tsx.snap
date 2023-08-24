@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test profile page:  should render NotFound page 1`] = `
+exports[`Test NotFound page:  should render NotFound page 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
