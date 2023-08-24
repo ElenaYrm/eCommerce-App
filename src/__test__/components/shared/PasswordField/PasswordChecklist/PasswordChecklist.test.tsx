@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { PasswordChecklist } from '../../../../../components/shared/PasswordField/PasswordChecklist';
 
-describe('PasswordChecklist shared component', () => {
+describe('Test PasswordChecklist shared component', () => {
   test('Should renders with all rules as invalid', () => {
     const { container } = render(<PasswordChecklist password="password" />);
 

@@ -1,6 +1,6 @@
 import { checkError } from '../../utils';
 
-describe('checkError function', () => {
+describe('Test checkError function', () => {
   test('should return error message when error is an instance of Error', () => {
     const error = new Error('Test error');
     const result = checkError(error);

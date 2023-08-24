@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Button } from '../../../../components/shared/Button';
 
-describe('Button shared component', () => {
+describe('Test Button shared component', () => {
   test('Should renders with correct props', () => {
     const props = {
       type: 'submit',

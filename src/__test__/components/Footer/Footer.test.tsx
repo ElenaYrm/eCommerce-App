@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from '../../../components/Footer';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Footer component', () => {
+describe('Test Footer component', () => {
   beforeEach(() => {
     render(
       <MemoryRouter>

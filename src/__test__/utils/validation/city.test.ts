@@ -2,7 +2,7 @@ import { cityValidate } from '../../../utils/validation';
 import { errorMsg } from '../../../constant';
 import { shouldReturnError, validFunc } from '../../variables';
 
-describe(`City ${validFunc}`, () => {
+describe(`Test City ${validFunc}`, () => {
   it('Should return empty string for a valid city', () => {
     const validCity = 'MyCity';
     const result = cityValidate(validCity);

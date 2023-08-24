@@ -2,7 +2,7 @@ import { render, screen, act } from '@testing-library/react';
 import { Formik, Form } from 'formik';
 import { SelectField } from '../../../../components/shared/SelectField';
 
-describe('SelectField shared component', () => {
+describe('Test SelectField shared component', () => {
   const handleChange = jest.fn();
 
   it('Should render SelectField component', () => {

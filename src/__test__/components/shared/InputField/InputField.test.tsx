@@ -3,9 +3,7 @@ import { Formik } from 'formik';
 import { InputField } from '../../../../components/shared/InputField';
 import { InputFieldProps } from '../../../../components/shared/InputField/InputField';
 
-// ...
-
-describe('InputField shared component', () => {
+describe('Test InputField shared component', () => {
   function renderInputField(props: InputFieldProps): HTMLInputElement {
     render(
       <Formik initialValues={{}} onSubmit={(): void => {}}>

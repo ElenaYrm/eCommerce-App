@@ -1,6 +1,6 @@
 import { getCurrentDate } from '../../utils/getCurrentDate';
 
-describe('getCurrentDate function', () => {
+describe('Test getCurrentDate function', () => {
   test('should return the current date in the correct format', () => {
     const currentDate = new Date();
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
