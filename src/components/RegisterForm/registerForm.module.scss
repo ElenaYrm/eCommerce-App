@@ -1,0 +1,20 @@
+@import '../../styles/common';
+@import '../../styles/components';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .checkbox__container {
+    width: max-content;
+    margin-top: 2rem;
+  }
+
+  input[disabled] {
+    color: $dark;
+  }
+
+  button {
+    margin-top: 6rem;
+  }
+}

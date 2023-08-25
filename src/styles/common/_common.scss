@@ -1,0 +1,111 @@
+@import './variables';
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+
+body {
+  // min-width: 375px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  @include font(regular, p1, $dark);
+  background-color: $light;
+  overflow-x: hidden;
+}
+
+@media all and (max-width: 480px) {
+  body,
+  input,
+  select,
+  button,
+  a {
+    @include font(regular, p1-mob, $dark);
+  }
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  padding: 0;
+}
+
+:active,
+:hover,
+:focus,
+:focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+h3 {
+  @include font(semibold, h3, $dark);
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0 2rem;
+  margin: 0 auto;
+
+  @media all and (max-width: 480px) {
+    padding: 0 1rem;
+  }
+}
+
+.visually-hidden {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.stop-scroll {
+  overflow: hidden;
+}

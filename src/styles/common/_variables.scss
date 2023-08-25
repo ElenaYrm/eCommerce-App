@@ -1,0 +1,47 @@
+// common colors
+$dark: #111;
+$light: #fafafa;
+$placeholder-grey: #888888;
+$light-primary: #fff;
+$error-color: #f42222;
+$primary: #0047ff;
+$primary-hover: #0044ee;
+$green: #38BF70;
+$bullet-grey: #d9d9d9;
+
+// effects
+$opacity-primary: 0.3;
+$opacity-eye-catching-primary: 0.15;
+
+$transition-set: 0.3s ease-in-out;
+
+// font
+$font-weight-map: (
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+);
+
+// (FontSize, LineHeight)
+
+$title1: 4rem, 100%;
+$title2: 3rem, 100%;
+$title3: 2.4rem, 100%;
+
+$text1: 2rem, 120%;
+$text2: 1.5rem, 130%;
+
+$text1-mob: 1.8rem 120%;
+
+$font-type-map: (
+  'h1': $title1,
+  'h2': $title2,
+  'h3': $title3,
+  'p1': $text1,
+  'p1-mob': $text1-mob,
+  'p2': $text2,
+);
+
+// other
+$border-radius-btn: 2rem;

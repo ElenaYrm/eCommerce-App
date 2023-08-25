@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile' ]
+  pull_request:
+    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Build
+        run: |
+          echo "Build app"
+          npm i
+          npm run build
+          tar -czf build.tar.gz ./dist
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build.tar.gz
+          path: build.tar.gz
+          retention-days: 7
+  deploy_v1:
+    needs: build
+    if: github.event_name != 'pull_request'
+    uses: "./.github/workflows/deploy-template.yaml"
+    with:
+      deploy-dir: "/var/www/ecommerse/v1"

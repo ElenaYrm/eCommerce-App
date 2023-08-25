@@ -1,0 +1,27 @@
+ @import '../../styles/common';
+
+.button__primary {
+  @include font(medium, h2, $light);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-btn;
+  background-color: $primary;
+  color: $light;
+  text-decoration: none;
+
+  box-shadow: 0 5px 12px rgba($primary, 0.5);
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 12px rgba($primary, 0);
+    background-color: $primary-hover;
+    font-size: 2.98rem;
+    color: $light;
+  }
+
+  &::after {
+    display: none;
+  }
+}

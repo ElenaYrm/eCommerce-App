@@ -1,0 +1,29 @@
+@import '../../../styles/common';
+@import '../../../styles/components';
+
+.form__input {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+
+  label {
+    width: inherit;
+    position: relative;
+
+    input {
+      width: inherit;
+      border: none;
+      border-bottom: 0.1rem solid $dark;
+      padding: 0.5rem 0 0.5rem;
+      background-color: transparent;
+
+      &::placeholder {
+        color: $placeholder-grey;
+      }
+
+      &:focus {
+        background-color: rgba($primary, 0.1);
+      }
+    }
+  }
+}
