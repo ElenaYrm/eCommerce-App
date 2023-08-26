@@ -1,6 +1,6 @@
-@import '../../styles/common';
+@import 'src/styles/common';
 
-.home__container {
+.home {
   width: 100%;
   height: calc(100vh - 4rem);
   background-image: url('../../../public/images/bg-home.jpg');
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 
-  .content {
+  &__content {
     max-width: 37rem;
     width: 100%;
     position: relative;
@@ -29,11 +29,12 @@
     @media all and (max-width: 600px) {
       margin: 0 1rem;
     }
+  }
 
-    a {
-      margin: 0 auto;
-      position: relative;
-    }
+  &__link {
+    @include link();
+    margin: 0 auto;
+    position: relative;
   }
 }
 

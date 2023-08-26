@@ -1,29 +1,33 @@
-@import '../../../styles/components';
+@import 'src/styles/common';
 
-.form__address {
+.address {
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
 
-  .checkbox__container {
-    width: max-content;
-    padding-top: 2rem;
-  }
-
-  h3 {
+  &__title {
+    @include font(semibold, h3, $dark);
     line-height: 1;
     margin-bottom: 1.5rem;
   }
 
-  &_double {
-    display: flex;
-    justify-content: space-between;
-    gap: 2.5rem;
+  &__select {
+    width: 100%;
+    position: relative;
   }
-}
 
-.selects__container {
-  width: 100%;
-  position: relative;
+  &__error {
+    @include input-error();
+  }
+
+  &__checkfield {
+    @include check-field();
+
+    width: max-content;
+    padding-top: 2rem;
+  }
+
+  &__checkbox {
+    @include checkbox();
+  }
 }

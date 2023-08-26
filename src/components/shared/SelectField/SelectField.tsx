@@ -23,15 +23,14 @@ export default function SelectField({
   validate,
 }: SelectFieldProps): ReactElement {
   return (
-    <div className={classnames(styles.form__select, className ? className : '')}>
+    <div className={classnames(styles.select, className || '')}>
       <label>
         <span className="visually-hidden">{fieldName}</span>
 
         <Field
-          value={value ?? ''}
           as="select"
           name={fieldName}
-          className={value ? `${styles.selected}` : ''}
+          className={classnames(styles.select__field, value ? `${styles.select__field_selected}` : '')}
           validate={validate}
         >
           <option value="" disabled>

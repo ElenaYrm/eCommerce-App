@@ -6,29 +6,32 @@ exports[`Test Home page:  should render Home page with success register message 
   "baseElement": <body>
     <div>
       <div
-        class="home__container"
+        class="home"
         data-testid="home"
       >
         <div
-          class="content"
+          class="home__content"
         >
           <a
-            class="active"
+            class="home__link active"
             href="/"
           >
             Main
           </a>
           <a
+            class="home__link"
             href="/login"
           >
             Login
           </a>
           <a
+            class="home__link"
             href="/register"
           >
             Register
           </a>
           <a
+            class="home__link"
             href="/cart"
           >
             Cart
@@ -46,29 +49,32 @@ exports[`Test Home page:  should render Home page with success register message 
   </body>,
   "container": <div>
     <div
-      class="home__container"
+      class="home"
       data-testid="home"
     >
       <div
-        class="content"
+        class="home__content"
       >
         <a
-          class="active"
+          class="home__link active"
           href="/"
         >
           Main
         </a>
         <a
+          class="home__link"
           href="/login"
         >
           Login
         </a>
         <a
+          class="home__link"
           href="/register"
         >
           Register
         </a>
         <a
+          class="home__link"
           href="/cart"
         >
           Cart
@@ -143,29 +149,32 @@ exports[`Test Home page:  should render Home page without success register messa
   "baseElement": <body>
     <div>
       <div
-        class="home__container"
+        class="home"
         data-testid="home"
       >
         <div
-          class="content"
+          class="home__content"
         >
           <a
-            class="active"
+            class="home__link active"
             href="/"
           >
             Main
           </a>
           <a
+            class="home__link"
             href="/login"
           >
             Login
           </a>
           <a
+            class="home__link"
             href="/register"
           >
             Register
           </a>
           <a
+            class="home__link"
             href="/cart"
           >
             Cart
@@ -176,29 +185,32 @@ exports[`Test Home page:  should render Home page without success register messa
   </body>,
   "container": <div>
     <div
-      class="home__container"
+      class="home"
       data-testid="home"
     >
       <div
-        class="content"
+        class="home__content"
       >
         <a
-          class="active"
+          class="home__link active"
           href="/"
         >
           Main
         </a>
         <a
+          class="home__link"
           href="/login"
         >
           Login
         </a>
         <a
+          class="home__link"
           href="/register"
         >
           Register
         </a>
         <a
+          class="home__link"
           href="/cart"
         >
           Cart

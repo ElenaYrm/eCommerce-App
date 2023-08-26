@@ -1,6 +1,6 @@
-@import '../../../styles/common';
+@import 'src/styles/common';
   
-.message__error {
+.error {
   @include font(regular, p2, $error-color);
   display: block;
   text-align: left;

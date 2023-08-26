@@ -28,12 +28,14 @@ export default function Login(): ReactElement {
   }, [isAuthorized, navigate, dispatch]);
 
   return (
-    <div className={styles.auth}>
-      <div className={styles.auth__container}>
-        <div className={styles.form__container}>
-          <Link to={PATH[Page.Register]}>Register</Link>
+    <div className={styles.login}>
+      <div className={styles.login__container}>
+        <div className={styles.login__form}>
+          <Link to={PATH[Page.Register]} className={styles.login__link}>
+            Register
+          </Link>
 
-          <div className={styles.title}>
+          <div className={styles.login__title}>
             <span>Login</span>
             <span>to your account</span>
           </div>
@@ -43,7 +45,7 @@ export default function Login(): ReactElement {
           <LoginForm />
         </div>
       </div>
-      <div className={styles.image}></div>
+      <div className={styles.login__image}></div>
     </div>
   );
 }

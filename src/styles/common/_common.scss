@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixin';
 
 *,
 *::before,
@@ -82,10 +83,6 @@ p {
   margin: 0;
 }
 
-h3 {
-  @include font(semibold, h3, $dark);
-}
-
 img {
   max-width: 100%;
 }
@@ -108,4 +105,13 @@ img {
 
 .stop-scroll {
   overflow: hidden;
+}
+
+.active {
+  color: $primary;
+
+  &::after {
+    background-color: $primary;
+    opacity: 1;
+  }
 }

@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@import 'src/styles/common';
 
 .footer {
   width: 100%;
@@ -15,17 +15,6 @@
     justify-content: space-between;
     gap: 2rem;
 
-    a {
-      &:hover {
-        color: $light;
-        opacity: 0.5;
-      }
-
-      &::after {
-        display: none;
-      }
-    }
-
     @media all and (max-width: 620px) {
       padding: 2rem;
       flex-direction: column-reverse;
@@ -34,6 +23,19 @@
 
     @media all and (max-width: 480px) {
       padding: 2rem 1rem;
+    }
+  }
+
+  &__link {
+    @include link();
+
+    &:hover {
+      color: $light;
+      opacity: 0.5;
+    }
+
+    &::after {
+      display: none;
     }
   }
 }

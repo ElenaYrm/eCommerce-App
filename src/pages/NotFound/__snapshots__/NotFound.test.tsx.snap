@@ -6,10 +6,10 @@ exports[`Test NotFound page:  should render NotFound page 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="not-found__container"
+        class="notFound"
       >
         <div
-          class="content"
+          class="notFound__content"
         >
           <h2>
             Page not found (´•̥̥̥o•̥̥̥\`)
@@ -18,7 +18,7 @@ exports[`Test NotFound page:  should render NotFound page 1`] = `
             That's sad... But you know you are always welcome on the main page, right?
           </p>
           <a
-            class="button__primary"
+            class="notFound__btn"
             href="/"
           >
             Back to Main
@@ -29,10 +29,10 @@ exports[`Test NotFound page:  should render NotFound page 1`] = `
   </body>,
   "container": <div>
     <div
-      class="not-found__container"
+      class="notFound"
     >
       <div
-        class="content"
+        class="notFound__content"
       >
         <h2>
           Page not found (´•̥̥̥o•̥̥̥\`)
@@ -41,7 +41,7 @@ exports[`Test NotFound page:  should render NotFound page 1`] = `
           That's sad... But you know you are always welcome on the main page, right?
         </p>
         <a
-          class="button__primary"
+          class="notFound__btn"
           href="/"
         >
           Back to Main

@@ -1,10 +1,10 @@
-@import '../../styles/components';
+@import 'src/styles/common';
 
 .form {
   display: flex;
   flex-direction: column;
 
-  button {
-    margin-top: 6rem;
+  &__password {
+    margin-bottom: 7rem;
   }
 }
