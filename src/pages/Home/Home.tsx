@@ -1,6 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { selectIsNewUser } from '../../store/auth/selectors';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
@@ -26,14 +27,20 @@ export default function Home(): ReactElement {
   }, [isNewUser, dispatch]);
 
   return (
-    <div className={styles.home__container} data-testid="home">
-      <div className={styles.content}>
-        <Link to={PATH[Page.Home]} className="active">
+    <div className={styles.home} data-testid="home">
+      <div className={styles.home__content}>
+        <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
           Main
         </Link>
-        <Link to={PATH[Page.Login]}>Login</Link>
-        <Link to={PATH[Page.Register]}>Register</Link>
-        <Link to={PATH[Page.Cart]}>Cart</Link>
+        <Link to={PATH[Page.Login]} className={styles.home__link}>
+          Login
+        </Link>
+        <Link to={PATH[Page.Register]} className={styles.home__link}>
+          Register
+        </Link>
+        <Link to={PATH[Page.Cart]} className={styles.home__link}>
+          Cart
+        </Link>
       </div>
 
       {isNewUser && (

@@ -20,7 +20,7 @@ export default function Header(): ReactElement {
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
     dispatch(logoutThunk());
-    navigate(PATH.home, { replace: true });
+    navigate(PATH.home);
   }
 
   return (
@@ -31,21 +31,29 @@ export default function Header(): ReactElement {
         </Link>
 
         {!isAuthPage && (
-          <nav className={styles.header__nav}>
+          <nav className={styles.nav}>
             {isAuthorized ? (
               <>
-                <Link to={PATH.home} onClick={handleLogout}>
+                <Link to={PATH.home} onClick={handleLogout} className={styles.nav__link}>
                   Logout
                 </Link>
-                <NavLink to={PATH.profile}>Profile</NavLink>
+                <NavLink to={PATH.profile} className={styles.nav__link}>
+                  Profile
+                </NavLink>
               </>
             ) : (
               <>
-                <NavLink to={PATH.login}>Login</NavLink>
-                <NavLink to={PATH.register}>Register</NavLink>
+                <NavLink to={PATH.login} className={styles.nav__link}>
+                  Login
+                </NavLink>
+                <NavLink to={PATH.register} className={styles.nav__link}>
+                  Register
+                </NavLink>
               </>
             )}
-            <NavLink to={PATH.cart}>Cart</NavLink>
+            <NavLink to={PATH.cart} className={styles.nav__link}>
+              Cart
+            </NavLink>
           </nav>
         )}
       </div>

@@ -10,15 +10,18 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
         novalidate=""
       >
         <div
-          class="form__input"
+          class="field"
         >
-          <label>
+          <label
+            class="field__label"
+          >
             <span
               class="visually-hidden"
             >
               email
             </span>
             <input
+              class="field__input"
               name="email"
               placeholder="Email"
               type="text"
@@ -27,15 +30,18 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
           </label>
         </div>
         <div
-          class="form__input"
+          class="field form__password"
         >
-          <label>
+          <label
+            class="field__label"
+          >
             <span
               class="visually-hidden"
             >
               password
             </span>
             <input
+              class="field__input"
               name="password"
               placeholder="Password"
               type="password"
@@ -50,7 +56,7 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
           </label>
         </div>
         <button
-          class="button__primary"
+          class="btn"
           type="submit"
         >
           Login ( ^ω^)
@@ -64,15 +70,18 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
       novalidate=""
     >
       <div
-        class="form__input"
+        class="field"
       >
-        <label>
+        <label
+          class="field__label"
+        >
           <span
             class="visually-hidden"
           >
             email
           </span>
           <input
+            class="field__input"
             name="email"
             placeholder="Email"
             type="text"
@@ -81,15 +90,18 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
         </label>
       </div>
       <div
-        class="form__input"
+        class="field form__password"
       >
-        <label>
+        <label
+          class="field__label"
+        >
           <span
             class="visually-hidden"
           >
             password
           </span>
           <input
+            class="field__input"
             name="password"
             placeholder="Password"
             type="password"
@@ -104,7 +116,7 @@ exports[`Test LoginForm component:  should create LoginForm 1`] = `
         </label>
       </div>
       <button
-        class="button__primary"
+        class="btn"
         type="submit"
       >
         Login ( ^ω^)

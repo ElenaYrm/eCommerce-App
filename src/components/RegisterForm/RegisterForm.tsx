@@ -9,11 +9,12 @@ import { useAppDispatch } from '../../store/store';
 import { registerThunk } from '../../store/auth/thunks';
 import { initialRegisterForm } from '../../constant';
 import { getMonthIndex } from '../../utils';
+import { dateMYValidate } from '../../utils/validation';
 import { INewAddress, INewUser } from '../../types/interfaces';
+import { Input } from '../../types/enums';
 
 import styles from './registerForm.module.scss';
-import { dateMYValidate } from '../../utils/validation';
-import { Input } from '../../types/enums.ts';
+import classnames from 'classnames';
 
 export interface IRegisterForm {
   user: IUserForm;
@@ -93,6 +94,7 @@ function RegisterForm(): ReactElement {
             touched={touched.user}
             errors={errors.user}
             setFieldTouched={setFieldTouched}
+            className={styles.form__subform}
           />
 
           <AddressForm
@@ -104,12 +106,12 @@ function RegisterForm(): ReactElement {
             setFieldTouched={setFieldTouched}
           />
 
-          <label className={styles.checkbox__container}>
+          <label className={classnames(styles.form__checkfield, styles.form__subform)}>
             <input
               type="checkbox"
               checked={isSameAddress}
               onChange={(): void => setIsSameAddress(!isSameAddress)}
-              className={styles.checkbox}
+              className={styles.form__checkbox}
             />
             <span>Use as a billing address</span>
           </label>
@@ -121,12 +123,12 @@ function RegisterForm(): ReactElement {
               values={values.billing}
               touched={touched.billing}
               errors={errors.billing}
-              className={styles.form__subform}
               setFieldTouched={setFieldTouched}
+              className={styles.form__subform}
             />
           )}
 
-          <Button type="submit" name="Register ( ^ω^)" className={styles.button__primary} />
+          <Button type="submit" name="Register ( ^ω^)" />
         </form>
       )}
     </Formik>

@@ -1,9 +1,7 @@
-@import '../../styles/common';
-@import '../../styles/components';
+@import 'src/styles/common';
 
-.not-found__container {
+.notFound {
   width: 100%;
-  //height: 100%;
   height: calc(100vh - 4rem);
   background-image: url('../../../public/images/bg-404.jpg');
   background-size: cover;
@@ -13,24 +11,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.content {
-  max-width: 60rem;
-  width: 100%;
-  padding: 5rem;
-  background-color: $light;
-  border-radius: 4rem;
-  border: 1px solid $dark;
-  text-align: center;
+  &__content {
+    max-width: 60rem;
+    width: 100%;
+    padding: 5rem;
+    background-color: $light;
+    border-radius: 4rem;
+    border: 1px solid $dark;
+    text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0 2rem;
 
-  @media all and (max-width: 600px) {
-    padding: 4rem;
-    margin: 0 1rem;
+    @media all and (max-width: 600px) {
+      padding: 4rem;
+      margin: 0 1rem;
+    }
+  }
+
+  &__btn {
+    @include btn-primary();
   }
 }

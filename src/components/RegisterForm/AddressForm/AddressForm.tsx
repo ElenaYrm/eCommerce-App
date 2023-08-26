@@ -34,8 +34,8 @@ function AddressForm({
   className,
 }: IAddressFormProps): ReactElement {
   return (
-    <div className={classNames(className, styles.form__address)}>
-      <h3>{`${type[0].toUpperCase() + type.slice(1).toLowerCase()} address`}</h3>
+    <div className={classNames(className, styles.address)}>
+      <h3 className={styles.address__title}>{`${type[0].toUpperCase() + type.slice(1).toLowerCase()} address`}</h3>
 
       <InputField
         fieldName={`${type}.${Input.Street}`}
@@ -55,7 +55,7 @@ function AddressForm({
         setFieldTouched={setFieldTouched}
       />
 
-      <div className={styles.selects__container}>
+      <div className={styles.address__select}>
         <SelectField
           handleChange={handleChange}
           value={values[Input.Country]}
@@ -66,7 +66,7 @@ function AddressForm({
         />
 
         {errors?.[Input.Country] && touched?.[Input.Country] ? (
-          <span className={styles.message__error}>{errors[Input.Country]}</span>
+          <span className={styles.address__error}>{errors[Input.Country]}</span>
         ) : null}
       </div>
 
@@ -79,12 +79,12 @@ function AddressForm({
         setFieldTouched={setFieldTouched}
       />
 
-      <label className={styles.checkbox__container}>
+      <label className={styles.address__checkfield}>
         <Field
           name={`${type}.${Input.IsDefault}`}
           type="checkbox"
           checked={values[Input.IsDefault]}
-          className={styles.checkbox}
+          className={styles.address__checkbox}
         />
         <span>Use as default address</span>
       </label>

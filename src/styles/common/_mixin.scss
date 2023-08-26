@@ -1,10 +1,115 @@
 @use "variables";
+@import "variables";
 
-@mixin font($weight: regular, $type, $color: $dark-primary) {
+@mixin font($weight: regular, $type, $color: $dark) {
   $font-type: map-get(variables.$font-type-map, $type);
   
   font-weight: map-get(variables.$font-weight-map, $weight);
   font-size: nth($font-type, 1);
   line-height: nth($font-type, 2);
   color: $color;
+}
+
+@mixin input-error {
+  @include font(regular, p2, $error-color);
+  padding-top: 0.3rem;
+  display: block;
+  text-align: right;
+}
+
+@mixin link {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+
+  transition: all 0.2s ease-in;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 0.15rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    background-color: $dark;
+
+    transition: all 0.2s ease-in;
+  }
+
+  &:hover {
+    color: $primary;
+
+    &::after {
+      background-color: $primary;
+    }
+  }
+}
+
+@mixin check-field {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@mixin checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: transparent;
+  border: 0.1rem solid $dark;
+  border-radius: 0.5rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $green;
+    border-radius: 0.3rem;
+    transform: scale(0);
+    transition: all 0.1s ease-in;
+  }
+
+  &:checked {
+    background-color: rgba($green, 0.3);
+    border: none;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin btn-primary {
+  @include font(medium, h2, $light);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-btn;
+  background-color: $primary;
+  color: $light;
+  text-decoration: none;
+
+  box-shadow: 0 5px 12px rgba($primary, 0.5);
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 12px rgba($primary, 0);
+    background-color: $primary-hover;
+    font-size: 2.98rem;
+    color: $light;
+  }
+
+  &::after {
+    display: none;
+  }
 }
