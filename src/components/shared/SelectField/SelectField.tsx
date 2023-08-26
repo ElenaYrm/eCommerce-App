@@ -27,7 +27,13 @@ export default function SelectField({
       <label>
         <span className="visually-hidden">{fieldName}</span>
 
-        <Field as="select" name={fieldName} className={value ? `${styles.selected}` : ''} validate={validate}>
+        <Field
+          value={value ?? ''}
+          as="select"
+          name={fieldName}
+          className={value ? `${styles.selected}` : ''}
+          validate={validate}
+        >
           <option value="" disabled>
             {placeholder}
           </option>

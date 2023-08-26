@@ -12,6 +12,7 @@ export interface InputFieldProps {
   touched: boolean | undefined;
   validate: (value: string) => string;
   setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
+  value?: string;
   className?: string;
   children?: ReactElement;
 }

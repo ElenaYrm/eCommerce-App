@@ -1,4 +1,5 @@
 import { Address } from '@commercetools/platform-sdk';
+import { ReactElement } from 'react';
 
 export interface INewUser {
   email: string;
@@ -33,4 +34,10 @@ export interface INewAddress {
   city: string;
   postalCode: string;
   country: string;
+}
+
+export interface ITabsList {
+  label: string;
+  content: string | ReactElement;
+  title: string;
 }
