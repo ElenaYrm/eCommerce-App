@@ -1,12 +1,19 @@
 @import '../../../styles/common';
 
-.root {}
+.root {
+  &__title {
+    margin-bottom: 6rem;
+    padding-top: 2rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+}
 
 .tabsList {
   display: flex;
   margin-bottom: 6rem;
 
-  &.hidden {
+  &_hidden {
     display: none;
   }
 

@@ -1,9 +1,31 @@
 @import '../../../../styles/common';
 
-.form {}
+.form {
+
+  &__email {
+    &::before {
+      content: 'Email';
+      position: absolute;
+      top: -2rem;
+      @include font(semibold, p1, $dark);
+      line-height: 2.2rem;
+    }
+  }
+
+  input[name="email"] {
+    border: none;
+  }
+
+  &__saveBtn {
+    width: 100%;
+    height: 7rem;
+  }
+}
 
 .nameContainer {
+  display: flex;
   position: relative;
+  margin-bottom: 2.5rem;
 
   &::before {
     content: 'Name';
@@ -13,7 +35,35 @@
     line-height: 2.2rem;
   }
 
+  &__input {
+    flex-basis: content;
+    line-height: 2.2rem;
+    flex-grow: 0.33;
 
+    &:first-child {
+      margin-right: 1rem;
+    }
 
-  display: flex;
+    input[name="firstName"],
+    input[name="lastName"] {
+      border: none;
+    }
+  }
+}
+
+.formEdit {
+  &__nameContainer {
+    flex-direction: column;
+    margin-bottom: 0;
+
+    &::before {
+      content: '';
+    }
+  }
+
+  &__email {
+    &::before {
+      content: '';
+    }
+  }
 }

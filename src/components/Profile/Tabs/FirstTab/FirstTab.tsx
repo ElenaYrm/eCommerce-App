@@ -32,8 +32,12 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
   return (
     <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
       {({ handleSubmit, errors, touched, setFieldTouched }): ReactElement => (
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
-          <div className={classNames(styles.form__nameContainer, styles.nameContainer, { edit: isEditMode })}>
+        <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
+          <div
+            className={classNames(styles.form__nameContainer, styles.nameContainer, {
+              [styles.formEdit__nameContainer]: isEditMode,
+            })}
+          >
             <InputField
               className={styles.nameContainer__input}
               fieldName={Input.FirstName}
@@ -42,6 +46,7 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
               touched={touched?.[Input.FirstName]}
               validate={nameValidate}
               setFieldTouched={setFieldTouched}
+              isDisabled={!isEditMode}
             />
             <InputField
               className={styles.nameContainer__input}
@@ -51,17 +56,20 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
               touched={touched?.[Input.LastName]}
               validate={lastNameValidate}
               setFieldTouched={setFieldTouched}
+              isDisabled={!isEditMode}
             />
           </div>
           <InputField
+            className={classNames(styles.form__email, { [styles.formEdit__email]: isEditMode })}
             fieldName={Input.Email}
             placeholder="Email"
             error={errors?.[Input.Email]}
             touched={touched?.[Input.Email]}
             validate={emailValidate}
             setFieldTouched={setFieldTouched}
+            isDisabled={!isEditMode}
           />
-          {isEditMode ? <Button type="submit" name="Save changes" className="TESTINFIRSTTABBTN" /> : ''}
+          {isEditMode ? <Button type="submit" name="Save changes" className={styles.form__saveBtn} /> : ''}
         </form>
       )}
     </Formik>

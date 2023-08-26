@@ -12,7 +12,7 @@ import classNames from 'classnames';
 export const testUser: IUserForm = {
   [Input.Password]: 'passwordtest',
   [Input.Email]: 'test@mail.com',
-  [Input.FirstName]: 'testFirstName',
+  [Input.FirstName]: 'testName',
   [Input.LastName]: 'testLastName',
   date: '25',
   month: 'May',
@@ -47,7 +47,12 @@ export default function Profile(): ReactElement {
           )}
           <Tabs tabsList={tabsList} isTabListHidden={isEditing} />
         </div>
-        <button onClick={handleEditClick}>{isEditing ? 'Close' : 'Edit'}</button>
+        <button
+          className={classNames(styles.root__btn, { [styles.root__btn_edit]: isEditing })}
+          onClick={handleEditClick}
+        >
+          {isEditing ? 'Close' : 'Edit'}
+        </button>
       </div>
     </div>
   );

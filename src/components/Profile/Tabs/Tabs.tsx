@@ -16,9 +16,11 @@ function Tabs({ tabsList, isTabListHidden }: ITabsProps): ReactElement {
   };
 
   return (
-    <div className={styles.root}>
-      {isTabListHidden ? <h2>{tabsList[activeTab].title}</h2> : ''}
-      <div className={classNames(styles.root__tabList, { hidden: isTabListHidden }, styles.tabsList)}>
+    <div className={classNames(styles.root, { [styles.rootEdit]: isTabListHidden })}>
+      {isTabListHidden ? <h2 className={classNames(styles.root__title)}>{tabsList[activeTab].title}</h2> : ''}
+      <div
+        className={classNames(styles.root__tabsList, { [styles.tabsList_hidden]: isTabListHidden }, styles.tabsList)}
+      >
         {tabsList.map((tab, index) => {
           return (
             <div

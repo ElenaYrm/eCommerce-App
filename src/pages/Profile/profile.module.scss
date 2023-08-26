@@ -1,6 +1,36 @@
+@import '../../styles/common';
+
 .root {
   &__container {
     padding: 4rem;
+    position: relative;
+  }
+
+  &__btn {
+    @include btn-primary();
+    width: 100%;
+    height: 7rem;
+
+    &_edit {
+      @include font(regular, p1, $dark);
+      position: absolute;
+      right: 4rem;
+      top: 2rem;
+      width: auto;
+      height: unset;
+      box-shadow: none;
+      background-color: inherit;
+      transition: none;
+      transition: opacity $opacity-primary ease-in-out;
+
+      &:hover {
+        box-shadow: unset;
+        background-color: inherit;
+        font-size: 2rem;
+        color: $dark;
+        opacity: 0.5;
+      }
+    }
   }
 }
 
@@ -14,7 +44,7 @@
   &__ava {
     width: 4rem;
     height: 4rem;
-    background-image: url('../../../public/images/profile-ava.jpg');
+    background-image: url('/images/profile-ava.jpg');
     background-repeat: no-repeat;
     background-size: contain;
     border-radius: 50%;
