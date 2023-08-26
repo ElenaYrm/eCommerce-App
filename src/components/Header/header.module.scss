@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@import 'src/styles/common';
 
 .header {
   width: 100%;
@@ -20,11 +20,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  &__nav {
-    display: flex;
-    gap: 2rem;
   }
 }
 
@@ -48,17 +43,24 @@
   }
 }
 
-.header__nav a {
-  &::after {
-    bottom: -0.1rem;
-    visibility: hidden;
+.nav {
+  display: flex;
+  gap: 2rem;
 
-    transition: all 0.2s ease-in;
-  }
+  &__link {
+    @include link();
 
-  &:hover {
     &::after {
-      visibility: visible;
+      bottom: -0.1rem;
+      opacity: 0;
+
+      transition: all 0.2s ease-in;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
     }
   }
 }
@@ -70,13 +72,13 @@
     &__container {
       padding: 0 1rem;
     }
-
-    &__nav {
-      gap: 1.5rem;
-    }
   }
 
   .logo {
     width: 12rem;
+  }
+
+  .nav {
+    gap: 1.5rem;
   }
 }

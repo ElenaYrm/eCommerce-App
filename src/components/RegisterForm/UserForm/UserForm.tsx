@@ -38,7 +38,7 @@ export default function UserForm({
   errors,
 }: IUserFormProps): ReactElement {
   return (
-    <div className={classNames(styles.form__user, className)}>
+    <div className={classNames(styles.user, className)}>
       <InputField
         fieldName={`user.${Input.Email}`}
         placeholder="Email"
@@ -76,8 +76,8 @@ export default function UserForm({
         setFieldTouched={setFieldTouched}
       />
 
-      <div className={styles.selects__container}>
-        <div className={styles.selects}>
+      <div className={styles.selects}>
+        <div className={styles.selects__item}>
           <SelectField
             handleChange={handleChange}
             value={values[Input.Date]}
@@ -101,7 +101,7 @@ export default function UserForm({
           />
         </div>
 
-        {errors?.date && touched?.date ? <span className={styles.message__error}>{errors.date}</span> : null}
+        {errors?.date && touched?.date ? <span className={styles.selects__error}>{errors.date}</span> : null}
       </div>
     </div>
   );
