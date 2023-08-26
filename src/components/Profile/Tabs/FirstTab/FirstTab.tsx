@@ -1,3 +1,5 @@
+import styles from './firstTab.module.scss';
+
 import { Formik } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
@@ -8,6 +10,7 @@ import { testUser } from '../../../../pages/Profile/Profile';
 // import { loginThunk } from '../../../store/auth/thunks';
 import { emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import { Button } from '../../../shared/Button';
+import classNames from 'classnames';
 
 export interface ITabsProps {
   isEditMode: boolean;
@@ -29,9 +32,10 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
   return (
     <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
       {({ handleSubmit, errors, touched, setFieldTouched }): ReactElement => (
-        <form className="testFormClass" onSubmit={handleSubmit} noValidate>
-          <div>
+        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+          <div className={classNames(styles.form__nameContainer, styles.nameContainer, { edit: isEditMode })}>
             <InputField
+              className={styles.nameContainer__input}
               fieldName={Input.FirstName}
               placeholder="First name"
               error={errors?.[Input.FirstName]}
@@ -40,6 +44,7 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
               setFieldTouched={setFieldTouched}
             />
             <InputField
+              className={styles.nameContainer__input}
               fieldName={Input.LastName}
               placeholder="Last name"
               error={errors?.[Input.LastName]}

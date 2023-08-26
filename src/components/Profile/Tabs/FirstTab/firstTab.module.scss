@@ -1,0 +1,19 @@
+@import '../../../../styles/common';
+
+.form {}
+
+.nameContainer {
+  position: relative;
+
+  &::before {
+    content: 'Name';
+    position: absolute;
+    top: -2rem;
+    @include font(semibold, p1, $dark);
+    line-height: 2.2rem;
+  }
+
+
+
+  display: flex;
+}

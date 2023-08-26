@@ -1,6 +1,7 @@
-import './tabs.scss';
+import styles from './tabs.module.scss';
 import { ReactElement, useState } from 'react';
 import { ITabsList } from '../../../types/interfaces';
+import classNames from 'classnames';
 
 interface ITabsProps {
   tabsList: ITabsList[];
@@ -15,14 +16,14 @@ function Tabs({ tabsList, isTabListHidden }: ITabsProps): ReactElement {
   };
 
   return (
-    <div className="root">
+    <div className={styles.root}>
       {isTabListHidden ? <h2>{tabsList[activeTab].title}</h2> : ''}
-      <div className={`tab-list ${isTabListHidden ? 'hidden' : ''}`}>
+      <div className={classNames(styles.root__tabList, { hidden: isTabListHidden }, styles.tabsList)}>
         {tabsList.map((tab, index) => {
           return (
             <div
               key={index}
-              className={`tab ${index === activeTab ? 'active' : ''}`}
+              className={classNames(styles.tabsList__tab, { [styles.tabsList__tab_active]: index === activeTab })}
               onClick={(): void => handleTabClick(index)}
             >
               {tab.label}
