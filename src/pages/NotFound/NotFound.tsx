@@ -7,11 +7,11 @@ import styles from './notFound.module.scss';
 
 export default function NotFound(): ReactElement {
   return (
-    <div className={styles['not-found__container']}>
-      <div className={styles.content}>
+    <div className={styles.notFound}>
+      <div className={styles.notFound__content}>
         <h2>Page not found (´•̥̥̥o•̥̥̥`)</h2>
         <p>That's sad... But you know you are always welcome on the main page, right?</p>
-        <Link to={PATH[Page.Home]} className={styles.button__primary}>
+        <Link to={PATH[Page.Home]} className={styles.notFound__btn}>
           Back to Main
         </Link>
       </div>
