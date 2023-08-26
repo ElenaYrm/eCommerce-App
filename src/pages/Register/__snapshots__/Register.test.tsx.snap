@@ -6,16 +6,16 @@ exports[`Test Login page:  should render Login page without error 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="auth"
+        class="register"
       >
         <div
-          class="auth__container"
+          class="register__container"
         >
           <div
-            class="form__container"
+            class="register__form"
           >
             <div
-              class="title"
+              class="register__title"
             >
               <span>
                 Register
@@ -29,18 +29,21 @@ exports[`Test Login page:  should render Login page without error 1`] = `
               novalidate=""
             >
               <div
-                class="form__user"
+                class="user form__subform"
               >
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       user.email
                     </span>
                     <input
+                      class="field__input"
                       name="user.email"
                       placeholder="Email"
                       type="text"
@@ -49,15 +52,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       user.password
                     </span>
                     <input
+                      class="field__input"
                       name="user.password"
                       placeholder="Password"
                       type="password"
@@ -72,56 +78,69 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="check-items"
+                  class="rules"
                 >
                   <ul>
                     <li
-                      class="check-item"
+                      class="rules__item"
                     >
-                      <span>
+                      <span
+                        class="rules__name"
+                      >
                         lower case letter (a—z)
                       </span>
                     </li>
                     <li
-                      class="check-item"
+                      class="rules__item"
                     >
-                      <span>
+                      <span
+                        class="rules__name"
+                      >
                         upper case letter (A—Z)
                       </span>
                     </li>
                     <li
-                      class="check-item"
+                      class="rules__item"
                     >
-                      <span>
+                      <span
+                        class="rules__name"
+                      >
                         number (0—9)
                       </span>
                     </li>
                     <li
-                      class="check-item"
+                      class="rules__item"
                     >
-                      <span>
+                      <span
+                        class="rules__name"
+                      >
                         special character (!@#$%^&*)
                       </span>
                     </li>
                     <li
-                      class="check-item"
+                      class="rules__item"
                     >
-                      <span>
+                      <span
+                        class="rules__name"
+                      >
                         min 8 characters long
                       </span>
                     </li>
                   </ul>
                 </div>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       user.firstName
                     </span>
                     <input
+                      class="field__input"
                       name="user.firstName"
                       placeholder="First name"
                       type="text"
@@ -130,15 +149,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       user.lastName
                     </span>
                     <input
+                      class="field__input"
                       name="user.lastName"
                       placeholder="Last name"
                       type="text"
@@ -147,13 +169,13 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="selects__container"
+                  class="selects"
                 >
                   <div
-                    class="selects"
+                    class="selects__item"
                   >
                     <div
-                      class="form__select"
+                      class="select"
                     >
                       <label>
                         <span
@@ -162,7 +184,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                           user.date
                         </span>
                         <select
-                          class=""
+                          class="select__field"
                           name="user.date"
                         >
                           <option
@@ -330,7 +352,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                       </label>
                     </div>
                     <div
-                      class="form__select"
+                      class="select"
                     >
                       <label>
                         <span
@@ -339,7 +361,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                           user.month
                         </span>
                         <select
-                          class=""
+                          class="select__field"
                           name="user.month"
                         >
                           <option
@@ -412,7 +434,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                       </label>
                     </div>
                     <div
-                      class="form__select"
+                      class="select"
                     >
                       <label>
                         <span
@@ -421,7 +443,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                           user.year
                         </span>
                         <select
-                          class=""
+                          class="select__field"
                           name="user.year"
                         >
                           <option
@@ -887,21 +909,26 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </div>
               </div>
               <div
-                class="form__address"
+                class="address"
               >
-                <h3>
+                <h3
+                  class="address__title"
+                >
                   Shipping address
                 </h3>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       shipping.streetName
                     </span>
                     <input
+                      class="field__input"
                       name="shipping.streetName"
                       placeholder="Street"
                       type="text"
@@ -910,15 +937,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       shipping.city
                     </span>
                     <input
+                      class="field__input"
                       name="shipping.city"
                       placeholder="City"
                       type="text"
@@ -927,10 +957,10 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <div
-                  class="selects__container"
+                  class="address__select"
                 >
                   <div
-                    class="form__select"
+                    class="select"
                   >
                     <label>
                       <span
@@ -939,7 +969,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                         shipping.country
                       </span>
                       <select
-                        class=""
+                        class="select__field"
                         name="shipping.country"
                       >
                         <option
@@ -958,15 +988,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </div>
                 </div>
                 <div
-                  class="form__input"
+                  class="field"
                 >
-                  <label>
+                  <label
+                    class="field__label"
+                  >
                     <span
                       class="visually-hidden"
                     >
                       shipping.postalCode
                     </span>
                     <input
+                      class="field__input"
                       name="shipping.postalCode"
                       placeholder="Postal code"
                       type="text"
@@ -975,10 +1008,10 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                   </label>
                 </div>
                 <label
-                  class="checkbox__container"
+                  class="address__checkfield"
                 >
                   <input
-                    class="checkbox"
+                    class="address__checkbox"
                     name="shipping.isDefault"
                     type="checkbox"
                     value="false"
@@ -989,11 +1022,11 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <label
-                class="checkbox__container"
+                class="form__checkfield form__subform"
               >
                 <input
                   checked=""
-                  class="checkbox"
+                  class="form__checkbox"
                   type="checkbox"
                 />
                 <span>
@@ -1001,7 +1034,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </span>
               </label>
               <button
-                class="button__primary"
+                class="btn"
                 type="submit"
               >
                 Register ( ^ω^)
@@ -1010,23 +1043,23 @@ exports[`Test Login page:  should render Login page without error 1`] = `
           </div>
         </div>
         <div
-          class="image"
+          class="register__image"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="auth"
+      class="register"
     >
       <div
-        class="auth__container"
+        class="register__container"
       >
         <div
-          class="form__container"
+          class="register__form"
         >
           <div
-            class="title"
+            class="register__title"
           >
             <span>
               Register
@@ -1040,18 +1073,21 @@ exports[`Test Login page:  should render Login page without error 1`] = `
             novalidate=""
           >
             <div
-              class="form__user"
+              class="user form__subform"
             >
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     user.email
                   </span>
                   <input
+                    class="field__input"
                     name="user.email"
                     placeholder="Email"
                     type="text"
@@ -1060,15 +1096,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     user.password
                   </span>
                   <input
+                    class="field__input"
                     name="user.password"
                     placeholder="Password"
                     type="password"
@@ -1083,56 +1122,69 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="check-items"
+                class="rules"
               >
                 <ul>
                   <li
-                    class="check-item"
+                    class="rules__item"
                   >
-                    <span>
+                    <span
+                      class="rules__name"
+                    >
                       lower case letter (a—z)
                     </span>
                   </li>
                   <li
-                    class="check-item"
+                    class="rules__item"
                   >
-                    <span>
+                    <span
+                      class="rules__name"
+                    >
                       upper case letter (A—Z)
                     </span>
                   </li>
                   <li
-                    class="check-item"
+                    class="rules__item"
                   >
-                    <span>
+                    <span
+                      class="rules__name"
+                    >
                       number (0—9)
                     </span>
                   </li>
                   <li
-                    class="check-item"
+                    class="rules__item"
                   >
-                    <span>
+                    <span
+                      class="rules__name"
+                    >
                       special character (!@#$%^&*)
                     </span>
                   </li>
                   <li
-                    class="check-item"
+                    class="rules__item"
                   >
-                    <span>
+                    <span
+                      class="rules__name"
+                    >
                       min 8 characters long
                     </span>
                   </li>
                 </ul>
               </div>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     user.firstName
                   </span>
                   <input
+                    class="field__input"
                     name="user.firstName"
                     placeholder="First name"
                     type="text"
@@ -1141,15 +1193,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     user.lastName
                   </span>
                   <input
+                    class="field__input"
                     name="user.lastName"
                     placeholder="Last name"
                     type="text"
@@ -1158,13 +1213,13 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="selects__container"
+                class="selects"
               >
                 <div
-                  class="selects"
+                  class="selects__item"
                 >
                   <div
-                    class="form__select"
+                    class="select"
                   >
                     <label>
                       <span
@@ -1173,7 +1228,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                         user.date
                       </span>
                       <select
-                        class=""
+                        class="select__field"
                         name="user.date"
                       >
                         <option
@@ -1341,7 +1396,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                     </label>
                   </div>
                   <div
-                    class="form__select"
+                    class="select"
                   >
                     <label>
                       <span
@@ -1350,7 +1405,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                         user.month
                       </span>
                       <select
-                        class=""
+                        class="select__field"
                         name="user.month"
                       >
                         <option
@@ -1423,7 +1478,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                     </label>
                   </div>
                   <div
-                    class="form__select"
+                    class="select"
                   >
                     <label>
                       <span
@@ -1432,7 +1487,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                         user.year
                       </span>
                       <select
-                        class=""
+                        class="select__field"
                         name="user.year"
                       >
                         <option
@@ -1898,21 +1953,26 @@ exports[`Test Login page:  should render Login page without error 1`] = `
               </div>
             </div>
             <div
-              class="form__address"
+              class="address"
             >
-              <h3>
+              <h3
+                class="address__title"
+              >
                 Shipping address
               </h3>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     shipping.streetName
                   </span>
                   <input
+                    class="field__input"
                     name="shipping.streetName"
                     placeholder="Street"
                     type="text"
@@ -1921,15 +1981,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     shipping.city
                   </span>
                   <input
+                    class="field__input"
                     name="shipping.city"
                     placeholder="City"
                     type="text"
@@ -1938,10 +2001,10 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <div
-                class="selects__container"
+                class="address__select"
               >
                 <div
-                  class="form__select"
+                  class="select"
                 >
                   <label>
                     <span
@@ -1950,7 +2013,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                       shipping.country
                     </span>
                     <select
-                      class=""
+                      class="select__field"
                       name="shipping.country"
                     >
                       <option
@@ -1969,15 +2032,18 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </div>
               </div>
               <div
-                class="form__input"
+                class="field"
               >
-                <label>
+                <label
+                  class="field__label"
+                >
                   <span
                     class="visually-hidden"
                   >
                     shipping.postalCode
                   </span>
                   <input
+                    class="field__input"
                     name="shipping.postalCode"
                     placeholder="Postal code"
                     type="text"
@@ -1986,10 +2052,10 @@ exports[`Test Login page:  should render Login page without error 1`] = `
                 </label>
               </div>
               <label
-                class="checkbox__container"
+                class="address__checkfield"
               >
                 <input
-                  class="checkbox"
+                  class="address__checkbox"
                   name="shipping.isDefault"
                   type="checkbox"
                   value="false"
@@ -2000,11 +2066,11 @@ exports[`Test Login page:  should render Login page without error 1`] = `
               </label>
             </div>
             <label
-              class="checkbox__container"
+              class="form__checkfield form__subform"
             >
               <input
                 checked=""
-                class="checkbox"
+                class="form__checkbox"
                 type="checkbox"
               />
               <span>
@@ -2012,7 +2078,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
               </span>
             </label>
             <button
-              class="button__primary"
+              class="btn"
               type="submit"
             >
               Register ( ^ω^)
@@ -2021,7 +2087,7 @@ exports[`Test Login page:  should render Login page without error 1`] = `
         </div>
       </div>
       <div
-        class="image"
+        class="register__image"
       />
     </div>
   </div>,
