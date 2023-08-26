@@ -1,15 +1,15 @@
 import { Formik } from 'formik';
-import { Input } from '../../../types/enums';
-import { InputField } from '../../shared/InputField';
+import { Input } from '../../../../types/enums';
+import { InputField } from '../../../shared/InputField';
 import { ReactElement } from 'react';
-import { testUser } from '../../../pages/Profile/Profile';
+import { testUser } from '../../../../pages/Profile/Profile';
 // import { useAppDispatch } from '../../../store/store';
 // import { UserAuthOptions } from '@commercetools/sdk-client-v2';
 // import { loginThunk } from '../../../store/auth/thunks';
-import { emailValidate, lastNameValidate, nameValidate } from '../../../utils/validation';
-import { Button } from '../../shared/Button';
+import { emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
+import { Button } from '../../../shared/Button';
 
-interface ITabsProps {
+export interface ITabsProps {
   isEditMode: boolean;
 }
 

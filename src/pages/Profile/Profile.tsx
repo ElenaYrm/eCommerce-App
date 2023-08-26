@@ -1,12 +1,13 @@
 import { ReactElement, useState } from 'react';
 import { ITabsList } from '../../types/interfaces';
-import { Tabs } from '../../components/shared/Tabs';
-import { FirstTab } from '../../components/Profile/FirstTab';
+import { Tabs } from '../../components/Profile/Tabs';
+import { FirstTab } from '../../components/Profile/Tabs/FirstTab';
 import { Input } from '../../types/enums';
 import { IUserForm } from '../../components/RegisterForm/UserForm/UserForm';
+import { ThirdTab } from '../../components/Profile/Tabs/ThirdTab';
 
 export const testUser: IUserForm = {
-  [Input.Password]: 'testPassword',
+  [Input.Password]: 'passwordtest',
   [Input.Email]: 'test@mail.com',
   [Input.FirstName]: 'testFirstName',
   [Input.LastName]: 'testLastName',
@@ -21,7 +22,7 @@ export default function Profile(): ReactElement {
   const tabsList: ITabsList[] = [
     { label: 'PERSONAL INFORMATION', content: <FirstTab isEditMode={isEditing} />, title: 'Edit personal information' },
     { label: 'ADDRESSES', content: 'Содержимое таба 2', title: 'Add new address' },
-    { label: 'PASSWORD', content: 'Содержимое таба 3', title: 'Change password' },
+    { label: 'PASSWORD', content: <ThirdTab isEditMode={isEditing} />, title: 'Change password' },
   ];
 
   const handleEditClick = function (): void {
