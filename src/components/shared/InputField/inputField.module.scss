@@ -1,29 +1,32 @@
-@import '../../../styles/common';
-@import '../../../styles/components';
+@import 'src/styles/common';
 
-.form__input {
+.field {
   width: 100%;
   position: relative;
   margin-bottom: 1rem;
 
-  label {
+  &__label {
     width: inherit;
     position: relative;
+  }
 
-    input {
-      width: inherit;
-      border: none;
-      border-bottom: 0.1rem solid $dark;
-      padding: 0.5rem 0 0.5rem;
-      background-color: transparent;
+  &__input {
+    width: inherit;
+    border: none;
+    border-bottom: 0.1rem solid $dark;
+    padding: 0.5rem 0 0.5rem;
+    background-color: transparent;
 
-      &::placeholder {
-        color: $placeholder-grey;
-      }
-
-      &:focus {
-        background-color: rgba($primary, 0.1);
-      }
+    &::placeholder {
+      color: $placeholder-grey;
     }
+
+    &:focus {
+      background-color: rgba($primary, 0.1);
+    }
+  }
+
+  &__error {
+    @include input-error();
   }
 }
