@@ -22,4 +22,5 @@ export enum Page {
   Profile = 'profile',
   Cart = 'cart',
   NotFound = 'notFound',
+  Product = 'product',
 }
