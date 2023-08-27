@@ -1,10 +1,12 @@
 import { Formik } from 'formik';
 import { ReactElement } from 'react';
-import { testUser } from '../../../../pages/Profile/Profile';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
 import { ITabsProps } from '../FirstTab/FirstTab';
 import { Button } from '../../../shared/Button';
+import styles from './thirdTab.module.scss';
+import classNames from 'classnames';
+import { testUser } from '../../../../constant';
 
 function ThirdTab({ isEditMode }: ITabsProps): ReactElement {
   function handleSubmit(): void {}
@@ -13,21 +15,28 @@ function ThirdTab({ isEditMode }: ITabsProps): ReactElement {
     <>
       <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
         {({ handleSubmit, errors, touched, setFieldTouched }): ReactElement => (
-          <form className="testFormClass" onSubmit={handleSubmit} noValidate>
+          <form
+            className={classNames(styles.root, { [styles.rootEdit]: isEditMode })}
+            onSubmit={handleSubmit}
+            noValidate
+          >
+            {isEditMode ? '' : <div className={styles.root__label}>Password</div>}
             <PasswordField
+              className={classNames(styles.root__input, { [styles.rootEdit__input]: isEditMode })}
               fieldName={Input.Password}
               placeholder="Current password"
               value={testUser.password}
               error={errors?.[Input.Password]}
               touched={touched?.[Input.Password]}
               setFieldTouched={setFieldTouched}
+              isDisabled={!isEditMode}
             />
           </form>
         )}
       </Formik>
       <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
         {({ handleSubmit, errors, touched, setFieldTouched, values }): ReactElement => (
-          <form className="testFormClass" onSubmit={handleSubmit} noValidate>
+          <form className={styles.form} onSubmit={handleSubmit} noValidate>
             {isEditMode ? (
               <PasswordField
                 formName="register"
@@ -41,7 +50,7 @@ function ThirdTab({ isEditMode }: ITabsProps): ReactElement {
             ) : (
               ''
             )}
-            {isEditMode ? <Button type="submit" name="Save changes" className="TESTINFIRSTTABBTN" /> : ''}
+            {isEditMode ? <Button type="submit" name="Save changes" className={styles.form__button} /> : ''}
           </form>
         )}
       </Formik>

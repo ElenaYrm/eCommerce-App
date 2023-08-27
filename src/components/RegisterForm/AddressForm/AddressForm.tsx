@@ -11,7 +11,7 @@ import { cityValidate, countryValidate, streetValidate, zipCodeValidate } from '
 import styles from './addressForm.module.scss';
 
 export interface IAddressForm extends INewAddress {
-  isDefault: boolean;
+  isDefault?: boolean;
 }
 
 interface IAddressFormProps {

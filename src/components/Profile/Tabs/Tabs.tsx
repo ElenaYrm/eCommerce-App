@@ -2,14 +2,25 @@ import styles from './tabs.module.scss';
 import { ReactElement, useState } from 'react';
 import { ITabsList } from '../../../types/interfaces';
 import classNames from 'classnames';
+import { FirstTab } from './FirstTab';
+import { SecondTab } from './SecondTab';
+import { ThirdTab } from './ThirdTab';
 
 interface ITabsProps {
-  tabsList: ITabsList[];
   isTabListHidden: boolean;
 }
 
-function Tabs({ tabsList, isTabListHidden }: ITabsProps): ReactElement {
+function Tabs({ isTabListHidden }: ITabsProps): ReactElement {
   const [activeTab, setActiveTab] = useState(0);
+  const tabsList: ITabsList[] = [
+    {
+      label: 'PERSONAL INFORMATION',
+      content: <FirstTab isEditMode={isTabListHidden} />,
+      title: 'Edit personal information',
+    },
+    { label: 'ADDRESSES', content: <SecondTab isEditMode={isTabListHidden} />, title: 'Add new address' },
+    { label: 'PASSWORD', content: <ThirdTab isEditMode={isTabListHidden} />, title: 'Change password' },
+  ];
 
   const handleTabClick = function (index: number): void {
     setActiveTab(index);

@@ -14,18 +14,37 @@ export interface InputFieldProps {
   setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
   isDisabled?: boolean;
   value?: string;
+  labelText?: string;
+  hideLabel?: boolean;
   className?: string;
   children?: ReactElement;
 }
 
 export default function InputField(props: InputFieldProps): ReactElement {
-  const { fieldName, type, placeholder, className, children, touched, error, validate, setFieldTouched, isDisabled } =
-    props;
+  const {
+    labelText,
+    fieldName,
+    type,
+    placeholder,
+    className,
+    children,
+    touched,
+    error,
+    validate,
+    setFieldTouched,
+    isDisabled,
+    hideLabel,
+  } = props;
+
+  let labelClassName = '';
+  if (!hideLabel) {
+    labelClassName = 'visually-hidden';
+  }
 
   return (
     <div className={classnames(styles.field, className || '')}>
       <label className={styles.field__label}>
-        <span className="visually-hidden">{fieldName}</span>
+        <span className={labelClassName}>{labelText ? labelText : fieldName}</span>
         <Field
           name={fieldName}
           type={type || 'text'}

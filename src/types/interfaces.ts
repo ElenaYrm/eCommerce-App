@@ -34,6 +34,7 @@ export interface INewAddress {
   city: string;
   postalCode: string;
   country: string;
+  id?: string;
 }
 
 export interface ITabsList {

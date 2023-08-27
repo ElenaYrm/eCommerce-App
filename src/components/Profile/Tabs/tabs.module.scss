@@ -12,14 +12,15 @@
 .tabsList {
   display: flex;
   margin-bottom: 6rem;
+  border-bottom: 1px solid $dark;
 
   &_hidden {
     display: none;
   }
 
   &__tab {
+    position: relative;
     padding: 1.2rem 2rem;
-    border-bottom: 1px solid $dark;
     line-height: 1.6rem;
     font-size: 1.4rem;
     font-weight: 600;
@@ -28,6 +29,18 @@
     &_active {
       border: 1px solid $dark;
       border-bottom: none;
+
+      &::after {
+        content: '';
+        width: 100%;
+        display: block;
+        position: absolute;
+        border-bottom: 1px solid white;
+        z-index: 1;
+        height: 1px;
+        left: 0;
+        bottom: -1px;
+      }
     }
   }
 }
