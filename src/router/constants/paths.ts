@@ -6,5 +6,6 @@ export const PATH = {
   [Page.Register]: '/register',
   [Page.Profile]: '/profile',
   [Page.Cart]: '/cart',
+  [Page.Catalog]: '/catalog',
   [Page.NotFound]: '*',
 };
