@@ -1,22 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialProduct } from '../../../constant/initialProduct';
+import { initialProductSlice } from '../../../constant/initialProduct';
+import { productThunk } from '../thunks';
 
 const productSlice = createSlice({
   name: 'product',
-  initialState: initialProduct,
-  reducers: {
-    saveProduct(state, action) {
-      state.productId = action.payload.productId;
-      state.artist = action.payload.artist;
-      state.title = action.payload.title;
-      state.year = action.payload.year;
-      state.description = action.payload.description;
-      state.images = action.payload.images;
-      state.price = action.payload.price;
-      state.discountPrice = action.payload.discountPrice;
-    },
+  initialState: initialProductSlice,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(productThunk.pending, (state) => {
+        state.error = '';
+        state.status = 'initial';
+      })
+      .addCase(productThunk.fulfilled, (state, action) => {
+        state.status = 'success';
+        state.product = action.payload;
+      })
+      .addCase(productThunk.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.payload || 'Something went wrong';
+      });
   },
 });
 
 export const productReducer = productSlice.reducer;
-export const { saveProduct } = productSlice.actions;
