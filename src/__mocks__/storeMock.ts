@@ -1,6 +1,8 @@
 import { RootState } from '../store/store';
 import { IAuthSlice } from '../store/auth/types';
-import { IUser, IProduct } from '../types/interfaces';
+import { IUser } from '../types/interfaces';
+import { initialProduct } from '../constant/initialProduct';
+import { IProductSlice } from '../store/product/types';
 
 export const initialUserMock: IUser = {
   id: '',
@@ -21,15 +23,10 @@ export const initialAuthMock: IAuthSlice = {
   user: initialUserMock,
 };
 
-export const initialProductMock: IProduct = {
-  artist: '',
-  title: '',
-  year: '',
-  description: '',
-  images: [],
-  price: 0,
-  discountPrice: 0,
-  productId: '',
+export const initialProductMock: IProductSlice = {
+  product: initialProduct,
+  status: 'initial',
+  error: '',
 };
 
 export const storeMock: RootState = {
