@@ -34,3 +34,14 @@ export interface INewAddress {
   postalCode: string;
   country: string;
 }
+
+export interface IProduct {
+  artist: string;
+  title: string;
+  year: string;
+  description: string | undefined;
+  images: string[] | undefined;
+  price: number;
+  discountPrice?: number;
+  productId?: string;
+}
