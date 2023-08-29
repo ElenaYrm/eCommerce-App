@@ -5,7 +5,10 @@ import {
   selectIsNewUser,
   selectUserData,
 } from '../../../../store/auth/selectors';
+
 import { initialAuthMock, storeMock } from '../../../../__mocks__/storeMock';
+
+jest.mock('../../../../services/sdk/product/methods', () => {});
 
 describe('Test redux selectors: ', () => {
   test('should select isAuthorized user flag from the store', () => {

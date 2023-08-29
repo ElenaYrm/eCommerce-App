@@ -9,6 +9,7 @@ import { Cart } from '../../pages/Cart';
 import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';
 import { PATH } from '../constants/paths';
+import { Product } from '../../pages/Product';
 import { Catalog } from '../../pages/Catalog';
 
 export default function Router(): ReactElement {
@@ -19,6 +20,7 @@ export default function Router(): ReactElement {
         <Route path={PATH.login} element={<Login />} />
         <Route path={PATH.register} element={<Register />} />
         <Route path={PATH.cart} element={<Cart />} />
+        <Route path={`${PATH.product}/:id`} element={<Product />} />
         <Route path={PATH.catalog} element={<Catalog />} />
         <Route path={PATH.notFound} element={<NotFound />} />
         <Route

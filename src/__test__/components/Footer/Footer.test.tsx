@@ -2,6 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from '../../../components/Footer';
 import { MemoryRouter } from 'react-router-dom';
 
+jest.mock('../../../services/sdk/product/methods', () => {});
+jest.mock('../../../constant', () => 'en-US');
+
 describe('Test Footer component', () => {
   beforeEach(() => {
     render(

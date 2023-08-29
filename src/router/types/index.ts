@@ -13,4 +13,5 @@ export enum Page {
   Cart = 'cart',
   Catalog = 'catalog',
   NotFound = 'notFound',
+  Product = 'product',
 }
