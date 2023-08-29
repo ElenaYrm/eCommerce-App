@@ -3,32 +3,39 @@ import styles from './firstTab.module.scss';
 import { Formik } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement } from 'react';
+import { ReactElement, useRef } from 'react';
 import { emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import { Button } from '../../../shared/Button';
 import classNames from 'classnames';
 import { testUser } from '../../../../constant';
 import UserDateOfBirth from './UserDateOfBirth/UserDateOfBirth';
+import { convertToIUserForm } from '../../../../utils/convertToIUserForm';
+import { IUser } from '../../../../types/interfaces';
 
 export interface ITabsProps {
   isEditMode: boolean;
+
+  setIsEditing: (isEditing: boolean) => void;
 }
 
-const TESTUSER = {
-  email: 'test',
-  password: 'test',
-  firstName: 'test',
-  lastName: 'test',
-  date: '01',
-  month: 'May',
-  year: '2001',
-};
-
-function FirstTab({ isEditMode }: ITabsProps): ReactElement {
+function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
   // const dispatch = useAppDispatch();
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const customerDateOfBirth = convertToIUserForm(testUser);
 
-  function handleSubmit(values: unknown): void {
+  function handleSubmit(values: IUser): void {
     console.log(values);
+    //! Delete this after we'll set sdk userInfo ------from----
+    if (values.firstName) {
+      testUser.firstName = values.firstName;
+    }
+    //! ----to----
+
+    if (closeBtnRef.current) {
+      closeBtnRef.current.click();
+      setIsEditing(false);
+    }
+
     // const user: UserAuthOptions = {
     //   username: values.email.trim(),
     //   password: values.password.trim(),
@@ -39,7 +46,7 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
 
   return (
     <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
-      {({ handleSubmit, errors, touched, setFieldTouched, handleChange }): ReactElement => (
+      {({ handleSubmit, errors, touched, setFieldTouched, handleChange, dirty }): ReactElement => (
         <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
           <InputField
             className={`${styles.form__input} ${isEditMode ? styles.formEdit__input : ''}`}
@@ -86,7 +93,7 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
             <UserDateOfBirth
               touched={touched}
               handleChange={handleChange}
-              values={TESTUSER}
+              values={customerDateOfBirth}
               errors={errors}
               setFieldTouched={setFieldTouched}
             />
@@ -94,6 +101,20 @@ function FirstTab({ isEditMode }: ITabsProps): ReactElement {
             <div className={styles.form__dateOfBirth}>{testUser.dateOfBirth}</div>
           )}
           {isEditMode ? <Button type="submit" name="Save changes" className={styles.formEdit__saveBtn} /> : ''}
+          {isEditMode ? (
+            <button
+              type="button"
+              className={styles.formEdit__closeBtn}
+              disabled={dirty}
+              onClick={(): void => setIsEditing(false)}
+              ref={closeBtnRef}
+            >
+              {' '}
+              Close
+            </button>
+          ) : (
+            ''
+          )}
         </form>
       )}
     </Formik>

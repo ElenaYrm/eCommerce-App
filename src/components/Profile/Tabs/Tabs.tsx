@@ -8,18 +8,27 @@ import { ThirdTab } from './ThirdTab';
 
 interface ITabsProps {
   isTabListHidden: boolean;
+  setIsEditing: (isEditing: boolean) => void;
 }
 
-function Tabs({ isTabListHidden }: ITabsProps): ReactElement {
+function Tabs({ isTabListHidden, setIsEditing }: ITabsProps): ReactElement {
   const [activeTab, setActiveTab] = useState(0);
   const tabsList: ITabsList[] = [
     {
       label: 'PERSONAL INFORMATION',
-      content: <FirstTab isEditMode={isTabListHidden} />,
+      content: <FirstTab isEditMode={isTabListHidden} setIsEditing={setIsEditing} />,
       title: 'Edit personal information',
     },
-    { label: 'ADDRESSES', content: <SecondTab isEditMode={isTabListHidden} />, title: 'Add new address' },
-    { label: 'PASSWORD', content: <ThirdTab isEditMode={isTabListHidden} />, title: 'Change password' },
+    {
+      label: 'ADDRESSES',
+      content: <SecondTab isEditMode={isTabListHidden} setIsEditing={setIsEditing} />,
+      title: 'Add new address',
+    },
+    {
+      label: 'PASSWORD',
+      content: <ThirdTab isEditMode={isTabListHidden} setIsEditing={setIsEditing} />,
+      title: 'Change password',
+    },
   ];
 
   const handleTabClick = function (index: number): void {

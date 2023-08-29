@@ -15,13 +15,17 @@ export default function Profile(): ReactElement {
     <div className={styles.root}>
       <div className={styles.root__container}>
         {!isEditing ? <GreetingTitle /> : ''}
-        <Tabs isTabListHidden={isEditing} />
-        <button
-          className={classNames(styles.root__btn, { [styles.root__btn_edit]: isEditing })}
-          onClick={handleEditClick}
-        >
-          {isEditing ? 'Close' : 'Edit'}
-        </button>
+        <Tabs isTabListHidden={isEditing} setIsEditing={setIsEditing} />
+        {isEditing ? (
+          ''
+        ) : (
+          <button
+            className={classNames(styles.root__btn, { [styles.root__btn_edit]: isEditing })}
+            onClick={handleEditClick}
+          >
+            Edit
+          </button>
+        )}
       </div>
     </div>
   );

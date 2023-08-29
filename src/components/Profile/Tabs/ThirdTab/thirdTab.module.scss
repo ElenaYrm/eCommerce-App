@@ -33,6 +33,10 @@
   &__input button {
     display: block;
   }
+
+  &__closeBtn {
+    @include close-btn()
+  }
 }
 
 .form {

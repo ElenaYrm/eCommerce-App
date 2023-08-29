@@ -33,7 +33,26 @@ export const initialLoginForm: ILoginForm = {
   [Input.Password]: '',
 };
 
-export const testUser = {
+interface Address {
+  id: string;
+  streetName: string;
+  postalCode: string;
+  city: string;
+  country: string;
+}
+
+export interface ITestUser {
+  id: string;
+  version: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  dateOfBirth: string;
+  addresses: Address[];
+}
+
+export const testUser: ITestUser = {
   id: '428b7087-941c-4ef7-bd6f-59a15ef33867',
   version: 1,
   email: 'test@test.com',

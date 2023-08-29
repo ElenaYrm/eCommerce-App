@@ -3,7 +3,7 @@
 
 @mixin font($weight: regular, $type, $color: $dark) {
   $font-type: map-get(variables.$font-type-map, $type);
-  
+
   font-weight: map-get(variables.$font-weight-map, $weight);
   font-size: nth($font-type, 1);
   line-height: nth($font-type, 2);
@@ -111,5 +111,32 @@
 
   &::after {
     display: none;
+  }
+}
+
+@mixin close-btn {
+  @include font(regular, p1, $dark);
+  position: absolute;
+  right: 4rem;
+  top: 2rem;
+  width: auto;
+  height: unset;
+  box-shadow: none;
+  background-color: inherit;
+  transition: none;
+  transition: opacity $opacity-primary ease-in-out;
+
+  &:disabled {
+    user-select: none;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: unset;
+    background-color: inherit;
+    font-size: 2rem;
+    color: $dark;
+    opacity: 0.5;
   }
 }

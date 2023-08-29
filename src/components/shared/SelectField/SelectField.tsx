@@ -32,6 +32,7 @@ export default function SelectField({
           name={fieldName}
           className={classnames(styles.select__field, value ? `${styles.select__field_selected}` : '')}
           validate={validate}
+          defaultValue={value}
         >
           <option value="" disabled>
             {placeholder}
