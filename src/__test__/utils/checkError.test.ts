@@ -1,6 +1,7 @@
 import { checkError } from '../../utils';
 
 jest.mock('../../services/sdk/product/methods', () => {});
+jest.mock('../../constant', () => 'en-US');
 
 describe('Test checkError function', () => {
   test('should return error message when error is an instance of Error', () => {

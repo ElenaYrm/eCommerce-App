@@ -2,6 +2,7 @@ import { customerObject, customerWithMissingProperties } from '../../__mocks__/u
 import { extractLocalUser } from '../../utils';
 
 jest.mock('../../services/sdk/product/methods', () => {});
+jest.mock('../../constant', () => 'en-US');
 
 describe('Test extractLocalUser function', () => {
   test('should extract user properties from a customer object', () => {

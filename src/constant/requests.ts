@@ -1,1 +1,1 @@
-export const LANG_CODE = 'en-US';
+export const LANG_CODE: string = 'en-US';
