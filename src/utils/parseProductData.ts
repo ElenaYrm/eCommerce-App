@@ -1,7 +1,6 @@
 import { Product } from '@commercetools/platform-sdk';
 import { IProduct } from '../types/interfaces';
-
-const LANG_CODE = 'en-US';
+import { LANG_CODE } from '../constant';
 
 export function parseProductData(body: Product): IProduct {
   const product = body.masterData.current;
