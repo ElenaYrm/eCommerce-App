@@ -25,9 +25,7 @@ export const productThunk = createAsyncThunk<
   },
   {
     condition: (_, { getState }): boolean => {
-      const {
-        product: { status },
-      } = getState();
+      const status = getState().product.status;
 
       return !(status === 'loading');
     },

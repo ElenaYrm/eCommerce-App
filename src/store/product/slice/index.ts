@@ -10,7 +10,7 @@ const productSlice = createSlice({
     builder
       .addCase(productThunk.pending, (state) => {
         state.error = '';
-        state.status = 'initial';
+        state.status = 'loading';
       })
       .addCase(productThunk.fulfilled, (state, action) => {
         state.status = 'success';
