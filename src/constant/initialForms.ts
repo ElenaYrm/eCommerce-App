@@ -33,7 +33,7 @@ export const initialLoginForm: ILoginForm = {
   [Input.Password]: '',
 };
 
-interface Address {
+export interface IAddress {
   id: string;
   streetName: string;
   postalCode: string;
@@ -49,7 +49,7 @@ export interface ITestUser {
   lastName: string;
   password: string;
   dateOfBirth: string;
-  addresses: Address[];
+  addresses: IAddress[];
 }
 
 export const testUser: ITestUser = {

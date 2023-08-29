@@ -5,7 +5,7 @@ import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
 import { ReactElement, useRef } from 'react';
 import { emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
-import { Button } from '../../../shared/Button';
+// import { Button } from '../../../shared/Button';
 import classNames from 'classnames';
 import { testUser } from '../../../../constant';
 import UserDateOfBirth from './UserDateOfBirth/UserDateOfBirth';
@@ -24,7 +24,9 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
   const customerDateOfBirth = convertToIUserForm(testUser);
 
   function handleSubmit(values: IUser): void {
-    console.log(values);
+    console.log(isEditMode);
+    if (isEditMode) return;
+    console.log(!isEditMode, values, 'hERER');
     //! Delete this after we'll set sdk userInfo ------from----
     if (values.firstName) {
       testUser.firstName = values.firstName;
@@ -100,7 +102,10 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
           ) : (
             <div className={styles.form__dateOfBirth}>{testUser.dateOfBirth}</div>
           )}
-          {isEditMode ? <Button type="submit" name="Save changes" className={styles.formEdit__saveBtn} /> : ''}
+          <button className={styles.form__btn} type="submit" onClick={(): void => setIsEditing(!isEditMode)}>
+            {!isEditMode ? 'Edit  ( ´･ω･)' : 'Save changes'}
+          </button>
+          {/* {isEditMode ? <Button type="submit" name="Save changes" className={styles.formEdit__saveBtn} /> : ''} */}
           {isEditMode ? (
             <button
               type="button"

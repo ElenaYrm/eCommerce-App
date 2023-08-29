@@ -1,8 +1,16 @@
 import styles from './address.module.scss';
 import classNames from 'classnames';
 import { ReactElement } from 'react';
+import { IAddress } from '../../../../../constant';
 
-function Address({ values }: { values: Record<string, string> }): ReactElement {
+interface IAddressComp {
+  values: IAddress;
+  key: number;
+  index: number;
+  deleteAddress: (index: number) => void;
+}
+
+function Address({ values, deleteAddress, index }: IAddressComp): ReactElement {
   return (
     <div className={classNames(styles.root)}>
       <div className={classNames(styles.root__data)}>
@@ -12,18 +20,7 @@ function Address({ values }: { values: Record<string, string> }): ReactElement {
       </div>
       <div className={classNames(styles.root__btns)}>
         <button>Edit</button>
-        <button>Delete</button>
-      </div>
-      <div className={classNames(styles.root__checkboxContainer)}>
-        <div>
-          <input type="checkbox" id="billingCheckbox" value="Default billing address" />
-          <label htmlFor="billingCheckbox">Default billing address</label>
-        </div>
-
-        <div>
-          <input type="checkbox" id="shippingCheckbox" value="Default shipping address" />
-          <label htmlFor="shippingCheckbox">Default shipping address</label>
-        </div>
+        <button onClick={(): void => deleteAddress(index)}>Delete</button>
       </div>
     </div>
   );

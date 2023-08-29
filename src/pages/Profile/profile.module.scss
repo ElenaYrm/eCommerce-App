@@ -10,10 +10,4 @@
     padding: 4rem;
     position: relative;
   }
-
-  &__btn {
-    @include btn-primary();
-    width: 100%;
-    height: 7rem;
-  }
 }

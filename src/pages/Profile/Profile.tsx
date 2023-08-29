@@ -1,22 +1,18 @@
 import styles from './profile.module.scss';
 import { ReactElement, useState } from 'react';
 import { Tabs } from '../../components/Profile/Tabs';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { GreetingTitle } from '../../components/Profile/GreetingTitle';
 
 export default function Profile(): ReactElement {
   const [isEditing, setIsEditing] = useState(false);
-
-  const handleEditClick = function (): void {
-    setIsEditing(!isEditing);
-  };
 
   return (
     <div className={styles.root}>
       <div className={styles.root__container}>
         {!isEditing ? <GreetingTitle /> : ''}
         <Tabs isTabListHidden={isEditing} setIsEditing={setIsEditing} />
-        {isEditing ? (
+        {/* {isEditing ? (
           ''
         ) : (
           <button
@@ -25,7 +21,7 @@ export default function Profile(): ReactElement {
           >
             Edit
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );
