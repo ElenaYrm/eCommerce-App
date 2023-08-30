@@ -23,6 +23,7 @@ export function Slider({ images, fullscreen, handleClick, className }: SliderPro
       slidesPerView={1}
       speed={1000}
       loop={true}
+      watchOverflow={true}
       pagination={{ clickable: true }}
       navigation={true}
       modules={[Pagination, Navigation]}
