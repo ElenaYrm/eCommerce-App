@@ -9,7 +9,7 @@
   background-color: $light;
   border-bottom: 1px solid $dark;
 
-  position: relative; //Was Fixed
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;

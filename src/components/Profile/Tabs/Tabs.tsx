@@ -37,7 +37,7 @@ function Tabs({ isTabListHidden, setIsEditing }: ITabsProps): ReactElement {
 
   return (
     <div className={classNames(styles.root, { [styles.rootEdit]: isTabListHidden })}>
-      {isTabListHidden ? <h2 className={classNames(styles.root__title)}>{tabsList[activeTab].title}</h2> : ''}
+      {isTabListHidden && <h2 className={classNames(styles.root__title)}>{tabsList[activeTab].title}</h2>}
       <div
         className={classNames(styles.root__tabsList, { [styles.tabsList_hidden]: isTabListHidden }, styles.tabsList)}
       >

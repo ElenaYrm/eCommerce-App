@@ -2,6 +2,16 @@
 
 .root {
 
+  &__formContainer {
+    & h3 {
+      display: none;
+    }
+
+    &_form {
+      margin-bottom: 4rem;
+    }
+  }
+
   &__btn {
     width: 100%;
     height: 7rem;
@@ -17,4 +27,38 @@
     width: 100%;
     height: 7rem;
   }
+}
+
+.toggleShipping {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $dark;
+
+  &__btn {
+    position: relative;
+    padding: 1.2rem 2rem;
+    line-height: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &_active {
+      border: 1px solid $dark;
+      border-bottom: none;
+
+      &::after {
+        content: '';
+        width: 100%;
+        display: block;
+        position: absolute;
+        border-bottom: 1px solid white;
+        z-index: 1;
+        height: 1px;
+        left: 0;
+        bottom: -1px;
+      }
+    }
+  }
+
 }

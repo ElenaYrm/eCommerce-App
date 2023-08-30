@@ -1,6 +1,7 @@
 import { IRegisterForm } from '../components/RegisterForm/RegisterForm';
 import { ILoginForm } from '../components/LoginForm/LoginForm';
 import { Input } from '../types/enums';
+import { IChangePassword } from '../components/Profile/Tabs/ThirdTab/ThirdTab';
 
 export const initialRegisterForm: IRegisterForm = {
   user: {
@@ -33,6 +34,11 @@ export const initialLoginForm: ILoginForm = {
   [Input.Password]: '',
 };
 
+export const initialChangePassord: IChangePassword = {
+  [Input.Password]: '',
+  [Input.NewPassword]: '',
+};
+
 export interface IAddress {
   id: string;
   streetName: string;
@@ -47,8 +53,15 @@ export interface ITestUser {
   email: string;
   firstName: string;
   lastName: string;
+  date: string;
+  month: string;
+  year: string;
   password: string;
   dateOfBirth: string;
+  defaultShippingAddressId: string;
+  defaultBillingAddressId: string;
+  shippingAddressIds: string[];
+  billingAddressIds: string[];
   addresses: IAddress[];
 }
 
@@ -59,7 +72,14 @@ export const testUser: ITestUser = {
   firstName: 'TestName',
   lastName: 'TestSurname',
   password: '**n8Y=',
-  dateOfBirth: '2000-01-01',
+  date: '01',
+  month: '05',
+  year: '2001',
+  dateOfBirth: '',
+  defaultShippingAddressId: 'Mh7xBFOD',
+  defaultBillingAddressId: 'Y5zeShDz',
+  shippingAddressIds: ['Mh7xBFOD'],
+  billingAddressIds: ['Y5zeShDz'],
   addresses: [
     {
       id: 'Mh7xBFOD',
@@ -75,5 +95,29 @@ export const testUser: ITestUser = {
       city: 'Bill',
       country: 'US',
     },
+    {
+      id: '213131',
+      streetName: 'Test',
+      postalCode: '22334',
+      city: 'TestCity',
+      country: 'US',
+    },
   ],
+};
+
+export const initialEditAddresses = {
+  shipping: {
+    [Input.Street]: '',
+    [Input.Country]: '',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
+    [Input.IsDefault]: false,
+  },
+  billing: {
+    [Input.Street]: '',
+    [Input.Country]: '',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
+    [Input.IsDefault]: false,
+  },
 };

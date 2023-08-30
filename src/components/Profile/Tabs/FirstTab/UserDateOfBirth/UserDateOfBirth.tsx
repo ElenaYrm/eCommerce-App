@@ -8,7 +8,6 @@ import { dates, months, years } from '../../../../../constant';
 
 function UserDateOfBirth({ handleChange, values, touched, errors }: IUserFormProps): ReactElement {
   const { date, month, year } = values;
-
   return (
     <div className={classNames(styles.root)}>
       <div className={styles.selects}>
@@ -18,7 +17,7 @@ function UserDateOfBirth({ handleChange, values, touched, errors }: IUserFormPro
             value={date}
             fieldName={Input.Date}
             options={dates}
-            placeholder={values[Input.Date]}
+            placeholder={Input.Date}
           />
           <SelectField
             handleChange={handleChange}

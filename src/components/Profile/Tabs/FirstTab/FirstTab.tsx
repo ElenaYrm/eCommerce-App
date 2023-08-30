@@ -1,16 +1,15 @@
 import styles from './firstTab.module.scss';
 
-import { Formik } from 'formik';
+import { Formik, FormikErrors } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement, useRef } from 'react';
-import { emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
-// import { Button } from '../../../shared/Button';
+import { ReactElement } from 'react';
+import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import classNames from 'classnames';
-import { testUser } from '../../../../constant';
-import UserDateOfBirth from './UserDateOfBirth/UserDateOfBirth';
-import { convertToIUserForm } from '../../../../utils/convertToIUserForm';
+import { ITestUser, testUser } from '../../../../constant';
 import { IUser } from '../../../../types/interfaces';
+import { UserDateOfBirth } from './UserDateOfBirth';
+import { Button } from '../../../shared/Button';
 
 export interface ITabsProps {
   isEditMode: boolean;
@@ -20,23 +19,10 @@ export interface ITabsProps {
 
 function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
   // const dispatch = useAppDispatch();
-  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
-  const customerDateOfBirth = convertToIUserForm(testUser);
 
   function handleSubmit(values: IUser): void {
-    console.log(isEditMode);
     if (isEditMode) return;
     console.log(!isEditMode, values, 'hERER');
-    //! Delete this after we'll set sdk userInfo ------from----
-    if (values.firstName) {
-      testUser.firstName = values.firstName;
-    }
-    //! ----to----
-
-    if (closeBtnRef.current) {
-      closeBtnRef.current.click();
-      setIsEditing(false);
-    }
 
     // const user: UserAuthOptions = {
     //   username: values.email.trim(),
@@ -46,9 +32,16 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
     // dispatch(loginThunk(user));
   }
 
+  function validateDate(values: ITestUser): void | object | Promise<FormikErrors<ITestUser>> {
+    console.log(values);
+    const errors: FormikErrors<ITestUser> = {};
+    errors[Input.Date] = dateMYValidate(`${values[Input.Date]}${values[Input.Month]}${values[Input.Year]}`);
+    return errors;
+  }
+
   return (
-    <Formik initialValues={testUser} onSubmit={handleSubmit} validateOnBlur={false}>
-      {({ handleSubmit, errors, touched, setFieldTouched, handleChange, dirty }): ReactElement => (
+    <Formik initialValues={testUser} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
+      {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
         <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
           <InputField
             className={`${styles.form__input} ${isEditMode ? styles.formEdit__input : ''}`}
@@ -95,30 +88,26 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
             <UserDateOfBirth
               touched={touched}
               handleChange={handleChange}
-              values={customerDateOfBirth}
+              values={testUser}
               errors={errors}
               setFieldTouched={setFieldTouched}
             />
           ) : (
-            <div className={styles.form__dateOfBirth}>{testUser.dateOfBirth}</div>
+            <div className={styles.form__dateOfBirth}>{`${testUser.date} ${testUser.month} ${testUser.year}`}</div>
           )}
-          <button className={styles.form__btn} type="submit" onClick={(): void => setIsEditing(!isEditMode)}>
-            {!isEditMode ? 'Edit  ( ´･ω･)' : 'Save changes'}
-          </button>
-          {/* {isEditMode ? <Button type="submit" name="Save changes" className={styles.formEdit__saveBtn} /> : ''} */}
-          {isEditMode ? (
+          {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => setIsEditing(!isEditMode)} />}
+          {isEditMode && <Button name="Save changes" type="submit" />}
+          {isEditMode && (
             <button
               type="button"
               className={styles.formEdit__closeBtn}
-              disabled={dirty}
-              onClick={(): void => setIsEditing(false)}
-              ref={closeBtnRef}
+              onClick={(): void => {
+                setIsEditing(false);
+                resetForm();
+              }}
             >
-              {' '}
               Close
             </button>
-          ) : (
-            ''
           )}
         </form>
       )}

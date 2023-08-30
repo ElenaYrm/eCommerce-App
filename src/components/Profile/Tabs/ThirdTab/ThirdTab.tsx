@@ -5,11 +5,15 @@ import { Input } from '../../../../types/enums';
 import { ITabsProps } from '../FirstTab/FirstTab';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
-import { initialLoginForm } from '../../../../constant';
-import { ILoginForm } from '../../../LoginForm/LoginForm';
+import { initialChangePassord } from '../../../../constant';
+
+export interface IChangePassword {
+  password: string;
+  newPassword: string;
+}
 
 function ThirdTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
-  function handleSubmit(values: ILoginForm): void {
+  function handleSubmit(values: IChangePassword): void {
     console.log(values);
   }
 
@@ -26,37 +30,34 @@ function ThirdTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
           </button>
         </div>
       ) : (
-        <Formik initialValues={initialLoginForm} onSubmit={handleSubmit} validateOnBlur={false}>
+        <Formik initialValues={initialChangePassord} onSubmit={handleSubmit} validateOnBlur={false}>
           {({ handleSubmit, errors, touched, setFieldTouched, values }): ReactElement => (
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
               <>
                 <PasswordField
-                  fieldName={Input.Email}
+                  fieldName={Input.Password}
                   placeholder="Password"
-                  value={values.email}
-                  error={errors?.email}
-                  touched={touched?.email}
+                  value={values.password}
+                  error={errors?.password}
+                  touched={touched?.password}
                   setFieldTouched={setFieldTouched}
                 />
                 <PasswordField
                   formName="register"
-                  fieldName={Input.Password}
+                  fieldName={Input.NewPassword}
                   placeholder="New password"
-                  value={values[Input.Password]}
-                  error={errors?.[Input.Password]}
-                  touched={touched?.[Input.Password]}
+                  value={values[Input.NewPassword]}
+                  error={errors?.[Input.NewPassword]}
+                  touched={touched?.[Input.NewPassword]}
                   setFieldTouched={setFieldTouched}
                 />
               </>
 
-              {isEditMode ? <Button type="submit" name="Save changes" className={styles.form__button} /> : ''}
-              {isEditMode ? (
+              {isEditMode && <Button type="submit" name="Save changes" className={styles.form__button} />}
+              {isEditMode && (
                 <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => setIsEditing(false)}>
-                  {' '}
                   Close
                 </button>
-              ) : (
-                ''
               )}
             </form>
           )}

@@ -10,7 +10,7 @@
   }
 
   &__email {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
   &__dateOfBirth {
@@ -20,7 +20,7 @@
     &::before {
       content: 'Date of Birth';
       position: absolute;
-      top: -2rem;
+      top: -3rem;
       @include font(semibold, p1, $dark);
       line-height: 2.2rem;
     }
