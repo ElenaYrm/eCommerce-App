@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialProductSlice } from '../../../constant/initialProduct';
+import { initialProductSlice } from '../../../constant/initialStates';
 import { productThunk } from '../thunks';
 
 const productSlice = createSlice({
