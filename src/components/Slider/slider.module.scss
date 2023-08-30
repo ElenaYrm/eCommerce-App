@@ -1,7 +1,7 @@
 @import '../../styles/common/';
 
-.slider,
-.slider__fullscreen {
+.product__slider,
+.product__slider_fullscreen {
   width: 100%;
   margin-left: 0;
 
@@ -18,7 +18,7 @@
   }
 }
 
-.slider {
+.product__slider {
   max-width: 760px;
   height: $slider-height;
   cursor: zoom-in;
@@ -32,7 +32,7 @@
   }
 }
 
-.slider__fullscreen {
+.product__slider_fullscreen {
   position: fixed;
   top: 0;
   left: 0;
@@ -57,8 +57,8 @@
 
 // Controls
 
-.slider,
-.slider__fullscreen  {
+.product__slider,
+.product__slider_fullscreen  {
   :global(.swiper-button-next),
   :global(.swiper-button-prev) {
     width: 4rem;

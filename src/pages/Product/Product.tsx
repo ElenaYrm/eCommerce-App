@@ -30,7 +30,7 @@ export default function Product(): ReactElement {
   }, [id]);
 
   return (
-    <div className={styles.product__container}>
+    <div className={styles.product}>
       <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
     </div>
   );

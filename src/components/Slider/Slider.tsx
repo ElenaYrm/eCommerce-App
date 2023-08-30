@@ -28,7 +28,7 @@ export function Slider({ images, fullscreen, handleClick, className }: SliderPro
       navigation={true}
       modules={[Pagination, Navigation]}
       autoHeight={true}
-      className={classnames(fullscreen ? styles.slider__fullscreen : styles.slider, className)}
+      className={classnames(fullscreen ? styles.product__slider_fullscreen : styles.product__slider, className)}
       onClick={handleClick}
     >
       {images?.map((image) => (
