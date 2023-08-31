@@ -1,0 +1,11 @@
+@import 'src/styles/common';
+
+.size {
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+
+  &__form {
+    @include filter();
+  }
+}

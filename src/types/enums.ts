@@ -21,6 +21,5 @@ export enum SearchParams {
   PriceFrom = 'priceFrom',
   PriceTo = 'priceTo',
   Category = 'category',
-  SubCategory = 'subCategory',
   Sort = 'sort',
 }
