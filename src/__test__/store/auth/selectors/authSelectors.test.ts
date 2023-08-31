@@ -5,9 +5,9 @@ import {
   selectIsNewUser,
   selectUserData,
 } from '../../../../store/auth/selectors';
-
 import { initialAuthMock, storeMock } from '../../../../__mocks__/storeMock';
 
+jest.mock('../../../../constant/metaData', () => {});
 jest.mock('../../../../services/sdk/product/methods', () => {});
 
 describe('Test redux selectors: ', () => {
