@@ -6,3 +6,5 @@ export * from './parseProductData';
 export * from './getSearchParams';
 export * from './changeParams';
 export * from './getCategoryList';
+export * from './formatPrice';
+export * from './splitToParagraphs';
