@@ -28,7 +28,7 @@ export default function Product(): ReactElement {
   }
 
   useEffect(() => {
-    if (product.id !== id) {
+    if (product.productId !== id) {
       dispatch(productThunk(id));
     }
   }, [id]);
