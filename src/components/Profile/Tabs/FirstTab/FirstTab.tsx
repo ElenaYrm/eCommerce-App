@@ -10,20 +10,16 @@ import { ITestUser, testUser } from '../../../../constant';
 import { IUser } from '../../../../types/interfaces';
 import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
+import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 
-export interface ITabsProps {
-  isEditMode: boolean;
-
-  setIsEditing: (isEditing: boolean) => void;
-}
-
-function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
+function FirstTab(): ReactElement {
+  const isEditMode = useIsEditMode();
+  const updateEditMode = useUpdateEditMode();
   // const dispatch = useAppDispatch();
 
   function handleSubmit(values: IUser): void {
-    if (isEditMode) return;
-    console.log(!isEditMode, values, 'hERER');
-
+    console.log(values);
+    console.log('WORK?');
     // const user: UserAuthOptions = {
     //   username: values.email.trim(),
     //   password: values.password.trim(),
@@ -33,7 +29,6 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
   }
 
   function validateDate(values: ITestUser): void | object | Promise<FormikErrors<ITestUser>> {
-    console.log(values);
     const errors: FormikErrors<ITestUser> = {};
     errors[Input.Date] = dateMYValidate(`${values[Input.Date]}${values[Input.Month]}${values[Input.Year]}`);
     return errors;
@@ -41,7 +36,7 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
 
   return (
     <Formik initialValues={testUser} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
-      {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
+      {({ handleSubmit, errors, touched, setFieldTouched, handleChange }): ReactElement => (
         <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
           <InputField
             className={`${styles.form__input} ${isEditMode ? styles.formEdit__input : ''}`}
@@ -84,7 +79,7 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
             labelText="Email"
             hideLabel={!isEditMode}
           />
-          {isEditMode ? (
+          {isEditMode && (
             <UserDateOfBirth
               touched={touched}
               handleChange={handleChange}
@@ -92,18 +87,19 @@ function FirstTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
               errors={errors}
               setFieldTouched={setFieldTouched}
             />
-          ) : (
+          )}
+          {!isEditMode && (
             <div className={styles.form__dateOfBirth}>{`${testUser.date} ${testUser.month} ${testUser.year}`}</div>
           )}
-          {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => setIsEditing(!isEditMode)} />}
-          {isEditMode && <Button name="Save changes" type="submit" />}
+
+          {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => updateEditMode()} />}
+          {isEditMode && <Button name="Save changes" type="submit" className={styles.formEdit__btn} />}
           {isEditMode && (
             <button
               type="button"
               className={styles.formEdit__closeBtn}
               onClick={(): void => {
-                setIsEditing(false);
-                resetForm();
+                updateEditMode(false);
               }}
             >
               Close

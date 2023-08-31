@@ -2,17 +2,20 @@ import { Formik } from 'formik';
 import { ReactElement } from 'react';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
-import { ITabsProps } from '../FirstTab/FirstTab';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
+import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 
 export interface IChangePassword {
   password: string;
   newPassword: string;
 }
 
-function ThirdTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
+function ThirdTab(): ReactElement {
+  const isEditMode = useIsEditMode();
+  const updateEditMode = useUpdateEditMode();
+
   function handleSubmit(values: IChangePassword): void {
     console.log(values);
   }
@@ -25,7 +28,7 @@ function ThirdTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
             <div className={styles.root__label}>Password</div>
             <input className={styles.root__input} type="password" value="********" disabled />
           </div>
-          <button className={styles.root__editBtn} type="button" onClick={(): void => setIsEditing(!isEditMode)}>
+          <button className={styles.root__editBtn} type="button" onClick={(): void => updateEditMode()}>
             Change password
           </button>
         </div>
@@ -55,7 +58,7 @@ function ThirdTab({ isEditMode, setIsEditing }: ITabsProps): ReactElement {
 
               {isEditMode && <Button type="submit" name="Save changes" className={styles.form__button} />}
               {isEditMode && (
-                <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => setIsEditing(false)}>
+                <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => updateEditMode(false)}>
                   Close
                 </button>
               )}

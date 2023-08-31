@@ -9,6 +9,7 @@ import { Cart } from '../../pages/Cart';
 import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';
 import { PATH } from '../constants/paths';
+import { EditingProvider } from '../../pages/Profile/profileContext';
 
 export default function Router(): ReactElement {
   return (
@@ -23,7 +24,9 @@ export default function Router(): ReactElement {
           path={PATH.profile}
           element={
             <ProtectedRoute redirectLink={PATH.login}>
-              <Profile />
+              <EditingProvider>
+                <Profile />
+              </EditingProvider>
             </ProtectedRoute>
           }
         />
