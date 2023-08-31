@@ -1,5 +1,8 @@
 import { IUser } from '../types/interfaces';
 import { IAuthSlice } from '../store/auth/types';
+import { IProductSlice } from '../store/product/types';
+import { IProduct } from '../types/interfaces';
+import { IProductListSlice } from '../store/product-list/types';
 
 export const initialUser: IUser = {
   id: '',
@@ -18,4 +21,27 @@ export const initialAuthState: IAuthSlice = {
   status: 'initial',
   error: '',
   user: initialUser,
+};
+
+export const initialProduct: IProduct = {
+  artist: '',
+  title: '',
+  year: '',
+  description: '',
+  images: [],
+  price: 0,
+  discountPrice: 0,
+  productId: '',
+};
+
+export const initialProductSlice: IProductSlice = {
+  status: 'initial',
+  error: '',
+  product: initialProduct,
+};
+
+export const initialProductListSlice: IProductListSlice = {
+  status: 'initial',
+  error: '',
+  productList: [],
 };
