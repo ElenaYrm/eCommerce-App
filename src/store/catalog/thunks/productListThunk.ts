@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { QueryParam } from '@commercetools/sdk-client-v2';
-import { IProduct } from '../../../types/interfaces';
-import { getProductsList } from '../../../services/sdk/product-list/methods';
+import { IProduct } from '../../../types/interfaces.ts';
 import { checkError } from '../../../utils';
 import { parseProductListData } from '../../../utils';
+import { getProductList } from '../../../services/sdk/catalog/methods';
 
 export const productListThunk = createAsyncThunk<
   IProduct[],
@@ -11,9 +11,9 @@ export const productListThunk = createAsyncThunk<
     [p: string]: QueryParam;
   },
   { rejectValue: string }
->('products-list/productListThunk', async (param, { rejectWithValue }) => {
+>('catalog/productListThunk', async (param, { rejectWithValue }) => {
   try {
-    const res = await getProductsList(param);
+    const res = await getProductList(param);
     return parseProductListData(res.body.results);
   } catch (err: unknown) {
     return rejectWithValue(checkError(err));

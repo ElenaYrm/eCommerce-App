@@ -19,6 +19,7 @@ export default function Product(): ReactElement {
   const id = useParams().id || '';
 
   const { product } = useSelector((store: RootState) => store.product);
+  const { productId } = product;
   const dispatch = useAppDispatch();
 
   const [fullscreen, setFullscreen] = useState(false);
@@ -28,10 +29,10 @@ export default function Product(): ReactElement {
   }
 
   useEffect(() => {
-    if (product.productId !== id) {
+    if (productId !== id) {
       dispatch(productThunk(id));
     }
-  }, [id]);
+  }, [id, dispatch, productId]);
 
   return (
     <div className={styles.product}>

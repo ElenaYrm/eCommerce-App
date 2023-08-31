@@ -1,0 +1,18 @@
+.crumbs {
+  width: 100%;
+  text-align: left;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    color: #38BF70;
+
+    &_active {
+      color: #f42222;
+    }
+  }
+}

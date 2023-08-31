@@ -1,0 +1,11 @@
+@import 'src/styles/common';
+
+.brand {
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+
+  &__form {
+    @include filter();
+  }
+}

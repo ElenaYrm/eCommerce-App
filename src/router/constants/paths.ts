@@ -7,5 +7,6 @@ export const PATH = {
   [Page.Profile]: '/profile',
   [Page.Cart]: '/cart',
   [Page.Product]: '/product',
+  [Page.Catalog]: '/catalog',
   [Page.NotFound]: '*',
 };

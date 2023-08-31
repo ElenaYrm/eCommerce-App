@@ -1,0 +1,8 @@
+@import 'src/styles/common';
+
+.item {
+
+  &_active {
+    color: $primary;
+  }
+}
