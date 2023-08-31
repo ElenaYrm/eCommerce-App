@@ -40,7 +40,7 @@ export interface IProduct {
   artist: string;
   title: string;
   year: string;
-  description?: string;
+  description: string;
   dimensions: string;
   medium: string;
   size: string;
