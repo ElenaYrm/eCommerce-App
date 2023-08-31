@@ -12,3 +12,15 @@ export enum Input {
   Year = 'year',
   IsDefault = 'isDefault',
 }
+
+export enum SearchParams {
+  Search = 'search',
+  Color = 'color',
+  Brand = 'brand',
+  Size = 'size',
+  PriceFrom = 'priceFrom',
+  PriceTo = 'priceTo',
+  Category = 'category',
+  SubCategory = 'subCategory',
+  Sort = 'sort',
+}

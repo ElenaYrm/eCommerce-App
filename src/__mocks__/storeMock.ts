@@ -1,9 +1,9 @@
 import { RootState } from '../store/store';
 import { IAuthSlice } from '../store/auth/types';
 import { IUser } from '../types/interfaces';
-import { initialProduct } from '../constant/initialStates';
+import { initialProduct } from '../constant';
 import { IProductSlice } from '../store/product/types';
-import { IProductListSlice } from '../store/product-list/types';
+import { ICatalogSlice } from '../store/catalog/types';
 
 export const initialUserMock: IUser = {
   id: '',
@@ -30,16 +30,17 @@ export const initialProductMock: IProductSlice = {
   error: '',
 };
 
-export const initialProductListMock: IProductListSlice = {
+export const initialProductListMock: ICatalogSlice = {
   status: 'initial',
   error: '',
   productList: [],
+  categories: [],
 };
 
 export const storeMock: RootState = {
   auth: initialAuthMock,
   product: initialProductMock,
-  productList: initialProductListMock,
+  catalog: initialProductListMock,
 };
 
 export const resultAuthMock: IAuthSlice = {

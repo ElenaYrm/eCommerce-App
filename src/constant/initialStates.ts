@@ -2,7 +2,7 @@ import { IUser } from '../types/interfaces';
 import { IAuthSlice } from '../store/auth/types';
 import { IProductSlice } from '../store/product/types';
 import { IProduct } from '../types/interfaces';
-import { IProductListSlice } from '../store/product-list/types';
+import { ICatalogSlice } from '../store/catalog/types';
 
 export const initialUser: IUser = {
   id: '',
@@ -40,8 +40,9 @@ export const initialProductSlice: IProductSlice = {
   product: initialProduct,
 };
 
-export const initialProductListSlice: IProductListSlice = {
+export const initialProductListSlice: ICatalogSlice = {
   status: 'initial',
   error: '',
   productList: [],
+  categories: [],
 };

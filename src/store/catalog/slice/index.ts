@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { productListThunk } from '../thunk';
+import { productListThunk } from '../thunks';
 import { initialProductListSlice } from '../../../constant';
 
-const productListSlice = createSlice({
-  name: 'productList',
+const catalogSlice = createSlice({
+  name: 'catalog',
   initialState: initialProductListSlice,
   reducers: {},
   extraReducers: (builder) => {
@@ -23,4 +23,4 @@ const productListSlice = createSlice({
   },
 });
 
-export const productListReducer = productListSlice.reducer;
+export const catalogReducer = catalogSlice.reducer;
