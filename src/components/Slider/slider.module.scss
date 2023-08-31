@@ -1,24 +1,39 @@
 @import '../../styles/common/';
 
-.product__slider,
-.product__slider_fullscreen {
+.product__slider {
   width: 100%;
-  margin-left: 0;
+  position: relative;
 
-  .slide {
-    position: relative;
+  &_button,
+  &_button:hover {
+    height: 4rem;
+    padding: 0 2rem;
+    font-size: 2rem;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    z-index: 110;
+  }
+
+  :global(.swiper) {
     width: 100%;
+    margin-left: 0;
 
-    img {
-      display: block;
+    .slide {
       position: relative;
       width: 100%;
-      object-fit: cover;
+
+      img {
+        display: block;
+        position: relative;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
 
-.product__slider {
+.product__slider_regular {
   max-width: 760px;
   height: $slider-height;
   cursor: zoom-in;
@@ -40,8 +55,7 @@
   right: 0;
   padding: 0;
   height: 100vh;
-  z-index: 200;
-  cursor: zoom-out;
+  z-index: 100;
 
   .slide {
     height: 100vh;
@@ -57,8 +71,8 @@
 
 // Controls
 
-.product__slider,
-.product__slider_fullscreen  {
+.product__slider_regular,
+.product__slider_fullscreen {
   :global(.swiper-button-next),
   :global(.swiper-button-prev) {
     width: 4rem;
