@@ -1,4 +1,4 @@
-@import '../../../styles/common/';
+@import '../../../../styles/common/';
 
 .accordion__item {
   width: 100%;
@@ -32,12 +32,12 @@
       margin-bottom: -2px;
 
       &_down {
-        background-image: url('../../../assets/icons/arrow-right.svg');
+        background-image: url('../../../../assets/icons/arrow-right.svg');
         transform: rotate(90deg);
       }
 
       &_up {
-        background-image: url('../../../assets/icons/arrow-right.svg');
+        background-image: url('../../../../assets/icons/arrow-right.svg');
         transform: rotate(-90deg);
       }
     }
