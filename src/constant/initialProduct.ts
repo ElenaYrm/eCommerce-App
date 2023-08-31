@@ -9,7 +9,11 @@ export const initialProduct: IProduct = {
   images: [],
   price: 0,
   discountPrice: 0,
-  productId: '',
+  id: '',
+  medium: '',
+  dimensions: '',
+  color: '',
+  size: '',
 };
 
 export const initialProductSlice: IProductSlice = {

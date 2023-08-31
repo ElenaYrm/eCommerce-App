@@ -36,12 +36,16 @@ export interface INewAddress {
 }
 
 export interface IProduct {
+  id?: string;
   artist: string;
   title: string;
   year: string;
-  description: string | undefined;
-  images: string[] | undefined;
+  description?: string;
+  dimensions: string;
+  medium: string;
+  size: string;
+  images?: string[];
   price: number;
   discountPrice?: number;
-  productId?: string;
+  color: string;
 }
