@@ -1,25 +1,40 @@
-import { ReactElement } from 'react';
-import { ProductItem } from './ProductItem';
-import { IProduct } from '../../types/interfaces';
+import { ReactElement, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { selectAuthLoadingInfo, selectProductlist } from '../../store/catalog/selectors';
+import { useAppDispatch } from '../../store/store';
+import { productListThunk } from '../../store/catalog/thunks';
+import { ProductCard } from './ProductCard';
+import { Loader } from '../shared/Loader';
+import { ErrorMessage } from '../shared/ErrorMessage';
+import { getSearchParams } from '../../utils';
 
 import styles from './productsList.module.scss';
 
-interface ProductsListProps {
-  products: IProduct[];
-}
+function ProductsList(): ReactElement {
+  const [searchParams] = useSearchParams();
+  const productList = useSelector(selectProductlist);
+  const { status, error } = useSelector(selectAuthLoadingInfo);
 
-function ProductsList({ products }: ProductsListProps): ReactElement {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(productListThunk(getSearchParams(searchParams)));
+  }, [searchParams, dispatch]);
+
   return (
     <>
-      {products.length > 0 ? (
+      {status === 'loading' && <Loader />}
+      {error && <ErrorMessage text={error} />}
+
+      {status === 'success' && !error && productList.length > 0 && (
         <ul className={styles.products}>
-          {products.map((item) => (
-            <ProductItem item={item} key={item.productId} className={styles.products__item} />
+          {productList.map((item) => (
+            <ProductCard item={item} key={item.productId} className={styles.products__item} />
           ))}
         </ul>
-      ) : (
-        <div>There are no items</div>
       )}
+      {status === 'success' && !error && productList.length === 0 && <div>There are no items</div>}
     </>
   );
 }
