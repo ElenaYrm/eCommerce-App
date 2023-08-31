@@ -22,5 +22,9 @@ export function parseProductData(body: Product): IProduct {
   const price = Number(product.masterVariant.prices?.[0].value.centAmount) / 100 || 0;
   const discountPrice = Number(product.masterVariant.prices?.[0].discounted?.value.centAmount) / 100 || 0;
 
+  if (!description || !images) {
+    throw new Error('Failed to get product information.');
+  }
+
   return { artist, title, year, medium, dimensions, color, size, description, images, price, discountPrice, id };
 }
