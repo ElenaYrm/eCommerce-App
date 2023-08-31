@@ -8,6 +8,7 @@ import { AddressForm } from '../../../RegisterForm/AddressForm';
 import classNames from 'classnames';
 import { IAddressForm } from '../../../RegisterForm/AddressForm/AddressForm';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
+import { Radiobtn } from './Radiobtn';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -38,47 +39,32 @@ function SecondTab(): ReactElement {
       {isEditMode && (
         <>
           <div className={classNames(styles.root__toggleShipping, styles.toggleShipping)}>
-            <button
-              className={classNames(styles.toggleShipping__btn, isShipping && styles.toggleShipping__btn_active)}
-              type="button"
-              onClick={(): void => setIsShipping(true)}
-            >
-              Shipping address
-            </button>
-            <button
-              className={classNames(styles.toggleShipping__btn, !isShipping && styles.toggleShipping__btn_active)}
-              type="button"
-              onClick={(): void => setIsShipping(false)}
-            >
-              Billing address
-            </button>
+            <Radiobtn
+              isShipping={isShipping}
+              setIsShipping={(): void => setIsShipping(true)}
+              value={'shipping'}
+              label="Shipping address"
+            ></Radiobtn>
+            <Radiobtn
+              isShipping={!isShipping}
+              setIsShipping={(): void => setIsShipping(false)}
+              value={'billing'}
+              label="Billing address"
+            ></Radiobtn>
           </div>
 
           <Formik initialValues={initialEditAddresses} onSubmit={handleSubmit}>
             {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values }): ReactElement => (
               <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
-                {isShipping ? (
-                  <AddressForm
-                    type="shipping"
-                    handleChange={handleChange}
-                    values={values.shipping}
-                    touched={touched.shipping}
-                    errors={errors.shipping}
-                    setFieldTouched={setFieldTouched}
-                    className={styles.root__formContainer_form}
-                  />
-                ) : (
-                  <AddressForm
-                    type="billing"
-                    handleChange={handleChange}
-                    values={values.billing}
-                    touched={touched.billing}
-                    errors={errors.billing}
-                    setFieldTouched={setFieldTouched}
-                    className={styles.root__formContainer_form}
-                  />
-                )}
-
+                <AddressForm
+                  type={isShipping ? 'shipping' : 'billing'}
+                  handleChange={handleChange}
+                  values={isShipping ? values.shipping : values.billing}
+                  touched={isShipping ? touched.shipping : touched.billing}
+                  errors={isShipping ? errors.shipping : errors.billing}
+                  setFieldTouched={setFieldTouched}
+                  className={styles.root__formContainer_form}
+                />
                 {isEditMode && <Button type="submit" name="Save address" className={styles.root__btn} />}
                 {isEditMode && (
                   <button type="button" className={styles.root__closeBtn} onClick={(): void => updateEditMode(false)}>

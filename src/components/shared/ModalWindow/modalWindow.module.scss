@@ -1,0 +1,29 @@
+@import '../../../styles/common';
+
+.root {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+
+  &__container {
+    position: relative;
+    display: flex;
+    padding: 4rem;
+    flex-direction: column;
+    background-color: $light-primary;
+  }
+
+  &__closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}

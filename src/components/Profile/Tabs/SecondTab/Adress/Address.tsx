@@ -1,7 +1,9 @@
 import styles from './address.module.scss';
 import classNames from 'classnames';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { IAddress, testUser } from '../../../../../constant';
+import { ModalWindow } from '../../../../shared/ModalWindow';
+import { ModalChildren } from './ModalChildren';
 
 interface IAddressComp {
   values: IAddress;
@@ -11,6 +13,7 @@ interface IAddressComp {
 }
 
 function Address({ values, deleteAddress, index }: IAddressComp): ReactElement {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   function isDefaultShipping(): boolean {
     return values.id === testUser.defaultShippingAddressId;
   }
@@ -26,7 +29,14 @@ function Address({ values, deleteAddress, index }: IAddressComp): ReactElement {
         <div>{values.country}</div>
       </div>
       <div className={classNames(styles.item__btns, styles.configureBtns)}>
-        <button className={styles.configureBtns__btn}>Edit</button>
+        <button className={styles.configureBtns__btn} onClick={(): void => setIsModalOpen(true)}>
+          Edit
+        </button>
+        <ModalWindow
+          children={<ModalChildren values={values} isShipping={true}></ModalChildren>}
+          isOpen={isModalOpen}
+          onClose={(): void => setIsModalOpen(!isModalOpen)}
+        ></ModalWindow>
         <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(index)}>
           Delete
         </button>
