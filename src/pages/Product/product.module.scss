@@ -1,11 +1,92 @@
 @import '../../styles/common';
 
 .product {
+  padding-top: 6rem;
   width: 100%;
   display: flex;
-  padding-top: 6rem;
+  gap: 2rem;
 
   @media all and (max-width: 480px) {
     padding-top: 4rem;
+  }
+
+  &__details {
+    width: 100%;
+    padding: 4rem 2rem 10rem 0;
+  }
+}
+
+.artist {
+  font-size: 4rem;
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 6rem;
+}
+
+.price {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+
+  &.price__double {
+    width: 100%;
+
+    .price__full {
+      color: $text-grey;
+      display: inline;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: -3%;
+        top: calc(50% - 2px);
+        width: 106%;
+        height: 4px;
+        background-color: $primary;
+        z-index: 10;
+      }
+    }
+  }
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 8rem;
+}
+
+.info {
+  width: 100%;
+  margin-bottom: 4rem;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .text {
+      &:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 4rem;
+      }
+
+      &:not(:first-child) {
+        span {
+          text-decoration: underline;
+          padding-right: 1rem;
+        }
+      }
+    }
   }
 }
