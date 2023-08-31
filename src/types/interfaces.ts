@@ -36,7 +36,7 @@ export interface INewAddress {
 }
 
 export interface IProduct {
-  id?: string;
+  id: string;
   artist: string;
   title: string;
   year: string;
