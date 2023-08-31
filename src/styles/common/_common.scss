@@ -61,6 +61,7 @@ button {
   padding: 0;
   background-color: transparent;
   border: none;
+  user-select: none;
   cursor: pointer;
 }
 
@@ -83,8 +84,13 @@ p {
   margin: 0;
 }
 
+a {
+  user-select: none;
+}
+
 img {
   max-width: 100%;
+  user-select: none;
 }
 
 .container {

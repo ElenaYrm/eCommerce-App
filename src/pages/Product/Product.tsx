@@ -33,6 +33,10 @@ export default function Product(): ReactElement {
     }
   }, [id]);
 
+  useEffect(() => {
+    document.body.style.overflow = fullscreen ? 'hidden' : '';
+  }, [fullscreen]);
+
   return (
     <div className={styles.product}>
       <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
@@ -49,10 +53,9 @@ export default function Product(): ReactElement {
           <span className={styles.price__full}>{formatPrice(product.price)}</span>
         </div>
 
-        <Button type="button" name="Add to Cartヾ(●ω●)ノ" className={styles.button}></Button>
+        <Button type="button" name="Add to Cart (●ω●)ノ" className={styles.button}></Button>
 
         <div className={styles.info}>
-          <h3 className={styles.info__title}>Description</h3>
           <div className={styles.info__description}>
             <p className={styles.text}>{splitToParagraphs(product.description)}</p>
             <p className={styles.text}>

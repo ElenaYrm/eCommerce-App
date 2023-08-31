@@ -1,8 +1,12 @@
 @import '../../styles/common/';
 
 .product__slider {
-  width: 100%;
-  position: relative;
+  width: 50vw;
+  user-select: none;
+
+  @media all and (max-width: 850px) {
+    width: 100vw;
+  }
 
   &_button,
   &_button:hover {
@@ -15,35 +19,25 @@
     z-index: 110;
   }
 
-  :global(.swiper) {
+  .slide {
     width: 100%;
-    margin-left: 0;
 
-    .slide {
+    img {
+      display: block;
       position: relative;
       width: 100%;
-
-      img {
-        display: block;
-        position: relative;
-        width: 100%;
-        object-fit: cover;
-      }
+      object-fit: cover;
     }
   }
 }
 
-.product__slider_regular {
-  max-width: 760px;
+.product__slider_regular,
+.slide img {
   height: $slider-height;
   cursor: zoom-in;
 
-  .slide {
-    height: $slider-height;
-
-    img {
-      height: $slider-height;
-    }
+  @media all and (max-width: 480px) {
+    height: calc(100vh - 5rem);
   }
 }
 
@@ -65,6 +59,23 @@
       min-height: 100vh;
       height: auto;
       object-fit: cover;
+      cursor: all-scroll;
+    }
+  }
+
+  @media all and (max-width: 850px) {
+    .slide {
+      overflow: auto;
+      position: relative;
+
+      img {
+        min-width: 180vw;
+        height: auto;
+        object-fit: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
   }
 }
@@ -81,8 +92,8 @@
     bottom: 2rem;
     left: auto;
     right: 1.5rem;
-    cursor: pointer;
     z-index: 11;
+    cursor: pointer;
   }
 
   :global(.swiper-button-prev) {
