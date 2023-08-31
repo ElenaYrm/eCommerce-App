@@ -16,7 +16,7 @@ export enum Input {
 export enum SearchParams {
   Search = 'search',
   Color = 'color',
-  Brand = 'brand',
+  Brand = 'artist',
   Size = 'size',
   PriceFrom = 'priceFrom',
   PriceTo = 'priceTo',

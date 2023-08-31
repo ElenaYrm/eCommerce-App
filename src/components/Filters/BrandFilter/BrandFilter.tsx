@@ -24,7 +24,7 @@ function BrandFilter({ searchParams, setSearchParams, className }: FilterTypePro
 
   return (
     <div className={className || ''}>
-      <h3 className={styles.brand__title}>Brand</h3>
+      <h3 className={styles.brand__title}>Artist</h3>
       <form className={styles.brand__form}>
         {brands.map((item) => (
           <label key={item.value}>

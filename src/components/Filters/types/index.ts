@@ -10,7 +10,7 @@ export interface IColorFilterItem extends IFilterItem {
 }
 
 export interface ICategoryFilterItem extends IFilterItem {
-  children?: ICategoryFilterItem[];
+  parent: string | null;
 }
 
 export interface FiltersProps {

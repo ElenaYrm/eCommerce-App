@@ -5,3 +5,4 @@ export * from './getCurrentDate';
 export * from './parseProductData';
 export * from './getSearchParams';
 export * from './changeParams';
+export * from './getCategoryList';

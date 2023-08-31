@@ -17,8 +17,8 @@ export function parseProductData(body: Product): IProduct {
 }
 
 export function parseProductListData(dataArray: ProductProjection[]): IProduct[] {
-  const productsListData = dataArray.map((product) => {
-    const id = product.id;
+  return dataArray.map((product) => {
+    const productId = product.id;
     const [artist, title, year] = product.name[LANG_CODE].split('/');
     const description = product.description?.[LANG_CODE] || '';
     const images = product.masterVariant.images?.map((item) => item.url) || [];
@@ -26,10 +26,6 @@ export function parseProductListData(dataArray: ProductProjection[]): IProduct[]
     const price = Number(product.masterVariant.prices?.[0]?.value.centAmount) / 100 || 0;
     const discountPrice = Number(product.masterVariant.prices?.[0]?.discounted?.value.centAmount) / 100 || 0;
 
-    return { artist, title: title || '', year: year || '', description, images, price, discountPrice, id };
+    return { artist, title: title || '', year: year || '', description, images, price, discountPrice, productId };
   });
-
-  console.log(productsListData);
-
-  return productsListData;
 }
