@@ -1,0 +1,11 @@
+@import '../../styles/common';
+
+.product {
+  width: 100%;
+  display: flex;
+  padding-top: 6rem;
+
+  @media all and (max-width: 480px) {
+    padding-top: 4rem;
+  }
+}
