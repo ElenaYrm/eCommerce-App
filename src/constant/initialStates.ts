@@ -32,6 +32,10 @@ export const initialProduct: IProduct = {
   price: 0,
   discountPrice: 0,
   productId: '',
+  dimensions: '',
+  size: '',
+  medium: '',
+  color: '',
 };
 
 export const initialProductSlice: IProductSlice = {
