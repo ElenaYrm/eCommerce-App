@@ -21,7 +21,7 @@ export const initialAuthMock: IAuthSlice = {
   isNewUser: false,
   status: 'initial',
   error: '',
-  user: initialUserMock,
+  userId: '',
 };
 
 export const initialProductMock: IProductSlice = {
@@ -48,5 +48,5 @@ export const resultAuthMock: IAuthSlice = {
   isNewUser: true,
   status: 'error',
   error: 'Some error',
-  user: initialUserMock,
+  userId: '',
 };

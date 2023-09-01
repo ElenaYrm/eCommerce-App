@@ -3,7 +3,7 @@ import {
   selectAuthLoadingStatus,
   selectIsAuthorized,
   selectIsNewUser,
-  selectUserData,
+  selectUserID,
 } from '../../../../store/auth/selectors';
 import { initialAuthMock, storeMock } from '../../../../__mocks__/storeMock';
 
@@ -32,7 +32,7 @@ describe('Test redux selectors: ', () => {
   });
 
   test('should select user data from the store', () => {
-    const result = selectUserData(storeMock);
-    expect(result).toEqual(initialAuthMock.user);
+    const result = selectUserID(storeMock);
+    expect(result).toEqual(initialAuthMock.userId);
   });
 });

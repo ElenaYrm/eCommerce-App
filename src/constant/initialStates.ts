@@ -3,6 +3,7 @@ import { IAuthSlice } from '../store/auth/types';
 import { IProductSlice } from '../store/product/types';
 import { IProduct } from '../types/interfaces';
 import { ICatalogSlice } from '../store/catalog/types';
+import { IUserSlice } from '../store/user/types';
 
 export const initialUser: IUser = {
   id: '',
@@ -15,12 +16,10 @@ export const initialUser: IUser = {
   addresses: [],
 };
 
-export const initialAuthState: IAuthSlice = {
-  isAuthorized: !!localStorage.getItem('access-token'),
-  isNewUser: false,
+export const initialUserState: IUserSlice = {
   status: 'initial',
   error: '',
-  user: initialUser,
+  userId: initialUser,
 };
 
 export const initialProduct: IProduct = {
@@ -36,6 +35,14 @@ export const initialProduct: IProduct = {
   size: '',
   medium: '',
   color: '',
+};
+
+export const initialAuthState: IAuthSlice = {
+  isAuthorized: !!localStorage.getItem('token'),
+  isNewUser: false,
+  status: 'initial',
+  error: '',
+  userId: '',
 };
 
 export const initialProductSlice: IProductSlice = {
