@@ -1,14 +1,11 @@
 import { authRoot } from '../../auth/roots/index.ts';
-import { ClientResponse, Customer, CustomerUpdateAction } from '@commercetools/platform-sdk';
+import { ClientResponse, Customer } from '@commercetools/platform-sdk';
 import { projectKey } from '../../index.ts';
+import { IUpdateUser } from '../types/index.ts';
 
 // FirstName, LastName, Email, DateOfBirth
 
-export const updateUserInfo = (
-  id: string,
-  version: number,
-  action: CustomerUpdateAction,
-): Promise<ClientResponse<Customer>> => {
+export const updateUserInfo = ({ id, version, action }: IUpdateUser): Promise<ClientResponse<Customer>> => {
   return authRoot
     .withProjectKey({ projectKey })
     .customers()
@@ -16,7 +13,7 @@ export const updateUserInfo = (
     .post({
       body: {
         version,
-        actions: [action],
+        actions: action,
       },
     })
     .execute();

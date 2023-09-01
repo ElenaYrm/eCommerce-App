@@ -1,18 +1,7 @@
 import { Customer } from '@commercetools/platform-sdk';
-import { IAuthAddress, IUser } from '../types/interfaces';
+import { IUser } from '../types/interfaces';
 
 export function extractLocalUser(customer: Customer): IUser {
-  const customerAddresses: IAuthAddress[] = customer.addresses
-    .filter((el) => el.streetName && el.city && el.postalCode)
-    .map((el) => ({
-      id: el.id,
-      streetName: el.streetName || '',
-      city: el.city || '',
-      postalCode: el.postalCode || '',
-      country: el.country,
-    }));
-
-  console.log(customer.addresses);
   const dateOfBirth = customer.dateOfBirth;
   let year, month, date;
 
@@ -35,6 +24,6 @@ export function extractLocalUser(customer: Customer): IUser {
     defaultBillingAddressId: customer.defaultBillingAddressId || '',
     shippingAddressIds: customer.shippingAddressIds || [],
     billingAddressIds: customer.billingAddressIds || [],
-    addresses: customerAddresses,
+    addresses: customer.addresses,
   };
 }

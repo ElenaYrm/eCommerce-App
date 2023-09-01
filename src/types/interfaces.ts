@@ -33,7 +33,7 @@ export interface IUser
   defaultBillingAddressId: string;
   shippingAddressIds: string[];
   billingAddressIds: string[];
-  addresses: IAuthAddress[];
+  addresses: Address[];
 }
 
 export interface INewAddress {

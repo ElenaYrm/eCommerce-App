@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
-import { IAuthAddress } from '../../../../types/interfaces';
+import { Address } from '@commercetools/platform-sdk';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -25,7 +25,7 @@ function SecondTab(): ReactElement {
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
-  const [addresses, setAddresses] = useState<IAuthAddress[]>(user.addresses);
+  const [addresses, setAddresses] = useState<Address[]>(user.addresses);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function SecondTab(): ReactElement {
   }
 
   function deleteAddress(indexToRemove: number): void {
-    const newAddresses: IAuthAddress[] = [...addresses];
+    const newAddresses: Address[] = [...addresses];
     newAddresses.splice(indexToRemove, 1);
     setAddresses(newAddresses);
     console.log(indexToRemove, newAddresses);
@@ -99,8 +99,7 @@ function SecondTab(): ReactElement {
             onClick={(): void => updateEditMode(!isEditMode)}
           />
           <ul>
-            {user.addresses.map((addressData: IAuthAddress, index: number) => {
-              console.log(addressData);
+            {user.addresses.map((addressData: Address, index: number) => {
               return (
                 <CustomerAddress
                   key={String(addressData.id)}

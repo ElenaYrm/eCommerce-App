@@ -13,7 +13,10 @@ import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/prof
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk } from '../../../../store/user/thunks';
+import { getUserThunk, updUserThunk } from '../../../../store/user/thunks';
+import { IUpdateUser } from '../../../../services/sdk/customer/types';
+import { months } from '../../../../constant';
+import { getMonthIndex } from '../../../../utils';
 
 function FirstTab(): ReactElement {
   const isEditMode = useIsEditMode();
@@ -28,12 +31,28 @@ function FirstTab(): ReactElement {
   }, [user, dispatch]);
 
   function handleSubmit(values: IUser): void {
-    console.log(values);
+    const { year, month, date } = values;
+    const dateOfBirth = year + '-' + getMonthIndex(month) + '-' + (date.length < 10 ? `0${date}` : date);
+    const newValue: IUpdateUser = {
+      id: values.id,
+      version: values.version,
+      action: [
+        { action: 'setFirstName', firstName: values.firstName },
+        { action: 'setLastName', lastName: values.lastName },
+        { action: 'changeEmail', email: values.email },
+        { action: 'setDateOfBirth', dateOfBirth: dateOfBirth },
+      ],
+    };
+
+    dispatch(updUserThunk(newValue));
   }
 
   function validateDate(values: IUser): void | object | Promise<FormikErrors<IUser>> {
     const errors: FormikErrors<IUser> = {};
-    errors[Input.Date] = dateMYValidate(`${values[Input.Date]}${values[Input.Month]}${values[Input.Year]}`);
+    errors[Input.Date] = dateMYValidate(
+      `${values[Input.Date]}${months[Number(values[Input.Month]) - 1]}${values[Input.Year]}`,
+    );
+    if (!errors[Input.Date]) return {};
     return errors;
   }
 

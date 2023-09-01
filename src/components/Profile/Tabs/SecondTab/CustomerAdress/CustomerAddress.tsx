@@ -7,10 +7,10 @@ import { selectUserData } from '../../../../../store/user/selectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../../store/store';
 import { getUserThunk } from '../../../../../store/user/thunks';
-import { IAuthAddress } from '../../../../../types/interfaces';
+import { Address } from '@commercetools/platform-sdk';
 
 interface IAddressComp {
-  values: IAuthAddress;
+  values: Address;
   key: number | string;
   index: number;
   deleteAddress: (index: number) => void;

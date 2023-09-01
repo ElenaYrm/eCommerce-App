@@ -4,31 +4,34 @@ import { Input } from '../../../../../../types/enums';
 import { Formik } from 'formik';
 import { Button } from '../../../../../shared/Button';
 import { AddressForm } from '../../../../../RegisterForm/AddressForm';
-import { IAuthAddress } from '../../../../../../types/interfaces';
+import { Address } from '@commercetools/platform-sdk';
+import { IAddressForm } from '../../../../../RegisterForm/AddressForm/AddressForm';
 
 interface IInitialValue {
-  shipping: Record<string, string>;
-  billing: Record<string, string>;
+  shipping: IAddressForm;
+  billing: IAddressForm;
 }
 
 interface IModalChildren {
-  values: IAuthAddress;
+  values: Address;
   isShipping: boolean;
 }
 
 function ModalChildren({ values, isShipping }: IModalChildren): ReactElement {
-  const initialValue = {
+  const initialValue: IInitialValue = {
     shipping: {
-      [Input.Street]: values.streetName,
+      [Input.Street]: values.streetName || '',
       [Input.Country]: values.country,
-      [Input.PostalCode]: values.postalCode,
-      [Input.City]: values.city,
+      [Input.PostalCode]: values.postalCode || '',
+      [Input.City]: values.city || '',
+      isDefault: true, //! Get True / False from array ID's
     },
     billing: {
-      [Input.Street]: values.streetName,
+      [Input.Street]: values.streetName || '',
       [Input.Country]: values.country,
-      [Input.PostalCode]: values.postalCode,
-      [Input.City]: values.city,
+      [Input.PostalCode]: values.postalCode || '',
+      [Input.City]: values.city || '',
+      isDefault: true, //! Get True / False from array ID's
     },
   };
 
