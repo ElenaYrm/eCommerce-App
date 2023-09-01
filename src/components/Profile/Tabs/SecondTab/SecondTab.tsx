@@ -2,13 +2,18 @@ import styles from './secondTab.module.scss';
 import { Formik } from 'formik';
 import { ReactElement, useEffect, useState } from 'react';
 import { Button } from '../../../shared/Button';
-import { IAddress, initialEditAddresses, testUser } from '../../../../constant';
-import { Address } from './Adress';
+import { initialEditAddresses } from '../../../../constant';
+import { CustomerAddress } from './CustomerAdress';
 import { AddressForm } from '../../../RegisterForm/AddressForm';
 import classNames from 'classnames';
 import { IAddressForm } from '../../../RegisterForm/AddressForm/AddressForm';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { Radiobtn } from './Radiobtn';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../../../store/user/selectors';
+import { useAppDispatch } from '../../../../store/store';
+import { getUserThunk } from '../../../../store/user/thunks';
+import { IAuthAddress } from '../../../../types/interfaces';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -19,14 +24,22 @@ function SecondTab(): ReactElement {
   const [isShipping, setIsShipping] = useState(true);
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
-  const [addresses, setAddresses] = useState<IAddress[]>(testUser.addresses);
+  const user = useSelector(selectUserData);
+  const [addresses, setAddresses] = useState<IAuthAddress[]>(user.addresses);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!user.id) {
+      dispatch(getUserThunk());
+    }
+  }, [user, dispatch]);
 
   function handleSubmit(values: IAddressesProfile): void {
     console.log(values);
   }
 
   function deleteAddress(indexToRemove: number): void {
-    const newAddresses: IAddress[] = [...addresses];
+    const newAddresses: IAuthAddress[] = [...addresses];
     newAddresses.splice(indexToRemove, 1);
     setAddresses(newAddresses);
     console.log(indexToRemove, newAddresses);
@@ -86,8 +99,16 @@ function SecondTab(): ReactElement {
             onClick={(): void => updateEditMode(!isEditMode)}
           />
           <ul>
-            {testUser.addresses.map((addressData: IAddress, index: number) => {
-              return <Address key={addressData.id} values={addressData} index={index} deleteAddress={deleteAddress} />;
+            {user.addresses.map((addressData: IAuthAddress, index: number) => {
+              console.log(addressData);
+              return (
+                <CustomerAddress
+                  key={String(addressData.id)}
+                  values={addressData}
+                  index={index}
+                  deleteAddress={deleteAddress}
+                />
+              );
             })}
           </ul>
         </div>

@@ -1,10 +1,10 @@
 import styles from './modalChildren.module.scss';
 import { ReactElement } from 'react';
-import { IAddress } from '../../../../../../constant';
 import { Input } from '../../../../../../types/enums';
 import { Formik } from 'formik';
 import { Button } from '../../../../../shared/Button';
 import { AddressForm } from '../../../../../RegisterForm/AddressForm';
+import { IAuthAddress } from '../../../../../../types/interfaces';
 
 interface IInitialValue {
   shipping: Record<string, string>;
@@ -12,7 +12,7 @@ interface IInitialValue {
 }
 
 interface IModalChildren {
-  values: IAddress;
+  values: IAuthAddress;
   isShipping: boolean;
 }
 

@@ -12,7 +12,13 @@ export const initialUser: IUser = {
   firstName: '',
   lastName: '',
   password: '',
-  dateOfBirth: '',
+  date: '',
+  month: '',
+  year: '',
+  defaultShippingAddressId: '',
+  defaultBillingAddressId: '',
+  shippingAddressIds: [],
+  billingAddressIds: [],
   addresses: [],
 };
 

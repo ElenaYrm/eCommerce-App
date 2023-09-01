@@ -1,41 +1,44 @@
 import styles from './firstTab.module.scss';
 
+import classNames from 'classnames';
 import { Formik, FormikErrors } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
-import classNames from 'classnames';
-import { ITestUser, testUser } from '../../../../constant';
 import { IUser } from '../../../../types/interfaces';
 import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../../../store/user/selectors';
+import { useAppDispatch } from '../../../../store/store';
+import { getUserThunk } from '../../../../store/user/thunks';
 
 function FirstTab(): ReactElement {
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
-  // const dispatch = useAppDispatch();
+  const user = useSelector(selectUserData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!user.id) {
+      dispatch(getUserThunk());
+    }
+  }, [user, dispatch]);
 
   function handleSubmit(values: IUser): void {
     console.log(values);
-    console.log('WORK?');
-    // const user: UserAuthOptions = {
-    //   username: values.email.trim(),
-    //   password: values.password.trim(),
-    // };
-
-    // dispatch(loginThunk(user));
   }
 
-  function validateDate(values: ITestUser): void | object | Promise<FormikErrors<ITestUser>> {
-    const errors: FormikErrors<ITestUser> = {};
+  function validateDate(values: IUser): void | object | Promise<FormikErrors<IUser>> {
+    const errors: FormikErrors<IUser> = {};
     errors[Input.Date] = dateMYValidate(`${values[Input.Date]}${values[Input.Month]}${values[Input.Year]}`);
     return errors;
   }
 
   return (
-    <Formik initialValues={testUser} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
+    <Formik initialValues={user} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
       {({ handleSubmit, errors, touched, setFieldTouched, handleChange }): ReactElement => (
         <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
           <InputField
@@ -83,14 +86,12 @@ function FirstTab(): ReactElement {
             <UserDateOfBirth
               touched={touched}
               handleChange={handleChange}
-              values={testUser}
+              values={user}
               errors={errors}
               setFieldTouched={setFieldTouched}
             />
           )}
-          {!isEditMode && (
-            <div className={styles.form__dateOfBirth}>{`${testUser.date} ${testUser.month} ${testUser.year}`}</div>
-          )}
+          {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date} ${user.month} ${user.year}`}</div>}
 
           {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => updateEditMode()} />}
           {isEditMode && <Button name="Save changes" type="submit" className={styles.formEdit__btn} />}

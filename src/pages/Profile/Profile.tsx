@@ -24,19 +24,16 @@ export default function Profile(): ReactElement {
   const isEditMode = useIsEditMode();
 
   return (
-    <>
-      <div className={styles.root}>
+    <div className={styles.root}>
+      {status === 'loading' && <Loader />}
+      {error && <ErrorMessage text={error} />}
+
+      {status === 'success' && !error && (
         <div className={styles.root__container}>
           {!isEditMode && <GreetingTitle />}
           <Tabs />
         </div>
-      </div>
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        {status === 'loading' && <Loader />}
-        {error && <ErrorMessage text={error} />}
-
-        {status === 'success' && !error && <h1>Profile</h1>}
-      </div>
-    </>
+      )}
+    </div>
   );
 }

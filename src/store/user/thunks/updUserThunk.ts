@@ -4,7 +4,7 @@ import { IUser } from '../../../types/interfaces';
 import { IUserSlice } from '../types';
 import { getCustomer } from '../../../services/sdk/customer/methods';
 
-export const getUserThunk = createAsyncThunk<
+export const updUserThunk = createAsyncThunk<
   IUser, //Вернет при успешном выполнении запроса
   void, // тип аргументов которые принимает эта функция
   { // этот объект можно копировать

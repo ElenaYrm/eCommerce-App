@@ -17,16 +17,23 @@ export interface INewUser {
 export interface IUser
   extends Omit<
     INewUser,
-    'defaultBillingAddress' | 'defaultShippingAddress' | 'shippingAddresses' | 'billingAddresses'
+    | 'defaultBillingAddress'
+    | 'defaultShippingAddress'
+    | 'shippingAddresses'
+    | 'billingAddresses'
+    | 'dateOfBirth'
+    | 'addresses'
   > {
   id: string;
   version: number;
-  // defaultShippingAddressId: string;
-  // shippingAddressIds: string[];
-  // defaultBillingAddressId: string;
-  // billingAddressIds: string[];
-  // isEmailVerified: boolean;
-  // authenticationMode: 'Password' | 'ExternalAuth';
+  date: string;
+  month: string;
+  year: string;
+  defaultShippingAddressId: string;
+  defaultBillingAddressId: string;
+  shippingAddressIds: string[];
+  billingAddressIds: string[];
+  addresses: IAuthAddress[];
 }
 
 export interface INewAddress {
@@ -37,6 +44,7 @@ export interface INewAddress {
   id?: string;
 }
 
+export interface IAuthAddress extends INewAddress {}
 export interface ITabsList {
   label: string;
   content: string | ReactElement;

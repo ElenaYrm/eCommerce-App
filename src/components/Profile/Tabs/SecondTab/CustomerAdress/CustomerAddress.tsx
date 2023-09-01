@@ -1,24 +1,36 @@
 import styles from './address.module.scss';
 import classNames from 'classnames';
-import { ReactElement, useState } from 'react';
-import { IAddress, testUser } from '../../../../../constant';
+import { ReactElement, useEffect, useState } from 'react';
 import { ModalWindow } from '../../../../shared/ModalWindow';
 import { ModalChildren } from './ModalChildren';
+import { selectUserData } from '../../../../../store/user/selectors';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../../../store/store';
+import { getUserThunk } from '../../../../../store/user/thunks';
+import { IAuthAddress } from '../../../../../types/interfaces';
 
 interface IAddressComp {
-  values: IAddress;
+  values: IAuthAddress;
   key: number | string;
   index: number;
   deleteAddress: (index: number) => void;
 }
 
-function Address({ values, deleteAddress, index }: IAddressComp): ReactElement {
+function CustomerAddress({ values, deleteAddress, index }: IAddressComp): ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useSelector(selectUserData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!user.id) {
+      dispatch(getUserThunk());
+    }
+  }, [user, dispatch]);
   function isDefaultShipping(): boolean {
-    return values.id === testUser.defaultShippingAddressId;
+    return values.id === user.defaultShippingAddressId;
   }
   function isDefaultBilling(): boolean {
-    return values.id === testUser.defaultBillingAddressId;
+    return values.id === user.defaultBillingAddressId;
   }
 
   return (
@@ -63,4 +75,4 @@ function Address({ values, deleteAddress, index }: IAddressComp): ReactElement {
   );
 }
 
-export default Address;
+export default CustomerAddress;
