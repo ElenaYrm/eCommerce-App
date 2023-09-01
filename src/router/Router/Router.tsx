@@ -9,8 +9,9 @@ import { Cart } from '../../pages/Cart';
 import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';
 import { PATH } from '../constants/paths';
-import { Product } from '../../pages/Product';
 import { Page } from '../types';
+import { Product } from '../../pages/Product';
+import { Catalog } from '../../pages/Catalog';
 
 export default function Router(): ReactElement {
   return (
@@ -21,6 +22,7 @@ export default function Router(): ReactElement {
         <Route path={PATH[Page.Register]} element={<Register />} />
         <Route path={PATH[Page.Cart]} element={<Cart />} />
         <Route path={`${PATH[Page.Product]}/:id`} element={<Product />} />
+        <Route path={PATH[Page.Catalog]} element={<Catalog />} />
         <Route path={PATH[Page.NotFound]} element={<NotFound />} />
         <Route
           path={PATH[Page.Profile]}

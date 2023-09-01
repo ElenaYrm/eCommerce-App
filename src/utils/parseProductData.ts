@@ -31,7 +31,7 @@ export function parseProductData(body: Product): IProduct {
 }
 
 export function parseProductListData(dataArray: ProductProjection[]): IProduct[] {
-  const productsListData = dataArray.map((product) => {
+  return dataArray.map((product) => {
     const productId = product.id;
 
     const productAttr = product.masterVariant.attributes;
@@ -69,6 +69,4 @@ export function parseProductListData(dataArray: ProductProjection[]): IProduct[]
       productId,
     };
   });
-
-  return productsListData;
 }

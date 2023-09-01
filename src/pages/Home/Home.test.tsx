@@ -7,7 +7,8 @@ jest.mock('react-redux');
 jest.mock('../../constant/metaData', () => {});
 jest.mock('../../services/sdk/auth/methods', () => {});
 jest.mock('../../services/sdk/product/methods', () => {});
-jest.mock('../../services/sdk/product-list/methods', () => {});
+jest.mock('../../services/sdk/catalog/methods', () => {});
+jest.mock('../../services/sdk/customer/methods', () => {});
 
 const useDispatchSpy = jest.spyOn(reduxHooks, 'useDispatch');
 

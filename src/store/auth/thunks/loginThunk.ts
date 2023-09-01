@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserAuthOptions } from '@commercetools/sdk-client-v2';
 import { loginCustomer } from '../../../services/sdk/auth/methods';
-import { checkError, extractLocalUser } from '../../../utils';
+import { checkError } from '../../../utils';
 import { IAuthSlice } from '../types';
-import { IUser } from '../../../types/interfaces';
 import { tokenData } from '../../../services/sdk/auth/token';
 
 export const loginThunk = createAsyncThunk<
-  IUser,
+  string,
   UserAuthOptions,
   {
     state: { auth: IAuthSlice };
@@ -18,12 +17,12 @@ export const loginThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       const user = await loginCustomer(body);
-      const token = tokenData.get().token;
+      const token = tokenData.get().refreshToken;
       if (token) {
-        localStorage.setItem('access-token', token);
+        localStorage.setItem('token', token);
       }
 
-      return extractLocalUser(user.body.customer);
+      return user.body.customer.id;
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }
