@@ -6,6 +6,7 @@ import { productThunk } from '../../store/product/thunks';
 import { useAppDispatch } from '../../store/store';
 import { Slider } from '../../components/Slider/Slider';
 import { ProductDetails } from './ProductDetails';
+import { Loader } from '../../components/shared/Loader';
 
 import styles from './product.module.scss';
 
@@ -14,7 +15,7 @@ import styles from './product.module.scss';
 export default function Product(): ReactElement {
   const id = useParams().id || '';
 
-  const { product } = useSelector((store: RootState) => store.product);
+  const { product, status } = useSelector((store: RootState) => store.product);
   const { productId } = product;
   const dispatch = useAppDispatch();
 
@@ -23,8 +24,6 @@ export default function Product(): ReactElement {
   function handleFullScreen(): void {
     setFullscreen((mode) => (mode = !mode));
   }
-
-  console.log(product);
 
   useEffect(() => {
     if (productId !== id) {
@@ -38,8 +37,14 @@ export default function Product(): ReactElement {
 
   return (
     <div className={styles.product}>
-      <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
-      <ProductDetails product={product} />
+      {status === 'loading' ? (
+        <Loader />
+      ) : (
+        <>
+          <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
+          <ProductDetails product={product} />
+        </>
+      )}
     </div>
   );
 }
