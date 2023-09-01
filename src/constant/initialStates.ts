@@ -38,7 +38,7 @@ export const initialProduct: IProduct = {
 };
 
 export const initialAuthState: IAuthSlice = {
-  isAuthorized: !!localStorage.getItem('token'),
+  isAuthorized: !!localStorage.getItem('art-token'),
   isNewUser: false,
   status: 'initial',
   error: '',
