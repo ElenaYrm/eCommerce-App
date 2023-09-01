@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, registerThunk, logoutThunk, getCustomerThunk } from '../thunks';
+import { loginThunk, registerThunk, logoutThunk } from '../thunks';
 import { initialAuthState } from '../../../constant';
 
 const authSlice = createSlice({
@@ -50,18 +50,6 @@ const authSlice = createSlice({
         state.userId = '';
         state.status = 'initial';
         state.error = '';
-      })
-      .addCase(getCustomerThunk.pending, (state) => {
-        state.status = 'loading';
-        state.error = '';
-      })
-      .addCase(getCustomerThunk.fulfilled, (state, { payload }) => {
-        state.status = 'success';
-        state.userId = payload;
-      })
-      .addCase(getCustomerThunk.rejected, (state, { payload }) => {
-        state.status = 'error';
-        state.error = payload || 'Something was wrong';
       });
   },
 });

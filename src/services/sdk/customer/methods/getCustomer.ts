@@ -1,5 +1,5 @@
-import { refreshTokenRoot } from '../roots';
-import { projectKey } from '../../index';
+import { refreshTokenRoot } from '../../auth/roots';
+import { projectKey } from '../../index.ts';
 import { ClientResponse, Customer } from '@commercetools/platform-sdk';
 
 export const getCustomer = (): Promise<ClientResponse<Customer>> => {

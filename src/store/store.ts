@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import { authReducer } from './auth/slice';
 import { productReducer } from './product/slice';
 import { catalogReducer } from './catalog/slice';
+import { userReducer } from './user/slice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     product: productReducer,
     catalog: catalogReducer,
+    user: userReducer,
   },
 });
 

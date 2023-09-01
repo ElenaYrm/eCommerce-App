@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IAuthSlice } from '../types';
-import { checkError } from '../../../utils';
-import { getCustomer } from '../../../services/sdk/auth/methods/getCustomer';
+import { checkError, extractLocalUser } from '../../../utils';
+import { IUser } from '../../../types/interfaces';
+import { IUserSlice } from '../types';
+import { getCustomer } from '../../../services/sdk/customer/methods';
 
-export const getCustomerThunk = createAsyncThunk<
-  string,
+export const getUserThunk = createAsyncThunk<
+  IUser,
   void,
   {
-    state: { auth: IAuthSlice };
+    state: { user: IUserSlice };
     rejectValue: string;
   }
 >(
@@ -15,7 +16,7 @@ export const getCustomerThunk = createAsyncThunk<
   async (_, { rejectWithValue }) => {
     try {
       const user = await getCustomer();
-      return user.body.id;
+      return extractLocalUser(user.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }
@@ -23,7 +24,7 @@ export const getCustomerThunk = createAsyncThunk<
   {
     condition: (_, { getState }): boolean => {
       const {
-        auth: { status },
+        user: { status },
       } = getState();
 
       return !(status === 'loading');

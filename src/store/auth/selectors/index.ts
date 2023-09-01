@@ -15,4 +15,3 @@ export const selectAuthLoadingInfo = createSelector(
     error,
   }),
 );
-export const selectUserID = (state: RootState): string => state.auth.userId;

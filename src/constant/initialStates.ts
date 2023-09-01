@@ -19,7 +19,7 @@ export const initialUser: IUser = {
 export const initialUserState: IUserSlice = {
   status: 'initial',
   error: '',
-  userId: initialUser,
+  user: initialUser,
 };
 
 export const initialProduct: IProduct = {
