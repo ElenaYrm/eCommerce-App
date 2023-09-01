@@ -1,1 +1,2 @@
-export * from './setDefaultAddresses.ts';
+export * from './setDefaultAddresses';
+export * from './getCustomer';

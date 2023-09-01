@@ -42,3 +42,18 @@ export interface ITabsList {
   content: string | ReactElement;
   title: string;
 }
+
+export interface IProduct {
+  productId: string;
+  artist: string;
+  title: string;
+  year: string;
+  description: string;
+  dimensions: string;
+  medium: string;
+  size: string;
+  images?: string[];
+  price: number;
+  discountPrice?: number;
+  color: string;
+}

@@ -1,7 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { IAuthSlice } from '../types';
-import { IUser } from '../../../types/interfaces';
 import { TStatus } from '../../../types/types';
 
 export const selectIsAuthorized = (state: RootState): boolean => state.auth.isAuthorized;
@@ -16,4 +15,3 @@ export const selectAuthLoadingInfo = createSelector(
     error,
   }),
 );
-export const selectUserData = (state: RootState): IUser => state.auth.user;
