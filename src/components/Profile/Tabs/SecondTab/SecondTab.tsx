@@ -14,6 +14,8 @@ import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
+import { IRemoveAddress } from '../../../../services/sdk/customer/types';
+import { removeAddressThunk } from '../../../../store/user/thunks/removeAddressThunk';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -25,7 +27,6 @@ function SecondTab(): ReactElement {
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
-  const [addresses, setAddresses] = useState<Address[]>(user.addresses);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -38,14 +39,15 @@ function SecondTab(): ReactElement {
     console.log(values);
   }
 
-  function deleteAddress(indexToRemove: number): void {
-    const newAddresses: Address[] = [...addresses];
-    newAddresses.splice(indexToRemove, 1);
-    setAddresses(newAddresses);
-    console.log(indexToRemove, newAddresses);
+  function deleteAddress(addressId: string): void {
+    const addressData: IRemoveAddress = { version: user.version, customerId: user.id, addressId: addressId };
+    console.log(addressId);
+    if (confirm('Are you sure you want to delete this address?')) {
+      dispatch(removeAddressThunk(addressData));
+    } else {
+      return;
+    }
   }
-
-  useEffect(() => {}, [addresses]);
 
   return (
     <div className={styles.root}>
@@ -105,7 +107,8 @@ function SecondTab(): ReactElement {
                   key={String(addressData.id)}
                   values={addressData}
                   index={index}
-                  deleteAddress={deleteAddress}
+                  deleteAddress={(): void => deleteAddress(addressData.id || '')}
+                  addressId={addressData.id || ''}
                 />
               );
             })}

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialUserState } from '../../../constant';
-import { getUserThunk, updUserThunk } from '../thunks';
+import { getUserThunk, updPasswordThunk, updUserThunk } from '../thunks';
+import { removeAddressThunk } from '../thunks/removeAddressThunk';
 
 const userSlice = createSlice({
   name: 'user',
@@ -34,6 +35,30 @@ const userSlice = createSlice({
         state.user = payload;
       })
       .addCase(updUserThunk.rejected, (state, { payload }) => {
+        state.status = 'error';
+        state.error = payload || 'Something was wrong';
+      })
+      .addCase(updPasswordThunk.pending, (state) => {
+        state.status = 'loading';
+        state.error = '';
+      })
+      .addCase(updPasswordThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.user = payload;
+      })
+      .addCase(updPasswordThunk.rejected, (state, { payload }) => {
+        state.status = 'error';
+        state.error = payload || 'Something was wrong';
+      })
+      .addCase(removeAddressThunk.pending, (state) => {
+        state.status = 'loading';
+        state.error = '';
+      })
+      .addCase(removeAddressThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.user = payload;
+      })
+      .addCase(removeAddressThunk.rejected, (state, { payload }) => {
         state.status = 'error';
         state.error = payload || 'Something was wrong';
       });

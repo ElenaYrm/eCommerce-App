@@ -13,10 +13,11 @@ interface IAddressComp {
   values: Address;
   key: number | string;
   index: number;
-  deleteAddress: (index: number) => void;
+  deleteAddress: (addressId: string) => void;
+  addressId: string;
 }
 
-function CustomerAddress({ values, deleteAddress, index }: IAddressComp): ReactElement {
+function CustomerAddress({ addressId, values, deleteAddress }: IAddressComp): ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
@@ -49,7 +50,7 @@ function CustomerAddress({ values, deleteAddress, index }: IAddressComp): ReactE
           isOpen={isModalOpen}
           onClose={(): void => setIsModalOpen(!isModalOpen)}
         ></ModalWindow>
-        <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(index)}>
+        <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(addressId)}>
           Delete
         </button>
       </div>

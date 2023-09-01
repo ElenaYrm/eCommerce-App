@@ -1,11 +1,16 @@
 import { Formik } from 'formik';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../../../store/user/selectors';
+import { useAppDispatch } from '../../../../store/store';
+import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
+import { CustomerChangePassword } from '@commercetools/platform-sdk';
 
 export interface IChangePassword {
   password: string;
@@ -15,9 +20,24 @@ export interface IChangePassword {
 function ThirdTab(): ReactElement {
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
+  const user = useSelector(selectUserData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!user.id) {
+      dispatch(getUserThunk());
+    }
+  }, [user, dispatch]);
 
   function handleSubmit(values: IChangePassword): void {
+    const updPassData: CustomerChangePassword = {
+      id: user.id,
+      version: user.version,
+      currentPassword: values.password,
+      newPassword: values.newPassword,
+    };
     console.log(values);
+    dispatch(updPasswordThunk(updPassData));
   }
 
   return (
