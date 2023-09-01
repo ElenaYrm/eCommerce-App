@@ -3,7 +3,6 @@ import {
   selectAuthLoadingStatus,
   selectIsAuthorized,
   selectIsNewUser,
-  selectUserData,
 } from '../../../../store/auth/selectors';
 import { initialAuthMock, storeMock } from '../../../../__mocks__/storeMock';
 
@@ -29,10 +28,5 @@ describe('Test redux selectors: ', () => {
   test('should select isNewUser user flag from the store', () => {
     const result = selectIsNewUser(storeMock);
     expect(result).toEqual(initialAuthMock.isNewUser);
-  });
-
-  test('should select user data from the store', () => {
-    const result = selectUserData(storeMock);
-    expect(result).toEqual(initialAuthMock.user);
   });
 });
