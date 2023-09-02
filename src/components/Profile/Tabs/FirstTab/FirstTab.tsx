@@ -58,7 +58,7 @@ function FirstTab(): ReactElement {
 
   return (
     <Formik initialValues={user} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
-      {({ handleSubmit, errors, touched, setFieldTouched, handleChange }): ReactElement => (
+      {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
         <form className={classNames(styles.form, { [styles.formEdit]: isEditMode })} onSubmit={handleSubmit} noValidate>
           <InputField
             className={`${styles.form__input} ${isEditMode ? styles.formEdit__input : ''}`}
@@ -120,6 +120,7 @@ function FirstTab(): ReactElement {
               className={styles.formEdit__closeBtn}
               onClick={(): void => {
                 updateEditMode(false);
+                resetForm();
               }}
             >
               Close

@@ -3,7 +3,7 @@ import { checkError, extractLocalUser } from '../../../utils';
 import { IUser } from '../../../types/interfaces';
 import { IUserSlice } from '../types';
 import { IRemoveAddress } from '../../../services/sdk/customer/types';
-import { removeAddress } from '../../../services/sdk/customer/methods/removeAddress';
+import { removeAddress } from '../../../services/sdk/customer/methods';
 
 export const removeAddressThunk = createAsyncThunk<
   IUser,

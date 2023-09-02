@@ -11,3 +11,7 @@ export interface IRemoveAddress {
   addressId: string;
   version: number;
 }
+
+export interface ISetDefaultAddress extends IRemoveAddress {
+  isShipping: boolean;
+}

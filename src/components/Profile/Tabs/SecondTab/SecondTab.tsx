@@ -1,6 +1,6 @@
 import styles from './secondTab.module.scss';
 import { Formik } from 'formik';
-import { ReactElement, useEffect, useState } from 'react';
+import { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { Button } from '../../../shared/Button';
 import { initialEditAddresses } from '../../../../constant';
 import { CustomerAddress } from './CustomerAdress';
@@ -14,8 +14,9 @@ import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
-import { IRemoveAddress } from '../../../../services/sdk/customer/types';
+import { IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
 import { removeAddressThunk } from '../../../../store/user/thunks/removeAddressThunk';
+import { setDefaultAddressIdThunk } from '../../../../store/user/thunks/setDefaultAddressIdThunk';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -41,11 +42,30 @@ function SecondTab(): ReactElement {
 
   function deleteAddress(addressId: string): void {
     const addressData: IRemoveAddress = { version: user.version, customerId: user.id, addressId: addressId };
-    console.log(addressId);
     if (confirm('Are you sure you want to delete this address?')) {
       dispatch(removeAddressThunk(addressData));
     } else {
       return;
+    }
+  }
+
+  function setDefaultAddress(e: MouseEvent, addressId: string): void {
+    const clickedElement = e.target;
+
+    if (clickedElement && clickedElement instanceof HTMLElement) {
+      const clickElIsActive = Array.from(clickedElement.classList).some((el) => el.includes('active'));
+      if (clickElIsActive) {
+        return;
+      }
+
+      const isShipAddress = clickedElement.getAttribute('data-isshipping') === 'true';
+      const thunkData: ISetDefaultAddress = {
+        customerId: user.id,
+        version: user.version,
+        addressId,
+        isShipping: isShipAddress,
+      };
+      dispatch(setDefaultAddressIdThunk(thunkData));
     }
   }
 
@@ -109,6 +129,9 @@ function SecondTab(): ReactElement {
                   index={index}
                   deleteAddress={(): void => deleteAddress(addressData.id || '')}
                   addressId={addressData.id || ''}
+                  setDefaultAddress={(e: MouseEvent<HTMLButtonElement>): void =>
+                    setDefaultAddress(e, addressData.id || '')
+                  }
                 />
               );
             })}

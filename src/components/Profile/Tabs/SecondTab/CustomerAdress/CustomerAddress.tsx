@@ -1,6 +1,6 @@
 import styles from './address.module.scss';
 import classNames from 'classnames';
-import { ReactElement, useEffect, useState } from 'react';
+import { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { ModalWindow } from '../../../../shared/ModalWindow';
 import { ModalChildren } from './ModalChildren';
 import { selectUserData } from '../../../../../store/user/selectors';
@@ -15,9 +15,10 @@ interface IAddressComp {
   index: number;
   deleteAddress: (addressId: string) => void;
   addressId: string;
+  setDefaultAddress: (e: MouseEvent<HTMLButtonElement>, addressId: string) => void;
 }
 
-function CustomerAddress({ addressId, values, deleteAddress }: IAddressComp): ReactElement {
+function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }: IAddressComp): ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
@@ -57,17 +58,25 @@ function CustomerAddress({ addressId, values, deleteAddress }: IAddressComp): Re
       <div className={classNames(styles.item__defaultSettContainer, styles.defaultSettContainer)}>
         <button
           type="button"
+          data-isshipping="true"
           className={classNames(styles.defaultSettContainer__address, {
             [styles.defaultSettContainer__address_active]: isDefaultShipping(),
           })}
+          onClick={(e): void => {
+            setDefaultAddress(e, addressId);
+          }}
         >
           Default shipping address
         </button>
         <button
           type="button"
+          data-isshipping="false"
           className={classNames(styles.defaultSettContainer__address, {
             [styles.defaultSettContainer__address_active]: isDefaultBilling(),
           })}
+          onClick={(e): void => {
+            setDefaultAddress(e, addressId);
+          }}
         >
           Default billing address
         </button>

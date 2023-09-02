@@ -2,22 +2,22 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { checkError, extractLocalUser } from '../../../utils';
 import { IUser } from '../../../types/interfaces';
 import { IUserSlice } from '../types';
-import { changeCustomerPassword } from '../../../services/sdk/customer/methods';
-import { CustomerChangePassword } from '@commercetools/platform-sdk';
+import { ISetDefaultAddress } from '../../../services/sdk/customer/types';
+import { setDefaultAddressId } from '../../../services/sdk/customer/methods';
 
-export const updPasswordThunk = createAsyncThunk<
+export const setDefaultAddressIdThunk = createAsyncThunk<
   IUser,
-  CustomerChangePassword,
+  ISetDefaultAddress,
   {
     state: { user: IUserSlice };
     rejectValue: string;
   }
 >(
-  'user/updPassword',
-  async (passwordsData, { rejectWithValue }) => {
+  'user/removeAddressThunk',
+  async (defaultAddressData, { rejectWithValue }) => {
     try {
-      const user = await changeCustomerPassword(passwordsData);
-      console.log(user);
+      const user = await setDefaultAddressId(defaultAddressData);
+
       return extractLocalUser(user.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
