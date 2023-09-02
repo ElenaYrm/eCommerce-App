@@ -2,7 +2,7 @@ import styles from './address.module.scss';
 import classNames from 'classnames';
 import { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { ModalWindow } from '../../../../shared/ModalWindow';
-import { ModalChildren } from './ModalChildren';
+import { EditCard } from './EditCard';
 import { selectUserData } from '../../../../../store/user/selectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../../store/store';
@@ -28,6 +28,7 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
       dispatch(getUserThunk());
     }
   }, [user, dispatch]);
+
   function isDefaultShipping(): boolean {
     return values.id === user.defaultShippingAddressId;
   }
@@ -47,7 +48,7 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
           Edit
         </button>
         <ModalWindow
-          children={<ModalChildren values={values} isShipping={true}></ModalChildren>}
+          children={<EditCard values={values} isShipping={true} addressId={addressId}></EditCard>}
           isOpen={isModalOpen}
           onClose={(): void => setIsModalOpen(!isModalOpen)}
         ></ModalWindow>

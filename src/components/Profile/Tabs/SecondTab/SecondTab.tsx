@@ -58,7 +58,6 @@ function SecondTab(): ReactElement {
         isShipping: isShippingAddress,
         isDefault: isDefault,
       };
-      console.log(addNewAddressData);
       dispatch(addNewAddressThunk(addNewAddressData));
     }
   }

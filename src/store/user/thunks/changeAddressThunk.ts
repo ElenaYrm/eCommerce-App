@@ -2,21 +2,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { checkError, extractLocalUser } from '../../../utils';
 import { IUser } from '../../../types/interfaces';
 import { IUserSlice } from '../types';
-import { getCustomer } from '../../../services/sdk/customer/methods';
+import { IUpdateUser } from '../../../services/sdk/customer/types';
+import { changeAddress } from '../../../services/sdk/customer/methods';
 
-export const getUserThunk = createAsyncThunk<
+export const changeAddressThunk = createAsyncThunk<
   IUser,
-  void,
+  IUpdateUser,
   {
     state: { user: IUserSlice };
     rejectValue: string;
   }
 >(
-  'auth/getCustomerThunk',
-  async (_, { rejectWithValue }) => {
+  'user/addNewAddressThunk',
+  async (objects, { rejectWithValue }) => {
     try {
-      const user = await getCustomer();
-      return extractLocalUser(user.body);
+      const results = await changeAddress(objects);
+
+      return extractLocalUser(results);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }
