@@ -6,6 +6,11 @@ export interface IUpdateUser {
   action: CustomerUpdateAction[];
 }
 
+export interface IAddNewAddress extends IUpdateUser {
+  isDefault: boolean;
+  isShipping: boolean;
+}
+
 export interface IRemoveAddress {
   customerId: string;
   addressId: string;

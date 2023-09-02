@@ -7,9 +7,21 @@ interface IBtnProps {
   setIsShipping: (value?: boolean) => void;
   value: string;
   label: string;
+  callback: () => void;
 }
 
-function Radiobtn({ isShipping, setIsShipping, value, label }: IBtnProps): ReactElement {
+function Radiobtn({ isShipping, setIsShipping, value, label, callback }: IBtnProps): ReactElement {
+  const hasActiveClass = isShipping ? styles.toggleShipping__btn_active : '';
+
+  const handleRadioChange = (): void => {
+    if (!hasActiveClass) {
+      setIsShipping(!isShipping);
+      if (callback) {
+        callback();
+      }
+    }
+  };
+
   return (
     <div className={classNames(styles.toggleShipping__btn, isShipping ? styles.toggleShipping__btn_active : '')}>
       <input
@@ -19,6 +31,7 @@ function Radiobtn({ isShipping, setIsShipping, value, label }: IBtnProps): React
         name="addressType"
         checked={isShipping}
         onChange={(): void => setIsShipping(!isShipping)}
+        onClick={handleRadioChange}
       />
       <label>{label}</label>
     </div>

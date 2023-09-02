@@ -14,9 +14,10 @@ import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
-import { IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
+import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
 import { removeAddressThunk } from '../../../../store/user/thunks/removeAddressThunk';
 import { setDefaultAddressIdThunk } from '../../../../store/user/thunks/setDefaultAddressIdThunk';
+import { addNewAddressThunk } from '../../../../store/user/thunks/addNewAddressThunk';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -37,7 +38,29 @@ function SecondTab(): ReactElement {
   }, [user, dispatch]);
 
   function handleSubmit(values: IAddressesProfile): void {
-    console.log(values);
+    const isShippingAddress = values.shipping.city !== '';
+    const isDefault = isShippingAddress ? values.shipping.isDefault : values.billing.isDefault;
+    if (isDefault !== undefined) {
+      const addNewAddressData: IAddNewAddress = {
+        id: user.id,
+        version: user.version,
+        action: [
+          {
+            action: 'addAddress',
+            address: {
+              streetName: isShippingAddress ? values.shipping.streetName : values.billing.streetName,
+              city: isShippingAddress ? values.shipping.city : values.billing.city,
+              postalCode: isShippingAddress ? values.shipping.postalCode : values.billing.postalCode,
+              country: isShippingAddress ? values.shipping.country : values.billing.country,
+            },
+          },
+        ],
+        isShipping: isShippingAddress,
+        isDefault: isDefault,
+      };
+      console.log(addNewAddressData);
+      dispatch(addNewAddressThunk(addNewAddressData));
+    }
   }
 
   function deleteAddress(addressId: string): void {
@@ -72,24 +95,25 @@ function SecondTab(): ReactElement {
   return (
     <div className={styles.root}>
       {isEditMode && (
-        <>
-          <div className={classNames(styles.root__toggleShipping, styles.toggleShipping)}>
-            <Radiobtn
-              isShipping={isShipping}
-              setIsShipping={(): void => setIsShipping(true)}
-              value={'shipping'}
-              label="Shipping address"
-            ></Radiobtn>
-            <Radiobtn
-              isShipping={!isShipping}
-              setIsShipping={(): void => setIsShipping(false)}
-              value={'billing'}
-              label="Billing address"
-            ></Radiobtn>
-          </div>
-
-          <Formik initialValues={initialEditAddresses} onSubmit={handleSubmit}>
-            {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values }): ReactElement => (
+        <Formik initialValues={initialEditAddresses} onSubmit={handleSubmit}>
+          {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values, resetForm }): ReactElement => (
+            <>
+              <div className={classNames(styles.root__toggleShipping, styles.toggleShipping)}>
+                <Radiobtn
+                  isShipping={isShipping}
+                  setIsShipping={(): void => setIsShipping(true)}
+                  value={'shipping'}
+                  label="Shipping address"
+                  callback={resetForm}
+                ></Radiobtn>
+                <Radiobtn
+                  isShipping={!isShipping}
+                  setIsShipping={(): void => setIsShipping(false)}
+                  value={'billing'}
+                  label="Billing address"
+                  callback={resetForm}
+                ></Radiobtn>
+              </div>
               <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
                 <AddressForm
                   type={isShipping ? 'shipping' : 'billing'}
@@ -107,9 +131,9 @@ function SecondTab(): ReactElement {
                   </button>
                 )}
               </form>
-            )}
-          </Formik>
-        </>
+            </>
+          )}
+        </Formik>
       )}
 
       {!isEditMode && (
