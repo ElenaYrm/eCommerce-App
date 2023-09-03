@@ -32,6 +32,9 @@ export default function Home(): ReactElement {
         <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
           Main
         </Link>
+        <Link to={PATH[Page.Catalog]} className={styles.home__link}>
+          Catalog
+        </Link>
         <Link to={PATH[Page.Login]} className={styles.home__link}>
           Login
         </Link>
@@ -41,6 +44,24 @@ export default function Home(): ReactElement {
         <Link to={PATH[Page.Cart]} className={styles.home__link}>
           Cart
         </Link>
+      </div>
+
+      <div className={styles.home__content}>
+        <p>
+          To keep the project's concept clean, we use word <em>"Artists"</em> instead of "Brands".
+        </p>
+      </div>
+
+      <div className={styles.home__content}>
+        <p>
+          For <em>discounted</em> products check these artists: Cédrix Crespel, KAWS
+        </p>
+      </div>
+
+      <div className={styles.home__content}>
+        <p>
+          For <em>a single image</em> in the gallery check these artists: Jef Verheyen, Masoami Raku
+        </p>
       </div>
 
       {isNewUser && (

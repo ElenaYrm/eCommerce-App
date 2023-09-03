@@ -74,17 +74,26 @@ export default function Header(): ReactElement {
             <nav className={classnames(styles.nav, menuOpen ? styles.open : '')}>
               {isAuthorized ? (
                 <>
-                  <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
-                    Logout
-                  </Link>
+                  <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
+                    Catalog
+                  </NavLink>
                   <NavLink to={PATH[Page.Profile]} className={styles.nav__link} onClick={closeMenu}>
                     Profile
                   </NavLink>
+                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
+                    Cart
+                  </NavLink>
+                  <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
+                    Logout
+                  </Link>
                 </>
               ) : (
                 <>
                   <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
                     Catalog
+                  </NavLink>
+                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
+                    Cart
                   </NavLink>
                   <NavLink to={PATH[Page.Login]} className={styles.nav__link} onClick={closeMenu}>
                     Login
@@ -94,9 +103,6 @@ export default function Header(): ReactElement {
                   </NavLink>
                 </>
               )}
-              <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
-                Cart
-              </NavLink>
             </nav>
           )}
         </div>
