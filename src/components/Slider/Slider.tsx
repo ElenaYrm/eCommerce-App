@@ -40,7 +40,9 @@ export function Slider({ images, fullscreen, handleClick, className }: SliderPro
         )}
         initialSlide={0}
         onClick={(): void => {
-          if (!fullscreen) handleClick();
+          if (!fullscreen) {
+            handleClick();
+          }
         }}
       >
         {images?.map((image) => (
