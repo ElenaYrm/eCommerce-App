@@ -9,24 +9,25 @@ import { Cart } from '../../pages/Cart';
 import { Profile } from '../../pages/Profile';
 import { ProtectedRoute } from '../hoc/ProtectedRoute';
 import { PATH } from '../constants/paths';
+import { Page } from '../types';
 import { Product } from '../../pages/Product';
 import { Catalog } from '../../pages/Catalog';
 
 export default function Router(): ReactElement {
   return (
     <Routes>
-      <Route path={PATH.home} element={<Layout />}>
+      <Route path={PATH[Page.Home]} element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path={PATH.login} element={<Login />} />
-        <Route path={PATH.register} element={<Register />} />
-        <Route path={PATH.cart} element={<Cart />} />
-        <Route path={`${PATH.product}/:id`} element={<Product />} />
-        <Route path={PATH.catalog} element={<Catalog />} />
-        <Route path={PATH.notFound} element={<NotFound />} />
+        <Route path={PATH[Page.Login]} element={<Login />} />
+        <Route path={PATH[Page.Register]} element={<Register />} />
+        <Route path={PATH[Page.Cart]} element={<Cart />} />
+        <Route path={`${PATH[Page.Product]}/:id`} element={<Product />} />
+        <Route path={PATH[Page.Catalog]} element={<Catalog />} />
+        <Route path={PATH[Page.NotFound]} element={<NotFound />} />
         <Route
-          path={PATH.profile}
+          path={PATH[Page.Profile]}
           element={
-            <ProtectedRoute redirectLink={PATH.login}>
+            <ProtectedRoute redirectLink={PATH[Page.Login]}>
               <Profile />
             </ProtectedRoute>
           }

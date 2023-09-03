@@ -19,7 +19,7 @@ export default function Register(): ReactElement {
 
   useEffect(() => {
     if (isAuthorized) {
-      navigate(PATH.home);
+      navigate(PATH[Page.Home]);
     }
 
     return (): void => {

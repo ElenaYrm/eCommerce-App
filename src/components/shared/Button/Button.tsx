@@ -7,11 +7,12 @@ interface IButtonProps {
   type: 'submit' | 'reset' | 'button';
   name: string;
   className?: string;
+  handleClick?: () => void;
 }
 
-function Button({ type, name, className }: IButtonProps): ReactElement {
+function Button({ type, name, className, handleClick }: IButtonProps): ReactElement {
   return (
-    <button type={type} className={classnames(styles.btn, className || '')}>
+    <button type={type} onClick={handleClick} className={classnames(styles.btn, className || '')}>
       {name}
     </button>
   );

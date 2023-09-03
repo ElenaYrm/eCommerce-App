@@ -8,6 +8,7 @@ import { PATH } from '../../router/constants/paths';
 import Logo from '../../assets/icons/logo.svg';
 
 import styles from './header.module.scss';
+import { Page } from '../../router/types';
 
 export default function Header(): ReactElement {
   const navigate = useNavigate();
@@ -20,13 +21,13 @@ export default function Header(): ReactElement {
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
     dispatch(logoutThunk());
-    navigate(PATH.home);
+    navigate(PATH[Page.Home]);
   }
 
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
-        <Link to={PATH.home} className={styles.logo}>
+        <Link to={PATH[Page.Home]} className={styles.logo}>
           <Logo />
         </Link>
 
@@ -34,24 +35,24 @@ export default function Header(): ReactElement {
           <nav className={styles.nav}>
             {isAuthorized ? (
               <>
-                <Link to={PATH.home} onClick={handleLogout} className={styles.nav__link}>
+                <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
                   Logout
                 </Link>
-                <NavLink to={PATH.profile} className={styles.nav__link}>
+                <NavLink to={PATH[Page.Profile]} className={styles.nav__link}>
                   Profile
                 </NavLink>
               </>
             ) : (
               <>
-                <NavLink to={PATH.login} className={styles.nav__link}>
+                <NavLink to={PATH[Page.Login]} className={styles.nav__link}>
                   Login
                 </NavLink>
-                <NavLink to={PATH.register} className={styles.nav__link}>
+                <NavLink to={PATH[Page.Register]} className={styles.nav__link}>
                   Register
                 </NavLink>
               </>
             )}
-            <NavLink to={PATH.cart} className={styles.nav__link}>
+            <NavLink to={PATH[Page.Cart]} className={styles.nav__link}>
               Cart
             </NavLink>
           </nav>
