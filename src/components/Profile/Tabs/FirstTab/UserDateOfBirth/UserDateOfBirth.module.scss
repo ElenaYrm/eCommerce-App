@@ -1,9 +1,15 @@
+@import '../../../../../styles/common';
+
 .root {
   margin-bottom: 4rem;
 
   &__container {
     display: flex;
     gap: 2.5rem;
+  }
+
+  &__error {
+    @include input-error()
   }
 
 }

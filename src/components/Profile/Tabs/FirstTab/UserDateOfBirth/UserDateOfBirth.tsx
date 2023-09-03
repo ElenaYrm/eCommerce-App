@@ -1,12 +1,12 @@
+import styles from './UserDateOfBirth.module.scss';
 import { ReactElement } from 'react';
 import { IUserFormProps } from '../../../../RegisterForm/UserForm/UserForm';
-import styles from './UserDateOfBirth.module.scss';
 import classNames from 'classnames';
 import { SelectField } from '../../../../shared/SelectField';
 import { Input } from '../../../../../types/enums';
 import { dates, months, years } from '../../../../../constant';
 
-function UserDateOfBirth({ handleChange, values, touched, errors }: IUserFormProps): ReactElement {
+function UserDateOfBirth({ handleChange, values, errors }: IUserFormProps): ReactElement {
   const { date, month, year } = values;
   return (
     <div className={classNames(styles.root)}>
@@ -34,8 +34,7 @@ function UserDateOfBirth({ handleChange, values, touched, errors }: IUserFormPro
             placeholder={Input.Year}
           />
         </div>
-
-        {errors?.date && touched?.date ? <span className={styles.selects__error}>{errors.date}</span> : null}
+        {errors?.date ? <span className={styles.root__error}>{errors.date}</span> : null}
       </div>
     </div>
   );
