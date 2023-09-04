@@ -9,6 +9,7 @@ import styles from './passwordField.module.scss';
 interface PasswordFieldProps extends Omit<InputFieldProps, 'type' | 'validate'> {
   value: string;
   formName?: string;
+  isDisabled?: boolean;
 }
 
 export default function PasswordField(props: PasswordFieldProps): ReactElement {
@@ -25,7 +26,7 @@ export default function PasswordField(props: PasswordFieldProps): ReactElement {
 
   return (
     <>
-      <InputField type={hidden ? 'password' : 'text'} {...props} validate={validate}>
+      <InputField type={hidden ? 'password' : 'text'} {...props} validate={validate} isDisabled={props.isDisabled}>
         <button type="button" className={styles.button__toggle} onClick={togglePasswordType}>
           {hidden ? 'Show' : 'Hide'}
         </button>

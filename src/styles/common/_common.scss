@@ -26,7 +26,12 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 @media all and (max-width: 480px) {
+
   body,
   input,
   select,

@@ -27,6 +27,7 @@ export interface IUserFormProps {
   errors: FormikErrors<IUserForm> | undefined;
   setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
   className?: string;
+  isDisabled?: boolean;
 }
 
 export default function UserForm({

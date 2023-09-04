@@ -12,6 +12,7 @@ import { PATH } from '../constants/paths';
 import { Page } from '../types';
 import { Product } from '../../pages/Product';
 import { Catalog } from '../../pages/Catalog';
+import { EditingProvider } from '../../pages/Profile/profileContext';
 
 export default function Router(): ReactElement {
   return (
@@ -28,7 +29,9 @@ export default function Router(): ReactElement {
           path={PATH[Page.Profile]}
           element={
             <ProtectedRoute redirectLink={PATH[Page.Login]}>
-              <Profile />
+              <EditingProvider>
+                <Profile />
+              </EditingProvider>
             </ProtectedRoute>
           }
         />

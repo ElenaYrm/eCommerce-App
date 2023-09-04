@@ -1,0 +1,20 @@
+@import '../../styles/common';
+
+.root {
+  margin: auto;
+  height: 100%;
+  max-width: 72rem;
+  background-color: $light-primary;
+
+  &__container {
+    padding: 4rem;
+    padding-top: 10rem;
+    position: relative;
+    height: 100%;
+
+    @media(max-width: 600px) {
+      padding: 1rem;
+      padding-top: 10rem;
+    }
+  }
+}
