@@ -1,5 +1,13 @@
 @import '../../styles/common';
 
+.main__container {
+  height: 100%;
+  background-image: url('../../../public/images/bg-home.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .root {
   margin: auto;
   height: 100%;
@@ -12,9 +20,13 @@
     position: relative;
     height: 100%;
 
-    @media(max-width: 600px) {
-      padding: 1rem;
+    @media(max-width: 720px) {
+      padding: 2rem;
       padding-top: 10rem;
+    }
+
+    @media(max-width: 480px) {
+      padding: 10rem 1rem 4rem;
     }
   }
 }

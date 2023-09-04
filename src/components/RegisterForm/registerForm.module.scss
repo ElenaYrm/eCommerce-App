@@ -11,7 +11,7 @@
   &__checkfield {
     @include check-field();
     width: max-content;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   &__checkbox {

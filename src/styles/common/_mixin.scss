@@ -1,5 +1,5 @@
-@use "variables";
-@import "variables";
+@use 'variables';
+@import 'variables';
 
 @mixin font($weight: regular, $type, $color: $dark) {
   $font-type: map-get(variables.$font-type-map, $type);
@@ -130,19 +130,26 @@
   height: unset;
   box-shadow: none;
   background-color: inherit;
-  opacity: .3;
-  transition: color $transition-set, opacity $transition-set;
+  opacity: 0.3;
+  transition:
+    color $transition-set,
+    opacity $transition-set;
 
   &:hover {
     box-shadow: unset;
     background-color: inherit;
-    font-size: 2rem;
     color: $primary;
     opacity: 1;
   }
 
-  @media(max-width: 600px) {
+  @media (max-width: 720px) {
+    right: 2rem;
+    top: 8rem;
+  }
+
+  @media (max-width: 480px) {
     right: 1rem;
+    font-size: 1.8rem;
     top: 7rem;
   }
 }
@@ -164,9 +171,9 @@
   user-select: none;
   pointer-events: none;
   text-align: center;
+  z-index: 1000;
 
-
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     padding: 1.5rem 2.5rem;
     bottom: 8rem;
     border-radius: 2rem;

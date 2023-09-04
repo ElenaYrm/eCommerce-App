@@ -29,39 +29,37 @@ export default function Home(): ReactElement {
   return (
     <div className={styles.home} data-testid="home">
       <div className={styles.home__content}>
-        <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
-          Main
-        </Link>
-        <Link to={PATH[Page.Catalog]} className={styles.home__link}>
-          Catalog
-        </Link>
-        <Link to={PATH[Page.Login]} className={styles.home__link}>
-          Login
-        </Link>
-        <Link to={PATH[Page.Register]} className={styles.home__link}>
-          Register
-        </Link>
-        <Link to={PATH[Page.Cart]} className={styles.home__link}>
-          Cart
-        </Link>
+        <div className={styles.home__content_container}>
+          <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
+            Main
+          </Link>
+          <Link to={PATH[Page.Catalog]} className={styles.home__link}>
+            Catalog
+          </Link>
+          <Link to={PATH[Page.Login]} className={styles.home__link}>
+            Login
+          </Link>
+          <Link to={PATH[Page.Register]} className={styles.home__link}>
+            Register
+          </Link>
+          <Link to={PATH[Page.Cart]} className={styles.home__link}>
+            Cart
+          </Link>
+        </div>
       </div>
 
       <div className={styles.home__content}>
-        <p>
-          To keep the project's concept clean, we use word <em>"Artists"</em> instead of "Brands".
-        </p>
-      </div>
-
-      <div className={styles.home__content}>
-        <p>
-          For <em>discounted</em> products check these artists: Cédrix Crespel, KAWS
-        </p>
-      </div>
-
-      <div className={styles.home__content}>
-        <p>
-          For <em>a single image</em> in the gallery check these artists: Jef Verheyen, Masoami Raku
-        </p>
+        <div className={styles.home__content_container}>
+          <p>
+            To keep the project's concept clean, we use word <em>"Artists"</em> instead of "Brands".
+          </p>
+          <p>
+            For <em>discounted</em> products check these artists: Cédrix Crespel, KAWS
+          </p>
+          <p>
+            For <em>a single image</em> in the gallery check these artists: Jef Verheyen, Masoami Raku
+          </p>
+        </div>
       </div>
 
       {isNewUser && (

@@ -12,6 +12,91 @@ exports[`Test Home page:  should render Home page with success register message 
         <div
           class="home__content"
         >
+          <div
+            class="home__content_container"
+          >
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
+        </div>
+        <div
+          class="home__content"
+        >
+          <div
+            class="home__content_container"
+          >
+            <p>
+              To keep the project's concept clean, we use word 
+              <em>
+                "Artists"
+              </em>
+               instead of "Brands".
+            </p>
+            <p>
+              For 
+              <em>
+                discounted
+              </em>
+               products check these artists: Cédrix Crespel, KAWS
+            </p>
+            <p>
+              For 
+              <em>
+                a single image
+              </em>
+               in the gallery check these artists: Jef Verheyen, Masoami Raku
+            </p>
+          </div>
+        </div>
+        <div
+          class="message"
+        >
+          <span>
+            Hello and welcome!ヾ(☆▽☆)
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="home"
+      data-testid="home"
+    >
+      <div
+        class="home__content"
+      >
+        <div
+          class="home__content_container"
+        >
           <a
             class="home__link active"
             href="/"
@@ -43,8 +128,12 @@ exports[`Test Home page:  should render Home page with success register message 
             Cart
           </a>
         </div>
+      </div>
+      <div
+        class="home__content"
+      >
         <div
-          class="home__content"
+          class="home__content_container"
         >
           <p>
             To keep the project's concept clean, we use word 
@@ -53,10 +142,6 @@ exports[`Test Home page:  should render Home page with success register message 
             </em>
              instead of "Brands".
           </p>
-        </div>
-        <div
-          class="home__content"
-        >
           <p>
             For 
             <em>
@@ -64,10 +149,6 @@ exports[`Test Home page:  should render Home page with success register message 
             </em>
              products check these artists: Cédrix Crespel, KAWS
           </p>
-        </div>
-        <div
-          class="home__content"
-        >
           <p>
             For 
             <em>
@@ -76,87 +157,6 @@ exports[`Test Home page:  should render Home page with success register message 
              in the gallery check these artists: Jef Verheyen, Masoami Raku
           </p>
         </div>
-        <div
-          class="message"
-        >
-          <span>
-            Hello and welcome!ヾ(☆▽☆)
-          </span>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="home"
-      data-testid="home"
-    >
-      <div
-        class="home__content"
-      >
-        <a
-          class="home__link active"
-          href="/"
-        >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/catalog"
-        >
-          Catalog
-        </a>
-        <a
-          class="home__link"
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          To keep the project's concept clean, we use word 
-          <em>
-            "Artists"
-          </em>
-           instead of "Brands".
-        </p>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          For 
-          <em>
-            discounted
-          </em>
-           products check these artists: Cédrix Crespel, KAWS
-        </p>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          For 
-          <em>
-            a single image
-          </em>
-           in the gallery check these artists: Jef Verheyen, Masoami Raku
-        </p>
       </div>
       <div
         class="message"
@@ -233,6 +233,84 @@ exports[`Test Home page:  should render Home page without success register messa
         <div
           class="home__content"
         >
+          <div
+            class="home__content_container"
+          >
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
+        </div>
+        <div
+          class="home__content"
+        >
+          <div
+            class="home__content_container"
+          >
+            <p>
+              To keep the project's concept clean, we use word 
+              <em>
+                "Artists"
+              </em>
+               instead of "Brands".
+            </p>
+            <p>
+              For 
+              <em>
+                discounted
+              </em>
+               products check these artists: Cédrix Crespel, KAWS
+            </p>
+            <p>
+              For 
+              <em>
+                a single image
+              </em>
+               in the gallery check these artists: Jef Verheyen, Masoami Raku
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="home"
+      data-testid="home"
+    >
+      <div
+        class="home__content"
+      >
+        <div
+          class="home__content_container"
+        >
           <a
             class="home__link active"
             href="/"
@@ -264,8 +342,12 @@ exports[`Test Home page:  should render Home page without success register messa
             Cart
           </a>
         </div>
+      </div>
+      <div
+        class="home__content"
+      >
         <div
-          class="home__content"
+          class="home__content_container"
         >
           <p>
             To keep the project's concept clean, we use word 
@@ -274,10 +356,6 @@ exports[`Test Home page:  should render Home page without success register messa
             </em>
              instead of "Brands".
           </p>
-        </div>
-        <div
-          class="home__content"
-        >
           <p>
             For 
             <em>
@@ -285,10 +363,6 @@ exports[`Test Home page:  should render Home page without success register messa
             </em>
              products check these artists: Cédrix Crespel, KAWS
           </p>
-        </div>
-        <div
-          class="home__content"
-        >
           <p>
             For 
             <em>
@@ -297,80 +371,6 @@ exports[`Test Home page:  should render Home page without success register messa
              in the gallery check these artists: Jef Verheyen, Masoami Raku
           </p>
         </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="home"
-      data-testid="home"
-    >
-      <div
-        class="home__content"
-      >
-        <a
-          class="home__link active"
-          href="/"
-        >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/catalog"
-        >
-          Catalog
-        </a>
-        <a
-          class="home__link"
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          To keep the project's concept clean, we use word 
-          <em>
-            "Artists"
-          </em>
-           instead of "Brands".
-        </p>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          For 
-          <em>
-            discounted
-          </em>
-           products check these artists: Cédrix Crespel, KAWS
-        </p>
-      </div>
-      <div
-        class="home__content"
-      >
-        <p>
-          For 
-          <em>
-            a single image
-          </em>
-           in the gallery check these artists: Jef Verheyen, Masoami Raku
-        </p>
       </div>
     </div>
   </div>,
