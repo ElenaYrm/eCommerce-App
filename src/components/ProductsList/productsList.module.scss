@@ -8,12 +8,21 @@
   grid-auto-rows: 44rem;
   gap: 2rem;
 
+  @media all and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media all and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
   &__item {
     width: 100%;
   }
 
   &__error {
     @include font(semibold, h1, $light-primary);
+    line-height: 120%;
     padding: 2.5rem;
     width: 100%;
     min-height: 145px;

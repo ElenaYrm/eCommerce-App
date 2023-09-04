@@ -1,0 +1,31 @@
+@import 'src/styles/common';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  background-color: $light-primary;
+  overflow: auto;
+  padding: 8rem 1rem;
+
+  &__title {
+    @include font(semibold, h1, $dark);
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    @include font(semibold, p2, $dark);
+    opacity: 0.3;
+
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+  }
+
+  &__filters {
+    width: 100%;
+  }
+}

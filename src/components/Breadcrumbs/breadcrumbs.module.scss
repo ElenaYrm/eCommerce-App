@@ -5,6 +5,10 @@
   text-align: left;
   margin-bottom: 4rem;
 
+  @media all and (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+
   &__list {
     display: flex;
     align-items: center;
