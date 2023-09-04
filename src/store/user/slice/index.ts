@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialUserState } from '../../../constant';
-import { getUserThunk, updPasswordThunk, updUserThunk } from '../thunks';
+import { getUserThunk, setDefaultAddressIdThunk, updPasswordThunk, updUserThunk } from '../thunks';
 import { removeAddressThunk } from '../thunks';
 import { addNewAddressThunk } from '../thunks';
 import { changeAddressThunk } from '../thunks';
@@ -98,6 +98,20 @@ const userSlice = createSlice({
         state.isSuccess = true;
       })
       .addCase(changeAddressThunk.rejected, (state, { payload }) => {
+        state.editStatus = 'error';
+        state.editError = payload || 'Something was wrong';
+      })
+      .addCase(setDefaultAddressIdThunk.pending, (state) => {
+        state.editStatus = 'loading';
+        state.editError = '';
+        state.isSuccess = false;
+      })
+      .addCase(setDefaultAddressIdThunk.fulfilled, (state, { payload }) => {
+        state.editStatus = 'success';
+        state.user = payload;
+        state.isSuccess = true;
+      })
+      .addCase(setDefaultAddressIdThunk.rejected, (state, { payload }) => {
         state.editStatus = 'error';
         state.editError = payload || 'Something was wrong';
       });

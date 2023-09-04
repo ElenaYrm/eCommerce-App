@@ -9,8 +9,14 @@ import { ErrorMessage } from '../../components/shared/ErrorMessage';
 import { Tabs } from '../../components/Profile/Tabs';
 import { useIsEditMode } from './profileContext';
 import { GreetingTitle } from '../../components/Profile/GreetingTitle';
+import { selectIsAuthorized } from '../../store/auth/selectors';
+import { PATH } from '../../router/constants/paths.ts';
+import { Page } from '../../router/types';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile(): ReactElement {
+  const isAuthorized = useSelector(selectIsAuthorized);
+  const navigate = useNavigate();
   const user = useSelector(selectUserData);
   const { status, error } = useSelector(selectUserLoadingInfo);
   const dispatch = useAppDispatch();
@@ -19,7 +25,11 @@ export default function Profile(): ReactElement {
     if (!user.id) {
       dispatch(getUserThunk());
     }
-  }, [user, dispatch]);
+
+    if (!isAuthorized) {
+      navigate(PATH[Page.Login]);
+    }
+  }, [user, dispatch, isAuthorized, navigate]);
 
   const isEditMode = useIsEditMode();
 

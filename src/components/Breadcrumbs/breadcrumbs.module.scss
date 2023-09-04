@@ -1,6 +1,13 @@
+@import 'src/styles/common';
+
 .crumbs {
   width: 100%;
   text-align: left;
+  margin-bottom: 4rem;
+
+  @media all and (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 
   &__list {
     display: flex;
@@ -8,11 +15,12 @@
     justify-content: flex-start;
   }
 
-  &__item {
-    color: #38BF70;
+  &__link {
+    @include font(regular, p3, $dark);
+    text-decoration: none;
+  }
 
-    &_active {
-      color: #f42222;
-    }
+  &__separator {
+    white-space: pre-wrap;
   }
 }

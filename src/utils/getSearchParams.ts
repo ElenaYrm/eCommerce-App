@@ -4,9 +4,7 @@ import { SearchParams } from '../types/enums';
 export function getSearchParams(search: URLSearchParams): { [p: string]: QueryParam } {
   const queryArgs: { [p: string]: QueryParam } = {};
 
-  if (search.get(SearchParams.Search)) {
-    queryArgs['text.en-US'] = `'${search}'`;
-  }
+  queryArgs.fuzzy = true;
 
   const filters: string[] = [];
   if (search.get(SearchParams.Category)) {
@@ -34,10 +32,16 @@ export function getSearchParams(search: URLSearchParams): { [p: string]: QueryPa
     queryArgs.filter = filters;
   }
 
+  queryArgs.limit = 20;
+
   if (search.get(SearchParams.Sort)) {
     const value = search.get(SearchParams.Sort);
     queryArgs.sort = [value || ''];
-    queryArgs.fuzzy = true;
+  }
+
+  if (search.get(SearchParams.Search)) {
+    const value = search.get(SearchParams.Search);
+    queryArgs['text.en-US'] = `'${value}'`;
   }
 
   return queryArgs;

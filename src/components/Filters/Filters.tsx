@@ -1,18 +1,16 @@
 import { ReactElement } from 'react';
-import classnames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { PriceFilter } from './PriceFilter';
 import { ColorFilter } from './ColorFilter';
 import { SizeFilter } from './SizeFilter';
 import { BrandFilter } from './BrandFilter';
-import { CategoryFilter } from './CategoryFilter';
 import { changeParams } from '../../utils';
 import { SearchParams } from '../../types/enums';
 import { FiltersProps } from './types';
 
 import styles from './filters.module.scss';
 
-function Filters({ className }: FiltersProps): ReactElement {
+function Filters({ className, onClick, isShowResults }: FiltersProps): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
 
   function handleClick(): void {
@@ -22,17 +20,35 @@ function Filters({ className }: FiltersProps): ReactElement {
     changeParams(setSearchParams, '', SearchParams.Brand);
     changeParams(setSearchParams, '', SearchParams.Color);
     changeParams(setSearchParams, '', SearchParams.Size);
+
+    if (isShowResults) {
+      onClick();
+    }
   }
 
   return (
-    <div className={classnames(styles.filters, className)}>
-      <CategoryFilter searchParams={searchParams} setSearchParams={setSearchParams} className={styles.filters__item} />
-      <PriceFilter searchParams={searchParams} setSearchParams={setSearchParams} className={styles.filters__item} />
-      <BrandFilter searchParams={searchParams} setSearchParams={setSearchParams} className={styles.filters__item} />
-      <ColorFilter searchParams={searchParams} setSearchParams={setSearchParams} className={styles.filters__item} />
-      <SizeFilter searchParams={searchParams} setSearchParams={setSearchParams} className={styles.filters__item} />
-      <div>
-        <button type="button" onClick={handleClick}>
+    <div className={className || ''}>
+      <ul className={styles.list}>
+        <li className={styles.filters__item}>
+          <PriceFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+        </li>
+        <li className={styles.filters__item}>
+          <BrandFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+        </li>
+        <li className={styles.filters__item}>
+          <ColorFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+        </li>
+        <li className={styles.filters__item}>
+          <SizeFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+        </li>
+      </ul>
+      <div className={styles.filters__wrapper}>
+        {isShowResults && (
+          <button type="button" onClick={onClick} className={styles.filters__results}>
+            Show Results
+          </button>
+        )}
+        <button type="button" onClick={handleClick} className={styles.filters__btn}>
           Clear filters
         </button>
       </div>

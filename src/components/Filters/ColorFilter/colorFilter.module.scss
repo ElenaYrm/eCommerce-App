@@ -1,11 +1,82 @@
 @import 'src/styles/common';
 
 .color {
+  &__header {
+    @include accordion-header();
+  }
+
   &__title {
-    margin-bottom: 0.5rem;
+    @include font(semibold, p1, $dark);
+
+    &_close {
+      font-weight: bold;
+    }
+  }
+
+  &__icon {
+    @include accordion-icon();
+    background-image: url('../../../assets/icons/arrow-right.svg');
+
+    &_down {
+      transform: rotate(90deg);
+    }
+
+    &_up {
+      transform: rotate(-90deg);
+    }
   }
 
   &__form {
     @include filter();
+    padding: 1rem 0 3rem;
+  }
+
+  &__item {
+    @include check-field();
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid $bullet-grey;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      width: 1rem;
+      height: 1rem;
+      background-color: $green;
+      border-radius: 100%;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.1s ease-in;
+    }
+
+    &_active {
+      border-color: $dark;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__color {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    border: 0.1rem solid transparent;
+  }
+
+  &__input {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
   }
 }

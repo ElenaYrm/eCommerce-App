@@ -38,6 +38,12 @@ exports[`Test Home page:  should render Home page with success register message 
           </a>
           <a
             class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
             href="/cart"
           >
             Cart
@@ -117,6 +123,12 @@ exports[`Test Home page:  should render Home page with success register message 
           href="/register"
         >
           Register
+        </a>
+        <a
+          class="home__link"
+          href="/profile"
+        >
+          Profile
         </a>
         <a
           class="home__link"
@@ -259,6 +271,12 @@ exports[`Test Home page:  should render Home page without success register messa
           </a>
           <a
             class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
             href="/cart"
           >
             Cart
@@ -331,6 +349,12 @@ exports[`Test Home page:  should render Home page without success register messa
           href="/register"
         >
           Register
+        </a>
+        <a
+          class="home__link"
+          href="/profile"
+        >
+          Profile
         </a>
         <a
           class="home__link"

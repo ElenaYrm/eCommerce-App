@@ -1,11 +1,45 @@
 @import 'src/styles/common';
 
 .size {
+  &__header {
+    @include accordion-header();
+  }
+
   &__title {
-    margin-bottom: 0.5rem;
+    @include font(semibold, p1, $dark);
+
+    &_close {
+      font-weight: bold;
+    }
+  }
+
+  &__icon {
+    @include accordion-icon();
+    background-image: url('../../../assets/icons/arrow-right.svg');
+
+    &_down {
+      transform: rotate(90deg);
+    }
+
+    &_up {
+      transform: rotate(-90deg);
+    }
   }
 
   &__form {
     @include filter();
+    padding: 1rem 0 3rem;
+  }
+
+  &__item {
+    @include check-field();
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__input {
+    @include checkbox();
   }
 }

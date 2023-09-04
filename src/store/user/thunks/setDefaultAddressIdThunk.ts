@@ -13,7 +13,7 @@ export const setDefaultAddressIdThunk = createAsyncThunk<
     rejectValue: string;
   }
 >(
-  'user/removeAddressThunk',
+  'user/setDefaultAddressIdThunk',
   async (defaultAddressData, { rejectWithValue }) => {
     try {
       const user = await setDefaultAddressId(defaultAddressData);

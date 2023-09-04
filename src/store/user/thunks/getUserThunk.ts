@@ -12,7 +12,7 @@ export const getUserThunk = createAsyncThunk<
     rejectValue: string;
   }
 >(
-  'auth/getCustomerThunk',
+  'auth/getUserThunk',
   async (_, { rejectWithValue }) => {
     try {
       const user = await getCustomer();
