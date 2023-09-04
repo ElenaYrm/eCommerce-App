@@ -8,15 +8,16 @@ interface IButtonProps {
   name: string;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const noop = (): void => {
   return;
 };
 
-function Button({ type, name, className, onClick = noop }: IButtonProps): ReactElement {
+function Button({ type, name, className, onClick = noop, disabled }: IButtonProps): ReactElement {
   return (
-    <button type={type} className={classnames(styles.btn, className || '')} onClick={onClick}>
+    <button type={type} className={classnames(styles.btn, className || '')} onClick={onClick} disabled={disabled}>
       {name}
     </button>
   );

@@ -32,25 +32,22 @@
   display: flex;
 
   flex-basis: 100%;
-  justify-content: space-between;
+  justify-content: start;
 
   &__address {
     padding: 0.2rem 1rem;
     border-radius: 3.5rem;
+    font-size: 1.4rem;
     background-color: $background-gray;
     transition: opacity $transition-set;
 
     &_active {
       background-color: #c0ecd7;
-      color: $green;
+      color: #21693F;
     }
 
     &:hover {
       opacity: .5;
-    }
-
-    @media(max-width: 600px) {
-      font-size: 1.4rem;
     }
   }
 }
@@ -58,6 +55,7 @@
 .configureBtns {
   &__btn {
     @include font(regular, p1, $dark);
+    text-align: right;
     line-height: 22px;
     opacity: 0.3;
     transition: opacity $transition-set;

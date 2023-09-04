@@ -6,6 +6,9 @@ export interface IUserSlice {
   status: TStatus;
   error: string;
   user: IUser;
+  isSuccess: boolean;
+  editStatus: TStatus;
+  editError: string;
 }
 
 export interface IUpdPasswordData {

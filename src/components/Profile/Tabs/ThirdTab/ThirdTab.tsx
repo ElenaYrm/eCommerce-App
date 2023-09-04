@@ -7,10 +7,12 @@ import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../../../store/user/selectors';
+import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
+import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 export interface IChangePassword {
   password: string;
@@ -22,12 +24,34 @@ function ThirdTab(): ReactElement {
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
+  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
 
   useEffect(() => {
     if (!user.id) {
       dispatch(getUserThunk());
     }
-  }, [user, dispatch]);
+
+    if (editStatus === 'success') {
+      updateEditMode();
+      const timer = setTimeout(() => {
+        dispatch(deleteSuccessState());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (editError) {
+      const timer = setTimeout(() => {
+        dispatch(resetEditError());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IChangePassword): void {
     const updPassData: IUpdPasswordData = {
@@ -45,7 +69,7 @@ function ThirdTab(): ReactElement {
 
   return (
     <div className={styles.root}>
-      {!isEditMode ? (
+      {!isEditMode && (
         <div>
           <div>
             <div className={styles.root__label}>Password</div>
@@ -54,12 +78,16 @@ function ThirdTab(): ReactElement {
           <button className={styles.root__editBtn} type="button" onClick={(): void => updateEditMode()}>
             Change password
           </button>
+          {isSuccess && (
+            <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
+          )}
         </div>
-      ) : (
-        <Formik initialValues={initialChangePassord} onSubmit={handleSubmit} validateOnBlur={false}>
-          {({ handleSubmit, errors, touched, setFieldTouched, values }): ReactElement => (
-            <form className={styles.form} onSubmit={handleSubmit} noValidate>
-              <>
+      )}
+      {isEditMode && (
+        <>
+          <Formik initialValues={initialChangePassord} onSubmit={handleSubmit} validateOnBlur={false}>
+            {({ handleSubmit, errors, touched, setFieldTouched, values }): ReactElement => (
+              <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <PasswordField
                   fieldName={Input.Password}
                   placeholder="Password"
@@ -67,6 +95,7 @@ function ThirdTab(): ReactElement {
                   error={errors?.password}
                   touched={touched?.password}
                   setFieldTouched={setFieldTouched}
+                  isDisabled={editStatus === 'loading'}
                 />
                 <PasswordField
                   formName="register"
@@ -76,18 +105,24 @@ function ThirdTab(): ReactElement {
                   error={errors?.[Input.NewPassword]}
                   touched={touched?.[Input.NewPassword]}
                   setFieldTouched={setFieldTouched}
+                  isDisabled={editStatus === 'loading'}
                 />
-              </>
-
-              {isEditMode && <Button type="submit" name="Save changes" className={styles.form__button} />}
-              {isEditMode && (
+                <Button
+                  type="submit"
+                  name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                  className={styles.form__button}
+                  disabled={editStatus === 'loading'}
+                />
                 <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => updateEditMode(false)}>
                   Close
                 </button>
-              )}
-            </form>
+              </form>
+            )}
+          </Formik>
+          {editError && (
+            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
           )}
-        </Formik>
+        </>
       )}
     </div>
   );

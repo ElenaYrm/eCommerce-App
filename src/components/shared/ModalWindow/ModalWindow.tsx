@@ -39,7 +39,7 @@ function ModalWindow({ children, isOpen, onClose }: IModalWindow): ReactElement 
         <div className={styles.root}>
           <div className={styles.root__container}>
             <div className={styles.root__closeBtn} onClick={onClose}>
-              X
+              Close
             </div>
             {children}
           </div>

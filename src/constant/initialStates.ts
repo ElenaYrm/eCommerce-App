@@ -26,6 +26,9 @@ export const initialUserState: IUserSlice = {
   status: 'initial',
   error: '',
   user: initialUser,
+  isSuccess: false,
+  editStatus: 'initial',
+  editError: '',
 };
 
 export const initialProduct: IProduct = {

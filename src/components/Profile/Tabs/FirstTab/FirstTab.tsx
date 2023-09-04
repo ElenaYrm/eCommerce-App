@@ -11,17 +11,17 @@ import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
-import { selectUserData, selectUserLoadingInfo } from '../../../../store/user/selectors';
+import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk, updUserThunk } from '../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
-import { Loader } from '../../../shared/Loader';
+import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 function FirstTab(): ReactElement {
-  const { status, error } = useSelector(selectUserLoadingInfo);
+  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
@@ -31,7 +31,28 @@ function FirstTab(): ReactElement {
     if (!user.id) {
       dispatch(getUserThunk());
     }
-  }, [user, dispatch]);
+
+    if (editStatus === 'success') {
+      updateEditMode();
+      const timer = setTimeout(() => {
+        dispatch(deleteSuccessState());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (editError) {
+      const timer = setTimeout(() => {
+        dispatch(resetEditError());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;
@@ -61,7 +82,9 @@ function FirstTab(): ReactElement {
 
   return (
     <>
-      {status === 'loading' && <Loader />}
+      {editError && (
+        <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
+      )}
       <Formik initialValues={user} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
         {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
           <form
@@ -76,10 +99,10 @@ function FirstTab(): ReactElement {
               touched={touched?.[Input.FirstName]}
               validate={nameValidate}
               setFieldTouched={setFieldTouched}
-              isDisabled={!isEditMode}
               fieldName={Input.FirstName}
               labelText="Name"
               hideLabel={!isEditMode}
+              isDisabled={editStatus === 'loading' || !isEditMode}
             />
             <InputField
               className={`${styles.form__input} ${isEditMode ? styles.formEdit__input : ''}`}
@@ -88,10 +111,10 @@ function FirstTab(): ReactElement {
               touched={touched?.[Input.LastName]}
               validate={lastNameValidate}
               setFieldTouched={setFieldTouched}
-              isDisabled={!isEditMode}
               fieldName={Input.LastName}
               labelText="Last name"
               hideLabel={!isEditMode}
+              isDisabled={editStatus === 'loading' || !isEditMode}
             />
             <InputField
               className={classNames(
@@ -105,10 +128,10 @@ function FirstTab(): ReactElement {
               touched={touched?.[Input.Email]}
               validate={emailValidate}
               setFieldTouched={setFieldTouched}
-              isDisabled={!isEditMode}
               fieldName={Input.Email}
               labelText="Email"
               hideLabel={!isEditMode}
+              isDisabled={editStatus === 'loading' || !isEditMode}
             />
             {isEditMode && (
               <UserDateOfBirth
@@ -117,12 +140,20 @@ function FirstTab(): ReactElement {
                 values={user}
                 errors={errors}
                 setFieldTouched={setFieldTouched}
+                isDisabled={editStatus === 'loading' || !isEditMode}
               />
             )}
-            {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date} ${user.month} ${user.year}`}</div>}
+            {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date}.${user.month}.${user.year}`}</div>}
 
             {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => updateEditMode()} />}
-            {isEditMode && <Button name="Save changes" type="submit" className={styles.formEdit__btn} />}
+            {isEditMode && (
+              <Button
+                name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                type="submit"
+                className={styles.formEdit__btn}
+                disabled={editStatus === 'loading'}
+              />
+            )}
             {isEditMode && (
               <button
                 type="button"
@@ -130,6 +161,7 @@ function FirstTab(): ReactElement {
                 onClick={(): void => {
                   updateEditMode(false);
                   resetForm();
+                  dispatch(resetEditError());
                 }}
               >
                 Close
@@ -138,8 +170,7 @@ function FirstTab(): ReactElement {
           </form>
         )}
       </Formik>
-      {error && <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />}
-      {status === 'success' && !error && (
+      {isSuccess && (
         <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
       )}
     </>

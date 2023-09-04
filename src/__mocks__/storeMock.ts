@@ -48,6 +48,9 @@ export const initialUserSliceMock: IUserSlice = {
   user: initialUser,
   status: 'initial',
   error: '',
+  isSuccess: false,
+  editStatus: 'initial',
+  editError: '',
 };
 
 export const storeMock: RootState = {

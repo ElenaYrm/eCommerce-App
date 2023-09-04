@@ -6,7 +6,7 @@ import { SelectField } from '../../../../shared/SelectField';
 import { Input } from '../../../../../types/enums';
 import { dates, months, years } from '../../../../../constant';
 
-function UserDateOfBirth({ handleChange, values, errors }: IUserFormProps): ReactElement {
+function UserDateOfBirth({ handleChange, values, errors, isDisabled }: IUserFormProps): ReactElement {
   const { date, month, year } = values;
   return (
     <div className={classNames(styles.root)}>
@@ -18,6 +18,7 @@ function UserDateOfBirth({ handleChange, values, errors }: IUserFormProps): Reac
             fieldName={Input.Date}
             options={dates}
             placeholder={Input.Date}
+            isDisabled={isDisabled}
           />
           <SelectField
             handleChange={handleChange}
@@ -25,6 +26,7 @@ function UserDateOfBirth({ handleChange, values, errors }: IUserFormProps): Reac
             fieldName={Input.Month}
             options={months}
             placeholder={Input.Month}
+            isDisabled={isDisabled}
           />
           <SelectField
             handleChange={handleChange}
@@ -32,6 +34,7 @@ function UserDateOfBirth({ handleChange, values, errors }: IUserFormProps): Reac
             fieldName={Input.Year}
             options={years}
             placeholder={Input.Year}
+            isDisabled={isDisabled}
           />
         </div>
         {errors?.date ? <span className={styles.root__error}>{errors.date}</span> : null}

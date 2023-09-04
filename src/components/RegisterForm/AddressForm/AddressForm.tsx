@@ -22,6 +22,7 @@ interface IAddressFormProps {
   errors: FormikErrors<IAddressForm> | undefined;
   setFieldTouched: (field: string, isTouched?: boolean | undefined) => void;
   className?: string;
+  isDisabled?: boolean;
 }
 
 function AddressForm({
@@ -32,6 +33,7 @@ function AddressForm({
   touched,
   setFieldTouched,
   className,
+  isDisabled,
 }: IAddressFormProps): ReactElement {
   return (
     <div className={classNames(className, styles.address)}>
@@ -44,6 +46,7 @@ function AddressForm({
         placeholder="Street"
         validate={streetValidate}
         setFieldTouched={setFieldTouched}
+        isDisabled={isDisabled}
       />
 
       <InputField
@@ -53,6 +56,7 @@ function AddressForm({
         placeholder="City"
         validate={cityValidate}
         setFieldTouched={setFieldTouched}
+        isDisabled={isDisabled}
       />
 
       <div className={styles.address__select}>
@@ -63,6 +67,7 @@ function AddressForm({
           options={countries}
           placeholder={'Country'}
           validate={countryValidate}
+          isDisabled={isDisabled}
         />
 
         {errors?.[Input.Country] && touched?.[Input.Country] ? (
@@ -77,6 +82,7 @@ function AddressForm({
         placeholder="Postal code"
         validate={zipCodeValidate}
         setFieldTouched={setFieldTouched}
+        isDisabled={isDisabled}
       />
 
       <label className={styles.address__checkfield}>
@@ -85,6 +91,7 @@ function AddressForm({
           type="checkbox"
           checked={values[Input.IsDefault]}
           className={styles.address__checkbox}
+          isDisabled={isDisabled}
         />
         <span>Use as default address</span>
       </label>

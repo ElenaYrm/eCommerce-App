@@ -147,39 +147,29 @@
   }
 }
 
-@mixin success-response {
+@mixin responseMessage($color, $background-color) {
+  position: fixed;
+  display: flex;
+  bottom: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85vw;
+  max-width: 64rem;
   padding: 1.2rem 0;
-  display: flex;
   justify-content: center;
   align-items: center;
-  @include font(semibold, p1, $light-primary);
-  background-color: $green;
+  @include font(semibold, p1, $color);
+  background-color: $background-color;
   border-radius: 4rem;
   user-select: none;
   pointer-events: none;
   text-align: center;
 
-  @media(max-width: 800px) {
-    padding: 1.5rem 2.5rem;
-    border-radius: 2rem;
-
-  }
-}
-
-@mixin error-response {
-  padding: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $error-color;
-  @include font(semibold, p1, $light-primary);
-  border-radius: 4rem;
-  user-select: none;
-  pointer-events: none;
-  text-align: center;
 
   @media(max-width: 800px) {
     padding: 1.5rem 2.5rem;
+    bottom: 8rem;
     border-radius: 2rem;
+    width: 95vw;
   }
 }

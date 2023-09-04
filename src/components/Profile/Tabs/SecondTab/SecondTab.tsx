@@ -10,7 +10,7 @@ import { IAddressForm } from '../../../RegisterForm/AddressForm/AddressForm';
 import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { Radiobtn } from './Radiobtn';
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../../../store/user/selectors';
+import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
@@ -18,6 +18,8 @@ import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../
 import { removeAddressThunk } from '../../../../store/user/thunks/removeAddressThunk';
 import { setDefaultAddressIdThunk } from '../../../../store/user/thunks/setDefaultAddressIdThunk';
 import { addNewAddressThunk } from '../../../../store/user/thunks/addNewAddressThunk';
+import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -30,12 +32,34 @@ function SecondTab(): ReactElement {
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
+  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
 
   useEffect(() => {
     if (!user.id) {
       dispatch(getUserThunk());
     }
-  }, [user, dispatch]);
+
+    if (editStatus === 'success') {
+      updateEditMode();
+      const timer = setTimeout(() => {
+        dispatch(deleteSuccessState());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (editError) {
+      const timer = setTimeout(() => {
+        dispatch(resetEditError());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [user, dispatch, editStatus]);
 
   function handleSubmit(values: IAddressesProfile): void {
     const isShippingAddress = values.shipping.city !== '';
@@ -66,6 +90,7 @@ function SecondTab(): ReactElement {
     const addressData: IRemoveAddress = { version: user.version, customerId: user.id, addressId: addressId };
 
     dispatch(removeAddressThunk(addressData));
+    // updateEditMode();
   }
 
   function setDefaultAddress(e: MouseEvent, addressId: string): void {
@@ -91,49 +116,65 @@ function SecondTab(): ReactElement {
   return (
     <div className={styles.root}>
       {isEditMode && (
-        <Formik initialValues={initialEditAddresses} onSubmit={handleSubmit}>
-          {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values, resetForm }): ReactElement => (
-            <>
-              <div className={classNames(styles.root__toggleShipping, styles.toggleShipping)}>
-                <Radiobtn
-                  isShipping={isShipping}
-                  setIsShipping={(): void => setIsShipping(true)}
-                  value={'shipping'}
-                  label="Shipping address"
-                  callback={resetForm}
-                ></Radiobtn>
-                <Radiobtn
-                  isShipping={!isShipping}
-                  setIsShipping={(): void => setIsShipping(false)}
-                  value={'billing'}
-                  label="Billing address"
-                  callback={resetForm}
-                ></Radiobtn>
-              </div>
-              <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
-                <AddressForm
-                  type={isShipping ? 'shipping' : 'billing'}
-                  handleChange={handleChange}
-                  values={isShipping ? values.shipping : values.billing}
-                  touched={isShipping ? touched.shipping : touched.billing}
-                  errors={isShipping ? errors.shipping : errors.billing}
-                  setFieldTouched={setFieldTouched}
-                  className={styles.root__formContainer_form}
-                />
-                {isEditMode && <Button type="submit" name="Save address" className={styles.root__btn} />}
-                {isEditMode && (
-                  <button type="button" className={styles.root__closeBtn} onClick={(): void => updateEditMode(false)}>
-                    Close
-                  </button>
-                )}
-              </form>
-            </>
+        <>
+          <Formik initialValues={initialEditAddresses} onSubmit={handleSubmit}>
+            {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values, resetForm }): ReactElement => (
+              <>
+                <div className={classNames(styles.root__toggleShipping, styles.toggleShipping)}>
+                  <Radiobtn
+                    isShipping={isShipping}
+                    setIsShipping={(): void => setIsShipping(true)}
+                    value={'shipping'}
+                    label="Shipping address"
+                    callback={resetForm}
+                  ></Radiobtn>
+                  <Radiobtn
+                    isShipping={!isShipping}
+                    setIsShipping={(): void => setIsShipping(false)}
+                    value={'billing'}
+                    label="Billing address"
+                    callback={resetForm}
+                  ></Radiobtn>
+                </div>
+                <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
+                  <AddressForm
+                    type={isShipping ? 'shipping' : 'billing'}
+                    handleChange={handleChange}
+                    values={isShipping ? values.shipping : values.billing}
+                    touched={isShipping ? touched.shipping : touched.billing}
+                    errors={isShipping ? errors.shipping : errors.billing}
+                    setFieldTouched={setFieldTouched}
+                    className={styles.root__formContainer_form}
+                    isDisabled={editStatus === 'loading'}
+                  />
+                  {isEditMode && (
+                    <Button
+                      type="submit"
+                      name={editStatus === 'loading' ? 'Loading...' : 'Save address'}
+                      className={styles.root__btn}
+                      disabled={editStatus === 'loading'}
+                    />
+                  )}
+                  {isEditMode && (
+                    <button type="button" className={styles.root__closeBtn} onClick={(): void => updateEditMode(false)}>
+                      Close
+                    </button>
+                  )}
+                </form>
+              </>
+            )}
+          </Formik>
+          {editError && (
+            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
           )}
-        </Formik>
+        </>
       )}
 
       {!isEditMode && (
         <div>
+          {isSuccess && (
+            <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
+          )}
           <Button
             name="Add new address"
             className={styles.root__addAddressBtn}
