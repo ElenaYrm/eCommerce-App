@@ -73,22 +73,25 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
   }
 
   return (
-    <Formik initialValues={initialValue} onSubmit={handleSubmit}>
-      {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values }): ReactElement => (
-        <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
-          <AddressForm
-            type={isShipping ? 'shipping' : 'billing'}
-            handleChange={handleChange}
-            values={isShipping ? values.shipping : values.billing}
-            touched={isShipping ? touched.shipping : touched.billing}
-            errors={isShipping ? errors.shipping : errors.billing}
-            setFieldTouched={setFieldTouched}
-            className={styles.root__addressForm}
-          />
-          <Button type="submit" name="Save address" />
-        </form>
-      )}
-    </Formik>
+    <div className={styles.root}>
+      <h3 className={styles.root__title}>Edit address</h3>
+      <Formik initialValues={initialValue} onSubmit={handleSubmit}>
+        {({ handleSubmit, handleChange, setFieldTouched, touched, errors, values }): ReactElement => (
+          <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
+            <AddressForm
+              type={isShipping ? 'shipping' : 'billing'}
+              handleChange={handleChange}
+              values={isShipping ? values.shipping : values.billing}
+              touched={isShipping ? touched.shipping : touched.billing}
+              errors={isShipping ? errors.shipping : errors.billing}
+              setFieldTouched={setFieldTouched}
+              className={styles.root__addressForm}
+            />
+            <Button className={styles.root__btn} type="submit" name="Save address" />
+          </form>
+        )}
+      </Formik>
+    </div>
   );
 }
 

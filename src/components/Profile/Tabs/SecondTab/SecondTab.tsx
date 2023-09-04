@@ -64,11 +64,8 @@ function SecondTab(): ReactElement {
 
   function deleteAddress(addressId: string): void {
     const addressData: IRemoveAddress = { version: user.version, customerId: user.id, addressId: addressId };
-    if (confirm('Are you sure you want to delete this address?')) {
-      dispatch(removeAddressThunk(addressData));
-    } else {
-      return;
-    }
+
+    dispatch(removeAddressThunk(addressData));
   }
 
   function setDefaultAddress(e: MouseEvent, addressId: string): void {

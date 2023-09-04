@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
-import { CustomerChangePassword } from '@commercetools/platform-sdk';
+import { IUpdPasswordData } from '../../../../store/user/types';
 
 export interface IChangePassword {
   password: string;
@@ -30,11 +30,14 @@ function ThirdTab(): ReactElement {
   }, [user, dispatch]);
 
   function handleSubmit(values: IChangePassword): void {
-    const updPassData: CustomerChangePassword = {
-      id: user.id,
-      version: user.version,
-      currentPassword: values.password,
-      newPassword: values.newPassword,
+    const updPassData: IUpdPasswordData = {
+      email: user.email,
+      passwordData: {
+        id: user.id,
+        version: user.version,
+        currentPassword: values.password,
+        newPassword: values.newPassword,
+      },
     };
     console.log(values);
     dispatch(updPasswordThunk(updPassData));

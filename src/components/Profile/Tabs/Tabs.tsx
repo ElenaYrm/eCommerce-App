@@ -25,7 +25,7 @@ function Tabs(): ReactElement {
   };
 
   return (
-    <div className={classNames(styles.root, { [styles.rootEdit]: isTabListHidden })}>
+    <div className={classNames(styles.root)}>
       {status === 'loading' && <Loader />}
       {status === 'success' && !error && (
         <>
@@ -49,7 +49,7 @@ function Tabs(): ReactElement {
               );
             })}
           </div>
-          <div className="tab-content">{tabsList[activeTab].content}</div>
+          <div className={styles.root__tabContent}>{tabsList[activeTab].content}</div>
         </>
       )}
     </div>

@@ -130,20 +130,56 @@
   height: unset;
   box-shadow: none;
   background-color: inherit;
-  transition: none;
-  transition: opacity $opacity-primary ease-in-out;
-
-  &:disabled {
-    user-select: none;
-    opacity: 0.5;
-    pointer-events: none;
-  }
+  opacity: .3;
+  transition: color $transition-set, opacity $transition-set;
 
   &:hover {
     box-shadow: unset;
     background-color: inherit;
     font-size: 2rem;
-    color: $dark;
-    opacity: 0.5;
+    color: $primary;
+    opacity: 1;
+  }
+
+  @media(max-width: 600px) {
+    right: 1rem;
+    top: 7rem;
+  }
+}
+
+@mixin success-response {
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include font(semibold, p1, $light-primary);
+  background-color: $green;
+  border-radius: 4rem;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+
+  @media(max-width: 800px) {
+    padding: 1.5rem 2.5rem;
+    border-radius: 2rem;
+
+  }
+}
+
+@mixin error-response {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $error-color;
+  @include font(semibold, p1, $light-primary);
+  border-radius: 4rem;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+
+  @media(max-width: 800px) {
+    padding: 1.5rem 2.5rem;
+    border-radius: 2rem;
   }
 }

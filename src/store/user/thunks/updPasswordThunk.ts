@@ -1,13 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { checkError, extractLocalUser } from '../../../utils';
 import { IUser } from '../../../types/interfaces';
-import { IUserSlice } from '../types';
+import { IUpdPasswordData, IUserSlice } from '../types';
 import { changeCustomerPassword } from '../../../services/sdk/customer/methods';
-import { CustomerChangePassword } from '@commercetools/platform-sdk';
+import { loginCustomer } from '../../../services/sdk/auth/methods';
+import { UserAuthOptions } from '@commercetools/sdk-client-v2';
+import { tokenData } from '../../../services/sdk/auth/token';
 
 export const updPasswordThunk = createAsyncThunk<
   IUser,
-  CustomerChangePassword,
+  IUpdPasswordData,
   {
     state: { user: IUserSlice };
     rejectValue: string;
@@ -16,9 +18,17 @@ export const updPasswordThunk = createAsyncThunk<
   'user/updPassword',
   async (passwordsData, { rejectWithValue }) => {
     try {
-      const user = await changeCustomerPassword(passwordsData);
-      console.log(user);
-      return extractLocalUser(user.body);
+      await changeCustomerPassword(passwordsData.passwordData);
+      const loginData: UserAuthOptions = {
+        username: passwordsData.email,
+        password: passwordsData.passwordData.newPassword,
+      };
+      const user = await loginCustomer(loginData);
+      const token = tokenData.get().refreshToken;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+      return extractLocalUser(user);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

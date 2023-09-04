@@ -10,20 +10,21 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  z-index: 101;
 
   &__container {
     position: relative;
     display: flex;
-    padding: 4rem;
+    padding: 5rem;
     flex-direction: column;
     background-color: $light-primary;
+    border-radius: 0.8rem;
   }
 
   &__closeBtn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
     cursor: pointer;
   }
 }

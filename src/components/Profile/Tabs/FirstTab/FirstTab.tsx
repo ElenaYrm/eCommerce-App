@@ -18,9 +18,10 @@ import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { Loader } from '../../../shared/Loader';
 
 function FirstTab(): ReactElement {
-  const { error } = useSelector(selectUserLoadingInfo);
+  const { status, error } = useSelector(selectUserLoadingInfo);
   const isEditMode = useIsEditMode();
   const updateEditMode = useUpdateEditMode();
   const user = useSelector(selectUserData);
@@ -60,7 +61,7 @@ function FirstTab(): ReactElement {
 
   return (
     <>
-      {error && <ErrorMessage text={error} />}
+      {status === 'loading' && <Loader />}
       <Formik initialValues={user} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
         {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
           <form
@@ -137,6 +138,10 @@ function FirstTab(): ReactElement {
           </form>
         )}
       </Formik>
+      {error && <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />}
+      {status === 'success' && !error && (
+        <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
+      )}
     </>
   );
 }
