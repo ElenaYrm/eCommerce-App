@@ -29,7 +29,7 @@ export default function Profile(): ReactElement {
     if (!isAuthorized) {
       navigate(PATH[Page.Login]);
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, isAuthorized, navigate]);
 
   const isEditMode = useIsEditMode();
 

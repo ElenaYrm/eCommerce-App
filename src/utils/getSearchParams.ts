@@ -44,7 +44,5 @@ export function getSearchParams(search: URLSearchParams): { [p: string]: QueryPa
     queryArgs['text.en-US'] = `'${value}'`;
   }
 
-  console.log(queryArgs);
-
   return queryArgs;
 }
