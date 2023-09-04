@@ -19,7 +19,9 @@ function ProductsList(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(productListThunk(getSearchParams(searchParams)));
+    const params = getSearchParams(searchParams);
+    console.log(params);
+    dispatch(productListThunk(params));
   }, [searchParams, dispatch]);
 
   return (

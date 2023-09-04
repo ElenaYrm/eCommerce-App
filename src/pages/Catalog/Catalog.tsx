@@ -24,7 +24,7 @@ function Catalog(): ReactElement {
             setSearchParams={setSearchParams}
             className={styles.catalog__category}
           />
-          <Filters className={styles.catalog__filters} />
+          <Filters className={styles.catalog__filters} isShowResults={false} onClick={(): void => {}} />
         </div>
         <div className={styles.catalog__content}>
           <div className={styles.catalog__search}>

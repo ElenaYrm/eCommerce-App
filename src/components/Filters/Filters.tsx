@@ -10,7 +10,7 @@ import { FiltersProps } from './types';
 
 import styles from './filters.module.scss';
 
-function Filters({ className }: FiltersProps): ReactElement {
+function Filters({ className, onClick, isShowResults }: FiltersProps): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
 
   function handleClick(): void {
@@ -20,6 +20,10 @@ function Filters({ className }: FiltersProps): ReactElement {
     changeParams(setSearchParams, '', SearchParams.Brand);
     changeParams(setSearchParams, '', SearchParams.Color);
     changeParams(setSearchParams, '', SearchParams.Size);
+
+    if (isShowResults) {
+      onClick();
+    }
   }
 
   return (
@@ -39,6 +43,11 @@ function Filters({ className }: FiltersProps): ReactElement {
         </li>
       </ul>
       <div className={styles.filters__wrapper}>
+        {isShowResults && (
+          <button type="button" onClick={onClick} className={styles.filters__results}>
+            Show Results
+          </button>
+        )}
         <button type="button" onClick={handleClick} className={styles.filters__btn}>
           Clear filters
         </button>

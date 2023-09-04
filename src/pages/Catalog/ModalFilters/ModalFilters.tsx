@@ -1,8 +1,8 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
+import classnames from 'classnames';
 import { Filters } from '../../../components/Filters';
 
 import styles from './modalFilters.module.scss';
-import classnames from 'classnames';
 
 interface ModalFiltersProps {
   onClick: () => void;
@@ -10,6 +10,14 @@ interface ModalFiltersProps {
 }
 
 function ModalFilters({ className, onClick }: ModalFiltersProps): ReactElement {
+  useEffect(() => {
+    document.body.className = 'stop-scroll';
+
+    return () => {
+      document.body.className = '';
+    };
+  }, []);
+
   return (
     <div className={classnames(className || '', styles.modal)}>
       <button type="button" onClick={onClick} className={styles.modal__btn}>
@@ -17,7 +25,7 @@ function ModalFilters({ className, onClick }: ModalFiltersProps): ReactElement {
       </button>
       <h3 className={styles.modal__title}>Filters</h3>
 
-      <Filters className={styles.modal__filters} />
+      <Filters className={styles.modal__filters} isShowResults={true} onClick={onClick} />
     </div>
   );
 }
