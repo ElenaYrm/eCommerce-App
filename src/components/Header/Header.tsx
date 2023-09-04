@@ -50,7 +50,7 @@ export default function Header(): ReactElement {
     window.addEventListener('resize', closeMenuOnResize);
 
     return () => {
-      window.removeEventListener('resize', closeMenu);
+      window.removeEventListener('resize', closeMenuOnResize);
     };
   });
 
