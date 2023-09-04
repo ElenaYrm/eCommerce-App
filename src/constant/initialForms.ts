@@ -1,6 +1,7 @@
 import { IRegisterForm } from '../components/RegisterForm/RegisterForm';
 import { ILoginForm } from '../components/LoginForm/LoginForm';
 import { Input } from '../types/enums';
+import { IChangePassword } from '../components/Profile/Tabs/ThirdTab/ThirdTab';
 
 export const initialRegisterForm: IRegisterForm = {
   user: {
@@ -31,4 +32,26 @@ export const initialRegisterForm: IRegisterForm = {
 export const initialLoginForm: ILoginForm = {
   [Input.Email]: '',
   [Input.Password]: '',
+};
+
+export const initialChangePassord: IChangePassword = {
+  [Input.Password]: '',
+  [Input.NewPassword]: '',
+};
+
+export const initialEditAddresses = {
+  shipping: {
+    [Input.Street]: '',
+    [Input.Country]: '',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
+    [Input.IsDefault]: false,
+  },
+  billing: {
+    [Input.Street]: '',
+    [Input.Country]: '',
+    [Input.PostalCode]: '',
+    [Input.City]: '',
+    [Input.IsDefault]: false,
+  },
 };

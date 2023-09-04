@@ -12,7 +12,13 @@ export const initialUser: IUser = {
   firstName: '',
   lastName: '',
   password: '',
-  dateOfBirth: '',
+  date: '',
+  month: '',
+  year: '',
+  defaultShippingAddressId: '',
+  defaultBillingAddressId: '',
+  shippingAddressIds: [],
+  billingAddressIds: [],
   addresses: [],
 };
 
@@ -20,6 +26,9 @@ export const initialUserState: IUserSlice = {
   status: 'initial',
   error: '',
   user: initialUser,
+  isSuccess: false,
+  editStatus: 'initial',
+  editError: '',
 };
 
 export const initialProduct: IProduct = {

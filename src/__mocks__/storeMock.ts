@@ -13,7 +13,13 @@ export const initialUserMock: IUser = {
   firstName: '',
   lastName: '',
   password: '',
-  dateOfBirth: '',
+  date: '',
+  month: '',
+  year: '',
+  defaultShippingAddressId: '',
+  defaultBillingAddressId: '',
+  shippingAddressIds: [],
+  billingAddressIds: [],
   addresses: [],
 };
 
@@ -42,6 +48,9 @@ export const initialUserSliceMock: IUserSlice = {
   user: initialUser,
   status: 'initial',
   error: '',
+  isSuccess: false,
+  editStatus: 'initial',
+  editError: '',
 };
 
 export const storeMock: RootState = {

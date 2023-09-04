@@ -1,3 +1,4 @@
+import styles from './profile.module.scss';
 import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
@@ -5,6 +6,9 @@ import { selectUserData, selectUserLoadingInfo } from '../../store/user/selector
 import { getUserThunk } from '../../store/user/thunks';
 import { Loader } from '../../components/shared/Loader';
 import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { Tabs } from '../../components/Profile/Tabs';
+import { useIsEditMode } from './profileContext';
+import { GreetingTitle } from '../../components/Profile/GreetingTitle';
 
 export default function Profile(): ReactElement {
   const user = useSelector(selectUserData);
@@ -17,12 +21,19 @@ export default function Profile(): ReactElement {
     }
   }, [user, dispatch]);
 
+  const isEditMode = useIsEditMode();
+
   return (
-    <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div className={styles.root}>
       {status === 'loading' && <Loader />}
       {error && <ErrorMessage text={error} />}
 
-      {status === 'success' && !error && <h1>Profile</h1>}
+      {status === 'success' && !error && (
+        <div className={styles.root__container}>
+          {!isEditMode && <GreetingTitle />}
+          <Tabs />
+        </div>
+      )}
     </div>
   );
 }

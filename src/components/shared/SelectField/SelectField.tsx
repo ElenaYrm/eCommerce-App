@@ -12,6 +12,7 @@ interface SelectFieldProps {
   options: string[];
   className?: string;
   validate?: (value: string) => string;
+  isDisabled?: boolean;
 }
 
 export default function SelectField({
@@ -21,6 +22,7 @@ export default function SelectField({
   className,
   placeholder,
   validate,
+  isDisabled,
 }: SelectFieldProps): ReactElement {
   return (
     <div className={classnames(styles.select, className || '')}>
@@ -32,6 +34,7 @@ export default function SelectField({
           name={fieldName}
           className={classnames(styles.select__field, value ? `${styles.select__field_selected}` : '')}
           validate={validate}
+          disabled={isDisabled}
         >
           <option value="" disabled>
             {placeholder}

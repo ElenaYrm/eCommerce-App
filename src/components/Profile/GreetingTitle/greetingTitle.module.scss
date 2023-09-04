@@ -1,0 +1,26 @@
+.greeting {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+
+  &__ava {
+    width: 4rem;
+    height: 4rem;
+    background-image: url('/images/profile-ava.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+  }
+
+  &__title {
+    font-size: 4rem;
+    line-height: 4.2rem;
+  }
+
+  &__subtitle {
+    flex-basis: 100%;
+    padding-top: 1rem;
+    line-height: 2.2rem;
+  }
+}

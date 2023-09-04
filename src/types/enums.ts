@@ -1,6 +1,7 @@
 export enum Input {
   Email = 'email',
   Password = 'password',
+  NewPassword = 'newPassword',
   FirstName = 'firstName',
   LastName = 'lastName',
   Street = 'streetName',

@@ -3,7 +3,7 @@
 
 @mixin font($weight: regular, $type, $color: $dark) {
   $font-type: map-get(variables.$font-type-map, $type);
-  
+
   font-weight: map-get(variables.$font-weight-map, $weight);
   font-size: nth($font-type, 1);
   line-height: nth($font-type, 2);
@@ -139,4 +139,57 @@
   align-items: center;
   padding: 2rem 0;
   cursor: pointer;
+}
+
+@mixin close-btn {
+  @include font(regular, p1, $dark);
+  position: absolute;
+  right: 4rem;
+  top: 8rem;
+  width: auto;
+  height: unset;
+  box-shadow: none;
+  background-color: inherit;
+  opacity: .3;
+  transition: color $transition-set, opacity $transition-set;
+
+  &:hover {
+    box-shadow: unset;
+    background-color: inherit;
+    font-size: 2rem;
+    color: $primary;
+    opacity: 1;
+  }
+
+  @media(max-width: 600px) {
+    right: 1rem;
+    top: 7rem;
+  }
+}
+
+@mixin responseMessage($color, $background-color) {
+  position: fixed;
+  display: flex;
+  bottom: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85vw;
+  max-width: 64rem;
+  padding: 1.2rem 0;
+  justify-content: center;
+  align-items: center;
+  @include font(semibold, p1, $color);
+  background-color: $background-color;
+  border-radius: 4rem;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+
+
+  @media(max-width: 800px) {
+    padding: 1.5rem 2.5rem;
+    bottom: 8rem;
+    border-radius: 2rem;
+    width: 95vw;
+  }
 }
