@@ -2,15 +2,15 @@ import { IColorFilterItem, IFilterItem } from '../components/Filters/types';
 
 export const sizes: IFilterItem[] = [
   {
-    label: 'Small (under 40cm)',
+    label: 'Small',
     value: 'Small',
   },
   {
-    label: 'Medium (40-100cm)',
+    label: 'Medium',
     value: 'Medium',
   },
   {
-    label: 'Large (over 100cm)',
+    label: 'Large',
     value: 'Large',
   },
 ];

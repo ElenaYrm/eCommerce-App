@@ -1,8 +1,28 @@
 @import 'src/styles/common';
 
 .item {
+  position: relative;
+  @include font(semibold, h1, $dark);
+  transition: color 0.3s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    color: $primary;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 
   &_active {
     color: $primary;
+
+    &::after {
+      opacity: 1;
+    }
   }
 }

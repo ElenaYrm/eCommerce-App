@@ -26,7 +26,6 @@ function CategoryFilter({ searchParams, setSearchParams, className }: FilterType
 
   return (
     <div className={className || ''}>
-      <h3 className={styles.category__title}>Category</h3>
       <ul className={styles.category__list}>
         {categories.map((item) => (
           <li key={item.value} className={item.parent ? styles.category__item_subcategory : ''}>

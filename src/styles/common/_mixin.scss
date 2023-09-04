@@ -120,3 +120,23 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
+@mixin accordion-icon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 0;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+}
+
+@mixin accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  cursor: pointer;
+}

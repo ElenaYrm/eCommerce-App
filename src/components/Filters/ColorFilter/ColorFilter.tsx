@@ -1,12 +1,15 @@
-import { ChangeEvent, ReactElement } from 'react';
+import { ChangeEvent, ReactElement, useState } from 'react';
 import { SearchParams } from '../../../types/enums';
 import { changeParams } from '../../../utils';
 import { colors } from '../../../constant';
 import { FilterTypeProps } from '../types';
 
 import styles from './colorFilter.module.scss';
+import classnames from 'classnames';
 
 function ColorFilter({ searchParams, setSearchParams, className }: FilterTypeProps): ReactElement {
+  const [isOpen, setIsOpen] = useState(true);
+
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     let newValue = event.target.name;
     const curValue = searchParams.get(SearchParams.Color) || '';
@@ -24,21 +27,38 @@ function ColorFilter({ searchParams, setSearchParams, className }: FilterTypePro
 
   return (
     <div className={className || ''}>
-      <h3 className={styles.color__title}>Color</h3>
-      <form className={styles.color__form}>
-        {colors.map((item) => (
-          <label key={item.value}>
-            <input
-              type="checkbox"
-              onChange={handleChange}
-              name={item.value}
-              checked={(searchParams.get(SearchParams.Color) || '').includes(item.value)}
-            />
-            <span>{item.color}</span>
-            <span>{item.label}</span>
-          </label>
-        ))}
-      </form>
+      <div className={styles.color__header} onClick={(): void => setIsOpen(!isOpen)}>
+        <h3 className={classnames(styles.color__title, isOpen ? '' : styles.color__title_close)}>Color</h3>
+        <span
+          className={classnames(styles.color__icon, isOpen ? styles.color__icon_up : styles.color__icon_down)}
+        ></span>
+      </div>
+      {isOpen && (
+        <form className={styles.color__form}>
+          {colors.map((item) => (
+            <label
+              key={item.value}
+              className={classnames(
+                styles.color__item,
+                (searchParams.get(SearchParams.Color) || '').includes(item.value) ? styles.color__item_active : '',
+              )}
+            >
+              <span
+                className={styles.color__color}
+                style={{ backgroundColor: item.color, borderColor: item.label === 'White' ? '#111' : 'transparent' }}
+              ></span>
+              <input
+                type="checkbox"
+                onChange={handleChange}
+                name={item.value}
+                checked={(searchParams.get(SearchParams.Color) || '').includes(item.value)}
+                className={styles.color__input}
+              />
+              <span>{item.label}</span>
+            </label>
+          ))}
+        </form>
+      )}
     </div>
   );
 }
