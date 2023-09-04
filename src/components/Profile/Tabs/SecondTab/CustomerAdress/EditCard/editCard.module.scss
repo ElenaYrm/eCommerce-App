@@ -1,3 +1,5 @@
+@import '../../../../../../styles/common';
+
 .root {
 
   &__title {
@@ -24,4 +26,8 @@
     height: 7rem;
   }
 
+}
+
+.errorResponse {
+  @include responseMessage($light-primary, $error-color);
 }

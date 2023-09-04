@@ -27,7 +27,7 @@ export const addNewAddressThunk = createAsyncThunk<
         await setDefaultAddressId(setDefaultData);
       }
 
-      return extractLocalUser(results);
+      return extractLocalUser(results.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

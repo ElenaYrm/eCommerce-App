@@ -13,12 +13,11 @@ export const changeAddressThunk = createAsyncThunk<
     rejectValue: string;
   }
 >(
-  'user/addNewAddressThunk',
+  'user/changeAddressThunk',
   async (objects, { rejectWithValue }) => {
     try {
       const results = await changeAddress(objects);
-
-      return extractLocalUser(results);
+      return extractLocalUser(results.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

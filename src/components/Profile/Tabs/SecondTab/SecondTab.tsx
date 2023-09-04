@@ -15,9 +15,9 @@ import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
 import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
-import { removeAddressThunk } from '../../../../store/user/thunks/removeAddressThunk';
-import { setDefaultAddressIdThunk } from '../../../../store/user/thunks/setDefaultAddressIdThunk';
-import { addNewAddressThunk } from '../../../../store/user/thunks/addNewAddressThunk';
+import { removeAddressThunk } from '../../../../store/user/thunks';
+import { setDefaultAddressIdThunk } from '../../../../store/user/thunks';
+import { addNewAddressThunk } from '../../../../store/user/thunks';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
@@ -39,8 +39,18 @@ function SecondTab(): ReactElement {
       dispatch(getUserThunk());
     }
 
-    if (editStatus === 'success') {
+    if (editStatus === 'success' && isEditMode) {
       updateEditMode();
+      const timer = setTimeout(() => {
+        dispatch(deleteSuccessState());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (editStatus === 'success' && !isEditMode) {
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -59,7 +69,7 @@ function SecondTab(): ReactElement {
         clearTimeout(timer);
       };
     }
-  }, [user, dispatch, editStatus]);
+  }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IAddressesProfile): void {
     const isShippingAddress = values.shipping.city !== '';
@@ -90,7 +100,6 @@ function SecondTab(): ReactElement {
     const addressData: IRemoveAddress = { version: user.version, customerId: user.id, addressId: addressId };
 
     dispatch(removeAddressThunk(addressData));
-    // updateEditMode();
   }
 
   function setDefaultAddress(e: MouseEvent, addressId: string): void {
@@ -197,6 +206,9 @@ function SecondTab(): ReactElement {
               );
             })}
           </ul>
+          {editError && (
+            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
+          )}
         </div>
       )}
     </div>

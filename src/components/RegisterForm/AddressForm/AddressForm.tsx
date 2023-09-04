@@ -91,7 +91,7 @@ function AddressForm({
           type="checkbox"
           checked={values[Input.IsDefault]}
           className={styles.address__checkbox}
-          isDisabled={isDisabled}
+          disabled={isDisabled}
         />
         <span>Use as default address</span>
       </label>

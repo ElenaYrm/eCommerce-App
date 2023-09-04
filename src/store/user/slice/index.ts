@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialUserState } from '../../../constant';
 import { getUserThunk, updPasswordThunk, updUserThunk } from '../thunks';
-import { removeAddressThunk } from '../thunks/removeAddressThunk';
-import { addNewAddressThunk } from '../thunks/addNewAddressThunk';
+import { removeAddressThunk } from '../thunks';
+import { addNewAddressThunk } from '../thunks';
+import { changeAddressThunk } from '../thunks';
 
 const userSlice = createSlice({
   name: 'user',
@@ -83,6 +84,20 @@ const userSlice = createSlice({
         state.isSuccess = true;
       })
       .addCase(addNewAddressThunk.rejected, (state, { payload }) => {
+        state.editStatus = 'error';
+        state.editError = payload || 'Something was wrong';
+      })
+      .addCase(changeAddressThunk.pending, (state) => {
+        state.editStatus = 'loading';
+        state.editError = '';
+        state.isSuccess = false;
+      })
+      .addCase(changeAddressThunk.fulfilled, (state, { payload }) => {
+        state.editStatus = 'success';
+        state.user = payload;
+        state.isSuccess = true;
+      })
+      .addCase(changeAddressThunk.rejected, (state, { payload }) => {
         state.editStatus = 'error';
         state.editError = payload || 'Something was wrong';
       });

@@ -7,11 +7,12 @@ import { AddressForm } from '../../../../../RegisterForm/AddressForm';
 import { Address } from '@commercetools/platform-sdk';
 import { IAddressForm } from '../../../../../RegisterForm/AddressForm/AddressForm';
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../../../../../store/user/selectors';
+import { selectEditError, selectUserData } from '../../../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../../../store/store';
 import { getUserThunk } from '../../../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../../../services/sdk/customer/types';
-import { changeAddressThunk } from '../../../../../../store/user/thunks/changeAddressThunk';
+import { changeAddressThunk } from '../../../../../../store/user/thunks';
+import { ErrorMessage } from '../../../../../shared/ErrorMessage';
 
 interface IEditInitialValue {
   shipping: IAddressForm;
@@ -27,12 +28,14 @@ interface IEditCard {
 function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
+  const editError = useSelector(selectEditError);
 
   useEffect(() => {
     if (!user.id) {
       dispatch(getUserThunk());
     }
   }, [user, dispatch]);
+
   const initialValue: IEditInitialValue = {
     shipping: {
       [Input.Street]: values.streetName || '',
@@ -49,10 +52,7 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
   };
 
   function handleSubmit(values: IEditInitialValue): void {
-    console.log(values);
-
     const isShippingAddress = values.shipping.city !== '';
-
     const addNewAddressData: IUpdateUser = {
       id: user.id,
       version: user.version,
@@ -91,6 +91,9 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
           </form>
         )}
       </Formik>
+      {editError && (
+        <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
+      )}
     </div>
   );
 }

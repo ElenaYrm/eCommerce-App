@@ -29,7 +29,7 @@ export const updPasswordThunk = createAsyncThunk<
       if (token) {
         localStorage.setItem('token', token);
       }
-      return extractLocalUser(user);
+      return extractLocalUser(user.body.customer);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { ModalWindow } from '../../../../shared/ModalWindow';
 import { EditCard } from './EditCard';
-import { selectUserData } from '../../../../../store/user/selectors';
+import { selectEditStatus, selectUserData } from '../../../../../store/user/selectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../../store/store';
 import { getUserThunk } from '../../../../../store/user/thunks';
@@ -20,6 +20,7 @@ interface IAddressComp {
 
 function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }: IAddressComp): ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const editStatus = useSelector(selectEditStatus);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
 
@@ -27,7 +28,11 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
     if (!user.id) {
       dispatch(getUserThunk());
     }
-  }, [user, dispatch]);
+
+    if (editStatus === 'success') {
+      setIsModalOpen(false);
+    }
+  }, [user, dispatch, editStatus]);
 
   function isDefaultShipping(): boolean {
     return values.id === user.defaultShippingAddressId;
@@ -51,7 +56,7 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
           children={<EditCard values={values} isShipping={true} addressId={addressId}></EditCard>}
           isOpen={isModalOpen}
           onClose={(): void => setIsModalOpen(!isModalOpen)}
-        ></ModalWindow>
+        />
         <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(addressId)}>
           Delete
         </button>

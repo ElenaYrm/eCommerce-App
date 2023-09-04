@@ -18,7 +18,7 @@ export const updUserThunk = createAsyncThunk<
     try {
       const results = await updateUserInfo(objects);
 
-      return extractLocalUser(results);
+      return extractLocalUser(results.body);
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

@@ -63,7 +63,6 @@ function ThirdTab(): ReactElement {
         newPassword: values.newPassword,
       },
     };
-    console.log(values);
     dispatch(updPasswordThunk(updPassData));
   }
 
