@@ -15,7 +15,7 @@ export const updPasswordThunk = createAsyncThunk<
     rejectValue: string;
   }
 >(
-  'user/updPassword',
+  'user/updPasswordThunk',
   async (passwordsData, { rejectWithValue }) => {
     try {
       await changeCustomerPassword(passwordsData.passwordData);
@@ -27,7 +27,7 @@ export const updPasswordThunk = createAsyncThunk<
       const user = await loginCustomer(loginData);
       const token = tokenData.get().refreshToken;
       if (token) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('art-token', token);
       }
       return extractLocalUser(user.body.customer);
     } catch (error: unknown) {

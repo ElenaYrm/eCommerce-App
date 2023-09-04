@@ -20,7 +20,6 @@ function ProductsList(): ReactElement {
 
   useEffect(() => {
     const params = getSearchParams(searchParams);
-    console.log(params);
     dispatch(productListThunk(params));
   }, [searchParams, dispatch]);
 

@@ -21,7 +21,7 @@ function ModalFilters({ className, onClick }: ModalFiltersProps): ReactElement {
   return (
     <div className={classnames(className || '', styles.modal)}>
       <button type="button" onClick={onClick} className={styles.modal__btn}>
-        Cancel
+        Close
       </button>
       <h3 className={styles.modal__title}>Filters</h3>
 
