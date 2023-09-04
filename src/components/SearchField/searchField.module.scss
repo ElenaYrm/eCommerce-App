@@ -1,0 +1,46 @@
+@import 'src/styles/common';
+
+.search {
+  position: relative;
+  width: 100%;
+
+  &__label {
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    border-bottom: 0.1rem solid $dark;
+    padding: 0.5rem 0 0.5rem;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    &::placeholder {
+      color: $placeholder-grey;
+      opacity: 0.7;
+    }
+
+    &:focus {
+      background-color: rgba($primary, 0.1);
+    }
+
+    &:hover {
+      border-bottom-color: $primary;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    text-align: right;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}

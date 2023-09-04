@@ -98,7 +98,7 @@ export const brands: IFilterItem[] = [
 
 export const sorting: IFilterItem[] = [
   {
-    label: 'Our Picks',
+    label: 'Recommended',
     value: '',
   },
   {

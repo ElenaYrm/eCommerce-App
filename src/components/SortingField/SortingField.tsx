@@ -5,6 +5,8 @@ import { SearchParams } from '../../types/enums';
 import { useDebounce } from '../../hooks';
 import { changeParams } from '../../utils';
 
+import styles from './sortingField.module.scss';
+
 function SortingField(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sort, setSort] = useState(searchParams.get(SearchParams.Sort) || '');
@@ -17,10 +19,10 @@ function SortingField(): ReactElement {
   }
 
   return (
-    <form>
-      <label>
-        <span>Sort by: </span>
-        <select name="sorting" defaultValue={sort} onChange={handleChange}>
+    <form className={styles.sort}>
+      <label className={styles.sort__label}>
+        <span className="visually-hidden">Sort by: </span>
+        <select name="sorting" defaultValue={sort} onChange={handleChange} className={styles.sort__input}>
           {sorting.map((item) => (
             <option value={item.value} key={item.value}>
               {item.label}
