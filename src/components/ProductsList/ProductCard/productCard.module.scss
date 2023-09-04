@@ -64,7 +64,7 @@
   }
 
   &__author {
-    @include font(semibold, p2, $light-primary);
+    @include font(semibold, p3, $light-primary);
   }
 
   &__detail {
@@ -83,7 +83,7 @@
 
     &_current,
     &_discont {
-      @include font(semibold, p2, $light-primary);
+      @include font(semibold, p3, $light-primary);
       margin-right: 1rem;
     }
 
@@ -94,6 +94,6 @@
   }
 
   &__text {
-    @include font(regular, p2, $light-primary);
+    @include font(regular, p3, $light-primary);
   }
 }

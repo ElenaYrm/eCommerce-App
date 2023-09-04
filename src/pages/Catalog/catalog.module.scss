@@ -1,21 +1,38 @@
 .catalog {
-  padding: 8rem;
+  padding: 7.5rem 1.5rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+
+  @media all and (max-width: 480px) {
+    padding-top: 5.5rem;
+  }
 
   &__search {
-    padding: 3rem 0;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  &__wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(23%, 1fr) 3fr;
+    gap: 2rem;
   }
 
   &__content {
-    display: grid;
-    grid-template-columns: minmax(220px, 1fr) 4fr;
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__category {
+    margin-bottom: 5rem;
   }
 }

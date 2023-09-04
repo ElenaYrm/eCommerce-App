@@ -34,7 +34,9 @@ function ProductsList(): ReactElement {
           ))}
         </ul>
       )}
-      {status === 'success' && !error && productList.length === 0 && <div>There are no items</div>}
+      {status === 'success' && !error && productList.length === 0 && (
+        <div className={styles.products__error}>No items found¯\_(:|)_/¯</div>
+      )}
     </>
   );
 }

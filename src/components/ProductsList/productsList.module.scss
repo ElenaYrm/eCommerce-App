@@ -1,3 +1,5 @@
+@import 'src/styles/common';
+
 .products {
   width: 100%;
   display: grid;
@@ -8,5 +10,18 @@
 
   &__item {
     width: 100%;
+  }
+
+  &__error {
+    @include font(semibold, h1, $light-primary);
+    padding: 2.5rem;
+    width: 100%;
+    min-height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: $border-radius-btn-2x;
+    background-color: $primary;
   }
 }
