@@ -9,6 +9,7 @@ interface IButtonProps {
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  handleClick?: () => void;
 }
 
 const noop = (): void => {
