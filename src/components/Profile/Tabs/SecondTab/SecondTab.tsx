@@ -188,7 +188,7 @@ function SecondTab(): ReactElement {
             name="Add new address"
             className={styles.root__addAddressBtn}
             type="button"
-            onClick={(): void => updateEditMode(!isEditMode)}
+            handleClick={(): void => updateEditMode(!isEditMode)}
           />
           <ul>
             {user.addresses.map((addressData: Address, index: number) => {

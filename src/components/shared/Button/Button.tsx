@@ -7,7 +7,6 @@ interface IButtonProps {
   type: 'submit' | 'reset' | 'button';
   name: string;
   className?: string;
-  onClick?: () => void;
   disabled?: boolean;
   handleClick?: () => void;
 }
@@ -16,9 +15,9 @@ const noop = (): void => {
   return;
 };
 
-function Button({ type, name, className, onClick = noop, disabled }: IButtonProps): ReactElement {
+function Button({ type, name, className, handleClick = noop, disabled }: IButtonProps): ReactElement {
   return (
-    <button type={type} className={classnames(styles.btn, className || '')} onClick={onClick} disabled={disabled}>
+    <button type={type} className={classnames(styles.btn, className || '')} onClick={handleClick} disabled={disabled}>
       {name}
     </button>
   );

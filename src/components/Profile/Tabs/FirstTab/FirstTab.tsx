@@ -145,7 +145,7 @@ function FirstTab(): ReactElement {
             )}
             {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date}.${user.month}.${user.year}`}</div>}
 
-            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" onClick={(): void => updateEditMode()} />}
+            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={(): void => updateEditMode()} />}
             {isEditMode && (
               <Button
                 name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
