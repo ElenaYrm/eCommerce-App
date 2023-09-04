@@ -7,15 +7,14 @@ import { useAppDispatch } from '../../store/store';
 import { Slider } from '../../components/Slider/Slider';
 import { ProductDetails } from './ProductDetails';
 import { Loader } from '../../components/shared/Loader';
+import { NotFound } from '../NotFound';
 
 import styles from './product.module.scss';
-
-// const productId = 'e2e31f59-6a44-4af0-882b-c56f63f7f14e';
 
 export default function Product(): ReactElement {
   const id = useParams().id || '';
 
-  const { product, status } = useSelector((store: RootState) => store.product);
+  const { product, status, error } = useSelector((store: RootState) => store.product);
   const { productId } = product;
   const dispatch = useAppDispatch();
 
@@ -39,6 +38,8 @@ export default function Product(): ReactElement {
     <div className={styles.product}>
       {status === 'loading' ? (
         <Loader />
+      ) : error ? (
+        <NotFound />
       ) : (
         <>
           <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
