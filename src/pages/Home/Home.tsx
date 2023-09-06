@@ -29,24 +29,26 @@ export default function Home(): ReactElement {
   return (
     <div className={styles.home} data-testid="home">
       <div className={styles.home__content}>
-        <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
-          Main
-        </Link>
-        <Link to={PATH[Page.Catalog]} className={styles.home__link}>
-          Catalog
-        </Link>
-        <Link to={PATH[Page.Login]} className={styles.home__link}>
-          Login
-        </Link>
-        <Link to={PATH[Page.Register]} className={styles.home__link}>
-          Register
-        </Link>
-        <Link to={PATH[Page.Profile]} className={styles.home__link}>
-          Profile
-        </Link>
-        <Link to={PATH[Page.Cart]} className={styles.home__link}>
-          Cart
-        </Link>
+        <div className={styles.home__content_container}>
+          <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
+            Main
+          </Link>
+          <Link to={PATH[Page.Catalog]} className={styles.home__link}>
+            Catalog
+          </Link>
+          <Link to={PATH[Page.Login]} className={styles.home__link}>
+            Login
+          </Link>
+          <Link to={PATH[Page.Register]} className={styles.home__link}>
+            Register
+          </Link>
+          <Link to={PATH[Page.Profile]} className={styles.home__link}>
+            Profile
+          </Link>
+          <Link to={PATH[Page.Cart]} className={styles.home__link}>
+            Cart
+          </Link>
+        </div>
       </div>
 
       <div className={styles.home__content}>

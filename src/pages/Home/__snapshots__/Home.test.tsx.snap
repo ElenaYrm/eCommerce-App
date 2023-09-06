@@ -12,42 +12,46 @@ exports[`Test Home page:  should render Home page with success register message 
         <div
           class="home__content"
         >
-          <a
-            class="home__link active"
-            href="/"
+          <div
+            class="home__content_container"
           >
-            Main
-          </a>
-          <a
-            class="home__link"
-            href="/catalog"
-          >
-            Catalog
-          </a>
-          <a
-            class="home__link"
-            href="/login"
-          >
-            Login
-          </a>
-          <a
-            class="home__link"
-            href="/register"
-          >
-            Register
-          </a>
-          <a
-            class="home__link"
-            href="/profile"
-          >
-            Profile
-          </a>
-          <a
-            class="home__link"
-            href="/cart"
-          >
-            Cart
-          </a>
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/profile"
+            >
+              Profile
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
         </div>
         <div
           class="home__content"
@@ -96,42 +100,46 @@ exports[`Test Home page:  should render Home page with success register message 
       <div
         class="home__content"
       >
-        <a
-          class="home__link active"
-          href="/"
+        <div
+          class="home__content_container"
         >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/catalog"
-        >
-          Catalog
-        </a>
-        <a
-          class="home__link"
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/profile"
-        >
-          Profile
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
+          <a
+            class="home__link active"
+            href="/"
+          >
+            Main
+          </a>
+          <a
+            class="home__link"
+            href="/catalog"
+          >
+            Catalog
+          </a>
+          <a
+            class="home__link"
+            href="/login"
+          >
+            Login
+          </a>
+          <a
+            class="home__link"
+            href="/register"
+          >
+            Register
+          </a>
+          <a
+            class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
+            href="/cart"
+          >
+            Cart
+          </a>
+        </div>
       </div>
       <div
         class="home__content"
@@ -237,42 +245,46 @@ exports[`Test Home page:  should render Home page without success register messa
         <div
           class="home__content"
         >
-          <a
-            class="home__link active"
-            href="/"
+          <div
+            class="home__content_container"
           >
-            Main
-          </a>
-          <a
-            class="home__link"
-            href="/catalog"
-          >
-            Catalog
-          </a>
-          <a
-            class="home__link"
-            href="/login"
-          >
-            Login
-          </a>
-          <a
-            class="home__link"
-            href="/register"
-          >
-            Register
-          </a>
-          <a
-            class="home__link"
-            href="/profile"
-          >
-            Profile
-          </a>
-          <a
-            class="home__link"
-            href="/cart"
-          >
-            Cart
-          </a>
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/profile"
+            >
+              Profile
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
         </div>
         <div
           class="home__content"
@@ -314,42 +326,46 @@ exports[`Test Home page:  should render Home page without success register messa
       <div
         class="home__content"
       >
-        <a
-          class="home__link active"
-          href="/"
+        <div
+          class="home__content_container"
         >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/catalog"
-        >
-          Catalog
-        </a>
-        <a
-          class="home__link"
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/profile"
-        >
-          Profile
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
+          <a
+            class="home__link active"
+            href="/"
+          >
+            Main
+          </a>
+          <a
+            class="home__link"
+            href="/catalog"
+          >
+            Catalog
+          </a>
+          <a
+            class="home__link"
+            href="/login"
+          >
+            Login
+          </a>
+          <a
+            class="home__link"
+            href="/register"
+          >
+            Register
+          </a>
+          <a
+            class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
+            href="/cart"
+          >
+            Cart
+          </a>
+        </div>
       </div>
       <div
         class="home__content"
