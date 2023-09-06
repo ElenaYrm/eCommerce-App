@@ -1,6 +1,6 @@
 import { render, screen, act } from '@testing-library/react';
 import { Formik, Form } from 'formik';
-import { SelectField } from '../../../../components/shared/SelectField';
+import { SelectField } from '.';
 
 describe('Test SelectField shared component', () => {
   const handleChange = jest.fn();

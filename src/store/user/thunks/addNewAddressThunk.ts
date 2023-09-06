@@ -24,7 +24,8 @@ export const addNewAddressThunk = createAsyncThunk<
           isShipping: objects.isShipping,
           customerId: objects.id,
         };
-        await setDefaultAddressId(setDefaultData);
+        const address = await setDefaultAddressId(setDefaultData);
+        return extractLocalUser(address.body);
       }
 
       return extractLocalUser(results.body);

@@ -9,7 +9,7 @@ export interface IAccordionItem {
 import styles from './accordionItem.module.scss';
 import classnames from 'classnames';
 
-export function AccordionItem({ title, content }: IAccordionItem): ReactElement {
+export default function AccordionItem({ title, content }: IAccordionItem): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleAccordion(): void {

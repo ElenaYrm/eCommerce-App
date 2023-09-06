@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Formik } from 'formik';
-import { InputField } from '../../../../components/shared/InputField';
-import { InputFieldProps } from '../../../../components/shared/InputField/InputField';
+import InputField, { InputFieldProps } from './InputField';
 
 describe('Test InputField shared component', () => {
   function renderInputField(props: InputFieldProps): HTMLInputElement {

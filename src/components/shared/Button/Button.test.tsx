@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from '../../../../components/shared/Button';
+import { Button } from '.';
 
 describe('Test Button shared component', () => {
   test('Should renders with correct props', () => {
