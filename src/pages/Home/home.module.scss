@@ -16,21 +16,34 @@
   gap: 1rem;
 
   &__content {
-    max-width: 37rem;
+    padding: 0 2rem;
+    max-width: 58rem;
     width: 100%;
-    position: relative;
-    padding: 3rem 2rem;
-    background-color: $light;
-    border-radius: 4rem;
-    border: 1px solid $dark;
-    text-align: center;
 
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    @media all and (max-width: 480px) {
+      padding: 0 1rem;
+    }
 
-    @media all and (max-width: 600px) {
-      margin: 0 1rem;
+    &_container {
+      padding: 4rem 3rem;
+      background-color: $light;
+      border-radius: 4rem;
+      border: 1px solid $dark;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      em {
+        text-decoration: underline;
+      }
+    }
+
+    &:last-child {
+      p:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
     }
   }
 
