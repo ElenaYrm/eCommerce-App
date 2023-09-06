@@ -19,7 +19,7 @@ export const loginThunk = createAsyncThunk<
       const user = await loginCustomer(body);
       const token = tokenData.get().refreshToken;
       if (token) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('art-token', token);
       }
 
       return user.body.customer.id;

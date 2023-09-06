@@ -7,8 +7,11 @@ $error-color: #f42222;
 $primary: #0047ff;
 $primary-hover: #0044ee;
 $green: #38bf70;
+$dark-green: #21693f;
 $bullet-grey: #d9d9d9;
 $text-grey: #c0c0c0;
+$btn-grey: #f5f5f5;
+$btn-dark-grey: #e0e0e0;
 $background-gray: #f3f3f3;
 
 // effects
@@ -32,6 +35,7 @@ $title3: 2.4rem, 100%;
 
 $text1: 2rem, 120%;
 $text2: 1.5rem, 130%;
+$text3: 1.6rem, 130%;
 
 $text1-mob: 1.8rem 120%;
 
@@ -42,9 +46,11 @@ $font-type-map: (
   'p1': $text1,
   'p1-mob': $text1-mob,
   'p2': $text2,
+  'p3': $text3,
 );
 
 // other
 $border-radius-btn: 2rem;
+$border-radius-btn-2x: 4rem;
 
 $slider-height: calc(100vh - 6rem);

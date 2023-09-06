@@ -57,10 +57,16 @@ function FirstTab(): ReactElement {
 
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;
-    const dateOfBirth = year + '-' + getMonthIndex(month) + '-' + (date.length === 1 ? `0${date}` : date);
+    const newMonth = getMonthIndex(month);
+    const dateOfBirth =
+      year +
+      '-' +
+      (String(newMonth).length === 1 ? `0${newMonth}` : newMonth) +
+      '-' +
+      (date.length === 1 ? `0${date}` : date);
     const newValue: IUpdateUser = {
-      id: values.id,
-      version: values.version,
+      id: user.id,
+      version: user.version,
       action: [
         { action: 'setFirstName', firstName: values.firstName },
         { action: 'setLastName', lastName: values.lastName },

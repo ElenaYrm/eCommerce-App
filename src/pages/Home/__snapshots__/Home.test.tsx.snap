@@ -12,30 +12,75 @@ exports[`Test Home page:  should render Home page with success register message 
         <div
           class="home__content"
         >
-          <a
-            class="home__link active"
-            href="/"
+          <div
+            class="home__content_container"
           >
-            Main
-          </a>
-          <a
-            class="home__link"
-            href="/login"
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/profile"
+            >
+              Profile
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
+        </div>
+        <div
+          class="home__content"
+        >
+          <div
+            class="home__content_container"
           >
-            Login
-          </a>
-          <a
-            class="home__link"
-            href="/register"
-          >
-            Register
-          </a>
-          <a
-            class="home__link"
-            href="/cart"
-          >
-            Cart
-          </a>
+            <p>
+              To keep the project's concept clean, we use word 
+              <em>
+                "Artists"
+              </em>
+               instead of "Brands".
+            </p>
+            <p>
+              For 
+              <em>
+                discounted
+              </em>
+               products check these artists: Cédrix Crespel, KAWS
+            </p>
+            <p>
+              For 
+              <em>
+                a single image
+              </em>
+               in the gallery check these artists: Jef Verheyen, Masoami Raku
+            </p>
+          </div>
         </div>
         <div
           class="message"
@@ -55,30 +100,75 @@ exports[`Test Home page:  should render Home page with success register message 
       <div
         class="home__content"
       >
-        <a
-          class="home__link active"
-          href="/"
+        <div
+          class="home__content_container"
         >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/login"
+          <a
+            class="home__link active"
+            href="/"
+          >
+            Main
+          </a>
+          <a
+            class="home__link"
+            href="/catalog"
+          >
+            Catalog
+          </a>
+          <a
+            class="home__link"
+            href="/login"
+          >
+            Login
+          </a>
+          <a
+            class="home__link"
+            href="/register"
+          >
+            Register
+          </a>
+          <a
+            class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
+            href="/cart"
+          >
+            Cart
+          </a>
+        </div>
+      </div>
+      <div
+        class="home__content"
+      >
+        <div
+          class="home__content_container"
         >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
+          <p>
+            To keep the project's concept clean, we use word 
+            <em>
+              "Artists"
+            </em>
+             instead of "Brands".
+          </p>
+          <p>
+            For 
+            <em>
+              discounted
+            </em>
+             products check these artists: Cédrix Crespel, KAWS
+          </p>
+          <p>
+            For 
+            <em>
+              a single image
+            </em>
+             in the gallery check these artists: Jef Verheyen, Masoami Raku
+          </p>
+        </div>
       </div>
       <div
         class="message"
@@ -155,11 +245,101 @@ exports[`Test Home page:  should render Home page without success register messa
         <div
           class="home__content"
         >
+          <div
+            class="home__content_container"
+          >
+            <a
+              class="home__link active"
+              href="/"
+            >
+              Main
+            </a>
+            <a
+              class="home__link"
+              href="/catalog"
+            >
+              Catalog
+            </a>
+            <a
+              class="home__link"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              class="home__link"
+              href="/register"
+            >
+              Register
+            </a>
+            <a
+              class="home__link"
+              href="/profile"
+            >
+              Profile
+            </a>
+            <a
+              class="home__link"
+              href="/cart"
+            >
+              Cart
+            </a>
+          </div>
+        </div>
+        <div
+          class="home__content"
+        >
+          <div
+            class="home__content_container"
+          >
+            <p>
+              To keep the project's concept clean, we use word 
+              <em>
+                "Artists"
+              </em>
+               instead of "Brands".
+            </p>
+            <p>
+              For 
+              <em>
+                discounted
+              </em>
+               products check these artists: Cédrix Crespel, KAWS
+            </p>
+            <p>
+              For 
+              <em>
+                a single image
+              </em>
+               in the gallery check these artists: Jef Verheyen, Masoami Raku
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="home"
+      data-testid="home"
+    >
+      <div
+        class="home__content"
+      >
+        <div
+          class="home__content_container"
+        >
           <a
             class="home__link active"
             href="/"
           >
             Main
+          </a>
+          <a
+            class="home__link"
+            href="/catalog"
+          >
+            Catalog
           </a>
           <a
             class="home__link"
@@ -175,46 +355,46 @@ exports[`Test Home page:  should render Home page without success register messa
           </a>
           <a
             class="home__link"
+            href="/profile"
+          >
+            Profile
+          </a>
+          <a
+            class="home__link"
             href="/cart"
           >
             Cart
           </a>
         </div>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="home"
-      data-testid="home"
-    >
       <div
         class="home__content"
       >
-        <a
-          class="home__link active"
-          href="/"
+        <div
+          class="home__content_container"
         >
-          Main
-        </a>
-        <a
-          class="home__link"
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          class="home__link"
-          href="/register"
-        >
-          Register
-        </a>
-        <a
-          class="home__link"
-          href="/cart"
-        >
-          Cart
-        </a>
+          <p>
+            To keep the project's concept clean, we use word 
+            <em>
+              "Artists"
+            </em>
+             instead of "Brands".
+          </p>
+          <p>
+            For 
+            <em>
+              discounted
+            </em>
+             products check these artists: Cédrix Crespel, KAWS
+          </p>
+          <p>
+            For 
+            <em>
+              a single image
+            </em>
+             in the gallery check these artists: Jef Verheyen, Masoami Raku
+          </p>
+        </div>
       </div>
     </div>
   </div>,
