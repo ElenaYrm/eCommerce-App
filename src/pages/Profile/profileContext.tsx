@@ -6,7 +6,6 @@ type UpdateEditModeType = (value?: boolean) => void;
 const EditContext = createContext<EditContextType | undefined>(undefined);
 const EditUpdateContext = createContext<UpdateEditModeType | undefined>(undefined);
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useIsEditMode(): EditContextType {
   const context = useContext(EditContext);
   if (context === undefined) {
@@ -15,7 +14,6 @@ export function useIsEditMode(): EditContextType {
   return context;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useUpdateEditMode(): UpdateEditModeType {
   const context = useContext(EditUpdateContext);
   if (context === undefined) {
