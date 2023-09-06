@@ -52,6 +52,7 @@ function FirstTab(): ReactElement {
         clearTimeout(timer);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IUser): void {

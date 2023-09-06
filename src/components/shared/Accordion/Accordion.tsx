@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 import { IAccordionItem } from './AccordionItem/AccordionItem';
-import { AccordionItem } from './AccordionItem/AccordionItem';
+import { AccordionItem } from './AccordionItem';
 
 export interface IAccordionProps {
   data: IAccordionItem[];
   className: string;
 }
 
-export function Accordion({ data, className }: IAccordionProps): ReactElement {
+export default function Accordion({ data, className }: IAccordionProps): ReactElement {
   return (
     <ul className={className}>
       {data.map((item) => (

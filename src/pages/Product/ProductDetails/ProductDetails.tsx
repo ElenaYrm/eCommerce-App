@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import { IProduct } from '../../../types/interfaces';
 import { formatPrice, splitToParagraphs } from '../../../utils';
 import { Button } from '../../../components/shared/Button';
-import { Accordion } from '../../../components/shared/Accordion/Accordion';
 import { productAccordionData } from '../../../constant';
 
 import styles from './productDetails.module.scss';
 import classnames from 'classnames';
+import { Accordion } from '../../../components/shared/Accordion';
 
 interface IProductDetailsProps {
   product: IProduct;

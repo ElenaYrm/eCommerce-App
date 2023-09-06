@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ErrorMessage } from '../../../../components/shared/ErrorMessage';
+import { ErrorMessage } from '.';
 
 describe('Test ErrorMessage shared component', () => {
   test('Should renders with correct text', () => {
