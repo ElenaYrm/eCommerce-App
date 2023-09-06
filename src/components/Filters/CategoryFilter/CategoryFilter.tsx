@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { selectCategories } from '../../../store/catalog/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { categoriesThunk } from '../../../store/catalog/thunks';
@@ -26,10 +27,12 @@ function CategoryFilter({ searchParams, setSearchParams, className }: FilterType
 
   return (
     <div className={className || ''}>
-      <h3 className={styles.category__title}>Category</h3>
       <ul className={styles.category__list}>
         {categories.map((item) => (
-          <li key={item.value} className={item.parent ? styles.category__item_subcategory : ''}>
+          <li
+            key={item.value}
+            className={classnames(styles.category__item, item.parent ? styles.category__item_subcategory : '')}
+          >
             <CategoryItem
               value={item.value}
               label={item.label}

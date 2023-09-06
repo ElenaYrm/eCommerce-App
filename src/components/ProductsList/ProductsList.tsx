@@ -19,7 +19,8 @@ function ProductsList(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(productListThunk(getSearchParams(searchParams)));
+    const params = getSearchParams(searchParams);
+    dispatch(productListThunk(params));
   }, [searchParams, dispatch]);
 
   return (
@@ -34,7 +35,9 @@ function ProductsList(): ReactElement {
           ))}
         </ul>
       )}
-      {status === 'success' && !error && productList.length === 0 && <div>There are no items</div>}
+      {status === 'success' && !error && productList.length === 0 && (
+        <div className={styles.products__error}>No items found¯\_(:|)_/¯</div>
+      )}
     </>
   );
 }

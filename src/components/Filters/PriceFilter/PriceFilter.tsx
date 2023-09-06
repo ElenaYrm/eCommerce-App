@@ -10,6 +10,7 @@ import styles from './priceFilter.module.scss';
 function PriceFilter({ searchParams, setSearchParams, className }: FilterTypeProps): ReactElement {
   const [from, setFrom] = useState(searchParams.get(SearchParams.PriceFrom) || '');
   const [to, setTo] = useState(searchParams.get(SearchParams.PriceTo) || '');
+  const [isOpen, setIsOpen] = useState(true);
 
   const debounceChangeParams = useDebounce(changeParams, 400);
 
@@ -32,31 +33,38 @@ function PriceFilter({ searchParams, setSearchParams, className }: FilterTypePro
 
   return (
     <div className={classnames(styles.price, className || '')}>
-      <h3 className={styles.price__title}>Price</h3>
-      <form className={styles.price__form}>
-        <label className={styles.price__item}>
-          <span className="visually-hidden">Price from</span>
-          <input
-            type="number"
-            value={from}
-            placeholder="from"
-            name="from"
-            onChange={handleChange}
-            className={styles.price__input}
-          />
-        </label>
-        <label className={styles.price__item}>
-          <span className="visually-hidden">Price to</span>
-          <input
-            type="number"
-            value={to}
-            placeholder="to"
-            name="to"
-            onChange={handleChange}
-            className={styles.price__input}
-          />
-        </label>
-      </form>
+      <div className={styles.price__header} onClick={(): void => setIsOpen(!isOpen)}>
+        <h3 className={classnames(styles.price__title, isOpen ? '' : styles.price__title_close)}>Price</h3>
+        <span
+          className={classnames(styles.price__icon, isOpen ? styles.price__icon_up : styles.price__icon_down)}
+        ></span>
+      </div>
+      {isOpen && (
+        <form className={styles.price__form}>
+          <label className={styles.price__item}>
+            <span className="visually-hidden">Price from</span>
+            <input
+              type="number"
+              value={from}
+              placeholder="From"
+              name="from"
+              onChange={handleChange}
+              className={styles.price__input}
+            />
+          </label>
+          <label className={styles.price__item}>
+            <span className="visually-hidden">Price to</span>
+            <input
+              type="number"
+              value={to}
+              placeholder="To"
+              name="to"
+              onChange={handleChange}
+              className={styles.price__input}
+            />
+          </label>
+        </form>
+      )}
     </div>
   );
 }

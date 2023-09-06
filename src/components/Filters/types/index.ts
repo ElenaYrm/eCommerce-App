@@ -14,10 +14,13 @@ export interface ICategoryFilterItem extends IFilterItem {
 }
 
 export interface FiltersProps {
+  onClick: () => void;
+  isShowResults: boolean;
   className?: string;
 }
 
-export interface FilterTypeProps extends FiltersProps {
+export interface FilterTypeProps {
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
+  className?: string;
 }
