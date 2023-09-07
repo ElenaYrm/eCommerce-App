@@ -31,12 +31,6 @@ export const initialAuthMock: IAuthSlice = {
   userId: '',
 };
 
-export const initialProductMock: IProductSlice = {
-  product: initialProduct,
-  status: 'initial',
-  error: '',
-};
-
 export const initialProductListMock: ICatalogSlice = {
   status: 'initial',
   error: '',
@@ -53,6 +47,12 @@ export const initialUserSliceMock: IUserSlice = {
   editError: '',
 };
 
+export const initialProductMock: IProductSlice = {
+  product: initialProduct,
+  status: 'initial',
+  error: '',
+};
+
 export const storeMock: RootState = {
   auth: initialAuthMock,
   product: initialProductMock,
@@ -66,4 +66,13 @@ export const resultAuthMock: IAuthSlice = {
   status: 'error',
   error: 'Some error',
   userId: '',
+};
+
+export const resultUserSliceMock: IUserSlice = {
+  user: initialUser,
+  status: 'initial',
+  error: '',
+  isSuccess: false,
+  editStatus: 'initial',
+  editError: '',
 };

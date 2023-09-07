@@ -6,6 +6,8 @@ import { resultAuthMock } from '../../../../__mocks__/storeMock.ts';
 jest.mock('../../../../constant/metaData', () => {});
 jest.mock('../../../../services/sdk/auth/methods', () => {});
 jest.mock('../../../../services/sdk/product/methods', () => {});
+jest.mock('../../../../services/sdk/customer/methods', () => {});
+jest.mock('../../../../services/sdk/catalog/methods', () => {});
 
 describe('Test redux slice: ', () => {
   test('should return default state when passed an empty action', () => {
