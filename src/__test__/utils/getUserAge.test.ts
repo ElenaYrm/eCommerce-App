@@ -1,11 +1,12 @@
 import { testCases } from '../../__mocks__/utils/getUserAgeMock';
 import { getUserAge } from '../../utils/getUserAge';
 
-describe('Test getUserAge function', () => {
-  test('should calculate the correct user age', () => {
-    for (const testCase of testCases) {
-      const result = getUserAge(testCase.date, testCase.month, testCase.year);
-      expect(result).toBe(testCase.expectedAge);
-    }
+describe('Test getUserAge', () => {
+  it('Should calculate user age correctly', () => {
+    testCases.forEach((testCase) => {
+      const { date, month, year, expectedAge } = testCase;
+      const result = getUserAge(date, month, year);
+      expect(result).toBe(expectedAge);
+    });
   });
 });
