@@ -41,6 +41,10 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
     return values.id === user.defaultBillingAddressId;
   }
 
+  function isShipping(): boolean {
+    return user.shippingAddressIds.includes(String(values.id));
+  }
+
   return (
     <li className={classNames(styles.item)}>
       <div className={classNames(styles.item__data)}>
@@ -49,6 +53,7 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
         <div>{values.country}</div>
       </div>
       <div className={classNames(styles.item__btns, styles.configureBtns)}>
+        <div> {isShipping() ? 'Shipping' : 'Billing'}</div>
         <button className={styles.configureBtns__btn} onClick={(): void => setIsModalOpen(true)}>
           Edit
         </button>
