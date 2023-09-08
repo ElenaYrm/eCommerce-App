@@ -12,8 +12,8 @@ jest.mock('../../../../services/sdk/product/methods', () => {});
 jest.mock('../../../../services/sdk/catalog/methods', () => {});
 jest.mock('../../../../services/sdk/customer/methods', () => {});
 
-describe('Test redux catalog selectors: ', () => {
-  test('should select loading status from the store', () => {
+describe('Test redux user selectors: ', () => {
+  test('should select user loading status from the store', () => {
     const result = selectUserLoadingStatus(storeMock);
     expect(result).toEqual(initialUserSliceMock.status);
   });

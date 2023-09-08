@@ -16,7 +16,7 @@ describe('Test redux catalog selectors: ', () => {
     expect(result).toEqual(initialProductListMock.categories);
   });
 
-  test('should select loading status from the store', () => {
+  test('should select categories loading status from the store', () => {
     const result = selectCatalogLoadingStatus(storeMock);
     expect(result).toEqual(initialProductListMock.status);
   });
