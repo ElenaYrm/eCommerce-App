@@ -1,58 +1,64 @@
-@import '../../styles/common';
+@import 'src/styles/common';
 
-.auth {
+.login {
   width: 100%;
   height: 100%;
   display: flex;
 
-  .auth__container {
+  &__container {
     width: 54rem;
-    padding: 2rem 2rem 0;
-    margin: 6rem 0 12rem;
+    padding: 8rem 2rem 0;
+    margin: 0 0 12rem;
 
     @media all and (max-width: 480px) {
       padding: 1rem 1rem 0;
     }
   }
-}
 
-.form__container {
-  width: 100%;
+  &__form {
+    width: 100%;
+  }
 
-  .title {
+  &__link {
+    @include link();
+    display: inline-block;
+    margin-bottom: 6rem;
+  }
+
+  &__title {
     @include font(semibold, h1, $dark);
-    margin: 6rem 0 3rem;
+    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
   }
-}
 
-.image {
-  flex: 1;
-  background-image: url('../../../public/images/bg-form-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  &__image {
+    flex: 1;
+    background-image: url('/images/bg-form-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  position: relative;
-  z-index: 1000;
+    position: relative;
+    z-index: 1000;
+  }
 }
 
 @media all and (max-width: 800px) {
-  .auth {
+  .login {
     flex-direction: column;
 
-    .auth__container {
+    &__container {
       max-width: 80rem;
       width: 100%;
-      margin: 6rem 0;
+      margin-bottom: 6rem;
     }
-  }
 
-  .image {
-    flex: auto;
-    width: 100%;
-    height: 40rem;
-    background-position: top;
+    &__image {
+      flex: auto;
+      width: 100%;
+      height: 40rem;
+      background-position: top;
+    }
   }
 }

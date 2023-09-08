@@ -1,18 +1,27 @@
 import { customerObject, customerWithMissingProperties } from '../../__mocks__/utils/extractLocalUserMock';
 import { extractLocalUser } from '../../utils';
 
+jest.mock('../../services/sdk/product/methods', () => {});
+jest.mock('../../constant', () => 'en-US');
+
 describe('Test extractLocalUser function', () => {
   test('should extract user properties from a customer object', () => {
     const result = extractLocalUser(customerObject);
 
     expect(result).toEqual({
-      email: 'test@example.com',
-      password: 'password123',
-      firstName: 'John',
-      lastName: 'Doe',
-      dateOfBirth: '1990-01-01',
       id: '123',
       version: 1,
+      email: 'test@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      password: 'password123',
+      date: '01',
+      month: '01',
+      year: '1990',
+      defaultShippingAddressId: '',
+      defaultBillingAddressId: '',
+      shippingAddressIds: [],
+      billingAddressIds: [],
       addresses: [],
     });
   });
@@ -21,13 +30,19 @@ describe('Test extractLocalUser function', () => {
     const result = extractLocalUser(customerWithMissingProperties);
 
     expect(result).toEqual({
-      email: 'test@example.com',
-      password: '',
-      firstName: '',
-      lastName: '',
-      dateOfBirth: '',
       id: '123',
       version: 1,
+      email: 'test@example.com',
+      firstName: '',
+      lastName: '',
+      password: '',
+      date: '',
+      month: '',
+      year: '',
+      defaultShippingAddressId: '',
+      defaultBillingAddressId: '',
+      shippingAddressIds: [],
+      billingAddressIds: [],
       addresses: [],
     });
   });

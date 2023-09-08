@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { registerCustomer } from '../../../services/sdk/auth/methods';
-import { checkError, extractLocalUser } from '../../../utils';
-import { INewUser, IUser } from '../../../types/interfaces';
+import { loginCustomer, registerCustomer } from '../../../services/sdk/auth/methods';
+import { checkError } from '../../../utils';
+import { INewUser } from '../../../types/interfaces';
 import { IAuthSlice } from '../types';
-import { tokenData } from '../../../services/sdk/auth/token';
+import { initialTokenInfo, tokenData } from '../../../services/sdk/auth/token';
 
 export const registerThunk = createAsyncThunk<
-  IUser,
+  string,
   INewUser,
   {
     state: { auth: IAuthSlice };
@@ -16,13 +16,15 @@ export const registerThunk = createAsyncThunk<
   'auth/signupThunk',
   async (body, { rejectWithValue }) => {
     try {
-      const user = await registerCustomer(body);
-      const token = tokenData.get().token;
+      await registerCustomer(body);
+      tokenData.set(initialTokenInfo);
+      const user = await loginCustomer({ username: body.email, password: body.password });
+      const token = tokenData.get().refreshToken;
       if (token) {
-        localStorage.setItem('access-token', token);
+        localStorage.setItem('art-token', token);
       }
 
-      return extractLocalUser(user.body.customer);
+      return user.body.customer.id;
     } catch (error: unknown) {
       return rejectWithValue(checkError(error));
     }

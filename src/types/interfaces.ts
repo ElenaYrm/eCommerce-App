@@ -1,4 +1,5 @@
 import { Address } from '@commercetools/platform-sdk';
+import { ReactElement } from 'react';
 
 export interface INewUser {
   email: string;
@@ -16,16 +17,23 @@ export interface INewUser {
 export interface IUser
   extends Omit<
     INewUser,
-    'defaultBillingAddress' | 'defaultShippingAddress' | 'shippingAddresses' | 'billingAddresses'
+    | 'defaultBillingAddress'
+    | 'defaultShippingAddress'
+    | 'shippingAddresses'
+    | 'billingAddresses'
+    | 'dateOfBirth'
+    | 'addresses'
   > {
   id: string;
   version: number;
-  // defaultShippingAddressId: string;
-  // shippingAddressIds: string[];
-  // defaultBillingAddressId: string;
-  // billingAddressIds: string[];
-  // isEmailVerified: boolean;
-  // authenticationMode: 'Password' | 'ExternalAuth';
+  date: string;
+  month: string;
+  year: string;
+  defaultShippingAddressId: string;
+  defaultBillingAddressId: string;
+  shippingAddressIds: string[];
+  billingAddressIds: string[];
+  addresses: Address[];
 }
 
 export interface INewAddress {
@@ -33,4 +41,27 @@ export interface INewAddress {
   city: string;
   postalCode: string;
   country: string;
+  id?: string;
+}
+
+export interface IAuthAddress extends INewAddress {}
+export interface ITabsList {
+  label: string;
+  content: string | ReactElement;
+  title: string;
+}
+
+export interface IProduct {
+  productId: string;
+  artist: string;
+  title: string;
+  year: string;
+  description: string;
+  dimensions: string;
+  medium: string;
+  size: string;
+  images?: string[];
+  price: number;
+  discountPrice?: number;
+  color: string;
 }

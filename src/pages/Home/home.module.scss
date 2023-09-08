@@ -1,39 +1,57 @@
-@import '../../styles/common';
+@import 'src/styles/common';
 
-.home__container {
+.home {
+  padding-top: 6rem;
   width: 100%;
   height: calc(100vh - 4rem);
-  background-image: url('../../../public/images/bg-home.jpg');
+  background-image: url('/images/bg-home.jpg');
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 
-  .content {
-    max-width: 37rem;
+  &__content {
+    padding: 0 2rem;
+    max-width: 58rem;
     width: 100%;
+
+    @media all and (max-width: 480px) {
+      padding: 0 1rem;
+    }
+
+    &_container {
+      padding: 4rem 3rem;
+      background-color: $light;
+      border-radius: 4rem;
+      border: 1px solid $dark;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      em {
+        text-decoration: underline;
+      }
+    }
+
+    &:last-child {
+      p:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &__link {
+    @include link();
+    margin: 0 auto;
+    padding: 1px;
     position: relative;
-    padding: 5rem;
-    background-color: $light;
-    border-radius: 4rem;
-    border: 1px solid $dark;
-    text-align: center;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    @media all and (max-width: 600px) {
-      margin: 0 1rem;
-    }
-
-    a {
-      margin: 0 auto;
-      position: relative;
-    }
   }
 }
 

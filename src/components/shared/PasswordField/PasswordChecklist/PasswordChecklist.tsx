@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import classnames from 'classnames';
+
 import styles from './passwordChecklist.module.scss';
 
 interface IPasswordRule {
@@ -21,11 +22,11 @@ export default function PasswordChecklist({ password }: IPasswordListProps): Rea
   ];
 
   return (
-    <div className={styles['check-items']}>
+    <div className={styles.rules}>
       <ul>
         {rules.map((rule, index) => (
-          <li className={classnames(styles['check-item'], rule.isValid ? styles.valid : '')} key={index}>
-            <span>{rule.rule}</span>
+          <li className={classnames(styles.rules__item, rule.isValid ? styles.rules__item_valid : '')} key={index}>
+            <span className={styles.rules__name}>{rule.rule}</span>
           </li>
         ))}
       </ul>

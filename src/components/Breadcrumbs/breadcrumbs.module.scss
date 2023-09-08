@@ -1,0 +1,26 @@
+@import 'src/styles/common';
+
+.crumbs {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 4rem;
+
+  @media all and (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__link {
+    @include font(regular, p3, $dark);
+    text-decoration: none;
+  }
+
+  &__separator {
+    white-space: pre-wrap;
+  }
+}

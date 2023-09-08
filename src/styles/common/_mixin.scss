@@ -1,10 +1,202 @@
-@use "variables";
+@use 'variables';
+@import 'variables';
 
-@mixin font($weight: regular, $type, $color: $dark-primary) {
+@mixin font($weight: regular, $type, $color: $dark) {
   $font-type: map-get(variables.$font-type-map, $type);
-  
+
   font-weight: map-get(variables.$font-weight-map, $weight);
   font-size: nth($font-type, 1);
   line-height: nth($font-type, 2);
   color: $color;
+}
+
+@mixin input-error {
+  @include font(regular, p2, $error-color);
+  padding-top: 0.3rem;
+  display: block;
+  text-align: right;
+}
+
+@mixin link {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+
+  transition: all 0.2s ease-in;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 0.15rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    background-color: $dark;
+
+    transition: all 0.2s ease-in;
+  }
+
+  &:hover {
+    color: $primary;
+
+    &::after {
+      background-color: $primary;
+    }
+  }
+}
+
+@mixin check-field {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@mixin checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: transparent;
+  border: 0.1rem solid $dark;
+  border-radius: 0.5rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $green;
+    border-radius: 0.3rem;
+    transform: scale(0);
+    transition: all 0.1s ease-in;
+  }
+
+  &:checked {
+    background-color: rgba($green, 0.3);
+    border: none;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin btn-primary {
+  @include font(medium, h2, $light);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-btn;
+  background-color: $primary;
+  color: $light;
+  text-decoration: none;
+
+  box-shadow: 0 5px 12px rgba($primary, 0.5);
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 12px rgba($primary, 0);
+    background-color: $primary-hover;
+    font-size: 2.98rem;
+    color: $light;
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+@mixin filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@mixin accordion-icon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 0;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+}
+
+@mixin accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  cursor: pointer;
+}
+
+@mixin close-btn {
+  @include font(regular, p1, $dark);
+  position: absolute;
+  right: 4rem;
+  top: 8rem;
+  width: auto;
+  height: unset;
+  box-shadow: none;
+  background-color: inherit;
+  opacity: 0.3;
+  transition:
+    color $transition-set,
+    opacity $transition-set;
+
+  &:hover {
+    box-shadow: unset;
+    background-color: inherit;
+    color: $primary;
+    opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    right: 2rem;
+    top: 8rem;
+  }
+
+  @media (max-width: 480px) {
+    right: 1rem;
+    font-size: 1.8rem;
+    top: 7rem;
+  }
+}
+
+@mixin responseMessage($color, $background-color) {
+  position: fixed;
+  display: flex;
+  bottom: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85vw;
+  max-width: 64rem;
+  padding: 1.2rem 0;
+  justify-content: center;
+  align-items: center;
+  @include font(semibold, p1, $color);
+  background-color: $background-color;
+  border-radius: 4rem;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+  z-index: 1000;
+
+  @media (max-width: 800px) {
+    padding: 1.5rem 2.5rem;
+    bottom: 8rem;
+    border-radius: 2rem;
+    width: 95vw;
+  }
 }

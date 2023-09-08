@@ -19,7 +19,7 @@ export default function Register(): ReactElement {
 
   useEffect(() => {
     if (isAuthorized) {
-      navigate(PATH.home);
+      navigate(PATH[Page.Home]);
     }
 
     return (): void => {
@@ -28,12 +28,14 @@ export default function Register(): ReactElement {
   }, [isAuthorized, navigate, dispatch]);
 
   return (
-    <div className={styles.auth}>
-      <div className={styles.auth__container}>
-        <div className={styles.form__container}>
-          <Link to={PATH[Page.Login]}>Login</Link>
+    <div className={styles.register}>
+      <div className={styles.register__container}>
+        <div className={styles.register__form}>
+          <Link to={PATH[Page.Login]} className={styles.register__link}>
+            Login
+          </Link>
 
-          <div className={styles.title}>
+          <div className={styles.register__title}>
             <span>Register</span>
             <span>a new account</span>
           </div>
@@ -43,7 +45,7 @@ export default function Register(): ReactElement {
           <RegisterForm />
         </div>
       </div>
-      <div className={styles.image}></div>
+      <div className={styles.register__image}></div>
     </div>
   );
 }

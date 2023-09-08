@@ -49,9 +49,10 @@ function LoginForm(): ReactElement {
             error={errors?.[Input.Password]}
             touched={touched?.[Input.Password]}
             setFieldTouched={setFieldTouched}
+            className={styles.form__password}
           />
 
-          <Button type="submit" name="Login ( ^ω^)" className={styles.button__primary} />
+          <Button type="submit" name="Login ( ^ω^)" />
         </form>
       )}
     </Formik>
