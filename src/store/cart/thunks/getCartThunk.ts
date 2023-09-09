@@ -3,7 +3,7 @@ import { ICart, ICartSlice } from '../types';
 import { checkError } from '../../../utils';
 import { getCart } from '../../../services/sdk/cart/methods';
 import { extractLocalCart } from '../../../utils/extractLocalCart.ts';
-import { initialBasket } from '../slice';
+import { initialBasket } from '../../../constant';
 
 export const getCartThunk = createAsyncThunk<
   ICart,

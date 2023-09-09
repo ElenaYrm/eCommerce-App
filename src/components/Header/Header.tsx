@@ -1,6 +1,8 @@
 import { ReactElement, MouseEvent, useState, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
+import { resetCart } from '../../store/cart/slice';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { logoutThunk } from '../../store/auth/thunks';
@@ -10,7 +12,6 @@ import { Page } from '../../router/types';
 import Logo from '../../assets/icons/logo.svg';
 
 import styles from './header.module.scss';
-import classnames from 'classnames';
 
 export default function Header(): ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Header(): ReactElement {
   function handleLogout(e: MouseEvent<HTMLAnchorElement>): void {
     e.preventDefault();
     dispatch(logoutThunk());
+    dispatch(resetCart());
     navigate(PATH[Page.Home]);
     closeMenu();
   }
