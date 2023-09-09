@@ -6,6 +6,7 @@ export interface IProtectedRoute {
 }
 
 export enum Page {
+  About = 'about',
   Home = 'home',
   Login = 'login',
   Register = 'register',

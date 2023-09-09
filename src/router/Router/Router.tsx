@@ -13,6 +13,7 @@ import { Page } from '../types';
 import { Product } from '../../pages/Product';
 import { Catalog } from '../../pages/Catalog';
 import { EditingProvider } from '../../pages/Profile/profileContext';
+import { AboutUs } from '../../pages/AboutUs';
 
 export default function Router(): ReactElement {
   return (
@@ -35,6 +36,7 @@ export default function Router(): ReactElement {
             </ProtectedRoute>
           }
         />
+        <Route path={PATH[Page.About]} element={<AboutUs />}></Route>
       </Route>
     </Routes>
   );

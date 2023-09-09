@@ -101,6 +101,9 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Register]} className={styles.nav__link} onClick={closeMenu}>
                     Register
                   </NavLink>
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About us
+                  </NavLink>
                 </>
               )}
             </nav>

@@ -1,0 +1,54 @@
+@import '../../../../styles/common';
+
+.root {
+  max-width: 1150px;
+  margin-bottom: 6rem;
+
+  @media(max-width: 800px) {
+    display: none;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+
+  &__about {
+    margin-bottom: 4rem;
+    font-size: 4rem;
+    line-height: 4.8rem;
+  }
+
+  &__contribution {
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  &__contributionTitle {
+    font-size: 4rem;
+    line-height: 4.4rem;
+    font-weight: 600;
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 3.5rem;
+    font-size: 4rem;
+    line-height: 4.8rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background-color: $primary;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
