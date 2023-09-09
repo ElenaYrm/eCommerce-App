@@ -1,0 +1,105 @@
+@import '../../../styles/common/';
+
+.total {
+  flex-shrink: 0;
+  width: 40rem;
+  height: auto;
+  padding: 4rem;
+  background-color: #fff;
+  border-radius: 4rem;
+  margin-top: -2rem;
+
+  @media all and (max-width: 900px) {
+    width: 100%;
+  }
+
+  @media all and (max-width: 480px) {
+    padding: 3rem;
+  }
+
+  &__title {
+    @include font(semibold, h2, $dark);
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    margin-bottom: 2rem;
+
+    &_item {
+      display: flex;
+      justify-content: space-between;
+
+      &:nth-child(3) {
+        padding-bottom: 3rem;
+      }
+
+      &:last-child {
+        padding-top: 3rem;
+        border-top: 1px solid $dark;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__button_checkout {
+    width: 100%;
+    margin-bottom: 6rem;
+  }
+
+  &__promo {
+    width: 100%;
+    padding: 2rem 3rem 3rem;
+    background-color: rgba($primary, 0.1);
+    border-radius: 2rem;
+    font-size: 1.8rem;
+
+    .promo__title {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .promo__form {
+      width: 100%;
+      display: flex;
+
+      &_input,
+      &_button {
+        height: 4.4rem;
+        border-radius: 0;
+        border: 1px solid $dark;
+      }
+
+      &_input {
+        flex-grow: 1;
+        padding: 0 1rem;
+        min-width: 100px;
+        border-right: none;
+
+        &::placeholder {
+          color: $dark;
+          opacity: 0.3;
+        }
+      }
+
+      &_button {
+        flex-shrink: 0;
+        padding: 0 1.5rem 0.2rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        background-color: $dark;
+        box-shadow: none;
+
+        &:active,
+        &:hover {
+          background-color: $primary;
+          border: 1px solid $primary;
+        }
+      }
+    }
+  }
+}
