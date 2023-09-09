@@ -1,0 +1,126 @@
+@import '../../../styles/common/';
+
+.items__list {
+  margin-bottom: 2rem;
+}
+
+.item {
+  width: 100%;
+  padding: 2rem 0;
+  border-top: 1px solid $dark;
+
+  &:last-child {
+    border-bottom: 1px solid $dark;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__image {
+    flex-shrink: 0;
+    width: 100px;
+    height: 130px;
+    background-color: $primary;
+  }
+
+  &__button_remove {
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 2rem;
+    color: $text-grey;
+
+    @media all and (max-width: 480px) {
+      font-size: 1.8rem;
+    }
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 2rem;
+      color: $primary;
+
+      @media all and (max-width: 480px) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.item__info {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media all and (max-width: 480px) {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    &__artist {
+      margin-bottom: 1rem;
+    }
+
+    &__controls {
+      display: flex;
+
+      &_button,
+      &_count {
+        height: 4.4rem;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      &_button {
+        width: 4.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $dark;
+      }
+
+      &_count {
+        width: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $dark;
+        text-align: center;
+
+        @media all and (max-width: 480px) {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @media all and (max-width: 480px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
+
+    &__total {
+      font-weight: 600;
+    }
+  }
+}
