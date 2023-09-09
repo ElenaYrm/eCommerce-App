@@ -5,6 +5,7 @@ import { initialProduct, initialUser } from '../constant';
 import { IProductSlice } from '../store/product/types';
 import { ICatalogSlice } from '../store/catalog/types';
 import { IUserSlice } from '../store/user/types';
+import { ICartSlice } from '../store/cart/types';
 
 export const initialUserMock: IUser = {
   id: '',
@@ -53,11 +54,24 @@ export const initialProductMock: IProductSlice = {
   error: '',
 };
 
+export const initialCartMock: ICartSlice = {
+  status: 'initial',
+  error: '',
+  basket: {
+    id: '',
+    version: 0,
+    lineItems: [],
+    totalPrice: 0,
+    totalQuantity: 0,
+  },
+};
+
 export const storeMock: RootState = {
   auth: initialAuthMock,
   product: initialProductMock,
   catalog: initialProductListMock,
   user: initialUserSliceMock,
+  cart: initialCartMock,
 };
 
 export const resultAuthMock: IAuthSlice = {

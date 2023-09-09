@@ -1,4 +1,4 @@
-export * from './createCart.ts';
+export * from './createCart';
 export * from './getCart';
-export * from './updateCart.ts';
-export * from './deleteCartById.ts';
+export * from './updateCart';
+export * from './deleteCartById';
