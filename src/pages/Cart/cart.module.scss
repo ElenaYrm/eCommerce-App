@@ -6,4 +6,53 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  &__container {
+    width: 100%;
+    padding: 10rem 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+
+    @media all and (max-width: 900px) {
+      flex-direction: column;
+      gap: 8rem;
+    }
+
+    @media all and (max-width: 480px) {
+      padding: 9rem 1rem 6rem;
+    }
+  }
+}
+
+.items {
+  width: 100%;
+
+  &__title {
+    @include font(semibold, h1, $dark);
+    margin-bottom: 4rem;
+
+    @media all and (max-width: 480px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__button_clear {
+    @include font(semibold, h2, $dark);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-btn;
+    background-color: $btn-grey;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+
+    &:focus,
+    &:hover {
+      background-color: $btn-dark-grey;
+      color: $dark;
+    }
+  }
 }
