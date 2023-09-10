@@ -1,8 +1,13 @@
 @import '../../../styles/common';
 
-.root{
+.root {
   margin-bottom: 2rem;
   border-bottom: 1px solid $dark;
+
+  @media(max-width: 800px) {
+    margin-bottom: 8rem;
+    border-bottom: none;
+  }
 }
 
 .list {
@@ -14,6 +19,7 @@
 
   @media(max-width: 800px) {
     flex-direction: column;
+    margin-bottom: 0;
   }
 }
 
@@ -21,7 +27,13 @@
   display: flex;
   flex-direction: column;
 
+  @media(max-width: 800px) {
+    border-bottom: 1px solid $dark;
+  }
+
   &__studentInfo {
+    display: flex;
+    flex-direction: column;
 
     &.isactive {
       color: $primary;
@@ -31,6 +43,28 @@
       }
     }
 
+    &:hover {
+      color: $primary;
+
+      .item__img {
+        box-shadow: 0px 9px 12px 0px $primary;
+      }
+    }
+
+    @media(max-width: 800px) {
+      &.isShown {
+        color: $primary;
+
+        .item__img {
+          box-shadow: 0px 9px 12px 0px $primary;
+        }
+      }
+    }
+
+  }
+
+  &__imgContainer {
+    position: relative;
   }
 
   &__img {
@@ -38,6 +72,16 @@
     height: 45rem;
     margin-bottom: 2rem;
     border-radius: 4rem;
+
+    @media (max-width: 1200px) {
+      height: 37rem;
+    }
+
+    @media(max-width: 800px) {
+      height: 45rem;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
   }
 
   &__title {
@@ -98,6 +142,10 @@
 
       }
     }
+
+    @media(max-width:800px) {
+      margin-bottom: 6rem;
+    }
   }
 
   &__showBtn {
@@ -105,15 +153,8 @@
 
     @media(max-width: 800px) {
       display: block;
+      text-wrap: nowrap;
     }
   }
 
-}
-
-.bodyMobile {
-  display: none;
-
-  @media(max-width: 800px) {
-    display: block;
-  }
 }
