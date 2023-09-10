@@ -8,7 +8,6 @@
     flex-direction: column;
     height: 0;
     opacity: 0;
-    transition: opacity $transition-set, height $transition-set;
 
     &.isNotHide {
       opacity: 1;
@@ -62,5 +61,10 @@
   &__hideBtn {
     text-align: end;
     margin-bottom: 2rem;
+    color: $primary;
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+    text-decoration: underline;
   }
 }

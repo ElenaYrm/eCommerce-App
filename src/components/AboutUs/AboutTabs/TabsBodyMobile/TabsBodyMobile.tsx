@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, useState } from 'react';
+import { Dispatch, ReactElement } from 'react';
 import styles from './tabsBodyMobile.module.scss';
 import classNames from 'classnames';
 import { studentDataTabs } from '../../../../constant/aboutus';
@@ -12,15 +12,12 @@ interface ITabsBodyMobile {
 }
 
 function TabsBodyMobile({ setIsBtnShown, isBtnShown, stName, textAbout, activeTab }: ITabsBodyMobile): ReactElement {
-  const [isHide, setIsHide] = useState(false);
-
   function handleHideBtn(): void {
-    setIsHide(!isHide);
     setIsBtnShown(!isBtnShown);
   }
 
   return (
-    <div className={classNames(styles.bodyMobile, { [styles.isNotHide]: !isHide })}>
+    <div className={classNames(styles.bodyMobile, { [styles.isNotHide]: isBtnShown })}>
       <h3 className={styles.bodyMobile__title}>About {stName}</h3>
       <div className={styles.bodyMobile__about}>{textAbout}</div>
       <div className={styles.bodyMobile__contributionContainer}>
@@ -35,7 +32,7 @@ function TabsBodyMobile({ setIsBtnShown, isBtnShown, stName, textAbout, activeTa
           })}
         </ul>
       </div>
-      {!isHide && (
+      {isBtnShown && (
         <button className={styles.bodyMobile__hideBtn} onClick={handleHideBtn}>
           Hide About
         </button>

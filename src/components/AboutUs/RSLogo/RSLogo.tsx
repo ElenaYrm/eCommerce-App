@@ -14,7 +14,7 @@ function RSLogo(): ReactElement {
         <div className={styles.root__circle}></div>
         <div className={styles.root__circle}></div>
         {/* "https://rs.school/" */}
-        <a className={styles.root__link} href="#">
+        <a className={styles.root__link} href="https://rs.school" target="_blank">
           R S SCHOOL
         </a>
       </div>

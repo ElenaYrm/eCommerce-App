@@ -48,6 +48,9 @@ export default function Home(): ReactElement {
           <Link to={PATH[Page.Cart]} className={styles.home__link}>
             Cart
           </Link>
+          <Link to={PATH[Page.About]} className={styles.home__link}>
+            About us
+          </Link>
         </div>
       </div>
 
