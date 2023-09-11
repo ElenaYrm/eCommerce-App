@@ -2,7 +2,7 @@ import styles from './aboutTabs.module.scss';
 
 import { ReactElement, useState } from 'react';
 import { studentDataTabs } from '../../../constant/aboutus';
-import { TabsBody } from './TabsBody';
+import { Description } from './Description';
 import { Tab } from './Tab';
 
 function AboutTabs(): ReactElement {
@@ -18,17 +18,11 @@ function AboutTabs(): ReactElement {
         {studentDataTabs.map((student, ind) => {
           const isActive = activeTab === ind;
           return (
-            <Tab
-              student={student}
-              isActive={isActive}
-              handleTabClick={handleTabClick}
-              ind={ind}
-              activeTab={activeTab}
-            />
+            <Tab key={ind} student={student} isActive={isActive} handleTabClick={(): void => handleTabClick(ind)} />
           );
         })}
       </ul>
-      <TabsBody activeTabIndex={activeTab} />
+      <Description student={studentDataTabs[activeTab]} isMobile={false} />
     </div>
   );
 }

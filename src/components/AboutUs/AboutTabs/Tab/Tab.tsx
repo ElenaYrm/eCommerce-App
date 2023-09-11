@@ -9,25 +9,23 @@ import { TabsBodyMobile } from '../TabsBodyMobile';
 interface ITab {
   isActive: boolean;
   student: IAboutDataTabs;
-  handleTabClick: (ind: number) => void;
-  ind: number;
-  activeTab: number;
+  handleTabClick: () => void;
 }
 
-function Tab({ isActive, student, handleTabClick, ind, activeTab }: ITab): ReactElement {
+function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
   const [isBtnShown, setIsBtnShown] = useState(true);
   const stName = student.stName.split(' ')[0];
   const { textAbout } = student.body;
 
   return (
-    <li key={ind} className={classNames(styles.list__item, styles.item)}>
+    <li className={classNames(styles.list__item, styles.item)}>
       <div
         className={classNames(
           styles.item__studentInfo,
           { [styles.isactive]: isActive },
           { [styles.isShown]: isBtnShown },
         )}
-        onClick={(): void => handleTabClick(ind)}
+        onClick={handleTabClick}
       >
         <div className={styles.item__imgContainer}>
           <img className={styles.item__img} src={student.profilePicture} alt="picture of student" />
@@ -55,9 +53,9 @@ function Tab({ isActive, student, handleTabClick, ind, activeTab }: ITab): React
       <TabsBodyMobile
         isBtnShown={isBtnShown}
         setIsBtnShown={setIsBtnShown}
-        activeTab={activeTab}
         stName={stName}
         textAbout={textAbout}
+        student={student}
       />
     </li>
   );

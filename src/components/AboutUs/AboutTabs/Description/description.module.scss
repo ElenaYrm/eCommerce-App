@@ -1,0 +1,119 @@
+@import '../../../../styles/common';
+
+.root {
+  max-width: 80%;
+  margin-bottom: 6rem;
+
+  @media(max-width: 800px) {
+    display: none;
+    max-width: 100%;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+
+  &__about {
+    margin-bottom: 4rem;
+    font-size: 4rem;
+    line-height: 4.8rem;
+  }
+
+  &__contribution {
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  &__contributionTitle {
+    margin-bottom: 2rem;
+    width: 69.5rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+    font-weight: 600;
+  }
+
+  &__item {
+    position: relative;
+    width: 69.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 3.5rem;
+    font-size: 4rem;
+    line-height: 4.8rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background-color: $primary;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+
+.bodyMobile {
+  display: none;
+
+  @media(max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    opacity: 0;
+
+    &.isNotHide {
+      opacity: 1;
+      height: 100%;
+    }
+  }
+
+  &__contributionContainer {
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  &__about {
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+  &__contribution {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: $primary;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
