@@ -74,6 +74,7 @@ export const initialBasket: ICart = {
   lineItems: [],
   totalPrice: 0,
   totalQuantity: 0,
+  codes: [],
 };
 
 export const initialCart: ICartSlice = {

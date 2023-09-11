@@ -33,7 +33,7 @@ function ProductsList(): ReactElement {
     if (!cart.id) {
       dispatch(getCartThunk(isAuthorized));
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, cart.id, dispatch]);
 
   return (
     <>

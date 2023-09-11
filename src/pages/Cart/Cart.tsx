@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
 import { useSelector } from 'react-redux';
@@ -11,12 +11,13 @@ export default function Cart(): ReactElement {
   const isAuthorized = useSelector(selectIsAuthorized);
   const cart = useSelector(selectCart);
   const dispatch = useAppDispatch();
+  const [code, setCode] = useState('');
 
   useEffect(() => {
     if (!cart.id) {
       dispatch(getCartThunk(isAuthorized));
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, cart.id, dispatch]);
 
   function handleClick(event: React.MouseEvent): void {
     event.preventDefault();
@@ -61,9 +62,70 @@ export default function Cart(): ReactElement {
       ) : (
         <div>Cart is empty</div>
       )}
+      <div>
+        <input
+          type="text"
+          value={code}
+          onInput={(event: React.FormEvent<HTMLInputElement>): void => setCode(event.currentTarget.value)}
+        />
+        <button
+          type="button"
+          onClick={(): void => {
+            dispatch(
+              updateCartThunk({
+                id: cart.id,
+                version: cart.version,
+                actions: [
+                  {
+                    action: 'addDiscountCode',
+                    code: code,
+                  },
+                ],
+                isAuth: isAuthorized,
+              }),
+            );
+            setCode('');
+          }}
+        >
+          Apply code
+        </button>
+      </div>
       <button type="button" onClick={handleClick} disabled={cart.lineItems.length === 0}>
         Clear cart
       </button>
+      <div>{cart.totalPrice}</div>
+      {cart.codes.length > 0 && (
+        <ul>
+          {cart.codes.map((item) => (
+            <li key={item.id}>
+              <span>{item.id}</span>
+              <button
+                type="button"
+                onClick={(): void => {
+                  dispatch(
+                    updateCartThunk({
+                      id: cart.id,
+                      version: cart.version,
+                      actions: [
+                        {
+                          action: 'removeDiscountCode',
+                          discountCode: {
+                            typeId: 'discount-code',
+                            id: item.id,
+                          },
+                        },
+                      ],
+                      isAuth: isAuthorized,
+                    }),
+                  );
+                }}
+              >
+                Remove code
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

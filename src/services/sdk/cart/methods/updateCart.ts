@@ -36,37 +36,3 @@ export const updateCart = ({ id, version, actions, isAuth }: IUpdateCart): Promi
       .execute();
   }
 };
-
-//   {
-//     action: 'addLineItem',
-//     productId: 'sfsdfsdf',
-//     variantId : 1,
-//     quantity : 1,
-//   },
-//   {
-//     action: 'removeLineItem',
-//     lineItemId: "{{lineItemId}}",
-//     quantity: 1,
-//   },
-//
-//   {
-//     "action": "changeLineItemQuantity",
-//     "lineItemId": "{{lineItemId}}",
-//     "quantity": 1
-//   }
-
-// {
-//     "action": "removeDiscountCode",
-//     "discountCode": {
-//       "typeId": "discount-code",
-//       "id": "{{discount-code-id}}"
-//     }
-//   },
-//   {
-//     "action": "addDiscountCode",
-//     "code": "mydiscountcode"
-//   },
-// {
-//     "action": "recalculate",
-//     "updateProductData": true,
-//   },

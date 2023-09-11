@@ -63,6 +63,7 @@ export const initialCartMock: ICartSlice = {
     lineItems: [],
     totalPrice: 0,
     totalQuantity: 0,
+    codes: [],
   },
 };
 
