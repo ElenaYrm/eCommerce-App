@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
 import { Formik } from 'formik';
+import { useSelector } from 'react-redux';
 import { UserAuthOptions } from '@commercetools/sdk-client-v2';
 import { InputField } from '../shared/InputField';
 import { PasswordField } from '../shared/PasswordField';
 import { Button } from '../shared/Button';
-import { loginThunk } from '../../store/auth/thunks';
+import { anonLoginThunk, loginThunk } from '../../store/auth/thunks';
+import { selectCart } from '../../store/cart/selectors';
 import { useAppDispatch } from '../../store/store';
 import { initialLoginForm } from '../../constant';
 import { Input } from '../../types/enums';
@@ -18,6 +20,7 @@ export interface ILoginForm {
 }
 
 function LoginForm(): ReactElement {
+  const cart = useSelector(selectCart);
   const dispatch = useAppDispatch();
 
   function handleSubmit(values: ILoginForm): void {
@@ -26,7 +29,11 @@ function LoginForm(): ReactElement {
       password: values.password.trim(),
     };
 
-    dispatch(loginThunk(user));
+    if (cart.id) {
+      dispatch(anonLoginThunk(user));
+    } else {
+      dispatch(loginThunk(user));
+    }
   }
 
   return (

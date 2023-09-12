@@ -4,6 +4,7 @@ import { IProductSlice } from '../store/product/types';
 import { IProduct } from '../types/interfaces';
 import { ICatalogSlice } from '../store/catalog/types';
 import { IUserSlice } from '../store/user/types';
+import { ICart, ICartSlice } from '../store/cart/types';
 
 export const initialUser: IUser = {
   id: '',
@@ -65,4 +66,19 @@ export const initialProductListSlice: ICatalogSlice = {
   error: '',
   productList: [],
   categories: [],
+};
+
+export const initialBasket: ICart = {
+  id: '',
+  version: 0,
+  lineItems: [],
+  totalPrice: 0,
+  totalQuantity: 0,
+  codes: [],
+};
+
+export const initialCart: ICartSlice = {
+  status: 'initial',
+  error: '',
+  basket: initialBasket,
 };
