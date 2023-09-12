@@ -4,6 +4,7 @@ import { authReducer } from './auth/slice';
 import { productReducer } from './product/slice';
 import { catalogReducer } from './catalog/slice';
 import { userReducer } from './user/slice';
+import { cartReducer } from './cart/slice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     product: productReducer,
     catalog: catalogReducer,
     user: userReducer,
+    cart: cartReducer,
   },
 });
 
