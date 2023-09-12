@@ -12,9 +12,9 @@
     padding: 10rem 2rem 6rem;
     display: flex;
     justify-content: space-between;
-    gap: 4rem;
+    gap: 3rem;
 
-    @media all and (max-width: 900px) {
+    @media all and (max-width: $cart-tablet-width) {
       flex-direction: column;
       gap: 8rem;
     }
@@ -30,11 +30,7 @@
 
   &__title {
     @include font(semibold, h1, $dark);
-    margin-bottom: 4rem;
-
-    @media all and (max-width: 480px) {
-      margin-bottom: 2rem;
-    }
+    margin-bottom: 2rem;
   }
 
   &__button_clear {

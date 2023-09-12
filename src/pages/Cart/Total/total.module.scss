@@ -3,18 +3,18 @@
 .total {
   flex-shrink: 0;
   width: 40rem;
-  height: auto;
-  padding: 4rem;
+  height: max-content;
+  padding: 3.5rem 3rem 3rem;
   background-color: #fff;
   border-radius: 4rem;
   margin-top: -2rem;
 
-  @media all and (max-width: 900px) {
+  @media all and (max-width: $cart-tablet-width) {
     width: 100%;
   }
 
   @media all and (max-width: 480px) {
-    padding: 3rem;
+    padding: 3rem 2.5rem;
   }
 
   &__title {
@@ -53,7 +53,7 @@
 
   &__promo {
     width: 100%;
-    padding: 2rem 3rem 3rem;
+    padding: 2rem 2.5rem 2.5rem;
     background-color: rgba($primary, 0.1);
     border-radius: 2rem;
     font-size: 1.8rem;
@@ -98,6 +98,34 @@
         &:hover {
           background-color: $primary;
           border: 1px solid $primary;
+        }
+      }
+    }
+
+    .codes {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 1.8rem;
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.4rem 1rem 0.5rem;
+        background-color: rgba($primary, 0.15);
+        border-radius: 0.6rem;
+
+        &_button {
+          height: auto;
+          background-color: transparent;
+          box-shadow: none;
+          font-size: 1.8rem;
+          color: rgba($dark, 0.3);
+
+          &:hover {
+            color: rgba($primary, 1);
+          }
         }
       }
     }
