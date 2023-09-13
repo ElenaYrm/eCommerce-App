@@ -16,6 +16,7 @@ export const registerThunk = createAsyncThunk<
   'auth/signupThunk',
   async (body, { rejectWithValue }) => {
     try {
+      tokenData.set(initialTokenInfo);
       await registerCustomer(body);
       tokenData.set(initialTokenInfo);
       const user = await loginCustomer({ username: body.email, password: body.password });

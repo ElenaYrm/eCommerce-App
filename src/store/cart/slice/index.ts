@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteCartThunk, getCartThunk, updateCartThunk } from '../thunks';
+import { deleteCartThunk, getCartThunk, getDiscountsThunk, updateCartThunk } from '../thunks';
 import { initialBasket, initialCart } from '../../../constant';
 
 const cartSlice = createSlice({
@@ -45,6 +45,18 @@ const cartSlice = createSlice({
         state.basket = payload;
       })
       .addCase(deleteCartThunk.rejected, (state, { payload }) => {
+        state.status = 'error';
+        state.error = payload || 'Something was wrong';
+      })
+      .addCase(getDiscountsThunk.pending, (state) => {
+        state.status = 'loading';
+        state.error = '';
+      })
+      .addCase(getDiscountsThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.discounts = payload;
+      })
+      .addCase(getDiscountsThunk.rejected, (state, { payload }) => {
         state.status = 'error';
         state.error = payload || 'Something was wrong';
       });
