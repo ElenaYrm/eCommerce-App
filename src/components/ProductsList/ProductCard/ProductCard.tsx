@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -28,7 +28,9 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
 
   const isProductInCart = cart.lineItems.filter((item) => item.productId === productId).length > 0;
 
-  function addToCart(): void {
+  function addToCart(event: MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+
     dispatch(
       updateCartThunk({
         id: cart.id,
@@ -69,7 +71,7 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
           <Button
             type="button"
             name={isProductInCart ? 'In Cart' : 'Add to Cart'}
-            handleClick={addToCart}
+            handleClick={(event): void => addToCart(event)}
             className={styles.card__button}
             disabled={isProductInCart}
           />

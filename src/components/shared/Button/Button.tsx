@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, MouseEvent } from 'react';
 import classnames from 'classnames';
 
 import styles from './button.module.scss';
@@ -8,7 +8,7 @@ interface IButtonProps {
   name: string;
   className?: string;
   disabled?: boolean;
-  handleClick?: () => void;
+  handleClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const noop = (): void => {
@@ -17,7 +17,12 @@ const noop = (): void => {
 
 function Button({ type, name, className, handleClick = noop, disabled }: IButtonProps): ReactElement {
   return (
-    <button type={type} className={classnames(styles.btn, className || '')} onClick={handleClick} disabled={disabled}>
+    <button
+      type={type}
+      className={classnames(styles.btn, className || '')}
+      onClick={(event): void => handleClick(event)}
+      disabled={disabled}
+    >
       {name}
     </button>
   );
