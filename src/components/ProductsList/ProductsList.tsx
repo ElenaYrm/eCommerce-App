@@ -6,7 +6,6 @@ import { selectAuthLoadingInfo, selectProductsInfo } from '../../store/catalog/s
 import { useAppDispatch } from '../../store/store';
 import { productListThunk } from '../../store/catalog/thunks';
 import { getCartThunk } from '../../store/cart/thunks';
-import { selectIsAuthorized } from '../../store/auth/selectors';
 import { selectCart } from '../../store/cart/selectors';
 import { ProductCard } from './ProductCard';
 import { Loader } from '../shared/Loader';
@@ -22,7 +21,6 @@ function ProductsList(): ReactElement {
   const { status, error } = useSelector(selectAuthLoadingInfo);
   const [page, setPage] = useState(1);
 
-  const isAuthorized = useSelector(selectIsAuthorized);
   const cart = useSelector(selectCart);
 
   const dispatch = useAppDispatch();
@@ -34,9 +32,9 @@ function ProductsList(): ReactElement {
 
   useEffect(() => {
     if (!cart.id) {
-      dispatch(getCartThunk(isAuthorized));
+      dispatch(getCartThunk());
     }
-  }, [isAuthorized, cart.id, dispatch]);
+  }, [cart.id, dispatch]);
 
   useEffect(() => {
     changeParams(setSearchParams, `${page}`, SearchParams.Page);

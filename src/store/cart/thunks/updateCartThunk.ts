@@ -3,7 +3,6 @@ import { ICart, ICartSlice } from '../types';
 import { checkError } from '../../../utils';
 import { createCart, IUpdateCart, updateCart } from '../../../services/sdk/cart/methods';
 import { extractLocalCart } from '../../../utils/extractLocalCart.ts';
-// import { initialTokenInfo, tokenData } from '../../../services/sdk/auth/token';
 
 export const updateCartThunk = createAsyncThunk<
   ICart,
@@ -17,13 +16,11 @@ export const updateCartThunk = createAsyncThunk<
   async (body, { rejectWithValue }) => {
     try {
       if (!body.id) {
-        // tokenData.set(initialTokenInfo);
-        const cart = await createCart(body.isAuth);
+        const cart = await createCart();
         const res = await updateCart({
           id: cart.body.id,
           version: cart.body.version,
           actions: body.actions,
-          isAuth: body.isAuth,
         });
         return extractLocalCart(res.body);
       } else {

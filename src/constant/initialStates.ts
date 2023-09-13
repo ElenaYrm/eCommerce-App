@@ -82,4 +82,5 @@ export const initialCart: ICartSlice = {
   status: 'initial',
   error: '',
   basket: initialBasket,
+  discounts: [],
 };
