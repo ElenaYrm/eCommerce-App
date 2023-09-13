@@ -1,27 +1,29 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../store/store';
-import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
+import { deleteCartThunk, getCartThunk, getDiscountsThunk, updateCartThunk } from '../../store/cart/thunks';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/cart/selectors';
+import { selectCartData } from '../../store/cart/selectors';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 
 import styles from './cart.module.scss';
 
 export default function Cart(): ReactElement {
   const isAuthorized = useSelector(selectIsAuthorized);
-  const cart = useSelector(selectCart);
+  const { basket, discounts } = useSelector(selectCartData);
   const dispatch = useAppDispatch();
   const [code, setCode] = useState('');
 
   useEffect(() => {
-    if (!cart.id) {
-      dispatch(getCartThunk(isAuthorized));
+    dispatch(getCartThunk(isAuthorized));
+
+    if (discounts.length === 0) {
+      dispatch(getDiscountsThunk(isAuthorized));
     }
-  }, [isAuthorized, cart.id, dispatch]);
+  }, [isAuthorized, dispatch, discounts]);
 
   function handleClick(event: React.MouseEvent): void {
     event.preventDefault();
-    dispatch(deleteCartThunk({ id: cart.id, version: cart.version, isAuth: isAuthorized }));
+    dispatch(deleteCartThunk({ id: basket.id, version: basket.version, isAuth: isAuthorized }));
   }
 
   return (
@@ -30,9 +32,9 @@ export default function Cart(): ReactElement {
       className={styles.cart}
     >
       <h1>Cart</h1>
-      {cart.lineItems.length > 0 ? (
+      {basket.lineItems.length > 0 ? (
         <ul>
-          {cart.lineItems.map((item) => (
+          {basket.lineItems.map((item) => (
             <li key={item.itemId}>
               <div>{`${item.name} ${item.quantity} ${item.price}`}</div>
               <button
@@ -40,8 +42,8 @@ export default function Cart(): ReactElement {
                 onClick={(): void => {
                   dispatch(
                     updateCartThunk({
-                      id: cart.id,
-                      version: cart.version,
+                      id: basket.id,
+                      version: basket.version,
                       actions: [
                         {
                           action: 'removeLineItem',
@@ -73,8 +75,8 @@ export default function Cart(): ReactElement {
           onClick={(): void => {
             dispatch(
               updateCartThunk({
-                id: cart.id,
-                version: cart.version,
+                id: basket.id,
+                version: basket.version,
                 actions: [
                   {
                     action: 'addDiscountCode',
@@ -90,13 +92,13 @@ export default function Cart(): ReactElement {
           Apply code
         </button>
       </div>
-      <button type="button" onClick={handleClick} disabled={cart.lineItems.length === 0}>
+      <button type="button" onClick={handleClick} disabled={basket.lineItems.length === 0}>
         Clear cart
       </button>
-      <div>{cart.totalPrice}</div>
-      {cart.codes.length > 0 && (
+      <div>{basket.totalPrice}</div>
+      {basket.codes.length > 0 && (
         <ul>
-          {cart.codes.map((item) => (
+          {basket.codes.map((item) => (
             <li key={item.id}>
               <span>{item.id}</span>
               <button
@@ -104,8 +106,8 @@ export default function Cart(): ReactElement {
                 onClick={(): void => {
                   dispatch(
                     updateCartThunk({
-                      id: cart.id,
-                      version: cart.version,
+                      id: basket.id,
+                      version: basket.version,
                       actions: [
                         {
                           action: 'removeDiscountCode',
