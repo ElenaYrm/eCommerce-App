@@ -12,9 +12,10 @@ const catalogSlice = createSlice({
         state.error = '';
         state.status = 'loading';
       })
-      .addCase(productListThunk.fulfilled, (state, action) => {
+      .addCase(productListThunk.fulfilled, (state, { payload }) => {
         state.status = 'success';
-        state.productList = action.payload;
+        state.productList = payload.list;
+        state.totalProducts = payload.count;
       })
       .addCase(productListThunk.rejected, (state, action) => {
         state.status = 'error';
