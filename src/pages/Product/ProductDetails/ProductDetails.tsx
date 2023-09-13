@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { selectIsAuthorized } from '../../../store/auth/selectors';
 import { selectCart } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
@@ -19,7 +18,6 @@ interface IProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: IProductDetailsProps): ReactElement {
-  const isAuthorized = useSelector(selectIsAuthorized);
   const cart = useSelector(selectCart);
 
   const { productId } = product;
@@ -40,7 +38,6 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
             quantity: 1,
           },
         ],
-        isAuth: isAuthorized,
       }),
     );
   }
@@ -57,7 +54,6 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
             quantity: cartItem?.quantity,
           },
         ],
-        isAuth: isAuthorized,
       }),
     );
   }

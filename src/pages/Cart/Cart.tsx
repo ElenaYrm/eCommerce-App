@@ -2,37 +2,38 @@ import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
-import { selectCart } from '../../store/cart/selectors';
-import { selectIsAuthorized } from '../../store/auth/selectors';
+import { selectCartData, selectAuthLoadingInfo } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyMessage';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
 import { CartList } from './CartList';
+import { Loader } from '../../components/shared/Loader';
 
 import styles from './cart.module.scss';
 import { IItemCart } from '../../store/cart/types';
 
 export default function Cart(): ReactElement {
-  const { basket, discounts } = useSelector(selectCartData);
+  const { basket } = useSelector(selectCartData);
+  const { status } = useSelector(selectAuthLoadingInfo);
   const dispatch = useAppDispatch();
 
-  const isEmpty = cart.lineItems.length === 0;
+  const isEmpty = basket.lineItems.length === 0;
 
-  console.log(cart);
+  console.log(basket);
 
   useEffect(() => {
-    dispatch(getCartThunk(isAuthorized));
-  }, [isAuthorized, dispatch]);
+    dispatch(getCartThunk());
+  }, [dispatch]);
 
   function clearCart(): void {
-    dispatch(deleteCartThunk({ id: cart.id, version: cart.version, isAuth: isAuthorized }));
+    dispatch(deleteCartThunk({ id: basket.id, version: basket.version }));
   }
 
   function removeCartItem(item: IItemCart): void {
     dispatch(
       updateCartThunk({
-        id: cart.id,
-        version: cart.version,
+        id: basket.id,
+        version: basket.version,
         actions: [
           {
             action: 'removeLineItem',
@@ -40,20 +41,19 @@ export default function Cart(): ReactElement {
             quantity: item.quantity,
           },
         ],
-        isAuth: isAuthorized,
       }),
     );
   }
 
   return (
     <div className={styles.cart}>
-      {isEmpty ? (
-        <EmptyCart />
-      ) : (
+      {status === 'loading' && <Loader />}
+      {status === 'success' && isEmpty && <EmptyCart />}
+      {status === 'success' && !isEmpty && (
         <div className={styles.cart__container}>
           <div className={styles.items}>
-            <h2 className={styles.items__title}>Cart({cart.lineItems.length})</h2>
-            <CartList cart={cart} handleRemoveCartItem={removeCartItem} />
+            <h2 className={styles.items__title}>Cart({basket.lineItems.length})</h2>
+            <CartList basket={basket} handleRemoveCartItem={removeCartItem} />
             <Button
               type="button"
               name="Clear Cart"
@@ -62,7 +62,7 @@ export default function Cart(): ReactElement {
               disabled={isEmpty}
             />
           </div>
-          <Total cart={cart} />
+          <Total />
         </div>
       )}
     </div>

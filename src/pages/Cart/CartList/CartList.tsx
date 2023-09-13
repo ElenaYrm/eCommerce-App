@@ -2,23 +2,20 @@ import { ReactElement } from 'react';
 import { Button } from '../../../components/shared/Button';
 import { ICart, IItemCart } from '../../../store/cart/types';
 import { formatPrice } from '../../../utils';
-import { useSelector } from 'react-redux';
-import { selectIsAuthorized } from '../../../store/auth/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
-
-import styles from './cartList.module.scss';
 import { Link } from 'react-router-dom';
 import { PATH } from '../../../router/constants/paths';
 import { Page } from '../../../router/types';
 
+import styles from './cartList.module.scss';
+
 interface ICartListProps {
-  cart: ICart;
+  basket: ICart;
   handleRemoveCartItem: (item: IItemCart) => void;
 }
 
-export default function CartList({ cart, handleRemoveCartItem }: ICartListProps): ReactElement {
-  const isAuthorized = useSelector(selectIsAuthorized);
+export default function CartList({ basket, handleRemoveCartItem }: ICartListProps): ReactElement {
   const dispatch = useAppDispatch();
 
   function handleAddQuantity(item: IItemCart): void {
@@ -34,8 +31,8 @@ export default function CartList({ cart, handleRemoveCartItem }: ICartListProps)
   function updateQuantity(item: IItemCart, quantity: number): void {
     dispatch(
       updateCartThunk({
-        id: cart.id,
-        version: cart.version,
+        id: basket.id,
+        version: basket.version,
         actions: [
           {
             action: 'changeLineItemQuantity',
@@ -43,14 +40,13 @@ export default function CartList({ cart, handleRemoveCartItem }: ICartListProps)
             quantity: quantity,
           },
         ],
-        isAuth: isAuthorized,
       }),
     );
   }
 
   return (
     <ul className={styles.items__list}>
-      {cart.lineItems.map((item) => (
+      {basket.lineItems.map((item) => (
         <li className={styles.item} key={item.itemId}>
           <div className={styles.item__container}>
             <div className={styles.item__image}>
