@@ -65,6 +65,7 @@ export const initialCartMock: ICartSlice = {
     totalQuantity: 0,
     codes: [],
   },
+  discounts: [],
 };
 
 export const storeMock: RootState = {

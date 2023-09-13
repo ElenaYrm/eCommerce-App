@@ -13,8 +13,7 @@ import styles from './cart.module.scss';
 import { IItemCart } from '../../store/cart/types';
 
 export default function Cart(): ReactElement {
-  const isAuthorized = useSelector(selectIsAuthorized);
-  const cart = useSelector(selectCart);
+  const { basket, discounts } = useSelector(selectCartData);
   const dispatch = useAppDispatch();
 
   const isEmpty = cart.lineItems.length === 0;
