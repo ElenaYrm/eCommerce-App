@@ -3,13 +3,13 @@ import { IAboutDataTabs } from '../../../../types/interfaces';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-interface IDiscription {
+interface IDescription {
   student: IAboutDataTabs;
   isMobile: boolean;
   isBtnShown?: boolean;
 }
 
-function Description({ student, isMobile, isBtnShown }: IDiscription): ReactElement {
+function Description({ student, isMobile, isBtnShown }: IDescription): ReactElement {
   const myName = student.stName.split(' ')[0];
   const textAbout = student.body.textAbout;
 
