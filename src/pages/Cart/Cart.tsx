@@ -3,27 +3,27 @@ import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, getDiscountsThunk, updateCartThunk } from '../../store/cart/thunks';
 import { useSelector } from 'react-redux';
 import { selectCartData } from '../../store/cart/selectors';
-import { selectIsAuthorized } from '../../store/auth/selectors';
 
 import styles from './cart.module.scss';
 
 export default function Cart(): ReactElement {
-  const isAuthorized = useSelector(selectIsAuthorized);
   const { basket, discounts } = useSelector(selectCartData);
   const dispatch = useAppDispatch();
   const [code, setCode] = useState('');
 
   useEffect(() => {
-    dispatch(getCartThunk(isAuthorized));
+    dispatch(getCartThunk());
+  }, [dispatch]);
 
+  useEffect(() => {
     if (discounts.length === 0) {
-      dispatch(getDiscountsThunk(isAuthorized));
+      dispatch(getDiscountsThunk());
     }
-  }, [isAuthorized, dispatch, discounts]);
+  }, [dispatch, discounts]);
 
   function handleClick(event: React.MouseEvent): void {
     event.preventDefault();
-    dispatch(deleteCartThunk({ id: basket.id, version: basket.version, isAuth: isAuthorized }));
+    dispatch(deleteCartThunk({ id: basket.id, version: basket.version }));
   }
 
   return (
@@ -51,7 +51,6 @@ export default function Cart(): ReactElement {
                           quantity: 1,
                         },
                       ],
-                      isAuth: isAuthorized,
                     }),
                   );
                 }}
@@ -83,7 +82,6 @@ export default function Cart(): ReactElement {
                     code: code,
                   },
                 ],
-                isAuth: isAuthorized,
               }),
             );
             setCode('');
@@ -117,7 +115,6 @@ export default function Cart(): ReactElement {
                           },
                         },
                       ],
-                      isAuth: isAuthorized,
                     }),
                   );
                 }}

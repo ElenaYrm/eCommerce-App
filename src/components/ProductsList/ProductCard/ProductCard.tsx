@@ -6,7 +6,6 @@ import { PATH } from '../../../router/constants/paths';
 import { Page } from '../../../router/types';
 import { IProduct } from '../../../types/interfaces';
 import { updateCartThunk } from '../../../store/cart/thunks';
-import { selectIsAuthorized } from '../../../store/auth/selectors';
 import { selectCart } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 
@@ -19,7 +18,6 @@ interface ProductItemProps {
 
 function ProductCard({ item, className }: ProductItemProps): ReactElement {
   const { productId, title, artist, medium, dimensions, price, discountPrice, images } = item;
-  const isAuthorized = useSelector(selectIsAuthorized);
   const cart = useSelector(selectCart);
 
   const dispatch = useAppDispatch();
@@ -38,7 +36,6 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
             quantity: 1,
           },
         ],
-        isAuth: isAuthorized,
       }),
     );
   }

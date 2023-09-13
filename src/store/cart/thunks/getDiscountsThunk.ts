@@ -5,13 +5,13 @@ import { getDiscountCodes } from '../../../services/sdk/cart/methods';
 
 export const getDiscountsThunk = createAsyncThunk<
   IDiscount[],
-  boolean,
+  void,
   {
     rejectValue: string;
   }
->('cart/getDiscountsThunk', async (isAuth, { rejectWithValue }) => {
+>('cart/getDiscountsThunk', async (_, { rejectWithValue }) => {
   try {
-    const response = await getDiscountCodes(isAuth);
+    const response = await getDiscountCodes();
     const codes: IDiscount[] = [];
     response.body.results.forEach((item) => {
       codes.push({

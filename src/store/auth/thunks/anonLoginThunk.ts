@@ -19,6 +19,8 @@ export const anonLoginThunk = createAsyncThunk<
     try {
       await anonLoginCustomer(body);
       tokenData.set(initialTokenInfo);
+      localStorage.removeItem('art-anon-token');
+
       const user = await loginCustomer(body);
       const token = tokenData.get().refreshToken;
       if (token) {
