@@ -1,4 +1,4 @@
-@import 'src/styles/common';
+@import '../../../styles/common/';
 
 .category {
   &__list {
@@ -11,6 +11,12 @@
 
   &__item {
     margin-bottom: 0.5rem;
+
+    &:hover {
+      button {
+        color: $primary;
+      }
+    }
 
     &_subcategory {
       padding-left: 4rem;

@@ -63,6 +63,18 @@
   width: 100%;
   margin-bottom: 9rem;
 
+  &__remove {
+    color: $dark;
+    font-weight: 600;
+    background-color: $btn-grey;
+    box-shadow: none;
+
+    &:hover {
+      color: $dark;
+      background-color: $btn-dark-grey;
+    }
+  }
+
   @media all and (max-width: 480px) {
     font-size: 2.9rem;
     margin-bottom: 7rem;

@@ -11,6 +11,8 @@ import { selectCart } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 
 import styles from './productCard.module.scss';
+import { formatPrice } from '../../../utils';
+import { Button } from '../../shared/Button';
 
 interface ProductItemProps {
   item: IProduct;
@@ -24,8 +26,9 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
 
   const dispatch = useAppDispatch();
 
-  function addToCart(event: React.MouseEvent): void {
-    event.preventDefault();
+  const isProductInCart = cart.lineItems.filter((item) => item.productId === productId).length > 0;
+
+  function addToCart(): void {
     dispatch(
       updateCartThunk({
         id: cart.id,
@@ -57,12 +60,19 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
             <p className={classnames(styles.card__text, styles.card__dim)}>{dimensions}</p>
           </div>
           <div className={styles.card__price}>
-            <span className={styles.card__price_current}>{discountPrice ? `$${discountPrice}` : `$${price}`}</span>
-            <span className={styles.card__price_discont}>{discountPrice ? `$${price}` : ''}</span>
+            <span className={styles.card__price_current}>
+              {discountPrice ? formatPrice(discountPrice) : formatPrice(price)}
+            </span>
+            <span className={styles.card__price_discount}>{discountPrice ? formatPrice(price) : ''}</span>
           </div>
-          <button type="button" onClick={addToCart}>
-            Add to cart
-          </button>
+
+          <Button
+            type="button"
+            name={isProductInCart ? 'In Cart' : 'Add to Cart'}
+            handleClick={addToCart}
+            className={styles.card__button}
+            disabled={isProductInCart}
+          />
         </div>
       </Link>
     </li>

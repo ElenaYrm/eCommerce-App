@@ -8,7 +8,9 @@ import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 
 import styles from './cartList.module.scss';
-// import classnames from 'classnames';
+import { Link } from 'react-router-dom';
+import { PATH } from '../../../router/constants/paths';
+import { Page } from '../../../router/types';
 
 interface ICartListProps {
   cart: ICart;
@@ -57,8 +59,10 @@ export default function CartList({ cart, handleRemoveCartItem }: ICartListProps)
             <div className={styles.item__info}>
               <div className={styles.header}>
                 <div className={styles.header__content}>
-                  <h4 className={styles.header__title}>{item.name}</h4>
-                  <h4 className={styles.header__artist}>{item.artist}</h4>
+                  <Link to={`${PATH[Page.Product]}/${item.productId}`} className={styles.header__link}>
+                    <h4 className={styles.header__title}>{item.name}</h4>
+                    <h4 className={styles.header__artist}>{item.artist}</h4>
+                  </Link>
                   <div className={styles.header__prices}>
                     {item.discountedPrice ? (
                       <span className={styles.price}>{formatPrice(item.discountedPrice / 100)}</span>
