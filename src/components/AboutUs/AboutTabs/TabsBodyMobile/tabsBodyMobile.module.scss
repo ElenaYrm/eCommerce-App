@@ -3,10 +3,11 @@
 .bodyMobile__hideBtn {
   display: none;
 
-  @media(max-width:800px) {
+  @media(max-width:650px) {
     display: block;
     text-align: end;
     margin-bottom: 2rem;
+    margin-left: auto;
     color: $primary;
     font-size: 2rem;
     line-height: 2.2rem;

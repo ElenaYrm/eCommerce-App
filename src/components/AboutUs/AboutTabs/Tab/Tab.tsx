@@ -29,7 +29,7 @@ function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
       >
         <div className={styles.item__imgContainer}>
           <img className={styles.item__img} src={student.profilePicture} alt="picture of student" />
-          <StickyPopup text={student.stName} />
+          <StickyPopup text={`About ${stName}`} />
         </div>
         <h3 className={styles.item__title}>{student.stName}</h3>
         <div className={styles.item__role}>{student.role}</div>

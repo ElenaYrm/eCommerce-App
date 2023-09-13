@@ -4,9 +4,12 @@
   max-width: 80%;
   margin-bottom: 6rem;
 
-  @media(max-width: 800px) {
-    display: none;
+  @media(max-width: 900px) {
     max-width: 100%;
+  }
+
+  @media(max-width: 650px) {
+    display: none;
   }
 
   &__title {
@@ -23,14 +26,23 @@
 
   &__contribution {
     padding-right: 4rem;
+    width: 69.5rem;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: start;
+    margin-left: auto;
+
+    @media(max-width:960px) {
+      padding-right: 0;
+      margin-left: unset;
+      width: 100%;
+      align-items: end;
+      align-items: flex-start;
+    }
   }
 
   &__contributionTitle {
     margin-bottom: 2rem;
-    width: 69.5rem;
     font-size: 4rem;
     line-height: 4.4rem;
     font-weight: 600;
@@ -38,7 +50,6 @@
 
   &__item {
     position: relative;
-    width: 69.5rem;
     margin-bottom: 0.5rem;
     padding-left: 3.5rem;
     font-size: 4rem;
@@ -51,9 +62,8 @@
       height: 1.5rem;
       border-radius: 50%;
       background-color: $primary;
-      top: 50%;
+      top: 1.8rem;
       left: 0;
-      transform: translateY(-50%);
     }
   }
 }
@@ -62,7 +72,7 @@
 .bodyMobile {
   display: none;
 
-  @media(max-width: 800px) {
+  @media(max-width: 650px) {
     display: flex;
     flex-direction: column;
     height: 0;

@@ -4,7 +4,7 @@
   margin-bottom: 2rem;
   border-bottom: 1px solid $dark;
 
-  @media(max-width: 800px) {
+  @media(max-width: 650px) {
     margin-bottom: 8rem;
     border-bottom: none;
   }
@@ -17,9 +17,12 @@
   gap: 2rem;
   border-bottom: 1px solid $dark;
 
-  @media(max-width: 800px) {
-    flex-direction: column;
+  @media(max-width: 900px) {
     max-width: 100%;
+  }
+
+  @media(max-width: 650px) {
+    flex-direction: column;
     margin-bottom: 0;
   }
 }
