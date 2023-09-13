@@ -4,11 +4,17 @@ export interface ICartSlice {
   status: TStatus;
   error: string;
   basket: ICart;
+  discounts: IDiscount[];
 }
 
 export interface IPromoCode {
   type: string;
   id: string;
+}
+
+export interface IDiscount {
+  id: string;
+  code: string;
 }
 
 export interface ICart {

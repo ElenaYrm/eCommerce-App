@@ -1,41 +1,42 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ICart, ICartSlice } from '../types';
+import { ICart } from '../types';
 import { checkError } from '../../../utils';
-import { getCart } from '../../../services/sdk/cart/methods';
+import { getAnonCart, getCart } from '../../../services/sdk/cart/methods';
 import { extractLocalCart } from '../../../utils/extractLocalCart.ts';
 import { initialBasket } from '../../../constant';
+import { tokenData } from '../../../services/sdk/auth/token';
+import { CartPagedQueryResponse, ClientResponse } from '@commercetools/platform-sdk';
 
 export const getCartThunk = createAsyncThunk<
   ICart,
-  boolean,
+  void,
   {
-    state: { cart: ICartSlice };
     rejectValue: string;
   }
->(
-  'cart/getCartThunk',
-  async (isAuth, { rejectWithValue }) => {
-    try {
-      const response = await getCart(isAuth);
+>('cart/getCartThunk', async (_, { rejectWithValue }) => {
+  try {
+    const isExistToken = !!localStorage.getItem('art-anon-token') || !!localStorage.getItem('art-token');
 
-      if (response.body.results.length > 0) {
-        return extractLocalCart(
-          response.body.results.find((item) => item.cartState === 'Active') || response.body.results[0],
-        );
-      } else {
-        return initialBasket;
+    let response: ClientResponse<CartPagedQueryResponse>;
+
+    if (isExistToken) {
+      response = await getCart();
+    } else {
+      response = await getAnonCart();
+      const token = tokenData.get().refreshToken;
+      if (token) {
+        localStorage.setItem('art-anon-token', token);
       }
-    } catch (error: unknown) {
-      return rejectWithValue(checkError(error));
     }
-  },
-  {
-    condition: (_, { getState }): boolean => {
-      const {
-        cart: { status },
-      } = getState();
 
-      return !(status === 'loading');
-    },
-  },
-);
+    if (response.body.results.length > 0) {
+      return extractLocalCart(
+        response.body.results.find((item) => item.cartState === 'Active') || response.body.results[0],
+      );
+    } else {
+      return initialBasket;
+    }
+  } catch (error: unknown) {
+    return rejectWithValue(checkError(error));
+  }
+});

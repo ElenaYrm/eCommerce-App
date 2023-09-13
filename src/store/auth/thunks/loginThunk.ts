@@ -3,7 +3,7 @@ import { UserAuthOptions } from '@commercetools/sdk-client-v2';
 import { loginCustomer } from '../../../services/sdk/auth/methods';
 import { checkError } from '../../../utils';
 import { IAuthSlice } from '../types';
-import { tokenData } from '../../../services/sdk/auth/token';
+import { initialTokenInfo, tokenData } from '../../../services/sdk/auth/token';
 
 export const loginThunk = createAsyncThunk<
   string,
@@ -16,6 +16,7 @@ export const loginThunk = createAsyncThunk<
   'auth/loginThunk',
   async (body, { rejectWithValue }) => {
     try {
+      tokenData.set(initialTokenInfo);
       const user = await loginCustomer(body);
       const token = tokenData.get().refreshToken;
       if (token) {
