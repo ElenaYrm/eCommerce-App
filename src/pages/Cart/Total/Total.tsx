@@ -106,7 +106,7 @@ export default function Total(): ReactElement {
         </li>
         <li className={styles.total__list_item}>
           <span>Total</span>
-          <span>{formatPrice(basket.totalPrice / 100)}</span>
+          <span>{formatPrice(basket.totalPrice / 100 + DELIVERY_PRICE)}</span>
         </li>
       </ul>
 
