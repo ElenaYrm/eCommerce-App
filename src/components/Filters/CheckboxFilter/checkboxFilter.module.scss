@@ -1,6 +1,6 @@
 @import 'src/styles/common';
 
-.brand {
+.filter {
   &__header {
     @include accordion-header();
   }
