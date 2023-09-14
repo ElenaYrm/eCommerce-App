@@ -2,7 +2,8 @@ import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { selectAuthLoadingInfo, selectProductsInfo } from '../../store/catalog/selectors';
+import { selectCatalogLoadingInfo, selectProductsInfo } from '../../store/catalog/selectors';
+import { resetProductList } from '../../store/catalog/slice';
 import { useAppDispatch } from '../../store/store';
 import { productListThunk } from '../../store/catalog/thunks';
 import { getCartThunk } from '../../store/cart/thunks';
@@ -18,7 +19,7 @@ import styles from './productsList.module.scss';
 function ProductsList(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
   const { productList, totalProducts } = useSelector(selectProductsInfo);
-  const { status, error } = useSelector(selectAuthLoadingInfo);
+  const { status, error } = useSelector(selectCatalogLoadingInfo);
   const cart = useSelector(selectCart);
   const dispatch = useAppDispatch();
 
@@ -29,8 +30,12 @@ function ProductsList(): ReactElement {
   }, [cart.id, dispatch]);
 
   useEffect(() => {
-    changeParams(setSearchParams, searchParams.get(SearchParams.Page) || '1', SearchParams.Page);
+    changeParams(setSearchParams, '1', SearchParams.Page);
     dispatch(productListThunk({ params: getSearchParams(searchParams), list: productList }));
+
+    return () => {
+      dispatch(resetProductList());
+    };
   }, []);
 
   function loadProducts(): void {
@@ -40,10 +45,8 @@ function ProductsList(): ReactElement {
 
   return (
     <>
-      {status === 'loading' && <Loader />}
       {error && <ErrorMessage text={error} />}
-
-      {status === 'success' && !error && productList.length > 0 && (
+      {!error && productList.length > 0 && (
         <InfiniteScroll
           dataLength={productList.length}
           next={loadProducts}

@@ -10,7 +10,7 @@ export const selectCatalogLoadingStatus = (state: RootState): TStatus => state.c
 export const selectCatalogError = (state: RootState): string => state.catalog.error;
 export const selectProductlist = (status: RootState): IProduct[] => status.catalog.productList;
 export const selectTotalCount = (status: RootState): number => status.catalog.totalProducts;
-export const selectAuthLoadingInfo = createSelector(
+export const selectCatalogLoadingInfo = createSelector(
   selectCatalogLoadingStatus,
   selectCatalogError,
   (status, error): Pick<ICatalogSlice, 'status' | 'error'> => ({

@@ -5,7 +5,11 @@ import { initialProductListSlice } from '../../../constant';
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState: initialProductListSlice,
-  reducers: {},
+  reducers: {
+    resetProductList: (state) => {
+      state.productList = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(productListThunk.pending, (state) => {
@@ -36,4 +40,5 @@ const catalogSlice = createSlice({
   },
 });
 
+export const { resetProductList } = catalogSlice.actions;
 export const catalogReducer = catalogSlice.reducer;
