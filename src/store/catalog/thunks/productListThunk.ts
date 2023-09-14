@@ -10,20 +10,24 @@ interface IProductsListData {
   count: number;
 }
 
-export const productListThunk = createAsyncThunk<
-  IProductsListData,
-  {
+interface IProductListThunk {
+  params: {
     [p: string]: QueryParam;
+  };
+  list: IProduct[];
+}
+
+export const productListThunk = createAsyncThunk<IProductsListData, IProductListThunk, { rejectValue: string }>(
+  'catalog/productListThunk',
+  async ({ params, list }, { rejectWithValue }) => {
+    try {
+      const res = await getProductList(params);
+      return {
+        list: [...list, ...parseProductListData(res.body.results)],
+        count: res.body.total || 0,
+      };
+    } catch (err: unknown) {
+      return rejectWithValue(checkError(err));
+    }
   },
-  { rejectValue: string }
->('catalog/productListThunk', async (param, { rejectWithValue }) => {
-  try {
-    const res = await getProductList(param);
-    return {
-      list: parseProductListData(res.body.results),
-      count: res.body.total || 0,
-    };
-  } catch (err: unknown) {
-    return rejectWithValue(checkError(err));
-  }
-});
+);

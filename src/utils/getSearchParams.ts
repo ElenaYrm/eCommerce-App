@@ -33,7 +33,8 @@ export function getSearchParams(search: URLSearchParams): { [p: string]: QueryPa
     queryArgs.filter = filters;
   }
 
-  queryArgs.limit = PAGE_LIMIT * (Number(search.get(SearchParams.Page)) || 1);
+  queryArgs.limit = PAGE_LIMIT;
+  queryArgs.offset = PAGE_LIMIT * (Number(search.get(SearchParams.Page)) - 1 || 0);
 
   if (search.get(SearchParams.Sort)) {
     const value = search.get(SearchParams.Sort);

@@ -2,20 +2,23 @@ import { ChangeEvent, ReactElement, useState } from 'react';
 import { sorting } from '../../constant';
 import { useSearchParams } from 'react-router-dom';
 import { SearchParams } from '../../types/enums';
-import { useDebounce } from '../../hooks';
-import { changeParams } from '../../utils';
+import { changeParams, getSearchParams } from '../../utils';
+import { useAppDispatch } from '../../store/store';
+import { productListThunk } from '../../store/catalog/thunks';
 
 import styles from './sortingField.module.scss';
 
 function SortingField(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sort, setSort] = useState(searchParams.get(SearchParams.Sort) || '');
+  const dispatch = useAppDispatch();
 
-  const debounceChangeParams = useDebounce(changeParams, 0);
   function handleChange(event: ChangeEvent<HTMLSelectElement>): void {
     const newValue = event.target.value;
     setSort(newValue);
-    debounceChangeParams(setSearchParams, newValue, SearchParams.Sort);
+    changeParams(setSearchParams, newValue, SearchParams.Sort);
+    changeParams(setSearchParams, '1', SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: [] }));
   }
 
   return (

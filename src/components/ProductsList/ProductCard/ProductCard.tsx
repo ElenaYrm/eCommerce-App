@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -66,4 +66,4 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
   );
 }
 
-export default ProductCard;
+export default memo(ProductCard);

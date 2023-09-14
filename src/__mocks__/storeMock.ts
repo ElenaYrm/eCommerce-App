@@ -37,6 +37,7 @@ export const initialProductListMock: ICatalogSlice = {
   error: '',
   productList: [],
   categories: [],
+  totalProducts: 0,
 };
 
 export const initialUserSliceMock: IUserSlice = {

@@ -2,28 +2,34 @@ import { ReactElement } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PriceFilter } from './PriceFilter';
 import { ColorFilter } from './ColorFilter';
-import { SizeFilter } from './SizeFilter';
-import { BrandFilter } from './BrandFilter';
-import { changeParams } from '../../utils';
+import { CheckboxFilter } from './CheckboxFilter';
+import { productListThunk } from '../../store/catalog/thunks';
+import { useAppDispatch } from '../../store/store';
+import { changeParams, getSearchParams } from '../../utils';
 import { SearchParams } from '../../types/enums';
 import { FiltersProps } from './types';
+import { brands, sizes } from '../../constant';
 
 import styles from './filters.module.scss';
 
-function Filters({ className, onClick, isShowResults }: FiltersProps): ReactElement {
+function Filters({ className, onClick }: FiltersProps): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
 
-  function handleClick(): void {
-    changeParams(setSearchParams, '', SearchParams.Category);
+  function showResult(): void {
+    changeParams(setSearchParams, '1', SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: [] }));
+    onClick();
+  }
+
+  function resetFilters(): void {
     changeParams(setSearchParams, '', SearchParams.PriceFrom);
     changeParams(setSearchParams, '', SearchParams.PriceTo);
     changeParams(setSearchParams, '', SearchParams.Brand);
     changeParams(setSearchParams, '', SearchParams.Color);
     changeParams(setSearchParams, '', SearchParams.Size);
 
-    if (isShowResults) {
-      onClick();
-    }
+    showResult();
   }
 
   return (
@@ -33,22 +39,32 @@ function Filters({ className, onClick, isShowResults }: FiltersProps): ReactElem
           <PriceFilter searchParams={searchParams} setSearchParams={setSearchParams} />
         </li>
         <li className={styles.filters__item}>
-          <BrandFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+          <CheckboxFilter
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            field={SearchParams.Brand}
+            filters={brands}
+            name="Artist"
+          />
         </li>
         <li className={styles.filters__item}>
           <ColorFilter searchParams={searchParams} setSearchParams={setSearchParams} />
         </li>
         <li className={styles.filters__item}>
-          <SizeFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+          <CheckboxFilter
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            field={SearchParams.Size}
+            filters={sizes}
+            name="Size"
+          />
         </li>
       </ul>
       <div className={styles.filters__wrapper}>
-        {isShowResults && (
-          <button type="button" onClick={onClick} className={styles.filters__results}>
-            Show Results
-          </button>
-        )}
-        <button type="button" onClick={handleClick} className={styles.filters__btn}>
+        <button type="button" onClick={showResult} className={styles.filters__results}>
+          Show Results
+        </button>
+        <button type="button" onClick={resetFilters} className={styles.filters__btn}>
           Clear filters
         </button>
       </div>

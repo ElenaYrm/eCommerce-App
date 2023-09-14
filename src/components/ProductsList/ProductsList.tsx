@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -19,16 +19,8 @@ function ProductsList(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
   const { productList, totalProducts } = useSelector(selectProductsInfo);
   const { status, error } = useSelector(selectAuthLoadingInfo);
-  const [page, setPage] = useState(1);
-
   const cart = useSelector(selectCart);
-
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const params = getSearchParams(searchParams);
-    dispatch(productListThunk(params));
-  }, [searchParams, dispatch]);
 
   useEffect(() => {
     if (!cart.id) {
@@ -37,11 +29,13 @@ function ProductsList(): ReactElement {
   }, [cart.id, dispatch]);
 
   useEffect(() => {
-    changeParams(setSearchParams, `${page}`, SearchParams.Page);
-  }, [page]);
+    changeParams(setSearchParams, searchParams.get(SearchParams.Page) || '1', SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: productList }));
+  }, []);
 
   function loadProducts(): void {
-    setPage((prevPage) => prevPage + 1);
+    changeParams(setSearchParams, `${Number(searchParams.get(SearchParams.Page)) + 1}`, SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: productList }));
   }
 
   return (
@@ -55,7 +49,8 @@ function ProductsList(): ReactElement {
           next={loadProducts}
           hasMore={productList.length < totalProducts}
           loader={<Loader />}
-          scrollThreshold={0.7}
+          scrollThreshold={0.8}
+          className={styles.products__scroll}
         >
           <ul className={styles.products}>
             {productList.map((item) => (
