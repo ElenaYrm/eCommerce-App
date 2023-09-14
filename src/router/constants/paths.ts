@@ -1,6 +1,7 @@
 import { Page } from '../types';
 
 export const PATH = {
+  [Page.About]: '/about',
   [Page.Home]: '/',
   [Page.Login]: '/login',
   [Page.Register]: '/register',

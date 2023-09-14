@@ -88,6 +88,9 @@ export default function Header(): ReactElement {
                   <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
                     Logout
                   </Link>
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About us
+                  </NavLink>
                 </>
               ) : (
                 <>
@@ -102,6 +105,9 @@ export default function Header(): ReactElement {
                   </NavLink>
                   <NavLink to={PATH[Page.Register]} className={styles.nav__link} onClick={closeMenu}>
                     Register
+                  </NavLink>
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About us
                   </NavLink>
                 </>
               )}

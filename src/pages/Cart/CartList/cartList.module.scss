@@ -1,0 +1,192 @@
+@import '../../../styles/common/';
+
+.items__list {
+  margin-bottom: 2rem;
+}
+
+.item {
+  width: 100%;
+  padding: 2rem 0;
+  border-top: 1px solid $dark;
+
+  &:last-child {
+    border-bottom: 1px solid $dark;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__image {
+    position: relative;
+    flex-shrink: 0;
+    width: 10rem;
+    height: 13rem;
+    background-color: $primary;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__button_remove {
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 2rem;
+    color: $text-grey;
+
+    @media all and (max-width: 480px) {
+      font-size: 1.8rem;
+    }
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 2rem;
+      color: $primary;
+
+      @media all and (max-width: 480px) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.item__info {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media all and (max-width: 610px) {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    &__link {
+      color: $dark;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        color: $primary;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2.5px;
+      }
+    }
+
+    &__artist {
+      margin-bottom: 1rem;
+    }
+
+    &__prices {
+      display: flex;
+      gap: 1rem;
+
+      .price {
+        &:nth-child(2) {
+          opacity: 0.3;
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    &__controls {
+      height: 4.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 500;
+
+      @media all and (max-width: 480px) {
+        font-size: 1.8rem;
+      }
+
+      .controls__count,
+      .controls__buttons_btn {
+        box-shadow: none;
+        border-radius: 0;
+        height: inherit;
+      }
+
+      .controls__buttons {
+        height: inherit;
+        display: flex;
+        gap: 1px;
+
+        &_btn {
+          width: 4.4rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          background-color: $dark;
+          background-size: 50%;
+          background-repeat: no-repeat;
+          background-position: center;
+
+          &:last-child {
+            background-image: url('../../../assets/icons/ic-plus.svg');
+          }
+
+          &:first-child {
+            background-image: url('../../../assets/icons/ic-minus.svg');
+          }
+
+          &:hover:not(:disabled) {
+            background-color: $primary;
+          }
+
+          &:disabled {
+            cursor: default;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .controls__count {
+        position: relative;
+        width: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $dark;
+        text-align: center;
+        font-weight: 400;
+        user-select: none;
+      }
+    }
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @media all and (max-width: 610px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
+
+    &__total {
+      font-weight: 600;
+    }
+  }
+}

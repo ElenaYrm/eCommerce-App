@@ -1,0 +1,42 @@
+@import '../../../styles/common';
+
+.root {
+  padding: 6rem 5rem 6rem 4rem;
+  background-color: $primary;
+  color: $light-primary;
+  border-radius: 4rem;
+
+  @media(max-width: 800px) {
+    padding: 4rem 3rem;
+  }
+
+  &__title {
+    margin-bottom: 3rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+
+    @media(max-width:800px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__paragraph {
+    display: inline-block;
+    font-size: 4rem;
+    line-height: 4.8rem;
+
+    @media(max-width: 800px) {
+      font-size: 2rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  &__paragraphFirst {
+    margin-bottom: 3rem;
+
+    @media(max-width:800px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+}

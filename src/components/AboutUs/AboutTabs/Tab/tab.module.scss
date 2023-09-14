@@ -1,0 +1,177 @@
+@import '../../../../styles/common';
+
+.item {
+  flex-grow: 1;
+
+  @media(max-width: 650px) {
+    border-bottom: 1px solid $dark;
+  }
+
+  &:hover {
+    color: $primary;
+    cursor: pointer;
+
+    .item__img {
+      box-shadow: $background-shadow;
+    }
+
+    .item__links_github {
+      color: $primary;
+    }
+
+    .item__links_github::after {
+      border-right: 7px solid $primary;
+    }
+
+    @media(max-width:650px) {
+      color: $dark;
+
+      .item__img {
+        box-shadow: unset;
+      }
+    }
+
+  }
+
+  &__studentInfo {
+    display: flex;
+    flex-direction: column;
+
+    &.isactive {
+      color: $primary;
+
+      .item__img {
+        box-shadow: $background-shadow;
+      }
+
+      @media(max-width:650px) {
+        color: $dark;
+
+        .item__img {
+          box-shadow: unset;
+        }
+      }
+    }
+
+    @media(max-width: 650px) {
+      &.isShown {
+        color: $primary;
+
+        .item__img {
+          box-shadow: $background-shadow;
+        }
+      }
+    }
+
+  }
+
+  &__imgContainer {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    border-radius: 4rem;
+  }
+
+  &__title {
+    width: 10%;
+    margin-bottom: 2rem;
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+
+  &__role {
+    margin-bottom: 1rem;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+
+    &.isactive {
+      .item__links_github {
+        color: $primary;
+      }
+
+      .item__links_github::after {
+        border-right: 7px solid $primary;
+      }
+
+      @media(max-width:650px) {
+        .item__links_github {
+          color: $dark;
+        }
+
+        .item__links_github::after {
+          border-right: 7px solid $dark;
+        }
+      }
+    }
+
+    @media(max-width:650px) {
+      &.mobileActive {
+        .item__links_github {
+          color: $primary;
+        }
+
+        .item__links_github::after {
+          border-right: 7px solid $primary;
+        }
+      }
+    }
+
+    &_github {
+      position: relative;
+      width: 100%;
+      @include font(semibold, p3, $dark);
+      font-size: 2rem;
+      line-height: 2.2rem;
+      text-decoration: none;
+
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+
+      &:hover::after {
+        border-right: 7px solid $primary;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 7rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 7px solid $dark;
+
+      }
+    }
+
+    @media(max-width:650px) {
+      margin-bottom: 6rem;
+    }
+  }
+
+  &__showBtn {
+    display: none;
+
+    @media(max-width: 650px) {
+      display: block;
+      text-wrap: nowrap;
+      font-size: 2rem;
+      line-height: 2.2rem;
+      font-weight: 600;
+    }
+  }
+
+}
