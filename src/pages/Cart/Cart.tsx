@@ -2,19 +2,17 @@ import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
-import { selectCartData, selectAuthLoadingInfo } from '../../store/cart/selectors';
+import { selectCartData } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyMessage';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
 import { CartList } from './CartList';
-import { Loader } from '../../components/shared/Loader';
+import { IItemCart } from '../../store/cart/types';
 
 import styles from './cart.module.scss';
-import { IItemCart } from '../../store/cart/types';
 
 export default function Cart(): ReactElement {
   const { basket } = useSelector(selectCartData);
-  const { status } = useSelector(selectAuthLoadingInfo);
   const dispatch = useAppDispatch();
 
   const isEmpty = basket.lineItems.length === 0;
@@ -45,9 +43,8 @@ export default function Cart(): ReactElement {
 
   return (
     <div className={styles.cart}>
-      {status === 'loading' && <Loader />}
-      {status === 'success' && isEmpty && <EmptyCart />}
-      {status === 'success' && !isEmpty && (
+      {isEmpty && <EmptyCart />}
+      {!isEmpty && (
         <div className={styles.cart__container}>
           <div className={styles.items}>
             <h2 className={styles.items__title}>Cart({basket.lineItems.length})</h2>

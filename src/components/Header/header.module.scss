@@ -45,13 +45,18 @@
 
 .header__nav {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  gap: 2rem;
 
   &_button {
-    margin-left: 2rem;
     display: none;
+  }
 
-    @media all and (max-width: 650px) {
+  @media all and (max-width: 650px) {
+    flex-direction: row-reverse;
+    gap: 1.5rem;
+
+    &_button {
       display: block;
     }
   }
@@ -59,6 +64,7 @@
 
 .nav {
   display: flex;
+  align-items: center;
   gap: 2rem;
 
   &__link {
@@ -84,6 +90,35 @@
     &::after {
       background-color: $primary;
       opacity: 1;
+    }
+  }
+
+  &__link_cart {
+    position: relative;
+
+    &::after {
+      bottom: 0.1rem;
+    }
+
+    &:hover {
+      svg > * {
+        fill: $primary;
+      }
+    }
+
+    .icon__count {
+      position: absolute;
+      right: -12px;
+      top: -4px;
+      width: 2rem;
+      height: 2rem;
+      background-color: $primary;
+      border-radius: 50%;
+      color: $light;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

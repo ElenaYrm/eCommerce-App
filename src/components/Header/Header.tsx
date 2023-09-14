@@ -1,19 +1,23 @@
 import { ReactElement, MouseEvent, useState, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import classnames from 'classnames';
 import { resetCart } from '../../store/cart/slice';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { logoutThunk } from '../../store/auth/thunks';
+import { selectCartData } from '../../store/cart/selectors';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
 
 import Logo from '../../assets/icons/logo.svg';
+import CartIcon from '../../assets/icons/icon-cart.svg';
 
+import classnames from 'classnames';
 import styles from './header.module.scss';
 
 export default function Header(): ReactElement {
+  const { basket } = useSelector(selectCartData);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -82,9 +86,6 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Profile]} className={styles.nav__link} onClick={closeMenu}>
                     Profile
                   </NavLink>
-                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
-                    Cart
-                  </NavLink>
                   <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
                     About
                   </NavLink>
@@ -96,9 +97,6 @@ export default function Header(): ReactElement {
                 <>
                   <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
                     Catalog
-                  </NavLink>
-                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
-                    Cart
                   </NavLink>
                   <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
                     About
@@ -113,6 +111,15 @@ export default function Header(): ReactElement {
               )}
             </nav>
           )}
+
+          <NavLink
+            to={PATH[Page.Cart]}
+            className={classnames(styles.nav__link, styles.nav__link_cart)}
+            onClick={closeMenu}
+          >
+            <CartIcon />
+            <span className={styles.icon__count}>{basket.lineItems.length}</span>
+          </NavLink>
         </div>
       </div>
     </header>
