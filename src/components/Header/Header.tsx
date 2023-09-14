@@ -85,12 +85,12 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
                     Cart
                   </NavLink>
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About
+                  </NavLink>
                   <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
                     Logout
                   </Link>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About us
-                  </NavLink>
                 </>
               ) : (
                 <>
@@ -100,14 +100,14 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
                     Cart
                   </NavLink>
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About
+                  </NavLink>
                   <NavLink to={PATH[Page.Login]} className={styles.nav__link} onClick={closeMenu}>
                     Login
                   </NavLink>
                   <NavLink to={PATH[Page.Register]} className={styles.nav__link} onClick={closeMenu}>
                     Register
-                  </NavLink>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About us
                   </NavLink>
                 </>
               )}
