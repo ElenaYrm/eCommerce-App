@@ -18,6 +18,12 @@
   &__link {
     @include font(regular, p3, $dark);
     text-decoration: none;
+
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 
   &__separator {
