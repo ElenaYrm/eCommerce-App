@@ -19,8 +19,6 @@ export default function Cart(): ReactElement {
 
   const isEmpty = basket.lineItems.length === 0;
 
-  console.log(basket);
-
   useEffect(() => {
     dispatch(getCartThunk());
   }, [dispatch]);
