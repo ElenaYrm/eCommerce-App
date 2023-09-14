@@ -1,14 +1,14 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../../store/cart/selectors';
+import { selectCart, selectCartLoadingInfo } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { IProduct } from '../../../types/interfaces';
-// import { IItemCart } from '../../../store/cart/types';
 import { formatPrice, splitToParagraphs } from '../../../utils';
 import { Button } from '../../../components/shared/Button';
 import { productAccordionData } from '../../../constant';
 import { Accordion } from '../../../components/shared/Accordion';
+import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 
 import styles from './productDetails.module.scss';
 import classnames from 'classnames';
@@ -18,12 +18,25 @@ interface IProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: IProductDetailsProps): ReactElement {
+  const [isError, setIsError] = useState(false);
+
+  const { error } = useSelector(selectCartLoadingInfo);
   const cart = useSelector(selectCart);
 
   const { productId } = product;
   const cartItem = cart.lineItems.find((item) => item.productId === productId);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsError(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [error]);
 
   function addToCart(): void {
     dispatch(
@@ -59,45 +72,48 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
   }
 
   return (
-    <div className={styles.product}>
-      <div className={styles.product__details}>
-        <h2 className={styles.artist}>{product.artist}</h2>
-        <h2 className={styles.title}>
-          {product.title}, <span>{product.year}</span>
-        </h2>
-        <div className={classnames(styles.price, product.discountPrice ? styles.price__double : '')}>
-          {product.discountPrice ? (
-            <span className={styles.price__discounted}>{formatPrice(product.discountPrice)}</span>
-          ) : null}
-          <span className={styles.price__full}>{formatPrice(product.price)}</span>
-        </div>
-
-        {!cartItem ? (
-          <Button type="button" name="Add to Cart (●ω●)ノ" className={styles.button} handleClick={addToCart} />
-        ) : (
-          <Button
-            type="button"
-            name="Remove from Cart"
-            className={classnames(styles.button, styles.button__remove)}
-            handleClick={removeCartItem}
-          />
-        )}
-
-        <div className={styles.info}>
-          <div className={styles.info__description}>
-            <p className={styles.text}>{splitToParagraphs(product.description)}</p>
-            <p className={styles.text}>
-              <span>Technique:</span>
-              {product.medium}
-            </p>
-            <p className={styles.text}>
-              <span>Size:</span>
-              {product.dimensions}
-            </p>
+    <>
+      <div className={styles.product}>
+        <div className={styles.product__details}>
+          <h2 className={styles.artist}>{product.artist}</h2>
+          <h2 className={styles.title}>
+            {product.title}, <span>{product.year}</span>
+          </h2>
+          <div className={classnames(styles.price, product.discountPrice ? styles.price__double : '')}>
+            {product.discountPrice ? (
+              <span className={styles.price__discounted}>{formatPrice(product.discountPrice)}</span>
+            ) : null}
+            <span className={styles.price__full}>{formatPrice(product.price)}</span>
           </div>
+
+          {!cartItem ? (
+            <Button type="button" name="Add to Cart (●ω●)ノ" className={styles.button} handleClick={addToCart} />
+          ) : (
+            <Button
+              type="button"
+              name="Remove from Cart"
+              className={classnames(styles.button, styles.button__remove)}
+              handleClick={removeCartItem}
+            />
+          )}
+
+          <div className={styles.info}>
+            <div className={styles.info__description}>
+              <p className={styles.text}>{splitToParagraphs(product.description)}</p>
+              <p className={styles.text}>
+                <span>Technique:</span>
+                {product.medium}
+              </p>
+              <p className={styles.text}>
+                <span>Size:</span>
+                {product.dimensions}
+              </p>
+            </div>
+          </div>
+          <Accordion data={productAccordionData} className={styles.product__accordion} />
         </div>
-        <Accordion data={productAccordionData} className={styles.product__accordion} />
       </div>
-    </div>
+      {isError && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+    </>
   );
 }

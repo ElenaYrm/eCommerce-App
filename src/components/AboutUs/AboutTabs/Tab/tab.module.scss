@@ -106,7 +106,9 @@
 
   &__img {
     display: block;
+    width: auto;
     min-height: 100%;
+    height: 100%;
     object-fit: cover;
   }
 

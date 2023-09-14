@@ -7,7 +7,7 @@ export const selectCart = (state: RootState): ICart => state.cart.basket;
 export const selectCartLoadingStatus = (state: RootState): TStatus => state.cart.status;
 export const selectCartError = (state: RootState): string => state.cart.error;
 export const selectDiscountsCodes = (state: RootState): IDiscount[] => state.cart.discounts;
-export const selectAuthLoadingInfo = createSelector(
+export const selectCartLoadingInfo = createSelector(
   selectCartLoadingStatus,
   selectCartError,
   (status, error): Pick<ICartSlice, 'status' | 'error'> => ({
