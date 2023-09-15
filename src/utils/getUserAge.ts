@@ -1,7 +1,6 @@
 import { getMonthIndex } from './getMonthIndex.ts';
 
-export function getUserAge(date: string, month: string, year: string): number {
-  const now = new Date();
+export function getUserAge(now: Date, date: string, month: string, year: string): number {
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth();
   const currentDate = now.getDate();
