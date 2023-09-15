@@ -1,4 +1,4 @@
-import { productReducer } from '../../../../store/product/slice/index.ts';
+import { productReducer } from '../../../../store/product/slice';
 import { initialProductSlice } from '../../../../constant';
 
 jest.mock('../../../../constant/metaData', () => {});

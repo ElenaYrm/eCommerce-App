@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
-import { selectCartData, selectAuthLoadingInfo } from '../../store/cart/selectors';
+import { selectCartData, selectCartLoadingInfo } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyMessage';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
@@ -14,7 +14,7 @@ import { IItemCart } from '../../store/cart/types';
 
 export default function Cart(): ReactElement {
   const { basket } = useSelector(selectCartData);
-  const { status } = useSelector(selectAuthLoadingInfo);
+  const { status } = useSelector(selectCartLoadingInfo);
   const dispatch = useAppDispatch();
 
   const isEmpty = basket.lineItems.length === 0;

@@ -4,11 +4,9 @@ import {
   selectCatalogError,
   selectProductlist,
 } from '../../../../store/catalog/selectors';
-import { initialProductListMock, storeMock } from '../../../../__mocks__/storeMock';
+import { initialProductListMock, storeMock } from '../../../../__mocks__/storeMock.ts';
 
 jest.mock('../../../../constant/metaData', () => {});
-jest.mock('../../../../services/sdk/product/methods', () => {});
-jest.mock('../../../../services/sdk/catalog/methods', () => {});
 
 describe('Test redux catalog selectors: ', () => {
   test('should select categories array from the store', () => {

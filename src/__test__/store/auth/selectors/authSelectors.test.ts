@@ -7,9 +7,8 @@ import {
 import { initialAuthMock, storeMock } from '../../../../__mocks__/storeMock';
 
 jest.mock('../../../../constant/metaData', () => {});
-jest.mock('../../../../services/sdk/product/methods', () => {});
 
-describe('Test redux selectors: ', () => {
+describe('Test redux auth selectors: ', () => {
   test('should select isAuthorized user flag from the store', () => {
     const result = selectIsAuthorized(storeMock);
     expect(result).toEqual(initialAuthMock.isAuthorized);

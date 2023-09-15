@@ -1,5 +1,5 @@
 import { Action } from '@reduxjs/toolkit';
-import { userReducer, deleteSuccessState, resetEditError } from '../../../../store/user/slice/index.ts';
+import { userReducer, deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 import { initialUserState } from '../../../../constant';
 import { resultUserSliceMock } from '../../../../__mocks__/storeMock.ts';
 
