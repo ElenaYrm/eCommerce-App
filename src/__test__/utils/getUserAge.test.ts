@@ -1,4 +1,4 @@
-import { testCases } from '../../__mocks__/utils/getUserAgeMock';
+import { testCases } from '../../__mocks__/utils';
 import { getUserAge } from '../../utils/getUserAge';
 
 describe('Test getUserAge function', () => {
