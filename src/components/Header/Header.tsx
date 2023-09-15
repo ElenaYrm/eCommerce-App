@@ -5,9 +5,10 @@ import { resetCart } from '../../store/cart/slice';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { logoutThunk } from '../../store/auth/thunks';
-import { selectCartData } from '../../store/cart/selectors';
+import { selectCart } from '../../store/cart/selectors';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
+import { getCartThunk } from '../../store/cart/thunks';
 
 import Logo from '../../assets/icons/logo.svg';
 import CartIcon from '../../assets/icons/icon-cart.svg';
@@ -16,14 +17,21 @@ import classnames from 'classnames';
 import styles from './header.module.scss';
 
 export default function Header(): ReactElement {
-  const { basket } = useSelector(selectCartData);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
   const isAuthorized = useSelector(selectIsAuthorized);
+
   const dispatch = useAppDispatch();
+
+  const basket = useSelector(selectCart);
+
+  useEffect(() => {
+    if (!basket.id) {
+      dispatch(getCartThunk());
+    }
+  }, [basket.id, dispatch]);
 
   const isAuthPage = location.pathname.slice(1) === 'login' || location.pathname.slice(1) === 'register';
 
