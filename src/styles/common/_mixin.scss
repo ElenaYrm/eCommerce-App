@@ -219,3 +219,20 @@
     width: 95vw;
   }
 }
+
+@mixin bottom-page-message($color, $background-color) {
+  position: fixed;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 2rem;
+  max-width: 37rem;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+  border-radius: 2rem;
+  color: $color;
+  z-index: 100;
+}

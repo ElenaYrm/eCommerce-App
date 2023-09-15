@@ -62,7 +62,7 @@ function ProductsList(): ReactElement {
         </ul>
       )}
       {status === 'success' && !error && productList.length === 0 && (
-        <div className={styles.products__error}>No items found¯\_(:|)_/¯</div>
+        <div className={styles.products__error}>No items found┗(^o^ )┓三</div>
       )}
 
       {cartError && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}

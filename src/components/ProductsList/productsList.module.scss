@@ -23,6 +23,7 @@
   &__error {
     @include font(semibold, h1, $light-primary);
     line-height: 120%;
+    font-weight: 500;
     padding: 2.5rem;
     width: 100%;
     min-height: 145px;

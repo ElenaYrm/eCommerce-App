@@ -2,12 +2,14 @@ import { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
-import { selectCartData } from '../../store/cart/selectors';
+import { selectCartData, selectCartError, selectCartLoadingStatus } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyMessage';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
 import { CartList } from './CartList';
 import { IItemCart } from '../../store/cart/types';
+import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { resetCartError } from '../../store/cart/slice';
 
 import styles from './cart.module.scss';
 
@@ -15,9 +17,25 @@ export default function Cart(): ReactElement {
   const [isConfirmPopup, setIsConfirmPopup] = useState(false);
 
   const { basket } = useSelector(selectCartData);
+
+  const status = useSelector(selectCartLoadingStatus);
+  const error = useSelector(selectCartError);
+
   const dispatch = useAppDispatch();
 
   const isEmpty = basket.lineItems.length === 0;
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        dispatch(resetCartError());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [error, dispatch]);
 
   useEffect(() => {
     if (isConfirmPopup) {
@@ -54,7 +72,7 @@ export default function Cart(): ReactElement {
 
   return (
     <div className={styles.cart}>
-      {isEmpty && <EmptyCart />}
+      {isEmpty && status !== 'loading' && <EmptyCart />}
       {!isEmpty && (
         <div className={styles.cart__container}>
           <div className={styles.items}>
@@ -92,6 +110,7 @@ export default function Cart(): ReactElement {
           </div>
         </div>
       )}
+      {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
     </div>
   );
 }
