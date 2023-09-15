@@ -66,6 +66,7 @@ export const initialProductListSlice: ICatalogSlice = {
   error: '',
   productList: [],
   categories: [],
+  totalProducts: 0,
 };
 
 export const initialBasket: ICart = {

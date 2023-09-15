@@ -1,16 +1,24 @@
 import { ChangeEvent, ReactElement, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { SetURLSearchParams, useSearchParams } from 'react-router-dom';
 import { useDebounce } from '../../hooks';
 import { SearchParams } from '../../types/enums';
-import { changeParams } from '../../utils';
+import { changeParams, getSearchParams } from '../../utils';
+import { useAppDispatch } from '../../store/store';
+import { productListThunk } from '../../store/catalog/thunks';
 
 import styles from './searchField.module.scss';
 
 function SearchField(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState(searchParams.get(SearchParams.Search) || '');
+  const dispatch = useAppDispatch();
 
-  const debounceChangeParams = useDebounce(changeParams, 500);
+  function searchProductList(setSearchParams: SetURLSearchParams, value: string, field: SearchParams): void {
+    changeParams(setSearchParams, value, field);
+    changeParams(setSearchParams, '1', SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: [] }));
+  }
+  const debounceChangeParams = useDebounce(searchProductList, 500);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     const newValue = event.target.value;
