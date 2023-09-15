@@ -2,10 +2,7 @@ import { productReducer } from '../../../../store/product/slice';
 import { initialProductSlice } from '../../../../constant';
 
 jest.mock('../../../../constant/metaData', () => {});
-jest.mock('../../../../services/sdk/auth/methods', () => {});
 jest.mock('../../../../services/sdk/product/methods', () => {});
-jest.mock('../../../../services/sdk/catalog/methods', () => {});
-jest.mock('../../../../services/sdk/customer/methods', () => {});
 
 describe('Test redux product slice: ', () => {
   test('should return default state when passed an empty action', () => {

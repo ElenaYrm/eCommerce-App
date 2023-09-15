@@ -8,6 +8,7 @@ const catalogSlice = createSlice({
   reducers: {
     resetProductList: (state) => {
       state.productList = [];
+      state.totalProducts = 0;
     },
   },
   extraReducers: (builder) => {

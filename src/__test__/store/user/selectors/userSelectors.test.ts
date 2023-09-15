@@ -5,7 +5,7 @@ import {
   selectEditError,
   selectEditStatus,
 } from '../../../../store/user/selectors';
-import { initialUserSliceMock, storeMock } from '../../../../__mocks__/storeMock.ts';
+import { initialUserSliceMock, storeMock } from '../../../../__mocks__/store';
 
 jest.mock('../../../../constant/metaData', () => {});
 

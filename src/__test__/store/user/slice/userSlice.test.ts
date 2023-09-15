@@ -1,12 +1,10 @@
 import { Action } from '@reduxjs/toolkit';
 import { userReducer, deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 import { initialUserState } from '../../../../constant';
-import { resultUserSliceMock } from '../../../../__mocks__/storeMock.ts';
+import { resultUserSliceMock } from '../../../../__mocks__/store';
 
 jest.mock('../../../../constant/metaData', () => {});
 jest.mock('../../../../services/sdk/auth/methods', () => {});
-jest.mock('../../../../services/sdk/product/methods', () => {});
-jest.mock('../../../../services/sdk/catalog/methods', () => {});
 jest.mock('../../../../services/sdk/customer/methods', () => {});
 
 describe('Test redux user slice: ', () => {
