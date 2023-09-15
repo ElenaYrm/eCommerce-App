@@ -1,9 +1,11 @@
-import styles from './tab.module.scss';
-import classNames from 'classnames';
+import { ReactElement, SyntheticEvent } from 'react';
+import { TabsBodyMobile } from '../TabsBodyMobile';
 import { IAboutDataTabs } from '../../../../types/interfaces';
 
-import { ReactElement } from 'react';
-import { TabsBodyMobile } from '../TabsBodyMobile';
+import styles from './tab.module.scss';
+import classNames from 'classnames';
+
+const IMG_DEFAULT = '../../../../../public/images/ph-default.jpg';
 
 interface ITab {
   isActive: boolean;
@@ -19,7 +21,17 @@ function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
     <li className={classNames(styles.list__item, styles.item)}>
       <div className={classNames(styles.item__studentInfo, { [styles.isactive]: isActive })} onClick={handleTabClick}>
         <div className={styles.item__imgContainer}>
-          <img className={styles.item__img} src={student.profilePicture} alt="Student" />
+          <img
+            className={styles.item__img}
+            src={student.profilePicture}
+            alt="Student"
+            onError={(e: SyntheticEvent<HTMLImageElement, Event>): void => {
+              const target = e.target;
+              if (target instanceof HTMLImageElement) {
+                target.src = IMG_DEFAULT;
+              }
+            }}
+          />
         </div>
         <h3 className={styles.item__title}>{student.stName}</h3>
         <div className={styles.item__role}>{student.role}</div>
