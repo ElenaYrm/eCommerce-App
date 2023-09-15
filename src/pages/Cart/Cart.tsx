@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
@@ -12,16 +12,27 @@ import { IItemCart } from '../../store/cart/types';
 import styles from './cart.module.scss';
 
 export default function Cart(): ReactElement {
+  const [isConfirmPopup, setIsConfirmPopup] = useState(false);
+
   const { basket } = useSelector(selectCartData);
   const dispatch = useAppDispatch();
 
   const isEmpty = basket.lineItems.length === 0;
 
   useEffect(() => {
+    if (isConfirmPopup) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isConfirmPopup]);
+
+  useEffect(() => {
     dispatch(getCartThunk());
   }, [dispatch]);
 
   function clearCart(): void {
+    setIsConfirmPopup(false);
     dispatch(deleteCartThunk({ id: basket.id, version: basket.version }));
   }
 
@@ -53,11 +64,32 @@ export default function Cart(): ReactElement {
               type="button"
               name="Clear Cart"
               className={styles.items__button_clear}
-              handleClick={clearCart}
+              handleClick={(): void => setIsConfirmPopup(true)}
               disabled={isEmpty}
             />
           </div>
           <Total />
+        </div>
+      )}
+      {isConfirmPopup && (
+        <div className={styles.popup}>
+          <div className={styles.popup__content}>
+            <h3 className={styles.popup__header}>Are you sure you want to clear the Cart?</h3>
+            <div className={styles.popup__buttons}>
+              <Button
+                type="button"
+                name="Cancel"
+                className={styles.popup__buttons_cancel}
+                handleClick={(): void => setIsConfirmPopup(false)}
+              />
+              <Button
+                type="button"
+                name="Yes, clear"
+                className={styles.popup__buttons_confirm}
+                handleClick={clearCart}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
