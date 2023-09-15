@@ -1,6 +1,6 @@
-import { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart, selectCartLoadingInfo } from '../../../store/cart/selectors';
+import { selectCart, selectCartError } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { IProduct } from '../../../types/interfaces';
@@ -12,16 +12,15 @@ import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 
 import styles from './productDetails.module.scss';
 import classnames from 'classnames';
+import { resetCartError } from '../../../store/cart/slice';
 
 interface IProductDetailsProps {
   product: IProduct;
 }
 
 export default function ProductDetails({ product }: IProductDetailsProps): ReactElement {
-  const [isError, setIsError] = useState(false);
-
-  const { error } = useSelector(selectCartLoadingInfo);
   const cart = useSelector(selectCart);
+  const error = useSelector(selectCartError);
 
   const { productId } = product;
   const cartItem = cart.lineItems.find((item) => item.productId === productId);
@@ -29,14 +28,16 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsError(false);
-    }, 2000);
+    if (error) {
+      const timer = setTimeout(() => {
+        dispatch(resetCartError());
+      }, 3000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [error]);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [error, dispatch]);
 
   function addToCart(): void {
     dispatch(
@@ -113,7 +114,7 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
           <Accordion data={productAccordionData} className={styles.product__accordion} />
         </div>
       </div>
-      {isError && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+      {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
     </>
   );
 }
