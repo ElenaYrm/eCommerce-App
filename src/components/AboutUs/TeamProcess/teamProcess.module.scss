@@ -1,15 +1,17 @@
 @import '../../../styles/common';
 
 .root {
-  padding: 5rem 4rem 6rem;
+  padding: 5rem 5rem 7rem;
   background-color: $primary;
   color: $light-primary;
   border-radius: 4rem;
   font-size: 4rem;
   line-height: 1.1;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 800px) {
-    padding: 4rem 3rem;
+    padding: 5rem 3rem 5rem;
   }
 
   @media (max-width: 650px) {
@@ -31,12 +33,20 @@
     }
   }
 
-  &__paragraph {
+  &__paragraph,
+  &__subtitle {
     display: inline-block;
     font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
-  &__paragraphFirst {
-    margin-bottom: 2.5rem;
+  &__subtitle {
+    padding-top: 4rem;
+    font-weight: 500;
   }
 }
