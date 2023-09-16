@@ -8,7 +8,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
     github: 'https://github.com/ElenaYrm',
     body: {
       textAbout:
-        'I have 1 year experience as a Front-end developer and took part in 2 real projects during this time. My current stack: HTML, CSS, Sass, JavaScript, TypeScript, React, Redux, Webpack, Vite, Jest. I am a person who always wants to expand knowledge and experience. And my next steps are to find a job and expand my knowledge in React and Angular.',
+        'First of all, I try to understand task and how certain things work and thanks to that I am a fast learner. I have 1 year experience as a Front-end developer and took part in 2 real projects during this time. My current stack: HTML, CSS, Sass, JavaScript, TypeScript, React, Redux, Webpack, Vite, Jest. I am a person who always wants to expand knowledge and experience. And my next steps are to find a job and expand my knowledge in React and Angular.',
       recommendations: [
         'Repository setup (Vite + React + TypeScript + Eslint + Jest)',
         'Github actions setup (tests and deploy on pull requests and merge)',
@@ -16,6 +16,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
         'Store setting (Auth, Cart, User)',
         'Register form implementation (Addresses) + merge of all form parts together',
         'Catalog page implementation incl. Infinite scroll',
+        'Work with React Testing Library',
       ],
     },
   },
@@ -34,6 +35,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
         'Profile page implementation incl. Tabs',
         'About page implementation',
         'Trello board setup',
+        'Work with React Testing Library',
       ],
     },
   },
@@ -53,6 +55,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
         'Product page implementation incl. Slider',
         'Cart page implementation',
         'Project design',
+        'Work with React Testing Library',
       ],
     },
   },
