@@ -120,6 +120,10 @@ img {
 
 .active {
   color: $primary;
+  
+  svg > * {
+    fill: $primary;
+  }
 
   &::after {
     background-color: $primary;

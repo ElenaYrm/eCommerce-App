@@ -14,9 +14,11 @@ const DELIVERY_PRICE = 120;
 const CODE_ERROR = 'The code you entered is not valid.';
 
 export default function Total(): ReactElement {
-  const { basket, discounts } = useSelector(selectCartData);
   const [code, setCode] = useState('');
   const [isError, setIsError] = useState(false);
+  const [isCheckoutPopup, setIsCheckoutPopup] = useState(false);
+
+  const { basket, discounts } = useSelector(selectCartData);
 
   const dispatch = useAppDispatch();
 
@@ -25,6 +27,14 @@ export default function Total(): ReactElement {
       dispatch(getDiscountsThunk());
     }
   }, [dispatch, discounts]);
+
+  useEffect(() => {
+    if (isCheckoutPopup) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isCheckoutPopup]);
 
   function getCodeName(codeId: string): string | undefined {
     const code = discounts.find((item) => item.id === codeId);
@@ -110,7 +120,12 @@ export default function Total(): ReactElement {
         </li>
       </ul>
 
-      <Button type="button" name="To Checkout" className={styles.total__button_checkout} />
+      <Button
+        type="button"
+        name="To Checkout"
+        className={styles.total__button_checkout}
+        handleClick={(): void => setIsCheckoutPopup(true)}
+      />
 
       <div className={styles.promo}>
         <h4 className={styles.promo__title}>Have a promo code?</h4>
@@ -145,6 +160,19 @@ export default function Total(): ReactElement {
           </ul>
         )}
       </div>
+      {isCheckoutPopup && (
+        <div className={styles.popup}>
+          <div className={styles.popup__content}>
+            <h3 className={styles.popup__header}>You are awesome 😘😘😘</h3>
+            <Button
+              type="button"
+              name="Yes, I am"
+              className={styles.popup__button}
+              handleClick={(): void => setIsCheckoutPopup(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

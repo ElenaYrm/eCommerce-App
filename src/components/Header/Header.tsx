@@ -1,16 +1,19 @@
 import { ReactElement, MouseEvent, useState, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import classnames from 'classnames';
 import { resetCart } from '../../store/cart/slice';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { logoutThunk } from '../../store/auth/thunks';
+import { selectCart } from '../../store/cart/selectors';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
+import { getCartThunk } from '../../store/cart/thunks';
 
 import Logo from '../../assets/icons/logo.svg';
+import CartIcon from '../../assets/icons/icon-cart.svg';
 
+import classnames from 'classnames';
 import styles from './header.module.scss';
 
 export default function Header(): ReactElement {
@@ -19,7 +22,16 @@ export default function Header(): ReactElement {
   const navigate = useNavigate();
   const location = useLocation();
   const isAuthorized = useSelector(selectIsAuthorized);
+
   const dispatch = useAppDispatch();
+
+  const basket = useSelector(selectCart);
+
+  useEffect(() => {
+    if (!basket.id) {
+      dispatch(getCartThunk());
+    }
+  }, [basket.id, dispatch]);
 
   const isAuthPage = location.pathname.slice(1) === 'login' || location.pathname.slice(1) === 'register';
 
@@ -82,23 +94,20 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Profile]} className={styles.nav__link} onClick={closeMenu}>
                     Profile
                   </NavLink>
-                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
-                    Cart
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About
                   </NavLink>
                   <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
                     Logout
                   </Link>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About us
-                  </NavLink>
                 </>
               ) : (
                 <>
                   <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
                     Catalog
                   </NavLink>
-                  <NavLink to={PATH[Page.Cart]} className={styles.nav__link} onClick={closeMenu}>
-                    Cart
+                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
+                    About
                   </NavLink>
                   <NavLink to={PATH[Page.Login]} className={styles.nav__link} onClick={closeMenu}>
                     Login
@@ -106,13 +115,19 @@ export default function Header(): ReactElement {
                   <NavLink to={PATH[Page.Register]} className={styles.nav__link} onClick={closeMenu}>
                     Register
                   </NavLink>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About us
-                  </NavLink>
                 </>
               )}
             </nav>
           )}
+
+          <NavLink
+            to={PATH[Page.Cart]}
+            className={classnames(styles.nav__link, styles.nav__link_cart)}
+            onClick={closeMenu}
+          >
+            <CartIcon />
+            <span className={styles.icon__count}>{basket.lineItems.length}</span>
+          </NavLink>
         </div>
       </div>
     </header>

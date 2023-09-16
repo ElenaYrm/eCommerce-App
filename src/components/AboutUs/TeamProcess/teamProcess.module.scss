@@ -1,42 +1,52 @@
 @import '../../../styles/common';
 
 .root {
-  padding: 6rem 5rem 6rem 4rem;
+  padding: 5rem 5rem 7rem;
   background-color: $primary;
   color: $light-primary;
   border-radius: 4rem;
+  font-size: 4rem;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
 
-  @media(max-width: 800px) {
-    padding: 4rem 3rem;
+  @media (max-width: 800px) {
+    padding: 5rem 3rem 5rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.4rem;
+    line-height: 1.2;
   }
 
   &__title {
-    margin-bottom: 3rem;
-    font-size: 4rem;
-    line-height: 4.4rem;
+    margin-bottom: 4rem;
+    font-weight: 500;
 
-    @media(max-width:800px) {
-      margin-bottom: 2rem;
+    @media (max-width: 650px) {
+      margin-bottom: 2.5rem;
     }
   }
 
-  &__paragraph {
+  &__paragraph,
+  &__subtitle {
     display: inline-block;
-    font-size: 4rem;
-    line-height: 4.8rem;
-
-    @media(max-width: 800px) {
-      font-size: 2rem;
-      line-height: 2.4rem;
-    }
-  }
-
-  &__paragraphFirst {
+    font-weight: 300;
+    line-height: 1.15;
     margin-bottom: 3rem;
 
-    @media(max-width:800px) {
-      margin-bottom: 2rem;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
+  &__subtitle {
+    padding-top: 4rem;
+    font-weight: 500;
+  }
 }

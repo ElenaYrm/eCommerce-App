@@ -1,36 +1,76 @@
 @import '../../../../styles/common';
 
 .item {
+  position: relative;
   flex-grow: 1;
+  margin-bottom: 4rem;
 
-  @media(max-width: 650px) {
-    border-bottom: 1px solid $dark;
+  &:last-child {
+    margin-bottom: 0;
   }
 
-  &:hover {
-    color: $primary;
-    cursor: pointer;
+  @media (min-width: 651px) {
+    &:hover {
+      cursor: pointer;
 
-    .item__img {
-      box-shadow: $background-shadow;
-    }
+      .item__imgContainer {
+        box-shadow: $background-shadow;
+      }
 
-    .item__links_github {
-      color: $primary;
-    }
+      .item__tooltip {
+        opacity: 1;
+      }
 
-    .item__links_github::after {
-      border-right: 7px solid $primary;
-    }
+      .item__title,
+      .item__role {
+        color: $primary;
+      }
 
-    @media(max-width:650px) {
-      color: $dark;
+      .item__links_github {
+        color: $primary;
 
-      .item__img {
-        box-shadow: unset;
+        &::after {
+          border-right: 9px solid $primary;
+        }
       }
     }
+  }
 
+  @media (max-width: 650px) {
+    cursor: default;
+
+    padding-bottom: 4rem;
+    border-bottom: 1px solid $dark;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .item__imgContainer {
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .item__tooltip {
+      opacity: 0;
+    }
+
+    .item__title {
+      font-size: 6rem;
+    }
+  }
+
+  &__tooltip {
+    display: inline;
+    padding: 0.5rem 1.2rem;
+    position: absolute;
+    border-radius: 2rem;
+    background-color: $primary;
+    color: $light;
+    font-size: 1.6rem;
+    margin: 2rem;
+
+    opacity: 0;
   }
 
   &__studentInfo {
@@ -40,138 +80,99 @@
     &.isactive {
       color: $primary;
 
-      .item__img {
-        box-shadow: $background-shadow;
+      .item__tooltip {
+        opacity: 1;
       }
 
-      @media(max-width:650px) {
+      @media (max-width: 650px) {
         color: $dark;
 
-        .item__img {
-          box-shadow: unset;
+        .item__tooltip {
+          opacity: 0;
         }
       }
     }
-
-    @media(max-width: 650px) {
-      &.isShown {
-        color: $primary;
-
-        .item__img {
-          box-shadow: $background-shadow;
-        }
-      }
-    }
-
   }
 
   &__imgContainer {
-    margin-bottom: 2rem;
     position: relative;
+    overflow: hidden;
+    border-radius: 4rem;
+    width: 100%;
+    aspect-ratio: 3/4;
+    margin-bottom: 2rem;
+
+    transition: all 0.2s;
   }
 
   &__img {
-    width: 100%;
-    height: auto;
-    border-radius: 4rem;
+    display: block;
+    width: auto;
+    min-height: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__title {
     width: 10%;
     margin-bottom: 2rem;
     font-size: 4rem;
-    line-height: 4.4rem;
+    line-height: 1;
   }
 
   &__role {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   &__links {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-
-    &.isactive {
-      .item__links_github {
-        color: $primary;
-      }
-
-      .item__links_github::after {
-        border-right: 7px solid $primary;
-      }
-
-      @media(max-width:650px) {
-        .item__links_github {
-          color: $dark;
-        }
-
-        .item__links_github::after {
-          border-right: 7px solid $dark;
-        }
-      }
-    }
-
-    @media(max-width:650px) {
-      &.mobileActive {
+    @media (min-width: 651px) {
+      &.isactive {
         .item__links_github {
           color: $primary;
-        }
 
-        .item__links_github::after {
-          border-right: 7px solid $primary;
+          &::after {
+            border-right: 9px solid $primary;
+          }
         }
       }
     }
 
     &_github {
-      position: relative;
-      width: 100%;
       @include font(semibold, p3, $dark);
+      position: relative;
+      display: inline;
+      width: fit-content;
       font-size: 2rem;
-      line-height: 2.2rem;
       text-decoration: none;
 
       &:hover {
         color: $primary;
         text-decoration: underline;
-      }
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 4px;
 
-      &:hover::after {
-        border-right: 7px solid $primary;
+        &::after {
+          border-right: 9px solid $primary;
+        }
       }
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
-        left: 7rem;
-        top: 50%;
+        left: 7.5rem;
+        top: 52%;
         transform: translateY(-50%) rotate(180deg);
         width: 0;
         height: 0;
         border-left: 7px solid transparent;
         border-top: 7px solid transparent;
         border-bottom: 7px solid transparent;
-        border-right: 7px solid $dark;
-
+        border-right: 9px solid $dark;
       }
     }
 
-    @media(max-width:650px) {
+    @media (max-width: 650px) {
       margin-bottom: 6rem;
     }
   }
-
-  &__showBtn {
-    display: none;
-
-    @media(max-width: 650px) {
-      display: block;
-      text-wrap: nowrap;
-      font-size: 2rem;
-      line-height: 2.2rem;
-      font-weight: 600;
-    }
-  }
-
 }
