@@ -15,7 +15,7 @@ function Catalog(): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className={styles.catalog}>
+    <section className={styles.catalog} data-testid="catalog">
       <Breadcrumbs />
       <div className={styles.catalog__wrapper}>
         <div>

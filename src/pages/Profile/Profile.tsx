@@ -15,10 +15,13 @@ import { Page } from '../../router/types';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile(): ReactElement {
-  const isAuthorized = useSelector(selectIsAuthorized);
   const navigate = useNavigate();
+
+  const isAuthorized = useSelector(selectIsAuthorized);
   const user = useSelector(selectUserData);
   const { status, error } = useSelector(selectUserLoadingInfo);
+
+  const isEditMode = useIsEditMode();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -31,10 +34,8 @@ export default function Profile(): ReactElement {
     }
   }, [user, dispatch, isAuthorized, navigate]);
 
-  const isEditMode = useIsEditMode();
-
   return (
-    <div className={styles.main__container}>
+    <div className={styles.main__container} data-testid="profile">
       <div className={styles.root}>
         {status === 'loading' && <Loader type="spinner" />}
         {error && <ErrorMessage text={error} />}
