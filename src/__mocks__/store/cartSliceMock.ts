@@ -27,8 +27,8 @@ const lineItemMock: IItemCart = {
 };
 
 export const resultCartSliceMock: ICartSlice = {
-  status: 'success',
-  error: '',
+  status: 'error',
+  error: 'some error',
   basket: {
     id: 'is',
     version: 1,

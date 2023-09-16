@@ -1,6 +1,6 @@
 import { Action } from '@reduxjs/toolkit';
 import { initialCartSlice } from '../../../../constant';
-import { cartReducer, resetCart } from '../../../../store/cart/slice';
+import { cartReducer, resetCart, resetCartError } from '../../../../store/cart/slice';
 import { resultCartSliceMock } from '../../../../__mocks__/store';
 
 jest.mock('../../../../constant/metaData', () => {});
@@ -16,5 +16,12 @@ describe('Test redux cart slice: ', () => {
     const action: Action = { type: resetCart.type };
     const result = cartReducer(resultCartSliceMock, action);
     expect(result.basket).toEqual(initialCartSlice.basket);
+  });
+
+  test('should reset basket to initial values with "resetCartError" action', () => {
+    const action: Action = { type: resetCartError.type };
+    const result = cartReducer(resultCartSliceMock, action);
+    expect(result.status).toEqual(initialCartSlice.status);
+    expect(result.error).toEqual(initialCartSlice.error);
   });
 });
