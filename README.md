@@ -13,7 +13,7 @@ It's fully responsive, ensuring it looks great on various devices with a minimum
 - Product page
 - User Profile
 - Basket
-- About Us
+- About
 
 The application is powered by CommerceTools, a leading provider of commerce solutions for B2C and B2B enterprises. CommerceTools offers a cloud-native, microservices-based commerce platform that enables brands to create unique and engaging digital commerce experiences.
 <br></br>
@@ -23,7 +23,7 @@ The application is powered by CommerceTools, a leading provider of commerce solu
 - `ESLint` `Prettier` `Husky`
 - `JEST` `Testing Library`
 - `Sass` `Classnames`
-- `Axios`
+- `SDK CommerceTools`
 
 - `eCommerce Tools`
 
@@ -42,7 +42,7 @@ npm run dev         // starts a dev server for further development
 npm run lint        // run a code linter, which checks the code for 
                     // potential errors, coding style violations, and other issues
 
-npm lint:fix.       // automatically fix some of the issues 
+npm lint:fix        // automatically fix some of the issues 
                     // reported by the linter (ex: formatting problems)
 
 npm run prettier    // run the Prettier code formatter to ensure 
@@ -51,7 +51,7 @@ npm run prettier    // run the Prettier code formatter to ensure
 npm run prepare     // automatically executed before the package is published.
                     // It prepares the project for distribution (transpile, clean, or compress files)
 
-npm run test.       // run automated tests for the project 
+npm run test        // run automated tests for the project 
                     // to ensure its functionality and detect any issues
 ```
 <br></br>
