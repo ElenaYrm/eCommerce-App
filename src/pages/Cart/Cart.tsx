@@ -45,7 +45,7 @@ export default function Cart(): ReactElement {
 
   return (
     <div className={styles.cart}>
-      {status === 'loading' && <Loader />}
+      {status === 'loading' && <Loader type="spinner" />}
       {status === 'success' && isEmpty && <EmptyCart />}
       {status === 'success' && !isEmpty && (
         <div className={styles.cart__container}>

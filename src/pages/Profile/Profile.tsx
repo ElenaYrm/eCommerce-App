@@ -36,7 +36,7 @@ export default function Profile(): ReactElement {
   return (
     <div className={styles.main__container}>
       <div className={styles.root}>
-        {status === 'loading' && <Loader />}
+        {status === 'loading' && <Loader type="spinner" />}
         {error && <ErrorMessage text={error} />}
 
         {status === 'success' && !error && (

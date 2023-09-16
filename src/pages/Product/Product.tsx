@@ -37,7 +37,7 @@ export default function Product(): ReactElement {
   return (
     <div className={styles.product}>
       {status === 'loading' ? (
-        <Loader />
+        <Loader type="spinner" />
       ) : error ? (
         <NotFound />
       ) : (

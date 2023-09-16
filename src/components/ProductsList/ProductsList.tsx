@@ -51,7 +51,7 @@ function ProductsList(): ReactElement {
           dataLength={productList.length}
           next={loadProducts}
           hasMore={productList.length < totalProducts}
-          loader={<Loader />}
+          loader={<Loader type="text" />}
           scrollThreshold={0.8}
           className={styles.products__scroll}
         >
