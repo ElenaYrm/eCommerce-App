@@ -1,21 +1,10 @@
 import { render } from '@testing-library/react';
 import Description from './Description';
-import { IAboutDataTabs } from '../../../../types/interfaces';
+import { studentAboutUsMock } from '../../../../__mocks__/AboutTabsMock';
 
 describe('Test Description component', () => {
-  const descriptionStudentMock: IAboutDataTabs = {
-    profilePicture: '#',
-    stName: 'Test Name',
-    role: 'testRole',
-    github: 'testGitHub',
-    body: {
-      textAbout: 'This is Test Name',
-      recommendations: ['Contribution 1', 'Contribution 2'],
-    },
-  };
-
   test('Should render component with student information', () => {
-    const { getByText } = render(<Description student={descriptionStudentMock} isMobile={false} />);
+    const { getByText } = render(<Description student={studentAboutUsMock} isMobile={false} />);
 
     expect(getByText('About Test')).toBeInTheDocument();
     expect(getByText('This is Test Name')).toBeInTheDocument();
@@ -26,7 +15,7 @@ describe('Test Description component', () => {
   });
 
   test('Should render mobile component with student information', () => {
-    const { getByText } = render(<Description student={descriptionStudentMock} isMobile={true} />);
+    const { getByText } = render(<Description student={studentAboutUsMock} isMobile={true} />);
 
     expect(getByText('About Test')).toBeInTheDocument();
     expect(getByText('This is Test Name')).toBeInTheDocument();
