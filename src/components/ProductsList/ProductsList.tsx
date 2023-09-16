@@ -7,19 +7,24 @@ import { resetProductList } from '../../store/catalog/slice';
 import { useAppDispatch } from '../../store/store';
 import { productListThunk } from '../../store/catalog/thunks';
 import { getCartThunk } from '../../store/cart/thunks';
-import { selectCart } from '../../store/cart/selectors';
+import { selectCart, selectCartError } from '../../store/cart/selectors';
 import { ProductCard } from './ProductCard';
 import { Loader } from '../shared/Loader';
 import { ErrorMessage } from '../shared/ErrorMessage';
 import { changeParams, getSearchParams } from '../../utils';
 import { SearchParams } from '../../types/enums';
+import { resetCartError } from '../../store/cart/slice';
 
 import styles from './productsList.module.scss';
 
 function ProductsList(): ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const { productList, totalProducts } = useSelector(selectProductsInfo);
   const { status, error } = useSelector(selectCatalogLoadingInfo);
+
+  const cartError = useSelector(selectCartError);
+
   const cart = useSelector(selectCart);
   const dispatch = useAppDispatch();
 
@@ -38,6 +43,18 @@ function ProductsList(): ReactElement {
     };
   }, []);
 
+  useEffect(() => {
+    if (cartError) {
+      const timer = setTimeout(() => {
+        dispatch(resetCartError());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [cartError, dispatch]);
+
   function loadProducts(): void {
     changeParams(setSearchParams, `${Number(searchParams.get(SearchParams.Page)) + 1}`, SearchParams.Page);
     dispatch(productListThunk({ params: getSearchParams(searchParams), list: productList }));
@@ -45,7 +62,6 @@ function ProductsList(): ReactElement {
 
   return (
     <>
-      {error && <ErrorMessage text={error} />}
       {!error && productList.length > 0 && (
         <InfiniteScroll
           dataLength={productList.length}
@@ -66,6 +82,7 @@ function ProductsList(): ReactElement {
         <div className={styles.products__error}>No items found┗(^o^ )┓三</div>
       )}
 
+      {error && <ErrorMessage text={error} className={styles.error__message} />}
       {cartError && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
     </>
   );
