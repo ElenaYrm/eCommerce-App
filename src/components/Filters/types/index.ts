@@ -1,4 +1,5 @@
 import { SetURLSearchParams } from 'react-router-dom';
+import { SearchParams } from '../../../types/enums.ts';
 
 export interface IFilterItem {
   label: string;
@@ -15,7 +16,6 @@ export interface ICategoryFilterItem extends IFilterItem {
 
 export interface FiltersProps {
   onClick: () => void;
-  isShowResults: boolean;
   className?: string;
 }
 
@@ -23,4 +23,10 @@ export interface FilterTypeProps {
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
   className?: string;
+}
+
+export interface CheckboxFilterProps extends FilterTypeProps {
+  field: SearchParams;
+  filters: IFilterItem[];
+  name: string;
 }

@@ -1,0 +1,6 @@
+@import 'src/styles/common';
+
+.loader {
+  @include font(semibold, p1, $primary);
+  padding: 1rem 0;
+}
