@@ -3,36 +3,34 @@
 .root {
   max-width: 80%;
   margin-bottom: 6rem;
+  font-size: 4rem;
+  line-height: 1.1;
 
-  @media(max-width: 900px) {
+  @media (max-width: 960px) {
     max-width: 100%;
   }
 
-  @media(max-width: 650px) {
+  @media (max-width: 650px) {
     display: none;
   }
 
   &__title {
-    margin-bottom: 2rem;
     font-size: 4rem;
-    line-height: 4.4rem;
+    margin-bottom: 2rem;
   }
 
   &__about {
-    margin-bottom: 4rem;
-    font-size: 4rem;
-    line-height: 4.8rem;
+    margin-bottom: 6rem;
   }
 
   &__contribution {
-    padding-right: 4rem;
-    width: 69.5rem;
+    width: calc(66% + 2rem);
     display: flex;
     flex-direction: column;
     align-items: start;
     margin-left: auto;
 
-    @media(max-width:960px) {
+    @media (max-width: 960px) {
       padding-right: 0;
       margin-left: unset;
       width: 100%;
@@ -43,8 +41,6 @@
 
   &__contributionTitle {
     margin-bottom: 2rem;
-    font-size: 4rem;
-    line-height: 4.4rem;
     font-weight: 600;
   }
 
@@ -52,8 +48,6 @@
     position: relative;
     margin-bottom: 0.5rem;
     padding-left: 3.5rem;
-    font-size: 4rem;
-    line-height: 4.8rem;
 
     &::before {
       content: '';
@@ -62,17 +56,18 @@
       height: 1.5rem;
       border-radius: 50%;
       background-color: $primary;
-      top: 1.8rem;
+      top: 1.5rem;
       left: 0;
     }
   }
 }
 
-
 .bodyMobile {
   display: none;
+  font-size: 3rem;
+  line-height: 1.2;
 
-  @media(max-width: 650px) {
+  @media (max-width: 650px) {
     display: flex;
     flex-direction: column;
     height: 0;
@@ -84,35 +79,35 @@
     }
   }
 
-  &__contributionContainer {
-    margin-bottom: 2rem;
+  @media (max-width: 480px) {
+    font-size: 2.4rem;
   }
 
   &__title {
     margin-bottom: 1rem;
-    font-size: 2rem;
-    line-height: 2.2rem;
+
+    @media (max-width: 650px) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2.4rem;
+    }
   }
 
   &__about {
     margin-bottom: 4rem;
-    font-size: 2rem;
-    line-height: 2.4rem;
   }
 
   &__contribution {
     margin-bottom: 1rem;
     font-weight: 600;
-    font-size: 2rem;
-    line-height: 2.2rem;
   }
 
   &__item {
     position: relative;
     margin-bottom: 0.5rem;
     padding-left: 2rem;
-    font-size: 2rem;
-    line-height: 2.4rem;
 
     &::before {
       content: '';
@@ -121,9 +116,13 @@
       height: 1rem;
       border-radius: 50%;
       background-color: $primary;
-      top: 50%;
+      top: 1.8rem;
       left: 0;
       transform: translateY(-50%);
+
+      @media (max-width: 480px) {
+        top: 1.5rem;
+      }
     }
   }
 }

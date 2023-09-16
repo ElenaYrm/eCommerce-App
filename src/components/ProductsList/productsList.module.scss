@@ -1,4 +1,4 @@
-@import 'src/styles/common';
+@import '../../styles/common/';
 
 .products {
   width: 100%;
@@ -23,6 +23,7 @@
   &__error {
     @include font(semibold, h1, $light-primary);
     line-height: 120%;
+    font-weight: 500;
     padding: 2.5rem;
     width: 100%;
     min-height: 145px;
@@ -37,4 +38,21 @@
   &__scroll {
     width: 100%;
   }
+}
+
+.error__message {
+  position: fixed;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 2rem;
+  max-width: 37rem;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $error-color;
+  border-radius: 2rem;
+  color: $light;
+  z-index: 100;
 }
