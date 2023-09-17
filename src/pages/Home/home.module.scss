@@ -1,9 +1,9 @@
-@import 'src/styles/common';
+@import '../../styles/common/';
 
 .home {
-  padding-top: 6rem;
+  padding: 10rem 2rem 8rem;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: 100%;
   background-image: url('/images/bg-home.jpg');
   background-size: cover;
   background-position: left;
@@ -16,8 +16,7 @@
   gap: 1rem;
 
   &__content {
-    padding: 0 2rem;
-    max-width: 58rem;
+    max-width: 52rem;
     width: 100%;
 
     @media all and (max-width: 480px) {
@@ -25,6 +24,7 @@
     }
 
     &_container {
+      width: 100%;
       padding: 4rem 3rem;
       background-color: $light;
       border-radius: 4rem;
@@ -33,25 +33,62 @@
 
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 0.5rem;
-
-      em {
-        text-decoration: underline;
-      }
-    }
-
-    &:last-child {
-      p:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
     }
   }
 
   &__link {
     @include link();
+    width: fit-content;
     margin: 0 auto;
     padding: 1px;
     position: relative;
+  }
+}
+
+.info {
+  gap: 2rem;
+
+  em {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}
+
+.promo {
+  padding: 3rem 3rem 4rem;
+
+  h4 {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  &__codes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 auto;
+
+    @media all and (max-width: 540px) {
+      flex-direction: column;
+    }
+
+    .code {
+      height: 4.4rem;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($primary, 0.2);
+      border-radius: 1rem;
+
+      @media all and (max-width: 540px) {
+        width: 100%;
+      }
+    }
   }
 }
 
