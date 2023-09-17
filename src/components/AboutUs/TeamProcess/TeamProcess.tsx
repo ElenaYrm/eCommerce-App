@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
 import { ContentBlock } from '../ContentBlock';
-import { ITextBlock } from '../ContentBlock/ContentBlock';
+import { IContentBlock } from '../ContentBlock/ContentBlock';
 
 import styles from './teamProcess.module.scss';
 
 interface ITeamworkProps {
-  content: ITextBlock[];
+  content: IContentBlock[];
 }
 
 function TeamProcess({ content }: ITeamworkProps): ReactElement {

@@ -3,14 +3,14 @@ import { ReactElement } from 'react';
 import styles from './contentBlock.module.scss';
 import classnames from 'classnames';
 
-export interface ITextBlock {
+export interface IContentBlock {
   title?: string;
   paragraphs?: string[];
   result?: string;
   classBase?: string;
 }
 
-function ContentBlock({ title, paragraphs, result, classBase }: ITextBlock): ReactElement {
+function ContentBlock({ title, paragraphs, result, classBase }: IContentBlock): ReactElement {
   return (
     <>
       {title && (
