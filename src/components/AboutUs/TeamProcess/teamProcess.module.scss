@@ -25,11 +25,11 @@
   }
 
   &__title {
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
     font-weight: 500;
 
     @media (max-width: 650px) {
-      margin-bottom: 2.5rem;
+      margin-bottom: 4rem;
     }
   }
 
@@ -37,7 +37,7 @@
   &__subtitle {
     display: inline-block;
     font-weight: 300;
-    line-height: 1.15;
+    line-height: 1.2;
     margin-bottom: 3rem;
 
     &:last-child {
@@ -45,8 +45,31 @@
     }
   }
 
+  &__paragraph {
+    span {
+      font-weight: 400;
+      padding: 0 1rem 2px;
+      background-color: rgba($light, 0.3);
+      border-radius: 1.2rem;
+
+      @media (max-width: 650px) {
+        padding: 0 8px 2px;
+        border-radius: 1rem;
+      }
+    }
+  }
+
   &__subtitle {
-    padding-top: 4rem;
+    padding-top: 6rem;
     font-weight: 500;
+
+    @media (max-width: 650px) {
+      padding-top: 4rem;
+    }
+
+    @media (max-width: 480px) {
+      padding-top: 3rem;
+      margin-bottom: 2rem;
+    }
   }
 }
