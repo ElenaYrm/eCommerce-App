@@ -1,13 +1,13 @@
 import { ReactElement, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { selectIsNewUser } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { Page } from '../../router/types';
 import { PATH } from '../../router/constants/paths';
 import { deleteNotice } from '../../store/auth/slice';
 
-import classnames from 'classnames';
 import styles from './home.module.scss';
 
 export default function Home(): ReactElement {
@@ -64,6 +64,9 @@ export default function Home(): ReactElement {
           </p>
           <p>
             For <em>a single image</em> in the gallery check these artists: Jef Verheyen, Masoami Raku
+          </p>
+          <p>
+            For <em>a promo code</em> use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { parseProductData } from '../../utils';
-import { localProductMock, productMockData } from '../../__mocks__/utils/productMockData.ts';
+import { localProductMock, productMockData } from '../../__mocks__/utils';
 
 jest.mock('../../constant', () => {
   return {

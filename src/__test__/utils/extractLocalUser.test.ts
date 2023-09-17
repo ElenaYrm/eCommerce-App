@@ -1,4 +1,4 @@
-import { customerObject, customerWithMissingProperties } from '../../__mocks__/utils/extractLocalUserMock';
+import { customerObject, customerWithMissingProperties } from '../../__mocks__/utils';
 import { extractLocalUser } from '../../utils';
 
 jest.mock('../../services/sdk/product/methods', () => {});

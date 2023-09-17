@@ -5,7 +5,7 @@ import styles from './button.module.scss';
 
 interface IButtonProps {
   type: 'submit' | 'reset' | 'button';
-  name: string;
+  name: string | ReactElement;
   className?: string;
   disabled?: boolean;
   handleClick?: (event: MouseEvent<HTMLButtonElement>) => void;

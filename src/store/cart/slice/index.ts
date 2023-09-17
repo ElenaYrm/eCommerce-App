@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { deleteCartThunk, getCartThunk, getDiscountsThunk, updateCartThunk } from '../thunks';
-import { initialBasket, initialCart } from '../../../constant';
+import { initialBasket, initialCartSlice } from '../../../constant';
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: initialCart,
+  initialState: initialCartSlice,
   reducers: {
     resetCart: (state) => {
       state.basket = initialBasket;
