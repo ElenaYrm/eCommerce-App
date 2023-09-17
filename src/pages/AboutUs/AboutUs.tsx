@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { AboutTabs } from '../../components/AboutUs/AboutTabs';
 import { TeamProcess } from '../../components/AboutUs/TeamProcess';
 import { RSLogo } from '../../components/AboutUs/RSLogo';
+import { teamworkText } from '../../constant/about-teamwork';
 
 function AboutUs(): ReactElement {
   return (
@@ -10,7 +11,7 @@ function AboutUs(): ReactElement {
       <div className={styles.root__container}>
         <AboutTabs />
       </div>
-      <TeamProcess />
+      <TeamProcess content={teamworkText} />
       <RSLogo />
     </div>
   );

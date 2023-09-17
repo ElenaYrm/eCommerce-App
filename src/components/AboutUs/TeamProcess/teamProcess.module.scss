@@ -10,6 +10,15 @@
   display: flex;
   flex-direction: column;
 
+  &__title {
+    margin-bottom: 6rem;
+    font-weight: 500;
+
+    @media (max-width: 650px) {
+      margin-bottom: 4rem;
+    }
+  }
+
   @media (max-width: 800px) {
     padding: 5rem 3rem 5rem;
   }
@@ -22,54 +31,5 @@
   @media (max-width: 480px) {
     font-size: 2.4rem;
     line-height: 1.2;
-  }
-
-  &__title {
-    margin-bottom: 6rem;
-    font-weight: 500;
-
-    @media (max-width: 650px) {
-      margin-bottom: 4rem;
-    }
-  }
-
-  &__paragraph,
-  &__subtitle {
-    display: inline-block;
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 3rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &__paragraph {
-    span {
-      font-weight: 400;
-      padding: 0 1rem 2px;
-      background-color: rgba($light, 0.3);
-      border-radius: 1.2rem;
-
-      @media (max-width: 650px) {
-        padding: 0 8px 2px;
-        border-radius: 1rem;
-      }
-    }
-  }
-
-  &__subtitle {
-    padding-top: 6rem;
-    font-weight: 500;
-
-    @media (max-width: 650px) {
-      padding-top: 4rem;
-    }
-
-    @media (max-width: 480px) {
-      padding-top: 3rem;
-      margin-bottom: 2rem;
-    }
   }
 }
