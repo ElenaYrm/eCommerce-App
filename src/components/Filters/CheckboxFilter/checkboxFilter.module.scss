@@ -34,8 +34,18 @@
   &__item {
     @include check-field();
 
+    span {
+      transition: opacity 0.2s;
+    }
+
     &:not(:last-child) {
       margin-bottom: 1.5rem;
+    }
+
+    &:hover {
+      span {
+        opacity: 0.6;
+      }
     }
   }
 

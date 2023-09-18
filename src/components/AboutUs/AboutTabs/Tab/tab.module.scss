@@ -99,8 +99,9 @@
     overflow: hidden;
     border-radius: 4rem;
     width: 100%;
-    aspect-ratio: 3/4;
+    height: fit-content;
     margin-bottom: 2rem;
+    background-color: rgba($primary, 0.1);
 
     transition: all 0.2s;
   }
@@ -108,7 +109,6 @@
   &__img {
     display: block;
     width: auto;
-    min-height: 100%;
     height: 100%;
     object-fit: cover;
   }
