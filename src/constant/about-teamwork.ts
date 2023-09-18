@@ -1,6 +1,6 @@
-import { ITextBlock } from '../components/AboutUs/ContentBlock/ContentBlock';
+import { IContentBlock } from '../components/AboutUs/ContentBlock/ContentBlock';
 
-export const teamworkText: ITextBlock[] = [
+export const teamworkText: IContentBlock[] = [
   {
     title: '',
     paragraphs: [
