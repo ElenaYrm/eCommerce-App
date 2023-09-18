@@ -10,6 +10,15 @@
   display: flex;
   flex-direction: column;
 
+  &__title {
+    margin-bottom: 6rem;
+    font-weight: 500;
+
+    @media (max-width: 650px) {
+      margin-bottom: 4rem;
+    }
+  }
+
   @media (max-width: 800px) {
     padding: 5rem 3rem 5rem;
   }
@@ -22,31 +31,5 @@
   @media (max-width: 480px) {
     font-size: 2.4rem;
     line-height: 1.2;
-  }
-
-  &__title {
-    margin-bottom: 4rem;
-    font-weight: 500;
-
-    @media (max-width: 650px) {
-      margin-bottom: 2.5rem;
-    }
-  }
-
-  &__paragraph,
-  &__subtitle {
-    display: inline-block;
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 3rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &__subtitle {
-    padding-top: 4rem;
-    font-weight: 500;
   }
 }
