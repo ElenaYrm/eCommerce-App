@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import EmptyMessage from './EmptyMessage';
 import { PATH } from '../../../router/constants/paths';
-import { Page } from '../../../router/types'
+import { Page } from '../../../router/types';
 
 describe('Cart EmptyMessage component', () => {
   it('should render empty cart message.', () => {
