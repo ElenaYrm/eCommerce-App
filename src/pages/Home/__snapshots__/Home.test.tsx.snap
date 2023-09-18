@@ -96,31 +96,6 @@ exports[`Test Home page:  should render Home page with success register message 
           </div>
         </div>
         <div
-          class="home__content"
-        >
-          <div
-            class="home__content_container promo"
-          >
-            <h4>
-              Promo codes:
-            </h4>
-            <div
-              class="promo__codes"
-            >
-              <span
-                class="code"
-              >
-                ART → 15% Off
-              </span>
-              <span
-                class="code"
-              >
-                Special → 5% Off
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
           class="message"
         >
           <span>
@@ -219,31 +194,6 @@ exports[`Test Home page:  should render Home page with success register message 
             </em>
              use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
-        </div>
-      </div>
-      <div
-        class="home__content"
-      >
-        <div
-          class="home__content_container promo"
-        >
-          <h4>
-            Promo codes:
-          </h4>
-          <div
-            class="promo__codes"
-          >
-            <span
-              class="code"
-            >
-              ART → 15% Off
-            </span>
-            <span
-              class="code"
-            >
-              Special → 5% Off
-            </span>
-          </div>
         </div>
       </div>
       <div
@@ -404,31 +354,6 @@ exports[`Test Home page:  should render Home page without success register messa
             </p>
           </div>
         </div>
-        <div
-          class="home__content"
-        >
-          <div
-            class="home__content_container promo"
-          >
-            <h4>
-              Promo codes:
-            </h4>
-            <div
-              class="promo__codes"
-            >
-              <span
-                class="code"
-              >
-                ART → 15% Off
-              </span>
-              <span
-                class="code"
-              >
-                Special → 5% Off
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </body>,
@@ -521,31 +446,6 @@ exports[`Test Home page:  should render Home page without success register messa
             </em>
              use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
-        </div>
-      </div>
-      <div
-        class="home__content"
-      >
-        <div
-          class="home__content_container promo"
-        >
-          <h4>
-            Promo codes:
-          </h4>
-          <div
-            class="promo__codes"
-          >
-            <span
-              class="code"
-            >
-              ART → 15% Off
-            </span>
-            <span
-              class="code"
-            >
-              Special → 5% Off
-            </span>
-          </div>
         </div>
       </div>
     </div>

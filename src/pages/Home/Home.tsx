@@ -70,15 +70,6 @@ export default function Home(): ReactElement {
           </p>
         </div>
       </div>
-      <div className={styles.home__content}>
-        <div className={classnames(styles.home__content_container, styles.promo)}>
-          <h4>Promo codes:</h4>
-          <div className={styles.promo__codes}>
-            <span className={styles.code}>ART → 15% Off</span>
-            <span className={styles.code}>Special → 5% Off</span>
-          </div>
-        </div>
-      </div>
 
       {isNewUser && (
         <div className={styles.message}>
