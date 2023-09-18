@@ -2,7 +2,7 @@ import { IAboutDataTabs } from '../types/interfaces';
 
 export const studentDataTabs: IAboutDataTabs[] = [
   {
-    profilePicture: '/public/images/ph-elena.jpg',
+    profilePicture: '/images/ph-elena.jpg',
     stName: 'Elena Yaroma',
     role: 'Front-end Developer',
     github: 'https://github.com/ElenaYrm',
@@ -21,7 +21,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
     },
   },
   {
-    profilePicture: '/public/images/ph-german.jpg',
+    profilePicture: '/images/ph-german.jpg',
     stName: 'German Gribanov',
     role: 'Front-end Developer',
     github: 'https://github.com/GermanGrib',
@@ -40,7 +40,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
     },
   },
   {
-    profilePicture: '/public/images/ph-nastia.jpg',
+    profilePicture: '/images/ph-nastia.jpg',
     stName: 'Nastia Piven',
     role: 'Front-end Developer',
     github: 'https://github.com/HereEast',

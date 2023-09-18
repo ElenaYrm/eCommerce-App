@@ -5,7 +5,7 @@ import { IAboutDataTabs } from '../../../../types/interfaces';
 import styles from './tab.module.scss';
 import classNames from 'classnames';
 
-const IMG_DEFAULT = '../../../../../public/images/ph-default.jpg';
+const IMG_DEFAULT = '/images/ph-default.jpg';
 
 interface ITab {
   isActive: boolean;
@@ -24,7 +24,7 @@ function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
           <img
             className={styles.item__img}
             src={student.profilePicture}
-            alt="Student"
+            alt={`Photo of ${student.stName}`}
             onError={(e: SyntheticEvent<HTMLImageElement, Event>): void => {
               const target = e.target;
               if (target instanceof HTMLImageElement) {
