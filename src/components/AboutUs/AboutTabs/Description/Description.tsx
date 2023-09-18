@@ -6,15 +6,14 @@ import classNames from 'classnames';
 interface IDescription {
   student: IAboutDataTabs;
   isMobile: boolean;
-  isBtnShown?: boolean;
 }
 
-function Description({ student, isMobile, isBtnShown }: IDescription): ReactElement {
+function Description({ student, isMobile }: IDescription): ReactElement {
   const myName = student.stName.split(' ')[0];
   const textAbout = student.body.textAbout;
 
   return (
-    <div className={isMobile ? classNames(styles.bodyMobile, { [styles.isNotHide]: isBtnShown }) : styles.root}>
+    <div className={isMobile ? classNames(styles.bodyMobile, { [styles.isNotHide]: isMobile }) : styles.root}>
       <h3 className={isMobile ? styles.bodyMobile__title : styles.root__title}>About {myName}</h3>
       <div className={isMobile ? styles.bodyMobile__about : styles.root__about}>{textAbout}</div>
       <div className={isMobile ? styles.bodyMobile__contributionContainer : styles.root__contribution}>
