@@ -5,6 +5,7 @@ export const teamworkText: IContentBlock[] = [
     title: '',
     paragraphs: [
       'Hey! We are the team who has been working on this project for the past 7 weeks. We did our best to plan carefully, work collaboratively and execute meticulously to deliver visually appealing and user-friendly e-commerce web application.',
+      'Let’s have a look at our workflow and the approaches we used to make them work for our team.',
     ],
     result: '',
   },

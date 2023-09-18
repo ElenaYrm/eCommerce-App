@@ -10,7 +10,7 @@ describe('Test Tab component in About-us', () => {
     expect(screen.getByText('testRole')).toBeInTheDocument();
     expect(screen.getByText('GitHub')).toBeInTheDocument();
 
-    const image = screen.getByAltText('Student');
+    const image = screen.getByAltText(/Photo of/i);
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', '#');
   });
