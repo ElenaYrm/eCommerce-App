@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserAuthOptions } from '@commercetools/sdk-client-v2';
-import { loginCustomer } from '../../../services/sdk/auth/methods';
+import { anonLoginCustomer, loginCustomer } from '../../../services/sdk/auth/methods';
 import { checkError } from '../../../utils';
 import { IAuthSlice } from '../types';
 import { initialTokenInfo, tokenData } from '../../../services/sdk/auth/token';
-import { anonLoginCustomer } from '../../../services/sdk/auth/methods/anonLoginCustomer.ts';
 
 export const anonLoginThunk = createAsyncThunk<
   string,

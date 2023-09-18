@@ -78,7 +78,7 @@ export const initialBasket: ICart = {
   codes: [],
 };
 
-export const initialCart: ICartSlice = {
+export const initialCartSlice: ICartSlice = {
   status: 'initial',
   error: '',
   basket: initialBasket,

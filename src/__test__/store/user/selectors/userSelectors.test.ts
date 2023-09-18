@@ -5,12 +5,9 @@ import {
   selectEditError,
   selectEditStatus,
 } from '../../../../store/user/selectors';
-import { initialUserSliceMock, storeMock } from '../../../../__mocks__/storeMock';
+import { initialUserSliceMock, storeMock } from '../../../../__mocks__/store';
 
 jest.mock('../../../../constant/metaData', () => {});
-jest.mock('../../../../services/sdk/product/methods', () => {});
-jest.mock('../../../../services/sdk/catalog/methods', () => {});
-jest.mock('../../../../services/sdk/customer/methods', () => {});
 
 describe('Test redux user selectors: ', () => {
   test('should select user loading status from the store', () => {

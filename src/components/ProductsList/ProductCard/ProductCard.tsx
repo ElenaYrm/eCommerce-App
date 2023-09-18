@@ -1,4 +1,4 @@
-import { memo, ReactElement, MouseEvent } from 'react';
+import { memo, ReactElement, MouseEvent, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -6,12 +6,13 @@ import { PATH } from '../../../router/constants/paths';
 import { Page } from '../../../router/types';
 import { IProduct } from '../../../types/interfaces';
 import { updateCartThunk } from '../../../store/cart/thunks';
-import { selectCart } from '../../../store/cart/selectors';
+import { selectCart, selectCartLoadingStatus } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
-
-import styles from './productCard.module.scss';
 import { formatPrice } from '../../../utils';
 import { Button } from '../../shared/Button';
+import { Loader } from '../../shared/Loader';
+
+import styles from './productCard.module.scss';
 
 interface ProductItemProps {
   item: IProduct;
@@ -22,12 +23,22 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
   const { productId, title, artist, medium, dimensions, price, discountPrice, images } = item;
   const cart = useSelector(selectCart);
 
+  const [isloading, setIsloading] = useState(false);
+  const cartStatus = useSelector(selectCartLoadingStatus);
+
   const dispatch = useAppDispatch();
 
   const isProductInCart = cart.lineItems.filter((item) => item.productId === productId).length > 0;
 
+  useEffect(() => {
+    if (cartStatus !== 'loading') {
+      setIsloading(false);
+    }
+  }, [cartStatus]);
+
   function addToCart(event: MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
+    setIsloading(true);
 
     dispatch(
       updateCartThunk({
@@ -67,7 +78,7 @@ function ProductCard({ item, className }: ProductItemProps): ReactElement {
 
           <Button
             type="button"
-            name={isProductInCart ? 'In Cart' : 'Add to Cart'}
+            name={isloading ? <Loader type="points" /> : isProductInCart ? 'In Cart' : 'Add to Cart'}
             handleClick={(event): void => addToCart(event)}
             className={styles.card__button}
             disabled={isProductInCart}

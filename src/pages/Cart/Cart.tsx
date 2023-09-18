@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
-import { selectCartData, selectCartError, selectCartLoadingStatus } from '../../store/cart/selectors';
+import { selectCartData, selectCartLoadingInfo } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyMessage';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
@@ -17,13 +17,10 @@ export default function Cart(): ReactElement {
   const [isConfirmPopup, setIsConfirmPopup] = useState(false);
 
   const { basket } = useSelector(selectCartData);
-
-  const status = useSelector(selectCartLoadingStatus);
-  const error = useSelector(selectCartError);
+  const { status, error } = useSelector(selectCartLoadingInfo);
+  const isEmpty = basket.lineItems.length === 0;
 
   const dispatch = useAppDispatch();
-
-  const isEmpty = basket.lineItems.length === 0;
 
   useEffect(() => {
     if (error) {
@@ -48,6 +45,10 @@ export default function Cart(): ReactElement {
   useEffect(() => {
     dispatch(getCartThunk());
   }, [dispatch]);
+
+  function openConfirmPopup(): void {
+    setIsConfirmPopup(true);
+  }
 
   function clearCart(): void {
     setIsConfirmPopup(false);
@@ -82,7 +83,7 @@ export default function Cart(): ReactElement {
               type="button"
               name="Clear Cart"
               className={styles.items__button_clear}
-              handleClick={(): void => setIsConfirmPopup(true)}
+              handleClick={openConfirmPopup}
               disabled={isEmpty}
             />
           </div>

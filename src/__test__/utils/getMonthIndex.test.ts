@@ -1,4 +1,4 @@
-import { expectedIndexes, months } from '../../__mocks__/utils/getMonthIndexMock';
+import { expectedIndexes, months } from '../../__mocks__/utils';
 import { getMonthIndex } from '../../utils';
 
 jest.mock('../../services/sdk/product/methods', () => {});

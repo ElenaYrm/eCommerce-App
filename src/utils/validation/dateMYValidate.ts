@@ -14,7 +14,7 @@ export function dateMYValidate(value: string): string {
     if (parts) {
       const [date, month, year] = parts;
       const MIN_AGE = 13;
-      const userAge = getUserAge(date, month, year);
+      const userAge = getUserAge(new Date(), date, month, year);
 
       if (userAge < MIN_AGE) {
         error = errorMsg.date.invalid;

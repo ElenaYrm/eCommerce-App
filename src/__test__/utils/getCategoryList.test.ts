@@ -1,5 +1,5 @@
 import { getCategoryList } from '../../utils';
-import { categoriesMockData, localCategoriesMock } from '../../__mocks__/utils/categoriesMockData';
+import { categoriesMockData, localCategoriesMock } from '../../__mocks__/utils';
 
 jest.mock('../../constant', () => {
   return {

@@ -35,9 +35,9 @@ export default function Product(): ReactElement {
   }, [fullscreen]);
 
   return (
-    <div className={styles.product}>
+    <div className={styles.product} data-testid="product">
       {status === 'loading' ? (
-        <Loader />
+        <Loader type="spinner" />
       ) : error ? (
         <NotFound />
       ) : (
