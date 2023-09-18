@@ -66,7 +66,7 @@ export default function Home(): ReactElement {
             For ⭑<em>a single image</em>⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
           </p>
           <p>
-            For <em>a promo code</em> use these codes: ART (-10%) and Special (-5%) for all items in a cart
+            For ☆｡<em>a promo code</em>★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>

@@ -87,11 +87,11 @@ exports[`Test Home page:  should render Home page with success register message 
               ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
             </p>
             <p>
-              For 
+              For ☆｡
               <em>
                 a promo code
               </em>
-               use these codes: ART (-10%) and Special (-5%) for all items in a cart
+              ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
             </p>
           </div>
         </div>
@@ -188,11 +188,11 @@ exports[`Test Home page:  should render Home page with success register message 
             ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
           </p>
           <p>
-            For 
+            For ☆｡
             <em>
               a promo code
             </em>
-             use these codes: ART (-10%) and Special (-5%) for all items in a cart
+            ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>
@@ -346,11 +346,11 @@ exports[`Test Home page:  should render Home page without success register messa
               ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
             </p>
             <p>
-              For 
+              For ☆｡
               <em>
                 a promo code
               </em>
-               use these codes: ART (-10%) and Special (-5%) for all items in a cart
+              ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
             </p>
           </div>
         </div>
@@ -440,11 +440,11 @@ exports[`Test Home page:  should render Home page without success register messa
             ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
           </p>
           <p>
-            For 
+            For ☆｡
             <em>
               a promo code
             </em>
-             use these codes: ART (-10%) and Special (-5%) for all items in a cart
+            ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>
