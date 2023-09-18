@@ -1,9 +1,9 @@
 import { ReactElement, SyntheticEvent } from 'react';
-import { TabsBodyMobile } from '../TabsBodyMobile';
 import { IAboutDataTabs } from '../../../../types/interfaces';
 
 import styles from './tab.module.scss';
 import classNames from 'classnames';
+import { Description } from '../Description';
 
 const IMG_DEFAULT = '../../../../../public/images/ph-default.jpg';
 
@@ -15,7 +15,6 @@ interface ITab {
 
 function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
   const stName = student.stName.split(' ')[0];
-  const { textAbout } = student.body;
 
   return (
     <li className={classNames(styles.list__item, styles.item)}>
@@ -42,7 +41,7 @@ function Tab({ isActive, student, handleTabClick }: ITab): ReactElement {
           GitHub
         </a>
       </div>
-      <TabsBodyMobile stName={stName} textAbout={textAbout} student={student} />
+      <Description student={student} isMobile={true} />
     </li>
   );
 }
