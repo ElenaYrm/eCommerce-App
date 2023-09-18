@@ -1,0 +1,42 @@
+@import '../../../styles/common/';
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($dark, 0.3);
+  z-index: 100;
+
+  &__content {
+    padding: 4rem;
+    max-width: 48rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $light;
+    border-radius: 4rem;
+    margin: 2rem;
+
+    @media all and (max-width: 480px) {
+      margin: 1rem;
+      padding: 3rem;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__button {
+    @include btn-primary();
+    width: 100%;
+  }
+}

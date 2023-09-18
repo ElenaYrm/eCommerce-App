@@ -7,6 +7,7 @@ import { Button } from '../../../components/shared/Button';
 import { IPromoCode } from '../../../store/cart/types';
 import { formatPrice } from '../../../utils';
 import { ErrorMessage } from '../../../components/shared/ErrorMessage';
+import { CheckoutPopup } from '../CheckoutPopup';
 
 import styles from './total.module.scss';
 
@@ -160,19 +161,7 @@ export default function Total(): ReactElement {
           </ul>
         )}
       </div>
-      {isCheckoutPopup && (
-        <div className={styles.popup}>
-          <div className={styles.popup__content}>
-            <h3 className={styles.popup__header}>You are awesome 😘😘😘</h3>
-            <Button
-              type="button"
-              name="Yes, I am"
-              className={styles.popup__button}
-              handleClick={(): void => setIsCheckoutPopup(false)}
-            />
-          </div>
-        </div>
-      )}
+      {isCheckoutPopup && <CheckoutPopup handleClosePopup={setIsCheckoutPopup} />}
     </div>
   );
 }
