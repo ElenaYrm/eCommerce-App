@@ -29,13 +29,13 @@ export const getCartThunk = createAsyncThunk<
       }
     }
 
-    if (response.body.results.length > 0) {
-      return extractLocalCart(
-        response.body.results.find((item) => item.cartState === 'Active') || response.body.results[0],
-      );
-    } else {
-      return initialBasket;
+    const cart = response.body.results.find((item) => item.cartState === 'Active');
+
+    if (cart) {
+      return extractLocalCart(cart);
     }
+
+    return initialBasket;
   } catch (error: unknown) {
     return rejectWithValue(checkError(error));
   }
