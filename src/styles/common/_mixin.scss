@@ -80,7 +80,7 @@
 
   &:checked {
     background-color: rgba($green, 0.3);
-    border: none;
+    border: 1px solid rgba($green, 0.3);
 
     &::before {
       transform: scale(1);
