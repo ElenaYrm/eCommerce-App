@@ -1,0 +1,101 @@
+@import 'src/styles/common';
+
+.catalog {
+  padding: 7.5rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @media all and (max-width: 480px) {
+    padding-top: 5.5rem;
+  }
+
+  &__filters {
+    @media all and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+
+    @media all and (max-width: 768px) {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 5rem;
+    }
+  }
+
+  &__sorting {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(23%, 1fr) 3fr;
+    gap: 2rem;
+
+    @media all and (max-width: 1024px) {
+      grid-template-columns: minmax(20%, 1fr) 2fr;
+    }
+
+    @media all and (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__category {
+    margin-bottom: 5rem;
+  }
+
+  &__modal {
+    position: relative;
+    display: none;
+    padding: 0.5rem 0;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 0.1rem;
+      left: 0;
+      bottom: 0;
+      background-color: $dark;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    &:hover {
+      color: $primary;
+
+      &::after {
+        background-color: $primary;
+      }
+    }
+
+    @media all and (max-width: 768px) {
+      display: block;
+    }
+  }
+}

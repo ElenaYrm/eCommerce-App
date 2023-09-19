@@ -1,0 +1,55 @@
+@import 'src/styles/common';
+
+.sort {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__label {
+    position: relative;
+
+    &:hover::after {
+      background-color: $primary;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 1rem;
+      right: 0;
+      width: 0.8em;
+      height: 0.5em;
+      background-color: $dark;
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+      pointer-events: none;
+      transition: all 0.2s ease-in;
+    }
+  }
+
+  &__input {
+    @include font(semibold, p1, $dark);
+    min-width: 20rem;
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    padding: 0.5rem 0 0.5rem;
+    display: flex;
+    flex: 1;
+    border: none;
+    border-bottom: 0.1rem solid $dark;
+    background-color: transparent;
+    text-transform: capitalize;
+    margin: 0;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+
+    &:focus {
+      background-color: rgba($primary, 0.05);
+    }
+
+    &:hover {
+      border-bottom-color: $primary;
+    }
+  }
+}

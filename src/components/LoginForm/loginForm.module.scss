@@ -1,0 +1,10 @@
+@import 'src/styles/common';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__password {
+    margin-bottom: 7rem;
+  }
+}

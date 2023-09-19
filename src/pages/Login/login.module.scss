@@ -1,0 +1,64 @@
+@import 'src/styles/common';
+
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  &__container {
+    width: 54rem;
+    padding: 8rem 2rem 0;
+    margin: 0 0 12rem;
+
+    @media all and (max-width: 480px) {
+      padding: 1rem 1rem 0;
+    }
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__link {
+    @include link();
+    display: inline-block;
+    margin-bottom: 6rem;
+  }
+
+  &__title {
+    @include font(semibold, h1, $dark);
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    flex: 1;
+    background-image: url('/images/bg-form-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    z-index: 1000;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .login {
+    flex-direction: column;
+
+    &__container {
+      max-width: 80rem;
+      width: 100%;
+      margin-bottom: 6rem;
+    }
+
+    &__image {
+      flex: auto;
+      width: 100%;
+      height: 40rem;
+      background-position: top;
+    }
+  }
+}

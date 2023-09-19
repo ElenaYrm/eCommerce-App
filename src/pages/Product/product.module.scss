@@ -1,0 +1,17 @@
+@import '../../styles/common';
+
+.product {
+  padding-top: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+
+  @media all and (max-width: 850px) {
+    flex-direction: column;
+  }
+
+  @media all and (max-width: 480px) {
+    padding-top: 5rem;
+  }
+}

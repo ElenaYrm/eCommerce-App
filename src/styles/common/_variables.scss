@@ -1,0 +1,58 @@
+// common colors
+$dark: #111;
+$light: #fafafa;
+$placeholder-grey: #888888;
+$light-primary: #fff;
+$error-color: #f42222;
+$primary: #0047ff;
+$primary-hover: #0044ee;
+$green: #38bf70;
+$dark-green: #21693f;
+$bullet-grey: #d9d9d9;
+$text-grey: #c0c0c0;
+$btn-grey: #eaeaea;
+$btn-dark-grey: #e0e0e0;
+$background-gray: #f3f3f3;
+
+// effects
+$opacity-eye-catching-primary: 0.15;
+$background-shadow: 0px 9px 12px 0px rgba(0, 71, 255, 0.5);
+
+$transition-set: 0.3s ease-in-out;
+
+// font
+$font-weight-map: (
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+);
+
+// (FontSize, LineHeight)
+
+$title1: 4rem, 100%;
+$title2: 3rem, 100%;
+$title3: 2.4rem, 100%;
+
+$text1: 2rem, 120%;
+$text2: 1.5rem, 130%;
+$text3: 1.6rem, 130%;
+
+$text1-mob: 1.8rem 120%;
+
+$font-type-map: (
+  'h1': $title1,
+  'h2': $title2,
+  'h3': $title3,
+  'p1': $text1,
+  'p1-mob': $text1-mob,
+  'p2': $text2,
+  'p3': $text3,
+);
+
+// other
+$border-radius-btn: 2rem;
+$border-radius-btn-2x: 4rem;
+
+$slider-height: calc(100vh - 6rem);
+$cart-tablet-width: 1010px;

@@ -1,0 +1,76 @@
+@import '../../styles/common/';
+
+.home {
+  padding: 10rem 2rem 8rem;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/bg-home.jpg');
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &__content {
+    max-width: 52rem;
+    width: 100%;
+
+    @media all and (max-width: 480px) {
+      padding: 0 1rem;
+    }
+
+    &_container {
+      width: 100%;
+      padding: 4rem 3rem;
+      background-color: $light;
+      border-radius: 4rem;
+      border: 1px solid $dark;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &__link {
+    @include link();
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1px;
+    position: relative;
+  }
+}
+
+.info {
+  gap: 2rem;
+
+  em {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}
+
+.message {
+  max-width: 37rem;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  background-color: $primary;
+  border-radius: $border-radius-btn;
+  box-shadow: 0 5px 5px rgba($dark, 0.2);
+  color: $light;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 6rem;
+
+  transition: $transition-set;
+}

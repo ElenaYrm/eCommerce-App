@@ -1,0 +1,20 @@
+@import 'src/styles/common';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__subform {
+    margin-bottom: 6rem;
+  }
+
+  &__checkfield {
+    @include check-field();
+    width: max-content;
+    padding-top: 1rem;
+  }
+
+  &__checkbox {
+    @include checkbox();
+  }
+}

@@ -1,0 +1,55 @@
+@import 'src/styles/common';
+
+.filter {
+  &__header {
+    @include accordion-header();
+  }
+
+  &__title {
+    @include font(semibold, p1, $dark);
+
+    &_close {
+      font-weight: bold;
+    }
+  }
+
+  &__icon {
+    @include accordion-icon();
+    background-image: url('../../../assets/icons/arrow-right.svg');
+
+    &_down {
+      transform: rotate(90deg);
+    }
+
+    &_up {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__form {
+    @include filter();
+    padding: 1rem 0 3rem;
+  }
+
+  &__item {
+    @include check-field();
+
+    span {
+      transition: opacity 0.2s;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    &:hover {
+      span {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__input {
+    @include checkbox();
+  }
+}
