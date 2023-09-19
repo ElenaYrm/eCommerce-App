@@ -13,7 +13,7 @@ exports[`Test Home page:  should render Home page with success register message 
           class="home__content"
         >
           <div
-            class="home__content_container"
+            class="home__content_container links"
           >
             <a
               class="home__link active"
@@ -51,34 +51,47 @@ exports[`Test Home page:  should render Home page with success register message 
             >
               Cart
             </a>
+            <a
+              class="home__link"
+              href="/about"
+            >
+              About
+            </a>
           </div>
         </div>
         <div
           class="home__content"
         >
           <div
-            class="home__content_container"
+            class="home__content_container info"
           >
             <p>
-              To keep the project's concept clean, we use word 
+              To keep the project's concept clean, we use word ⭑
               <em>
                 "Artists"
               </em>
-               instead of "Brands".
+              ⋆｡★ instead of "Brands".
             </p>
             <p>
-              For 
+              For ☆｡
               <em>
                 discounted
               </em>
-               products check these artists: Cédrix Crespel, KAWS
+              ⭑ products check these artists: Cédrix Crespel, KAWS
             </p>
             <p>
-              For 
+              For ⭑
               <em>
                 a single image
               </em>
-               in the gallery check these artists: Jef Verheyen, Masoami Raku
+              ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
+            </p>
+            <p>
+              For ☆｡
+              <em>
+                a promo code
+              </em>
+              ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
             </p>
           </div>
         </div>
@@ -101,7 +114,7 @@ exports[`Test Home page:  should render Home page with success register message 
         class="home__content"
       >
         <div
-          class="home__content_container"
+          class="home__content_container links"
         >
           <a
             class="home__link active"
@@ -139,34 +152,47 @@ exports[`Test Home page:  should render Home page with success register message 
           >
             Cart
           </a>
+          <a
+            class="home__link"
+            href="/about"
+          >
+            About
+          </a>
         </div>
       </div>
       <div
         class="home__content"
       >
         <div
-          class="home__content_container"
+          class="home__content_container info"
         >
           <p>
-            To keep the project's concept clean, we use word 
+            To keep the project's concept clean, we use word ⭑
             <em>
               "Artists"
             </em>
-             instead of "Brands".
+            ⋆｡★ instead of "Brands".
           </p>
           <p>
-            For 
+            For ☆｡
             <em>
               discounted
             </em>
-             products check these artists: Cédrix Crespel, KAWS
+            ⭑ products check these artists: Cédrix Crespel, KAWS
           </p>
           <p>
-            For 
+            For ⭑
             <em>
               a single image
             </em>
-             in the gallery check these artists: Jef Verheyen, Masoami Raku
+            ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
+          </p>
+          <p>
+            For ☆｡
+            <em>
+              a promo code
+            </em>
+            ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>
@@ -246,7 +272,7 @@ exports[`Test Home page:  should render Home page without success register messa
           class="home__content"
         >
           <div
-            class="home__content_container"
+            class="home__content_container links"
           >
             <a
               class="home__link active"
@@ -284,34 +310,47 @@ exports[`Test Home page:  should render Home page without success register messa
             >
               Cart
             </a>
+            <a
+              class="home__link"
+              href="/about"
+            >
+              About
+            </a>
           </div>
         </div>
         <div
           class="home__content"
         >
           <div
-            class="home__content_container"
+            class="home__content_container info"
           >
             <p>
-              To keep the project's concept clean, we use word 
+              To keep the project's concept clean, we use word ⭑
               <em>
                 "Artists"
               </em>
-               instead of "Brands".
+              ⋆｡★ instead of "Brands".
             </p>
             <p>
-              For 
+              For ☆｡
               <em>
                 discounted
               </em>
-               products check these artists: Cédrix Crespel, KAWS
+              ⭑ products check these artists: Cédrix Crespel, KAWS
             </p>
             <p>
-              For 
+              For ⭑
               <em>
                 a single image
               </em>
-               in the gallery check these artists: Jef Verheyen, Masoami Raku
+              ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
+            </p>
+            <p>
+              For ☆｡
+              <em>
+                a promo code
+              </em>
+              ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
             </p>
           </div>
         </div>
@@ -327,7 +366,7 @@ exports[`Test Home page:  should render Home page without success register messa
         class="home__content"
       >
         <div
-          class="home__content_container"
+          class="home__content_container links"
         >
           <a
             class="home__link active"
@@ -365,34 +404,47 @@ exports[`Test Home page:  should render Home page without success register messa
           >
             Cart
           </a>
+          <a
+            class="home__link"
+            href="/about"
+          >
+            About
+          </a>
         </div>
       </div>
       <div
         class="home__content"
       >
         <div
-          class="home__content_container"
+          class="home__content_container info"
         >
           <p>
-            To keep the project's concept clean, we use word 
+            To keep the project's concept clean, we use word ⭑
             <em>
               "Artists"
             </em>
-             instead of "Brands".
+            ⋆｡★ instead of "Brands".
           </p>
           <p>
-            For 
+            For ☆｡
             <em>
               discounted
             </em>
-             products check these artists: Cédrix Crespel, KAWS
+            ⭑ products check these artists: Cédrix Crespel, KAWS
           </p>
           <p>
-            For 
+            For ⭑
             <em>
               a single image
             </em>
-             in the gallery check these artists: Jef Verheyen, Masoami Raku
+            ⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
+          </p>
+          <p>
+            For ☆｡
+            <em>
+              a promo code
+            </em>
+            ★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
           </p>
         </div>
       </div>

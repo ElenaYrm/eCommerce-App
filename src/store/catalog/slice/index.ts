@@ -5,16 +5,22 @@ import { initialProductListSlice } from '../../../constant';
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState: initialProductListSlice,
-  reducers: {},
+  reducers: {
+    resetProductList: (state) => {
+      state.productList = [];
+      state.totalProducts = 0;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(productListThunk.pending, (state) => {
         state.error = '';
         state.status = 'loading';
       })
-      .addCase(productListThunk.fulfilled, (state, action) => {
+      .addCase(productListThunk.fulfilled, (state, { payload }) => {
         state.status = 'success';
-        state.productList = action.payload;
+        state.productList = payload.list;
+        state.totalProducts = payload.count;
       })
       .addCase(productListThunk.rejected, (state, action) => {
         state.status = 'error';
@@ -35,4 +41,5 @@ const catalogSlice = createSlice({
   },
 });
 
+export const { resetProductList } = catalogSlice.actions;
 export const catalogReducer = catalogSlice.reducer;

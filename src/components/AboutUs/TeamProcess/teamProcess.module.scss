@@ -1,0 +1,35 @@
+@import '../../../styles/common';
+
+.root {
+  padding: 5rem 5rem 7rem;
+  background-color: $primary;
+  color: $light-primary;
+  border-radius: 4rem;
+  font-size: 4rem;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    margin-bottom: 6rem;
+    font-weight: 500;
+
+    @media (max-width: 650px) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    padding: 5rem 3rem 5rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+}

@@ -7,4 +7,5 @@ export interface ICatalogSlice {
   error: string;
   productList: IProduct[];
   categories: ICategoryFilterItem[];
+  totalProducts: number;
 }

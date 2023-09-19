@@ -10,12 +10,13 @@ jest.mock('../../services/sdk/auth/methods', () => {});
 jest.mock('../../services/sdk/product/methods', () => {});
 jest.mock('../../services/sdk/catalog/methods', () => {});
 jest.mock('../../services/sdk/customer/methods', () => {});
+jest.mock('../../services/sdk/cart/methods', () => {});
 
 const useDispatchSpy = jest.spyOn(reduxHooks, 'useDispatch');
 const useNavigateSpy = jest.spyOn(routerHooks, 'useNavigate');
 
-describe('Test Login page: ', () => {
-  test('should render Login page without error', () => {
+describe('Test Register page: ', () => {
+  test('should render Register page without error', () => {
     useDispatchSpy.mockReturnValue(jest.fn());
     useNavigateSpy.mockReturnValue(jest.fn());
     const component = render(<Register />);

@@ -15,7 +15,7 @@ function Catalog(): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className={styles.catalog}>
+    <section className={styles.catalog} data-testid="catalog">
       <Breadcrumbs />
       <div className={styles.catalog__wrapper}>
         <div>
@@ -24,7 +24,7 @@ function Catalog(): ReactElement {
             setSearchParams={setSearchParams}
             className={styles.catalog__category}
           />
-          <Filters className={styles.catalog__filters} isShowResults={false} onClick={(): void => {}} />
+          <Filters className={styles.catalog__filters} onClick={(): void => {}} />
         </div>
         <div className={styles.catalog__content}>
           <div className={styles.catalog__search}>

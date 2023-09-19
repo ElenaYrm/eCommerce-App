@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import { selectCategories } from '../../../store/catalog/selectors';
 import { useAppDispatch } from '../../../store/store';
-import { categoriesThunk } from '../../../store/catalog/thunks';
+import { categoriesThunk, productListThunk } from '../../../store/catalog/thunks';
 import { SearchParams } from '../../../types/enums';
-import { changeParams } from '../../../utils';
+import { changeParams, getSearchParams } from '../../../utils';
 import { FilterTypeProps } from '../types';
 import { CategoryItem } from './CategoryItem';
 
@@ -23,6 +23,8 @@ function CategoryFilter({ searchParams, setSearchParams, className }: FilterType
 
   function handleClick(event: React.MouseEvent<HTMLElement>): void {
     changeParams(setSearchParams, event.currentTarget.dataset.id || '', SearchParams.Category);
+    changeParams(setSearchParams, '1', SearchParams.Page);
+    dispatch(productListThunk({ params: getSearchParams(searchParams), list: [] }));
   }
 
   return (

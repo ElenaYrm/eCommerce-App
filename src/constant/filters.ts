@@ -27,9 +27,19 @@ export const colors: IColorFilterItem[] = [
     color: '#0000ff',
   },
   {
+    label: 'Brown',
+    value: 'brown',
+    color: '#a52a2a',
+  },
+  {
     label: 'Colorful',
     value: 'colorful',
     color: '#ffc56b',
+  },
+  {
+    label: 'Green',
+    value: 'green',
+    color: '#008000',
   },
   {
     label: 'Grey',
@@ -37,9 +47,19 @@ export const colors: IColorFilterItem[] = [
     color: '#808080',
   },
   {
+    label: 'Orange',
+    value: 'orange',
+    color: '#ffa500',
+  },
+  {
     label: 'Pink',
     value: 'pink',
     color: '#ffc0cb',
+  },
+  {
+    label: 'Purple',
+    value: 'purple',
+    color: '#a020f0',
   },
   {
     label: 'Red',
@@ -67,8 +87,24 @@ export const brands: IFilterItem[] = [
     value: 'Bob-nosa',
   },
   {
+    label: 'Bosco Sodi',
+    value: 'Bosco Sodi',
+  },
+  {
     label: 'Cédrix Crespel',
     value: 'Cédrix Crespel',
+  },
+  {
+    label: 'Chung Chang-Sup',
+    value: 'Chung Chang-Sup',
+  },
+  {
+    label: 'Erin Armstrong',
+    value: 'Erin Armstrong',
+  },
+  {
+    label: 'Jeff Koons',
+    value: 'Jeff Koons',
   },
   {
     label: 'Jef Verheyen',
@@ -77,6 +113,10 @@ export const brands: IFilterItem[] = [
   {
     label: 'Joan Mitchell',
     value: 'Joan Mitchell',
+  },
+  {
+    label: 'John Zabawa',
+    value: 'John Zabawa',
   },
   {
     label: 'KAWS',
@@ -91,8 +131,16 @@ export const brands: IFilterItem[] = [
     value: 'Masoami RAKU',
   },
   {
+    label: 'Michel Mouffe',
+    value: 'Michel Mouffe',
+  },
+  {
     label: 'Richard Diebenkorn',
     value: 'Richard Diebenkorn',
+  },
+  {
+    label: 'Squeak Carnwath',
+    value: 'Squeak Carnwath',
   },
 ];
 

@@ -23,4 +23,5 @@ export enum SearchParams {
   PriceTo = 'priceTo',
   Category = 'category',
   Sort = 'sort',
+  Page = 'page',
 }

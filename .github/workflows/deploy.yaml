@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile' ]
+    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile', 'sprint_4/basket-about_us' ]
   pull_request:
-    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile' ]
+    branches: [ 'sprint_2/login-registration-main', 'sprint_3/catalog-product-profile', 'sprint_4/basket-about_us' ]
 
 jobs:
   build:

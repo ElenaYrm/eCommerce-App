@@ -1,4 +1,5 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import classnames from 'classnames';
 import { Filters } from '../../../components/Filters';
 
@@ -10,6 +11,9 @@ interface ModalFiltersProps {
 }
 
 function ModalFilters({ className, onClick }: ModalFiltersProps): ReactElement {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [prevParams] = useState(searchParams);
+
   useEffect(() => {
     document.body.className = 'stop-scroll';
 
@@ -18,14 +22,19 @@ function ModalFilters({ className, onClick }: ModalFiltersProps): ReactElement {
     };
   }, []);
 
+  function closeFilters(): void {
+    setSearchParams(prevParams);
+    onClick();
+  }
+
   return (
     <div className={classnames(className || '', styles.modal)}>
-      <button type="button" onClick={onClick} className={styles.modal__btn}>
-        Close
+      <button type="button" onClick={closeFilters} className={styles.modal__btn}>
+        Cancel
       </button>
       <h3 className={styles.modal__title}>Filters</h3>
 
-      <Filters className={styles.modal__filters} isShowResults={true} onClick={onClick} />
+      <Filters className={styles.modal__filters} onClick={onClick} />
     </div>
   );
 }

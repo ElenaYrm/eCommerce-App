@@ -1,0 +1,45 @@
+@import '../../../styles/common/';
+
+.root__paragraph,
+.root__subtitle {
+  display: inline-block;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.root__paragraph {
+  span {
+    font-weight: 400;
+    padding: 0 1rem 0.3rem;
+    background-color: rgba($light, 0.3);
+    border-radius: 1.2rem;
+    margin-right: 1rem;
+
+    @media (max-width: 650px) {
+      padding: 0 0.8rem 0.2rem;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.root__subtitle {
+  padding-top: 6rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+
+  @media (max-width: 650px) {
+    padding-top: 4rem;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 3rem;
+    margin-bottom: 2rem;
+  }
+}

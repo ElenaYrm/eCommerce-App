@@ -1,11 +1,11 @@
 import { ChangeEvent, ReactElement, useState } from 'react';
+import classnames from 'classnames';
 import { SearchParams } from '../../../types/enums';
 import { changeParams } from '../../../utils';
 import { colors } from '../../../constant';
 import { FilterTypeProps } from '../types';
 
 import styles from './colorFilter.module.scss';
-import classnames from 'classnames';
 
 function ColorFilter({ searchParams, setSearchParams, className }: FilterTypeProps): ReactElement {
   const [isOpen, setIsOpen] = useState(true);

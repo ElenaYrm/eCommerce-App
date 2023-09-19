@@ -120,9 +120,17 @@ img {
 
 .active {
   color: $primary;
+  
+  svg > * {
+    fill: $primary;
+  }
 
   &::after {
     background-color: $primary;
     opacity: 1;
   }
+}
+
+.infinite-scroll-component__outerdiv {
+  width: 100%;
 }
