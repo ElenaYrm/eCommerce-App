@@ -25,9 +25,9 @@ The application is powered by CommerceTools, a leading provider of commerce solu
 - `Sass` `Classnames`
 - `SDK CommerceTools`
 
-- `eCommerce Tools`
+- `CommerceTools`
 
-Used eCommerce Tools as a **public API** to intergrate its functionality with the current project, and get access to various features and functionalities that eCommerce Tools offers, such as retrieving product information, processing orders, managing inventory, and other.
+Used CommerceTools as a **public API** to intergrate its functionality with the current project, and get access to various features and functionalities that CommerceTools offers, such as retrieving product information, processing orders, managing inventory, and other.
 <br></br>
 # ⚒️ Scripts
 
