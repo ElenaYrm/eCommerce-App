@@ -36,11 +36,9 @@ export default function Product(): ReactElement {
 
   return (
     <div className={styles.product} data-testid="product">
-      {status === 'loading' ? (
-        <Loader type="spinner" />
-      ) : error ? (
-        <NotFound />
-      ) : (
+      {status === 'loading' && <Loader type="spinner" />}
+      {error && <NotFound />}
+      {status === 'success' && (
         <>
           <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
           <ProductDetails product={product} />
