@@ -4,12 +4,11 @@ import classNames from 'classnames';
 import { Formik, FormikErrors } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useContext, useEffect } from 'react';
 import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import { IUser } from '../../../../types/interfaces';
 import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
@@ -19,11 +18,11 @@ import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { ModeContext } from '../../../../context/mode/ModeContext.ts';
 
 function FirstTab(): ReactElement {
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const { isEditMode, toggleEditMode } = useContext(ModeContext);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
 
@@ -33,7 +32,7 @@ function FirstTab(): ReactElement {
     }
 
     if (editStatus === 'success') {
-      updateEditMode();
+      toggleEditMode();
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -151,7 +150,7 @@ function FirstTab(): ReactElement {
             )}
             {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date}.${user.month}.${user.year}`}</div>}
 
-            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={(): void => updateEditMode()} />}
+            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={toggleEditMode} />}
             {isEditMode && (
               <Button
                 name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
@@ -165,7 +164,7 @@ function FirstTab(): ReactElement {
                 type="button"
                 className={styles.formEdit__closeBtn}
                 onClick={(): void => {
-                  updateEditMode(false);
+                  toggleEditMode();
                   resetForm();
                   dispatch(resetEditError());
                 }}

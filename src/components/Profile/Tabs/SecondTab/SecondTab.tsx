@@ -1,13 +1,12 @@
 import styles from './secondTab.module.scss';
 import { Formik } from 'formik';
-import { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import { MouseEvent, ReactElement, useContext, useEffect, useState } from 'react';
 import { Button } from '../../../shared/Button';
 import { initialEditAddresses } from '../../../../constant';
 import { CustomerAddress } from './CustomerAdress';
 import { AddressForm } from '../../../RegisterForm/AddressForm';
 import classNames from 'classnames';
 import { IAddressForm } from '../../../RegisterForm/AddressForm/AddressForm';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { Radiobtn } from './Radiobtn';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
@@ -20,6 +19,7 @@ import { setDefaultAddressIdThunk } from '../../../../store/user/thunks';
 import { addNewAddressThunk } from '../../../../store/user/thunks';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { ModeContext } from '../../../../context/mode/ModeContext.ts';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -28,8 +28,7 @@ export interface IAddressesProfile {
 
 function SecondTab(): ReactElement {
   const [isShipping, setIsShipping] = useState(true);
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const { isEditMode, toggleEditMode } = useContext(ModeContext);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
@@ -40,7 +39,7 @@ function SecondTab(): ReactElement {
     }
 
     if (editStatus === 'success' && isEditMode) {
-      updateEditMode();
+      toggleEditMode();
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -165,7 +164,7 @@ function SecondTab(): ReactElement {
                     />
                   )}
                   {isEditMode && (
-                    <button type="button" className={styles.root__closeBtn} onClick={(): void => updateEditMode(false)}>
+                    <button type="button" className={styles.root__closeBtn} onClick={toggleEditMode}>
                       Close
                     </button>
                   )}
@@ -188,7 +187,7 @@ function SecondTab(): ReactElement {
             name="Add new address"
             className={styles.root__addAddressBtn}
             type="button"
-            handleClick={(): void => updateEditMode(!isEditMode)}
+            handleClick={toggleEditMode}
           />
           <ul>
             {user.addresses.map((addressData: Address, index: number) => {

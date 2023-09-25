@@ -1,11 +1,10 @@
 import { Formik } from 'formik';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useContext, useEffect } from 'react';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
@@ -13,6 +12,7 @@ import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { ModeContext } from '../../../../context/mode/ModeContext.ts';
 
 export interface IChangePassword {
   password: string;
@@ -20,8 +20,7 @@ export interface IChangePassword {
 }
 
 function ThirdTab(): ReactElement {
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const { isEditMode, toggleEditMode } = useContext(ModeContext);
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
@@ -32,7 +31,7 @@ function ThirdTab(): ReactElement {
     }
 
     if (editStatus === 'success') {
-      updateEditMode();
+      toggleEditMode();
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -74,7 +73,7 @@ function ThirdTab(): ReactElement {
             <div className={styles.root__label}>Password</div>
             <input className={styles.root__input} type="password" value="********" disabled />
           </div>
-          <button className={styles.root__editBtn} type="button" onClick={(): void => updateEditMode()}>
+          <button className={styles.root__editBtn} type="button" onClick={toggleEditMode}>
             Change password
           </button>
           {isSuccess && (
@@ -112,7 +111,7 @@ function ThirdTab(): ReactElement {
                   className={styles.form__button}
                   disabled={editStatus === 'loading'}
                 />
-                <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => updateEditMode(false)}>
+                <button type="button" className={styles.rootEdit__closeBtn} onClick={toggleEditMode}>
                   Close
                 </button>
               </form>

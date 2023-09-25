@@ -1,5 +1,5 @@
 import styles from './profile.module.scss';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { selectUserData, selectUserLoadingInfo } from '../../store/user/selectors';
@@ -7,12 +7,12 @@ import { getUserThunk } from '../../store/user/thunks';
 import { Loader } from '../../components/shared/Loader';
 import { ErrorMessage } from '../../components/shared/ErrorMessage';
 import { Tabs } from '../../components/Profile/Tabs';
-import { useIsEditMode } from './profileContext';
 import { GreetingTitle } from '../../components/Profile/GreetingTitle';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { PATH } from '../../router/constants/paths.ts';
 import { Page } from '../../router/types';
 import { useNavigate } from 'react-router-dom';
+import { ModeContext } from '../../context/mode/ModeContext';
 
 export default function Profile(): ReactElement {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Profile(): ReactElement {
   const user = useSelector(selectUserData);
   const { status, error } = useSelector(selectUserLoadingInfo);
 
-  const isEditMode = useIsEditMode();
+  const { isEditMode } = useContext(ModeContext);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
