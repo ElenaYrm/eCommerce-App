@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo } from '../store/user/selectors';
 import { useContext, useEffect } from 'react';
-import { ModeContext } from '../context/mode/ModeContext.ts';
-import { useAppDispatch } from '../store/store.ts';
+import { ModeContext } from '../context/mode/ModeContext';
+import { useAppDispatch } from '../store/store';
 import { deleteSuccessState, resetEditError } from '../store/user/slice';
-import { TStatus } from '../types/types.ts';
+import { TStatus } from '../types/types';
 
 export function useProfileMessages(): [TStatus, string, boolean, boolean, () => boolean] {
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
@@ -19,7 +19,7 @@ export function useProfileMessages(): [TStatus, string, boolean, boolean, () => 
 
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
-      }, 3000);
+      }, 2000);
 
       return () => {
         clearTimeout(timer);
@@ -31,7 +31,7 @@ export function useProfileMessages(): [TStatus, string, boolean, boolean, () => 
     if (editError) {
       const timer = setTimeout(() => {
         dispatch(resetEditError());
-      }, 3000);
+      }, 2000);
 
       return () => {
         clearTimeout(timer);

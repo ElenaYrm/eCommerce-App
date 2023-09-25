@@ -27,13 +27,6 @@ function FirstTab(): ReactElement {
 
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;
-    const newMonth = getMonthIndex(month);
-    const dateOfBirth =
-      year +
-      '-' +
-      (String(newMonth).length === 1 ? `0${newMonth}` : newMonth) +
-      '-' +
-      (date.length === 1 ? `0${date}` : date);
     const newValue: IUpdateUser = {
       id: user.id,
       version: user.version,
@@ -41,7 +34,7 @@ function FirstTab(): ReactElement {
         { action: 'setFirstName', firstName: values.firstName },
         { action: 'setLastName', lastName: values.lastName },
         { action: 'changeEmail', email: values.email },
-        { action: 'setDateOfBirth', dateOfBirth: dateOfBirth },
+        { action: 'setDateOfBirth', dateOfBirth: `${year}-${getMonthIndex(month)}-${date}` },
       ],
     };
 
@@ -110,7 +103,7 @@ function FirstTab(): ReactElement {
               hideLabel={!isEditMode}
               isDisabled={editStatus === 'loading' || !isEditMode}
             />
-            {isEditMode && (
+            {isEditMode ? (
               <UserDateOfBirth
                 touched={touched}
                 handleChange={handleChange}
@@ -119,8 +112,9 @@ function FirstTab(): ReactElement {
                 setFieldTouched={setFieldTouched}
                 isDisabled={editStatus === 'loading' || !isEditMode}
               />
+            ) : (
+              <div className={styles.form__dateOfBirth}>{`${user.date} ${user.month} ${user.year}`}</div>
             )}
-            {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date}.${user.month}.${user.year}`}</div>}
 
             {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={toggleEditMode} />}
             {isEditMode && (

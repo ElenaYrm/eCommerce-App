@@ -1,13 +1,15 @@
-import styles from './UserDateOfBirth.module.scss';
 import { ReactElement } from 'react';
-import { IUserFormProps } from '../../../../RegisterForm/UserForm/UserForm';
 import classNames from 'classnames';
+import { IUserFormProps } from '../../../../RegisterForm/UserForm/UserForm';
 import { SelectField } from '../../../../shared/SelectField';
 import { Input } from '../../../../../types/enums';
 import { dates, months, years } from '../../../../../constant';
 
+import styles from './UserDateOfBirth.module.scss';
+
 function UserDateOfBirth({ handleChange, values, errors, isDisabled }: IUserFormProps): ReactElement {
   const { date, month, year } = values;
+
   return (
     <div className={classNames(styles.root)}>
       <div className={styles.selects}>
