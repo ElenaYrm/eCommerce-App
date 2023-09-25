@@ -1,18 +1,17 @@
 import { Formik } from 'formik';
-import { ReactElement, useContext, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
 import { useSelector } from 'react-redux';
-import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
+import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
-import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
-import { ModeContext } from '../../../../context/mode/ModeContext.ts';
+import { useProfileMessages } from '../../../../hooks';
 
 export interface IChangePassword {
   password: string;
@@ -20,38 +19,9 @@ export interface IChangePassword {
 }
 
 function ThirdTab(): ReactElement {
-  const { isEditMode, toggleEditMode } = useContext(ModeContext);
+  const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
-  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-
-  useEffect(() => {
-    if (editStatus === 'success') {
-      if (isEditMode) {
-        toggleEditMode();
-      }
-
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [dispatch, editStatus]);
-
-  useEffect(() => {
-    if (editError) {
-      const timer = setTimeout(() => {
-        dispatch(resetEditError());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [dispatch, editError]);
 
   function handleSubmit(values: IChangePassword): void {
     const updPassData: IUpdPasswordData = {

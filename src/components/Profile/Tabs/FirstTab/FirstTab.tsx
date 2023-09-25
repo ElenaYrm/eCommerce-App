@@ -4,55 +4,26 @@ import classNames from 'classnames';
 import { Formik, FormikErrors } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement, useContext, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import { IUser } from '../../../../types/interfaces';
 import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
 import { useSelector } from 'react-redux';
-import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
+import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
 import { updUserThunk } from '../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
-import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
-import { ModeContext } from '../../../../context/mode/ModeContext.ts';
+import { resetEditError } from '../../../../store/user/slice';
+import { useProfileMessages } from '../../../../hooks';
 
 function FirstTab(): ReactElement {
-  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-  const { isEditMode, toggleEditMode } = useContext(ModeContext);
+  const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (editStatus === 'success') {
-      if (isEditMode) {
-        toggleEditMode();
-      }
-
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [dispatch, editStatus]);
-
-  useEffect(() => {
-    if (editError) {
-      const timer = setTimeout(() => {
-        dispatch(resetEditError());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [dispatch, editError]);
 
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;
