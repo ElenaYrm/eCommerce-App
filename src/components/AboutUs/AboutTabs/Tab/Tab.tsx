@@ -1,9 +1,9 @@
 import { ReactElement, SyntheticEvent } from 'react';
-import { IAboutDataTabs } from '../../../../types/interfaces';
-
-import styles from './tab.module.scss';
 import classNames from 'classnames';
 import { Description } from '../Description';
+import { IAboutDataTabs } from '../types';
+
+import styles from './tab.module.scss';
 
 const IMG_DEFAULT = '/images/ph-default.jpg';
 

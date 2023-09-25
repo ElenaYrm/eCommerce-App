@@ -1,4 +1,4 @@
-import { IAboutDataTabs } from '../types/interfaces';
+import { IAboutDataTabs } from '../components/AboutUs/AboutTabs/types';
 
 export const studentDataTabs: IAboutDataTabs[] = [
   {
