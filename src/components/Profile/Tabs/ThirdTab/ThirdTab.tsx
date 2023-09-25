@@ -8,7 +8,7 @@ import { initialChangePassord } from '../../../../constant';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
+import { updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
@@ -26,12 +26,11 @@ function ThirdTab(): ReactElement {
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
 
   useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
     if (editStatus === 'success') {
-      toggleEditMode();
+      if (isEditMode) {
+        toggleEditMode();
+      }
+
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -40,7 +39,9 @@ function ThirdTab(): ReactElement {
         clearTimeout(timer);
       };
     }
+  }, [dispatch, editStatus]);
 
+  useEffect(() => {
     if (editError) {
       const timer = setTimeout(() => {
         dispatch(resetEditError());
@@ -50,7 +51,7 @@ function ThirdTab(): ReactElement {
         clearTimeout(timer);
       };
     }
-  }, [user, dispatch, editStatus, editError]);
+  }, [dispatch, editError]);
 
   function handleSubmit(values: IChangePassword): void {
     const updPassData: IUpdPasswordData = {

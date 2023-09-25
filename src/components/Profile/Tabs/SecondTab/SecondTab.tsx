@@ -11,7 +11,6 @@ import { Radiobtn } from './Radiobtn';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
 import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
 import { removeAddressThunk } from '../../../../store/user/thunks';
@@ -34,12 +33,11 @@ function SecondTab(): ReactElement {
   const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
 
   useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
+    if (editStatus === 'success') {
+      if (isEditMode) {
+        toggleEditMode();
+      }
 
-    if (editStatus === 'success' && isEditMode) {
-      toggleEditMode();
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -48,17 +46,9 @@ function SecondTab(): ReactElement {
         clearTimeout(timer);
       };
     }
+  }, [dispatch, editStatus]);
 
-    if (editStatus === 'success' && !isEditMode) {
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
+  useEffect(() => {
     if (editError) {
       const timer = setTimeout(() => {
         dispatch(resetEditError());
@@ -68,7 +58,7 @@ function SecondTab(): ReactElement {
         clearTimeout(timer);
       };
     }
-  }, [user, dispatch, editStatus, editError]);
+  }, [dispatch, editError]);
 
   function handleSubmit(values: IAddressesProfile): void {
     const isShippingAddress = values.shipping.city !== '';

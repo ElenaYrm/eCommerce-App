@@ -12,7 +12,7 @@ import { Button } from '../../../shared/Button';
 import { useSelector } from 'react-redux';
 import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk, updUserThunk } from '../../../../store/user/thunks';
+import { updUserThunk } from '../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
@@ -27,12 +27,11 @@ function FirstTab(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
     if (editStatus === 'success') {
-      toggleEditMode();
+      if (isEditMode) {
+        toggleEditMode();
+      }
+
       const timer = setTimeout(() => {
         dispatch(deleteSuccessState());
       }, 3000);
@@ -41,7 +40,9 @@ function FirstTab(): ReactElement {
         clearTimeout(timer);
       };
     }
+  }, [dispatch, editStatus]);
 
+  useEffect(() => {
     if (editError) {
       const timer = setTimeout(() => {
         dispatch(resetEditError());
@@ -51,7 +52,7 @@ function FirstTab(): ReactElement {
         clearTimeout(timer);
       };
     }
-  }, [user, dispatch, editStatus, editError]);
+  }, [dispatch, editError]);
 
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;

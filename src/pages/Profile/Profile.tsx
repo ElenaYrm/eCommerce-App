@@ -25,12 +25,12 @@ export default function Profile(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
     if (!isAuthorized) {
       navigate(PATH[Page.Login]);
+    }
+
+    if (!user.id) {
+      dispatch(getUserThunk());
     }
   }, [user, dispatch, isAuthorized, navigate]);
 
