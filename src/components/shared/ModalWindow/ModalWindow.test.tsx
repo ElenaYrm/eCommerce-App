@@ -6,7 +6,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should renders children when isOpen is true', () => {
     const { getByText } = render(
-      <ModalWindow isOpen={true} onClose={onCloseMock}>
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
@@ -16,7 +16,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should not render children when isOpen is false', () => {
     const { queryByText } = render(
-      <ModalWindow isOpen={false} onClose={onCloseMock}>
+      <ModalWindow isOpen={false} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
@@ -26,7 +26,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should calls onClose when Close button is clicked', () => {
     const { getByText } = render(
-      <ModalWindow isOpen={true} onClose={onCloseMock}>
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );

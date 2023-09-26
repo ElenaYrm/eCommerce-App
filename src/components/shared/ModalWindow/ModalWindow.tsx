@@ -1,13 +1,16 @@
 import { ReactElement, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+
 import styles from './modalWindow.module.scss';
 
 interface IModalWindow {
   children: ReactElement;
   isOpen: boolean;
+  isShowClosebtn: boolean;
   onClose: () => void;
 }
 
-function ModalWindow({ children, isOpen, onClose }: IModalWindow): ReactElement | null {
+function ModalWindow({ children, isOpen, onClose, isShowClosebtn }: IModalWindow): ReactElement | null {
   useEffect(() => {
     const handleBackdropClick = (e: MouseEvent): void => {
       if (isOpen && e.target === document.querySelector(`.${styles.root}`)) {
@@ -16,15 +19,12 @@ function ModalWindow({ children, isOpen, onClose }: IModalWindow): ReactElement 
     };
 
     if (isOpen) {
-      document.body.classList.add('modal-open');
+      document.body.classList.add('stop-scroll');
       document.addEventListener('click', handleBackdropClick);
-    } else {
-      document.body.classList.remove('modal-open');
-      document.removeEventListener('click', handleBackdropClick);
     }
 
     return () => {
-      document.body.classList.remove('modal-open');
+      document.body.classList.remove('stop-scroll');
       document.removeEventListener('click', handleBackdropClick);
     };
   }, [isOpen, onClose]);
@@ -33,19 +33,21 @@ function ModalWindow({ children, isOpen, onClose }: IModalWindow): ReactElement 
     return null;
   }
 
-  return (
-    <>
-      {isOpen && (
-        <div className={styles.root}>
-          <div className={styles.root__container}>
-            <div className={styles.root__closeBtn} onClick={onClose}>
-              Close
-            </div>
-            {children}
-          </div>
-        </div>
-      )}
-    </>
+  const parent: HTMLElement | null = document.getElementById('modal');
+  if (!parent) return null;
+
+  return createPortal(
+    <div className={styles.root}>
+      <div className={styles.root__container}>
+        {isShowClosebtn && (
+          <button className={styles.root__closeBtn} type="button" onClick={onClose}>
+            Close
+          </button>
+        )}
+        {children}
+      </div>
+    </div>,
+    parent,
   );
 }
 

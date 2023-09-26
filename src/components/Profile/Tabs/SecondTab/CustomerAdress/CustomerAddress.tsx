@@ -46,9 +46,10 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
           Edit
         </button>
         <ModalWindow
-          children={<EditCard values={values} isShipping={true} addressId={addressId}></EditCard>}
+          children={<EditCard values={values} isShipping={true} addressId={addressId} />}
           isOpen={isModalOpen}
           onClose={(): void => setIsModalOpen(!isModalOpen)}
+          isShowClosebtn={true}
         />
         <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(addressId)}>
           Delete
