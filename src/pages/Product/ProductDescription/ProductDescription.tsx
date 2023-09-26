@@ -1,16 +1,15 @@
 import { ReactElement, memo } from 'react';
-import { IProduct } from '../../../types/interfaces';
+import { useSelector } from 'react-redux';
 import { splitToParagraphs } from '../../../utils';
 import { Accordion } from '../../../components/shared/Accordion';
 import { productAccordionData } from '../../../constant';
+import { RootState } from '../../../store/store';
 
 import styles from './productDescription.module.scss';
 
-interface IProductDetailsProps {
-  product: IProduct;
-}
+function ProductDescriptionComp(): ReactElement {
+  const { product } = useSelector((store: RootState) => store.product);
 
-function ProductDescriptionComponent({ product }: IProductDetailsProps): ReactElement {
   return (
     <div className={styles.info}>
       <div className={styles.info__description}>
@@ -29,6 +28,6 @@ function ProductDescriptionComponent({ product }: IProductDetailsProps): ReactEl
   );
 }
 
-const ProductDescription = memo(ProductDescriptionComponent);
+const ProductDescription = memo(ProductDescriptionComp);
 
 export default ProductDescription;

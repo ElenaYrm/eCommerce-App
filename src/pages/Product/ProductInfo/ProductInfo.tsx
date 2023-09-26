@@ -3,26 +3,24 @@ import { useSelector } from 'react-redux';
 import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
-import { IProduct } from '../../../types/interfaces';
 import { Button } from '../../../components/shared/Button';
 import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 import { useResetError } from '../../../hooks';
 import { ProductTitle } from '../ProductTitle';
 import { ProductDescription } from '../ProductDescription';
 import { Loader } from '../../../components/shared/Loader';
+import { RootState } from '../../../store/store';
 
 import styles from './productInfo.module.scss';
 import classnames from 'classnames';
 
-interface IProductDetailsProps {
-  product: IProduct;
-}
-
-export default function ProductInfo({ product }: IProductDetailsProps): ReactElement {
+export default function ProductInfo(): ReactElement {
   const cart = useSelector(selectCart);
   const cartStatus = useSelector(selectCartLoadingStatus);
+
   const error = useSelector(selectCartError);
 
+  const { product } = useSelector((store: RootState) => store.product);
   const { productId } = product;
 
   const dispatch = useAppDispatch();
@@ -69,7 +67,7 @@ export default function ProductInfo({ product }: IProductDetailsProps): ReactEle
   return (
     <>
       <div className={styles.product__details}>
-        <ProductTitle product={product} />
+        <ProductTitle />
 
         {!cartItem ? (
           <Button
@@ -87,7 +85,7 @@ export default function ProductInfo({ product }: IProductDetailsProps): ReactEle
           />
         )}
 
-        <ProductDescription product={product} />
+        <ProductDescription />
       </div>
       {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
     </>

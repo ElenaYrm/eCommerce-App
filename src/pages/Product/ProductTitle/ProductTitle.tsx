@@ -1,15 +1,14 @@
 import { ReactElement, memo } from 'react';
-import { IProduct } from '../../../types/interfaces';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 import { formatPrice } from '../../../utils';
 
 import styles from './productTitle.module.scss';
 import classnames from 'classnames';
 
-interface IProductDetailsProps {
-  product: IProduct;
-}
+function ProductTitleComp(): ReactElement {
+  const { product } = useSelector((store: RootState) => store.product);
 
-function ProductTitleComponent({ product }: IProductDetailsProps): ReactElement {
   return (
     <>
       <h2 className={styles.artist}>{product.artist}</h2>
@@ -26,6 +25,6 @@ function ProductTitleComponent({ product }: IProductDetailsProps): ReactElement 
   );
 }
 
-const ProductTitle = memo(ProductTitleComponent);
+const ProductTitle = memo(ProductTitleComp);
 
 export default ProductTitle;

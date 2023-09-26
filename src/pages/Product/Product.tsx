@@ -16,6 +16,7 @@ export default function Product(): ReactElement {
 
   const { product, status, error } = useSelector((store: RootState) => store.product);
   const { productId } = product;
+
   const dispatch = useAppDispatch();
 
   const [fullscreen, setFullscreen] = useState(false);
@@ -41,7 +42,7 @@ export default function Product(): ReactElement {
       {status === 'success' && (
         <>
           <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
-          <ProductInfo product={product} />
+          <ProductInfo />
         </>
       )}
     </div>
