@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart, selectCartError } from '../../../store/cart/selectors';
+import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { IProduct } from '../../../types/interfaces';
@@ -9,6 +9,7 @@ import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 import { useResetError } from '../../../hooks';
 import { ProductTitle } from '../ProductTitle';
 import { ProductDescription } from '../ProductDescription';
+import { Loader } from '../../../components/shared/Loader';
 
 import styles from './productInfo.module.scss';
 import classnames from 'classnames';
@@ -19,6 +20,7 @@ interface IProductDetailsProps {
 
 export default function ProductInfo({ product }: IProductDetailsProps): ReactElement {
   const cart = useSelector(selectCart);
+  const cartStatus = useSelector(selectCartLoadingStatus);
   const error = useSelector(selectCartError);
 
   const { productId } = product;
@@ -70,11 +72,16 @@ export default function ProductInfo({ product }: IProductDetailsProps): ReactEle
         <ProductTitle product={product} />
 
         {!cartItem ? (
-          <Button type="button" name="Add to Cart (●ω●)ノ" className={styles.button} handleClick={addToCart} />
+          <Button
+            type="button"
+            name={cartStatus === 'loading' ? <Loader type="points" /> : 'Add to Cart (●ω●)ノ'}
+            className={styles.button}
+            handleClick={addToCart}
+          />
         ) : (
           <Button
             type="button"
-            name="Remove from Cart"
+            name={cartStatus === 'loading' ? <Loader type="points" /> : 'Remove from Cart'}
             className={classnames(styles.button, styles.button__remove)}
             handleClick={removeCartItem}
           />
