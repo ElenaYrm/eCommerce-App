@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PATH } from '../../../router/constants/paths';
 import { Page } from '../../../router/types';
 
-import styles from './emptyMessage.module.scss';
+import styles from './emptyCart.module.scss';
 
 export default function EmptyCart(): ReactElement {
   return (

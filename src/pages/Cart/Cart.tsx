@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
 import { selectCartData, selectCartLoadingInfo } from '../../store/cart/selectors';
-import { EmptyCart } from './EmptyMessage';
+import { EmptyCart } from './EmptyCart';
 import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
 import { CartList } from './CartList';
