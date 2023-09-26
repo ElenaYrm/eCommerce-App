@@ -12,6 +12,7 @@ import { updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 
 export interface IChangePassword {
   password: string;
@@ -78,7 +79,7 @@ function ThirdTab(): ReactElement {
                 />
                 <Button
                   type="submit"
-                  name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                  name={editStatus === 'loading' ? <Loader type="points" /> : 'Save changes'}
                   className={styles.form__button}
                   disabled={editStatus === 'loading'}
                 />

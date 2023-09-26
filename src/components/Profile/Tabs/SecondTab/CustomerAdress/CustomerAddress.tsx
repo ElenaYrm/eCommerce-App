@@ -5,8 +5,6 @@ import { ModalWindow } from '../../../../shared/ModalWindow';
 import { EditCard } from './EditCard';
 import { selectEditStatus, selectUserData } from '../../../../../store/user/selectors';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../../../store/store';
-import { getUserThunk } from '../../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
 
 interface IAddressComp {
@@ -22,17 +20,12 @@ function CustomerAddress({ addressId, values, deleteAddress, setDefaultAddress }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const editStatus = useSelector(selectEditStatus);
   const user = useSelector(selectUserData);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
     if (editStatus === 'success') {
       setIsModalOpen(false);
     }
-  }, [user, dispatch, editStatus]);
+  }, [editStatus]);
 
   function isDefaultShipping(): boolean {
     return values.id === user.defaultShippingAddressId;

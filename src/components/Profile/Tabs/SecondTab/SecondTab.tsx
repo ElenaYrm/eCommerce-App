@@ -18,6 +18,7 @@ import { setDefaultAddressIdThunk } from '../../../../store/user/thunks';
 import { addNewAddressThunk } from '../../../../store/user/thunks';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -118,7 +119,7 @@ function SecondTab(): ReactElement {
                   {isEditMode && (
                     <Button
                       type="submit"
-                      name={editStatus === 'loading' ? 'Loading...' : 'Save address'}
+                      name={editStatus === 'loading' ? <Loader type="points" /> : 'Save address'}
                       className={styles.root__btn}
                       disabled={editStatus === 'loading'}
                     />

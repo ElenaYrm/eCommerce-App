@@ -19,6 +19,7 @@ import { getMonthIndex } from '../../../../utils';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
 import { resetEditError } from '../../../../store/user/slice';
 import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 
 function FirstTab(): ReactElement {
   const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
@@ -119,7 +120,7 @@ function FirstTab(): ReactElement {
             {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={toggleEditMode} />}
             {isEditMode && (
               <Button
-                name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                name={editStatus === 'loading' ? <Loader type="points" /> : 'Save changes'}
                 type="submit"
                 className={styles.formEdit__btn}
                 disabled={editStatus === 'loading'}

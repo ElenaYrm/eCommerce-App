@@ -37,7 +37,7 @@ export default function Profile(): ReactElement {
   return (
     <div className={styles.main__container} data-testid="profile">
       <div className={styles.root}>
-        {status === 'loading' && <Loader type="spinner" />}
+        {status === 'loading' && <Loader type="text" />}
         {error && <ErrorMessage text={error} />}
 
         {status === 'success' && !error && (

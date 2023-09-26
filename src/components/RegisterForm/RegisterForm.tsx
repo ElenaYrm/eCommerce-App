@@ -15,6 +15,9 @@ import { Input } from '../../types/enums';
 
 import styles from './registerForm.module.scss';
 import classnames from 'classnames';
+import { useSelector } from 'react-redux';
+import { selectAuthLoadingStatus } from '../../store/auth/selectors';
+import { Loader } from '../shared/Loader';
 
 export interface IRegisterForm {
   user: IUserForm;
@@ -24,6 +27,7 @@ export interface IRegisterForm {
 
 function RegisterForm(): ReactElement {
   const [isSameAddress, setIsSameAddress] = useState(true);
+  const status = useSelector(selectAuthLoadingStatus);
 
   const dispatch = useAppDispatch();
   function onSubmit(values: IRegisterForm): void {
@@ -128,7 +132,7 @@ function RegisterForm(): ReactElement {
             />
           )}
 
-          <Button type="submit" name="Register ( ^ω^)" />
+          <Button type="submit" name={status === 'loading' ? <Loader type="points" /> : 'Register ( ^ω^)'} />
         </form>
       )}
     </Formik>
