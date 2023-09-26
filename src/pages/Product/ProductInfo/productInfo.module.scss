@@ -1,33 +1,48 @@
 @import '../../../styles/common';
 
-.info {
+.product__details {
+  max-width: 50vw;
   width: 100%;
+  padding: 6rem 2rem 10rem 0;
 
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  transition: all 0.1s;
+
+  @media all and (max-width: 850px) {
+    max-width: 100vw;
+    padding: 2rem 2rem 12rem;
   }
 
-  &__description {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 4rem;
+  @media all and (max-width: 480px) {
+    padding: 2rem 1rem 12rem;
+  }
+}
 
-    .text {
-      &:first-child {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        margin-bottom: 4rem;
-      }
+.button {
+  width: 100%;
+  margin-bottom: 9rem;
 
-      &:not(:first-child) {
-        span {
-          text-decoration: underline;
-          padding-right: 1rem;
-        }
-      }
+  &__remove {
+    color: $dark;
+    font-weight: 600;
+    background-color: $btn-grey;
+    box-shadow: none;
+
+    &:hover {
+      color: $dark;
+      background-color: $btn-dark-grey;
     }
   }
+
+  @media all and (max-width: 480px) {
+    font-size: 2.9rem;
+    margin-bottom: 7rem;
+
+    &:hover {
+      font-size: 2.88rem;
+    }
+  }
+}
+
+.error__message {
+  @include bottom-page-message($light, $error-color);
 }

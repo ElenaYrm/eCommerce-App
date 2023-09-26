@@ -9,7 +9,7 @@ interface IProductDetailsProps {
   product: IProduct;
 }
 
-function ProductTitle({ product }: IProductDetailsProps): ReactElement {
+function ProductTitleComponent({ product }: IProductDetailsProps): ReactElement {
   return (
     <>
       <h2 className={styles.artist}>{product.artist}</h2>
@@ -26,4 +26,6 @@ function ProductTitle({ product }: IProductDetailsProps): ReactElement {
   );
 }
 
-export default memo(ProductTitle);
+const ProductTitle = memo(ProductTitleComponent);
+
+export default ProductTitle;

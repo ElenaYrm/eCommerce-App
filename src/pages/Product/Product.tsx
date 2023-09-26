@@ -5,7 +5,7 @@ import { RootState } from '../../store/store';
 import { productThunk } from '../../store/product/thunks';
 import { useAppDispatch } from '../../store/store';
 import { Slider } from '../../components/Slider';
-import { ProductDetails } from './ProductDetails';
+import { ProductInfo } from './ProductInfo';
 import { Loader } from '../../components/shared/Loader';
 import { NotFound } from '../NotFound';
 
@@ -41,7 +41,7 @@ export default function Product(): ReactElement {
       {status === 'success' && (
         <>
           <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
-          <ProductDetails product={product} />
+          <ProductInfo product={product} />
         </>
       )}
     </div>
