@@ -1,7 +1,7 @@
 import { ReactElement, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { Description } from '../Description';
-import { IMG_DEFAULT } from '../../../../constant/aboutus';
+import { IMG_DEFAULT } from '../../../constant/aboutus.ts';
 import { IAboutDataTabs } from '../types';
 
 import styles from './tab.module.scss';

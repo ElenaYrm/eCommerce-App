@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import AboutTabs from './AboutTabs';
-import { studentDataTabs } from '../../../constant/aboutus';
+import AboutTabs from './AboutTabs.tsx';
+import { studentDataTabs } from '../../constant/aboutus.ts';
 
 describe('Test AboutTabs component', () => {
   test('Should render AboutTabs component', () => {

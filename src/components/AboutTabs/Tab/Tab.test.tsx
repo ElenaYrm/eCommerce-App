@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Tab from './Tab';
-import { studentAboutUsMock } from '../../../../__mocks__/AboutTabsMock';
+import Tab from './Tab.tsx';
+import { studentAboutUsMock } from '../../../__mocks__/AboutTabsMock.ts';
 
 describe('Test Tab component in About-us', () => {
   test('Should render Tab component', () => {

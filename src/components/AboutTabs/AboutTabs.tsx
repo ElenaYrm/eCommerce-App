@@ -1,7 +1,7 @@
 import styles from './aboutTabs.module.scss';
 
 import { ReactElement, useState } from 'react';
-import { studentDataTabs } from '../../../constant/aboutus';
+import { studentDataTabs } from '../../constant/aboutus.ts';
 import { Description } from './Description';
 import { Tab } from './Tab';
 

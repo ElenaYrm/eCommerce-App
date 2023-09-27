@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
-import TeamProcess from './TeamProcess';
-import { teamworkText } from '../../../constant/about-teamwork';
+import TeamProcessList from './TeamProcessList.tsx';
+import { teamworkText } from '../../constant/about-teamwork.ts';
 
-describe('Test TeamProcess component', () => {
+describe('Test TeamProcessList component', () => {
   it('Should correctly displays headings and paragraphs.', () => {
-    const { getByText } = render(<TeamProcess content={teamworkText} />);
+    const { getByText } = render(<TeamProcessList content={teamworkText} />);
 
     expect(getByText('Teamwork & Process')).toBeInTheDocument();
     expect(getByText('Project Kickoff')).toBeInTheDocument();

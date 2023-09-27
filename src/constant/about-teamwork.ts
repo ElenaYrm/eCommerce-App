@@ -1,4 +1,4 @@
-import { IContentBlock } from '../components/AboutUs/ContentBlock/ContentBlock';
+import { IContentBlock } from '../components/TeamProcessList/ProcessItem/ProcessItem.tsx';
 
 export const teamworkText: IContentBlock[] = [
   {

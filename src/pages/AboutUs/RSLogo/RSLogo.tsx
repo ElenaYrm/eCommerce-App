@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import RS_Logo from '../../../assets/icons/rs_logo.svg';
 
 import styles from './rsLogo.module.scss';
-import { SCHOOL_LINK } from '../../../constant/aboutus';
+import { SCHOOL_LINK } from '../../../constant/aboutus.ts';
 
 function RSLogo(): ReactElement {
   return (

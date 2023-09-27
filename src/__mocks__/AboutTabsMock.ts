@@ -1,4 +1,4 @@
-import { IAboutDataTabs } from '../components/AboutUs/AboutTabs/types';
+import { IAboutDataTabs } from '../components/AboutTabs/types';
 
 export const studentAboutUsMock: IAboutDataTabs = {
   profilePicture: '#',

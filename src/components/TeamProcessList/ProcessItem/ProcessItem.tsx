@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import classnames from 'classnames';
 
-import styles from './contentBlock.module.scss';
+import styles from './processItem.module.scss';
 
 export interface IContentBlock {
   title?: string;
@@ -10,7 +10,7 @@ export interface IContentBlock {
   classBase?: string;
 }
 
-function ContentBlock({ title, paragraphs, result, classBase }: IContentBlock): ReactElement {
+function ProcessItem({ title, paragraphs, result, classBase }: IContentBlock): ReactElement {
   return (
     <>
       {title && (
@@ -32,4 +32,4 @@ function ContentBlock({ title, paragraphs, result, classBase }: IContentBlock): 
   );
 }
 
-export default ContentBlock;
+export default ProcessItem;
