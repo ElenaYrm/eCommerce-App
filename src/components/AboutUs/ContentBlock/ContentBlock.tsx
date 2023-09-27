@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
+import classnames from 'classnames';
 
 import styles from './contentBlock.module.scss';
-import classnames from 'classnames';
 
 export interface IContentBlock {
   title?: string;
@@ -17,8 +17,8 @@ function ContentBlock({ title, paragraphs, result, classBase }: IContentBlock): 
         <h4 className={classnames(classBase ? styles[`${classBase}__subtitle`] : styles.root__subtitle)}>{title}</h4>
       )}
       {paragraphs &&
-        paragraphs.map((content) => (
-          <p className={classnames(classBase ? styles[`${classBase}__paragraph`] : styles.root__paragraph)}>
+        paragraphs.map((content, index) => (
+          <p key={index} className={classnames(classBase ? styles[`${classBase}__paragraph`] : styles.root__paragraph)}>
             {content}
           </p>
         ))}

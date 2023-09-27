@@ -13,8 +13,8 @@ function TeamProcess({ content }: ITeamworkProps): ReactElement {
     <div className={styles.root}>
       <h3 className={styles.root__title}>Teamwork & Process</h3>
 
-      {content.map((textBlock) => (
-        <ContentBlock title={textBlock.title} paragraphs={textBlock.paragraphs} result={textBlock.result} />
+      {content.map((textBlock, index) => (
+        <ContentBlock key={index} title={textBlock.title} paragraphs={textBlock.paragraphs} result={textBlock.result} />
       ))}
     </div>
   );
