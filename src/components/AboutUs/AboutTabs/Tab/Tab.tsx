@@ -4,8 +4,7 @@ import { IAboutDataTabs } from '../../../../types/interfaces';
 import styles from './tab.module.scss';
 import classNames from 'classnames';
 import { Description } from '../Description';
-
-const IMG_DEFAULT = '/images/ph-default.jpg';
+import { IMG_DEFAULT } from '../../../../constant/aboutus';
 
 interface ITab {
   isActive: boolean;

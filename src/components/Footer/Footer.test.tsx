@@ -17,6 +17,6 @@ describe('Test Footer component', () => {
   test('Should displays current school link and has the right href', () => {
     const schoolLinkElement = screen.getByRole('link', { name: /©2023 RS School/i });
     expect(schoolLinkElement).toBeInTheDocument();
-    expect(schoolLinkElement).toHaveAttribute('href', 'https://rs.school/');
+    expect(schoolLinkElement).toHaveAttribute('href', 'https://rs.school');
   });
 });

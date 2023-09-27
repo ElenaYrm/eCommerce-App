@@ -1,5 +1,7 @@
 import { IAboutDataTabs } from '../types/interfaces';
 
+export const IMG_DEFAULT = '/images/ph-default.jpg';
+export const SCHOOL_LINK = 'https://rs.school';
 export const studentDataTabs: IAboutDataTabs[] = [
   {
     profilePicture: '/images/ph-elena.jpg',
