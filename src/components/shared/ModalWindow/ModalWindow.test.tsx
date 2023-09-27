@@ -1,39 +1,59 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
+
 import ModalWindow from './ModalWindow';
 
 describe('Test ModalWindow shared component', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '<div id="modal" />';
+  });
+
   const onCloseMock = jest.fn();
 
-  it('Should renders children when isOpen is true', () => {
-    const { getByText } = render(
+  it('Should renders children when isOpen is true with Close button', () => {
+    const { baseElement } = render(
       <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
 
-    expect(getByText('Modal Content')).toBeInTheDocument();
+    expect(baseElement).toMatchSnapshot();
+    expect(screen.queryByText('Modal Content')).toBeInTheDocument();
+    expect(screen.queryByText('Close')).toBeInTheDocument();
+  });
+
+  it('Should renders children when isOpen is true without Close button', () => {
+    const { baseElement } = render(
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={false}>
+        <div>Modal Content</div>
+      </ModalWindow>,
+    );
+
+    expect(baseElement).toMatchSnapshot();
+    expect(screen.queryByText('Modal Content')).toBeInTheDocument();
+    expect(screen.queryByText('Close')).not.toBeInTheDocument();
   });
 
   it('Should not render children when isOpen is false', () => {
-    const { queryByText } = render(
+    const { baseElement } = render(
       <ModalWindow isOpen={false} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
 
-    expect(queryByText('Modal Content')).toBeNull();
+    expect(baseElement).toMatchSnapshot();
+    expect(screen.queryByText('Modal Content')).toBeNull();
   });
 
   it('Should calls onClose when Close button is clicked', () => {
-    const { getByText } = render(
+    const { baseElement } = render(
       <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
+    expect(baseElement).toMatchSnapshot();
 
-    const closeButton = getByText('Close');
+    const closeButton = screen.getByText('Close');
     fireEvent.click(closeButton);
-
     expect(onCloseMock).toHaveBeenCalled();
   });
 });

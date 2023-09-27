@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ModalWindow shared component Should calls onClose when Close button is clicked 1`] = `
+<body
+  class="stop-scroll"
+>
+  <div
+    id="modal"
+  >
+    <div
+      class="root"
+    >
+      <div
+        class="root__container"
+      >
+        <button
+          class="root__closeBtn"
+          type="button"
+        >
+          Close
+        </button>
+        <div>
+          Modal Content
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</body>
+`;
+
+exports[`Test ModalWindow shared component Should not render children when isOpen is false 1`] = `
+<body
+  class=""
+>
+  <div
+    id="modal"
+  />
+  <div />
+</body>
+`;
+
+exports[`Test ModalWindow shared component Should renders children when isOpen is true with Close button 1`] = `
+<body
+  class="stop-scroll"
+>
+  <div
+    id="modal"
+  >
+    <div
+      class="root"
+    >
+      <div
+        class="root__container"
+      >
+        <button
+          class="root__closeBtn"
+          type="button"
+        >
+          Close
+        </button>
+        <div>
+          Modal Content
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</body>
+`;
+
+exports[`Test ModalWindow shared component Should renders children when isOpen is true without Close button 1`] = `
+<body
+  class="stop-scroll"
+>
+  <div
+    id="modal"
+  >
+    <div
+      class="root"
+    >
+      <div
+        class="root__container"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</body>
+`;

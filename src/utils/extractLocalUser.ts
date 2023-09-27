@@ -18,7 +18,7 @@ export function extractLocalUser(customer: Customer): IUser {
     firstName: customer.firstName || '',
     lastName: customer.lastName || '',
     password: customer.password || '',
-    date: Number(date).toString() || '',
+    date: Number(date) ? Number(date).toString() : '',
     month: months[Number(month) - 1] || '',
     year: year || '',
     defaultShippingAddressId: customer.defaultShippingAddressId || '',
