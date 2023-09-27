@@ -2,11 +2,10 @@ import { ReactElement } from 'react';
 import { Button } from '../../../components/shared/Button';
 import { ICart, IItemCart } from '../../../store/cart/types';
 import { formatPrice } from '../../../utils';
-import { useAppDispatch } from '../../../store/store';
-import { updateCartThunk } from '../../../store/cart/thunks';
 import { Link } from 'react-router-dom';
 import { PATH } from '../../../router/constants/paths';
 import { Page } from '../../../router/types';
+import { QuantityControls } from '../QuantityControls';
 
 import styles from './cartList.module.scss';
 
@@ -16,34 +15,6 @@ interface ICartListProps {
 }
 
 export default function CartList({ basket, handleRemoveCartItem }: ICartListProps): ReactElement {
-  const dispatch = useAppDispatch();
-
-  function handleAddQuantity(item: IItemCart): void {
-    if (item.quantity === 10) return;
-    updateQuantity(item, item.quantity + 1);
-  }
-
-  function handleRemoveQuantity(item: IItemCart): void {
-    if (item.quantity === 1) return;
-    updateQuantity(item, item.quantity - 1);
-  }
-
-  function updateQuantity(item: IItemCart, quantity: number): void {
-    dispatch(
-      updateCartThunk({
-        id: basket.id,
-        version: basket.version,
-        actions: [
-          {
-            action: 'changeLineItemQuantity',
-            lineItemId: item.itemId,
-            quantity: quantity,
-          },
-        ],
-      }),
-    );
-  }
-
   return (
     <ul className={styles.items__list}>
       {basket.lineItems.map((item) => (
@@ -52,6 +23,7 @@ export default function CartList({ basket, handleRemoveCartItem }: ICartListProp
             <div className={styles.item__image}>
               <img src={item.image} alt={`${item.name} by ${item.artist}`} />
             </div>
+
             <div className={styles.item__info}>
               <div className={styles.header}>
                 <div className={styles.header__content}>
@@ -66,27 +38,10 @@ export default function CartList({ basket, handleRemoveCartItem }: ICartListProp
                     <span className={styles.price}>{formatPrice(item.price / 100)}</span>
                   </div>
                 </div>
-                <div className={styles.header__controls}>
-                  <span>Qt:</span>
-                  <span className={styles.controls__count}>{item.quantity}</span>
-                  <div className={styles.controls__buttons}>
-                    <Button
-                      type="button"
-                      name=""
-                      className={styles.controls__buttons_btn}
-                      disabled={item.quantity === 1}
-                      handleClick={(): void => handleRemoveQuantity(item)}
-                    />
-                    <Button
-                      type="button"
-                      name=""
-                      className={styles.controls__buttons_btn}
-                      disabled={item.quantity === 10}
-                      handleClick={(): void => handleAddQuantity(item)}
-                    />
-                  </div>
-                </div>
+
+                <QuantityControls item={item} />
               </div>
+
               <div className={styles.footer}>
                 <Button
                   type="button"
