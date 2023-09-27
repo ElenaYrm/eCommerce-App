@@ -5,8 +5,8 @@ import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart
 import { selectCartData, selectCartLoadingInfo } from '../../store/cart/selectors';
 import { EmptyCart } from './EmptyCart';
 import { Button } from '../../components/shared/Button';
-import { Total } from './Total';
-import { CartList } from './CartList';
+import { CartTotal } from '../../components/CartTotal';
+import { CartList } from '../../components/CartList';
 import { IItemCart } from '../../store/cart/types';
 import { Notice } from '../../components/shared/Notice';
 
@@ -74,7 +74,7 @@ export default function Cart(): ReactElement {
               disabled={isEmpty}
             />
           </div>
-          <Total />
+          <CartTotal />
         </div>
       )}
 

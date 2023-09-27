@@ -1,8 +1,8 @@
 import { ReactElement, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '../../../components/shared/Button';
+import { Button } from '../../shared/Button';
 import { IItemCart } from '../../../store/cart/types';
-import { useAppDispatch } from '../../../store/store';
+import { useAppDispatch } from '../../../store/store.ts';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { selectCartData } from '../../../store/cart/selectors';
 import { MAX_QUANTITY } from '../../../constant';

@@ -1,18 +1,18 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
-import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
-import { selectProduct } from '../../../store/product/selectors';
-import { useAppDispatch } from '../../../store/store';
-import { updateCartThunk } from '../../../store/cart/thunks';
-import { Button } from '../../../components/shared/Button';
-import { useResetError } from '../../../hooks';
-import { ProductTitle } from '../ProductTitle';
-import { ProductDescription } from '../ProductDescription';
-import { Loader } from '../../../components/shared/Loader';
+import { selectCart, selectCartError, selectCartLoadingStatus } from '../../store/cart/selectors';
+import { selectProduct } from '../../store/product/selectors';
+import { useAppDispatch } from '../../store/store.ts';
+import { updateCartThunk } from '../../store/cart/thunks';
+import { Button } from '../shared/Button';
+import { useResetError } from '../../hooks';
+import { ProductTitle } from './ProductTitle';
+import { ProductDescription } from './ProductDescription';
+import { Loader } from '../shared/Loader';
+import { Notice } from '../shared/Notice';
 
 import styles from './productInfo.module.scss';
-import { Notice } from '../../../components/shared/Notice';
 
 export default function ProductInfo(): ReactElement {
   const cart = useSelector(selectCart);

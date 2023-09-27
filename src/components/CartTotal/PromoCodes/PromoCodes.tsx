@@ -1,10 +1,10 @@
 import { ReactElement, FormEvent, useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../store/store';
+import { useAppDispatch } from '../../../store/store.ts';
 import { updateCartThunk, getDiscountsThunk } from '../../../store/cart/thunks';
 import { selectCartData } from '../../../store/cart/selectors';
-import { Button } from '../../../components/shared/Button';
-import { Notice } from '../../../components/shared/Notice';
+import { Button } from '../../shared/Button';
+import { Notice } from '../../shared/Notice';
 import { IPromoCode } from '../../../store/cart/types';
 import { CODE_ERROR } from '../../../constant';
 

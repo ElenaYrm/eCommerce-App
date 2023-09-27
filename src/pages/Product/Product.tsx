@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { productThunk } from '../../store/product/thunks';
 import { useAppDispatch } from '../../store/store';
 import { Slider } from '../../components/Slider';
-import { ProductInfo } from './ProductInfo';
+import { ProductInfo } from '../../components/ProductInfo';
 import { Loader } from '../../components/shared/Loader';
 import { NotFound } from '../NotFound';
 

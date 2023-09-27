@@ -1,17 +1,17 @@
 import { ReactElement, useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../store/store';
-import { getDiscountsThunk } from '../../../store/cart/thunks';
-import { selectCartData } from '../../../store/cart/selectors';
-import { Button } from '../../../components/shared/Button';
-import { formatPrice } from '../../../utils';
-import { PromoCodes } from '../PromoCodes';
-import { DELIVERY_PRICE } from '../../../constant';
+import { useAppDispatch } from '../../store/store.ts';
+import { getDiscountsThunk } from '../../store/cart/thunks';
+import { selectCartData } from '../../store/cart/selectors';
+import { Button } from '../shared/Button';
+import { formatPrice } from '../../utils';
+import { PromoCodes } from './PromoCodes';
+import { DELIVERY_PRICE } from '../../constant';
 
-import styles from './total.module.scss';
-import { ModalWindow } from '../../../components/shared/ModalWindow';
+import styles from './cartTotal.module.scss';
+import { ModalWindow } from '../shared/ModalWindow';
 
-export default function Total(): ReactElement {
+export default function CartTotal(): ReactElement {
   const [isCheckoutPopup, setIsCheckoutPopup] = useState(false);
 
   const { basket, discounts } = useSelector(selectCartData);

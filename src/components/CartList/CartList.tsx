@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
-import { Button } from '../../../components/shared/Button';
-import { ICart, IItemCart } from '../../../store/cart/types';
-import { formatPrice } from '../../../utils';
+import { Button } from '../shared/Button';
+import { ICart, IItemCart } from '../../store/cart/types';
+import { formatPrice } from '../../utils';
 import { Link } from 'react-router-dom';
-import { PATH } from '../../../router/constants/paths';
-import { Page } from '../../../router/types';
-import { QuantityControls } from '../QuantityControls';
+import { PATH } from '../../router/constants/paths.ts';
+import { Page } from '../../router/types';
+import { QuantityControls } from './QuantityControls';
 
 import styles from './cartList.module.scss';
 

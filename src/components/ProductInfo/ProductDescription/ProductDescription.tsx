@@ -2,7 +2,7 @@ import { ReactElement, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProduct } from '../../../store/product/selectors';
 import { splitToParagraphs } from '../../../utils';
-import { Accordion } from '../../../components/shared/Accordion';
+import { Accordion } from '../../shared/Accordion';
 import { productAccordionData } from '../../../constant';
 
 import styles from './productDescription.module.scss';
