@@ -1,4 +1,4 @@
-import { IAboutDataTabs } from '../components/AboutUs/AboutTabs/types';
+import { IAboutDataTabs } from '../components/AboutTabs/types';
 
 export const IMG_DEFAULT = '/images/ph-default.jpg';
 export const SCHOOL_LINK = 'https://rs.school';
@@ -34,7 +34,7 @@ export const studentDataTabs: IAboutDataTabs[] = [
         'Work with the server SDK (Profile)',
         'Store setting (User)',
         'Login form implementation',
-        'Profile page implementation incl. Tabs',
+        'Profile page implementation incl. ProfileTabs',
         'About page implementation',
         'Trello board setup',
         'Work with React Testing Library',

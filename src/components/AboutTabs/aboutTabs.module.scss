@@ -1,0 +1,28 @@
+@import '../../styles/common/index';
+
+.root {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $dark;
+
+  @media(max-width: 650px) {
+    margin-bottom: 8rem;
+    border-bottom: none;
+  }
+}
+
+.list {
+  display: flex;
+  max-width: 80%;
+  margin-bottom: 6rem;
+  gap: 2rem;
+  border-bottom: 1px solid $dark;
+
+  @media(max-width: 960px) {
+    max-width: 100%;
+  }
+
+  @media(max-width: 650px) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+}

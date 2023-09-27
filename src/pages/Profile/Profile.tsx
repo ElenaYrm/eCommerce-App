@@ -5,9 +5,9 @@ import { useAppDispatch } from '../../store/store';
 import { selectUserData, selectUserLoadingInfo } from '../../store/user/selectors';
 import { getUserThunk } from '../../store/user/thunks';
 import { Loader } from '../../components/shared/Loader';
-import { ErrorMessage } from '../../components/shared/ErrorMessage';
-import { Tabs } from '../../components/Profile/Tabs';
-import { GreetingTitle } from '../../components/Profile/GreetingTitle';
+import { Notice } from '../../components/shared/Notice';
+import { ProfileTabs } from '../../components/ProfileTabs';
+import { GreetingTitle } from './GreetingTitle';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { PATH } from '../../router/constants/paths.ts';
 import { Page } from '../../router/types';
@@ -38,12 +38,12 @@ export default function Profile(): ReactElement {
     <div className={styles.main__container} data-testid="profile">
       <div className={styles.root}>
         {status === 'loading' && <Loader type="text" />}
-        {error && <ErrorMessage text={error} />}
+        {error && <Notice text={error} type="error" />}
 
         {status === 'success' && !error && (
           <div className={styles.root__container}>
             {!isEditMode && <GreetingTitle />}
-            <Tabs />
+            <ProfileTabs />
           </div>
         )}
       </div>

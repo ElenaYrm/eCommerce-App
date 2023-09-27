@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialUserState } from '../../../constant';
+import { initialUser, initialUserState } from '../../../constant';
 import { getUserThunk, setDefaultAddressIdThunk, updPasswordThunk, updUserThunk } from '../thunks';
 import { removeAddressThunk } from '../thunks';
 import { addNewAddressThunk } from '../thunks';
@@ -16,6 +16,10 @@ const userSlice = createSlice({
     deleteSuccessState: (state): void => {
       state.editStatus = 'initial';
       state.isSuccess = false;
+    },
+    resetUserData: (state): void => {
+      state.status = 'initial';
+      state.user = initialUser;
     },
   },
   extraReducers: (builder) => {
@@ -120,4 +124,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
-export const { resetEditError, deleteSuccessState } = userSlice.actions;
+export const { resetEditError, deleteSuccessState, resetUserData } = userSlice.actions;

@@ -1,0 +1,44 @@
+@import '../../styles/common/index';
+
+.product__details {
+  max-width: 50vw;
+  width: 100%;
+  padding: 6rem 2rem 10rem 0;
+
+  transition: all 0.1s;
+
+  @media all and (max-width: 850px) {
+    max-width: 100vw;
+    padding: 2rem 2rem 12rem;
+  }
+
+  @media all and (max-width: 480px) {
+    padding: 2rem 1rem 12rem;
+  }
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 9rem;
+
+  &__remove {
+    color: $dark;
+    font-weight: 600;
+    background-color: $btn-grey;
+    box-shadow: none;
+
+    &:hover {
+      color: $dark;
+      background-color: $btn-dark-grey;
+    }
+  }
+
+  @media all and (max-width: 480px) {
+    font-size: 2.9rem;
+    margin-bottom: 7rem;
+
+    &:hover {
+      font-size: 2.88rem;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { PATH } from '../../router/constants/paths';
 import { deleteNotice } from '../../store/auth/slice';
 
 import styles from './home.module.scss';
+import { Notice } from '../../components/shared/Notice';
 
 export default function Home(): ReactElement {
   const isNewUser = useSelector(selectIsNewUser);
@@ -71,11 +72,7 @@ export default function Home(): ReactElement {
         </div>
       </div>
 
-      {isNewUser && (
-        <div className={styles.message}>
-          <span>Hello and welcome!ヾ(☆▽☆)</span>
-        </div>
-      )}
+      {isNewUser && <Notice text="Hello and welcome!ヾ(☆▽☆)" type="success" />}
     </div>
   );
 }

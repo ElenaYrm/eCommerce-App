@@ -10,7 +10,7 @@ import { getCartThunk } from '../../store/cart/thunks';
 import { selectCart, selectCartError } from '../../store/cart/selectors';
 import { ProductCard } from './ProductCard';
 import { Loader } from '../shared/Loader';
-import { ErrorMessage } from '../shared/ErrorMessage';
+import { Notice } from '../shared/Notice';
 import { changeParams, getSearchParams } from '../../utils';
 import { SearchParams } from '../../types/enums';
 import { resetCartError } from '../../store/cart/slice';
@@ -82,8 +82,8 @@ function ProductsList(): ReactElement {
         <div className={styles.products__error}>No items found┗(^o^ )┓三</div>
       )}
 
-      {error && <ErrorMessage text={error} className={styles.error__message} />}
-      {cartError && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+      {error && <Notice text={error} type="error" />}
+      {cartError && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </>
   );
 }

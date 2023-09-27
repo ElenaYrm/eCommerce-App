@@ -1,22 +1,22 @@
 import { ITabsList } from '../types/interfaces';
-import { FirstTab } from '../components/Profile/Tabs/FirstTab';
-import { SecondTab } from '../components/Profile/Tabs/SecondTab';
-import { ThirdTab } from '../components/Profile/Tabs/ThirdTab';
+import { UsedDataTab } from '../components/ProfileTabs/UsedDataTab';
+import { AddressTab } from '../components/ProfileTabs/AddressTab';
+import { PasswordTab } from '../components/ProfileTabs/PasswordTab';
 
 export const tabsList: ITabsList[] = [
   {
     label: 'PERSONAL INFORMATION',
-    content: <FirstTab />,
+    content: <UsedDataTab />,
     title: 'Edit personal information',
   },
   {
     label: 'ADDRESSES',
-    content: <SecondTab />,
+    content: <AddressTab />,
     title: 'Add new address',
   },
   {
     label: 'PASSWORD',
-    content: <ThirdTab />,
+    content: <PasswordTab />,
     title: 'Change password',
   },
 ];

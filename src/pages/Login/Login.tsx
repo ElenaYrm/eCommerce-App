@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginForm } from '../../components/LoginForm';
-import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { Notice } from '../../components/shared/Notice';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
 import { useRedirect } from '../../hooks/';
@@ -24,7 +24,7 @@ export default function Login(): ReactElement {
             <span>to your account</span>
           </div>
 
-          {error && <ErrorMessage text={error} />}
+          {error && <Notice text={error} type="text" />}
 
           <LoginForm />
         </div>

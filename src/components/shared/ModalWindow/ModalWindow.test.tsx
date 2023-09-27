@@ -11,7 +11,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should renders children when isOpen is true with Close button', () => {
     const { baseElement } = render(
-      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowCloseBtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
@@ -23,7 +23,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should renders children when isOpen is true without Close button', () => {
     const { baseElement } = render(
-      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={false}>
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowCloseBtn={false}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
@@ -35,7 +35,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should not render children when isOpen is false', () => {
     const { baseElement } = render(
-      <ModalWindow isOpen={false} onClose={onCloseMock} isShowClosebtn={true}>
+      <ModalWindow isOpen={false} onClose={onCloseMock} isShowCloseBtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );
@@ -46,7 +46,7 @@ describe('Test ModalWindow shared component', () => {
 
   it('Should calls onClose when Close button is clicked', () => {
     const { baseElement } = render(
-      <ModalWindow isOpen={true} onClose={onCloseMock} isShowClosebtn={true}>
+      <ModalWindow isOpen={true} onClose={onCloseMock} isShowCloseBtn={true}>
         <div>Modal Content</div>
       </ModalWindow>,
     );

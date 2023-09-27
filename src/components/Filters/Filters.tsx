@@ -20,6 +20,11 @@ function Filters({ className, onClick }: FiltersProps): ReactElement {
     changeParams(setSearchParams, '1', SearchParams.Page);
     dispatch(productListThunk({ params: getSearchParams(searchParams), list: [] }));
     onClick();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
   function resetFilters(): void {

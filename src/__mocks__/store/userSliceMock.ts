@@ -18,6 +18,23 @@ export const initialUserMock: IUser = {
   addresses: [],
 };
 
+export const resultUserMock: IUser = {
+  id: 'some',
+  version: 1,
+  email: 'test@test.com',
+  firstName: 'Name',
+  lastName: 'Surname',
+  password: 'xxx',
+  date: '1',
+  month: 'January',
+  year: '2000',
+  defaultShippingAddressId: '',
+  defaultBillingAddressId: '',
+  shippingAddressIds: [],
+  billingAddressIds: [],
+  addresses: [],
+};
+
 export const initialUserSliceMock: IUserSlice = {
   user: initialUserMock,
   status: 'initial',
@@ -28,7 +45,7 @@ export const initialUserSliceMock: IUserSlice = {
 };
 
 export const resultUserSliceMock: IUserSlice = {
-  user: initialUserMock,
+  user: resultUserMock,
   status: 'initial',
   error: '',
   isSuccess: false,

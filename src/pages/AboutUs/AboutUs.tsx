@@ -1,8 +1,8 @@
 import styles from './aboutUs.module.scss';
 import { ReactElement } from 'react';
-import { AboutTabs } from '../../components/AboutUs/AboutTabs';
-import { TeamProcess } from '../../components/AboutUs/TeamProcess';
-import { RSLogo } from '../../components/AboutUs/RSLogo';
+import { AboutTabs } from '../../components/AboutTabs';
+import { TeamProcessList } from '../../components/TeamProcessList';
+import { RSLogo } from './RSLogo';
 import { teamworkText } from '../../constant/about-teamwork';
 
 function AboutUs(): ReactElement {
@@ -11,7 +11,7 @@ function AboutUs(): ReactElement {
       <div className={styles.root__container}>
         <AboutTabs />
       </div>
-      <TeamProcess content={teamworkText} />
+      <TeamProcessList content={teamworkText} />
       <RSLogo />
     </div>
   );
