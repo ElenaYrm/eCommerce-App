@@ -17,7 +17,7 @@ export interface SliderProps {
   className?: string;
 }
 
-export function Slider({ images, fullscreen, handleClick, className }: SliderProps): ReactElement {
+function Slider({ images, fullscreen, handleClick, className }: SliderProps): ReactElement {
   return (
     <div className={styles.product__slider}>
       {fullscreen && (
@@ -54,3 +54,5 @@ export function Slider({ images, fullscreen, handleClick, className }: SliderPro
     </div>
   );
 }
+
+export default Slider;
