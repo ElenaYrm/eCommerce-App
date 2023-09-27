@@ -1,4 +1,4 @@
-@import '../../styles/common/';
+@import 'src/styles/common';
 
 .header {
   display: flex;
@@ -36,6 +36,7 @@
   justify-content: center;
   align-items: center;
   color: $dark;
+  transition: color 0.2s ease-in-out;
 
   @media(max-width:480px) {
     width: 12rem;
@@ -99,7 +100,6 @@
 
 
 .nav {
-
   &.open &__list {
 
     @media (max-width: 650px) {
@@ -113,7 +113,7 @@
       flex-direction: column;
       align-items: flex-end;
       background-color: $light;
-      box-shadow: 0px 5px 8px rgba($primary, 1);
+      box-shadow: 0 5px 8px rgba($primary, 1);
       z-index: 1;
     }
 
@@ -125,6 +125,10 @@
 
   &__link_cart {
     position: relative;
+
+    svg > * {
+      transition: fill $transition-set;
+    }
 
     &::after {
       bottom: 0.1rem;
