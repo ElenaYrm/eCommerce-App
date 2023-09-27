@@ -11,7 +11,7 @@ import { selectEditUserInfo, selectUserData } from '../../../../store/user/selec
 import { useAppDispatch } from '../../../../store/store';
 import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
-import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { Notice } from '../../../shared/Notice';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 export interface IChangePassword {
@@ -77,9 +77,7 @@ function ThirdTab(): ReactElement {
           <button className={styles.root__editBtn} type="button" onClick={(): void => updateEditMode()}>
             Change password
           </button>
-          {isSuccess && (
-            <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
-          )}
+          {isSuccess && <Notice text={'Profile information was successfully updated ٩(｡•́‿•̀｡)۶'} type="success" />}
         </div>
       )}
       {isEditMode && (
@@ -118,9 +116,7 @@ function ThirdTab(): ReactElement {
               </form>
             )}
           </Formik>
-          {editError && (
-            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
-          )}
+          {editError && <Notice text="Something bad happened... Try again! (つω`｡)" type="error" />}
         </>
       )}
     </div>

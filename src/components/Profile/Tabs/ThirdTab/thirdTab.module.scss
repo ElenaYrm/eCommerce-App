@@ -1,7 +1,6 @@
 @import '../../../../styles/common';
 
 .root {
-
   &__editBtn {
     @include btn-primary();
     width: 100%;
@@ -42,12 +41,4 @@
       opacity: 0.5;
     }
   }
-}
-
-.successResponse {
-  @include responseMessage($light-primary, $green);
-}
-
-.errorResponse {
-  @include responseMessage($light-primary, $error-color);
 }

@@ -1,7 +1,6 @@
 @import '../../../../styles/common';
 
 .root {
-
   &__formContainer {
     & h3 {
       display: none;
@@ -75,12 +74,4 @@
     }
   }
 
-}
-
-.successResponse {
-  @include responseMessage($light-primary, $green);
-}
-
-.errorResponse {
-  @include responseMessage($light-primary, $error-color);
 }

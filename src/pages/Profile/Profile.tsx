@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../store/store';
 import { selectUserData, selectUserLoadingInfo } from '../../store/user/selectors';
 import { getUserThunk } from '../../store/user/thunks';
 import { Loader } from '../../components/shared/Loader';
-import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { Notice } from '../../components/shared/Notice';
 import { Tabs } from '../../components/Profile/Tabs';
 import { useIsEditMode } from './profileContext';
 import { GreetingTitle } from '../../components/Profile/GreetingTitle';
@@ -38,7 +38,7 @@ export default function Profile(): ReactElement {
     <div className={styles.main__container} data-testid="profile">
       <div className={styles.root}>
         {status === 'loading' && <Loader type="spinner" />}
-        {error && <ErrorMessage text={error} />}
+        {error && <Notice text={error} type="error" />}
 
         {status === 'success' && !error && (
           <div className={styles.root__container}>

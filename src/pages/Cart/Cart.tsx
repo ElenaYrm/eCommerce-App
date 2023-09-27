@@ -8,7 +8,7 @@ import { Button } from '../../components/shared/Button';
 import { Total } from './Total';
 import { CartList } from './CartList';
 import { IItemCart } from '../../store/cart/types';
-import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { Notice } from '../../components/shared/Notice';
 import { resetCartError } from '../../store/cart/slice';
 
 import styles from './cart.module.scss';
@@ -111,7 +111,7 @@ export default function Cart(): ReactElement {
           </div>
         </div>
       )}
-      {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+      {error && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </div>
   );
 }

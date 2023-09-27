@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { LoginForm } from '../../components/LoginForm';
-import { ErrorMessage } from '../../components/shared/ErrorMessage';
+import { Notice } from '../../components/shared/Notice';
 import { PATH } from '../../router/constants/paths';
 import { selectAuthError, selectIsAuthorized } from '../../store/auth/selectors';
 import { Page } from '../../router/types';
@@ -40,7 +40,7 @@ export default function Login(): ReactElement {
             <span>to your account</span>
           </div>
 
-          {error && <ErrorMessage text={error} />}
+          {error && <Notice text={error} type="text" />}
 
           <LoginForm />
         </div>

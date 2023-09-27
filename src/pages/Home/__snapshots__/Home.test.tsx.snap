@@ -96,11 +96,9 @@ exports[`Test Home page:  should render Home page with success register message 
           </div>
         </div>
         <div
-          class="message"
+          class="success"
         >
-          <span>
-            Hello and welcome!ヾ(☆▽☆)
-          </span>
+          Hello and welcome!ヾ(☆▽☆)
         </div>
       </div>
     </div>
@@ -197,11 +195,9 @@ exports[`Test Home page:  should render Home page with success register message 
         </div>
       </div>
       <div
-        class="message"
+        class="success"
       >
-        <span>
-          Hello and welcome!ヾ(☆▽☆)
-        </span>
+        Hello and welcome!ヾ(☆▽☆)
       </div>
     </div>
   </div>,

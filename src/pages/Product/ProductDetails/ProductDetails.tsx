@@ -8,7 +8,7 @@ import { formatPrice, splitToParagraphs } from '../../../utils';
 import { Button } from '../../../components/shared/Button';
 import { productAccordionData } from '../../../constant';
 import { Accordion } from '../../../components/shared/Accordion';
-import { ErrorMessage } from '../../../components/shared/ErrorMessage';
+import { Notice } from '../../../components/shared/Notice';
 
 import styles from './productDetails.module.scss';
 import classnames from 'classnames';
@@ -114,7 +114,7 @@ export default function ProductDetails({ product }: IProductDetailsProps): React
           <Accordion data={productAccordionData} className={styles.product__accordion} />
         </div>
       </div>
-      {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+      {error && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </>
   );
 }

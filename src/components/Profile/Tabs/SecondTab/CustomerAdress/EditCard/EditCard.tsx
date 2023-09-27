@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../../../../../store/store';
 import { getUserThunk } from '../../../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../../../services/sdk/customer/types';
 import { changeAddressThunk } from '../../../../../../store/user/thunks';
-import { ErrorMessage } from '../../../../../shared/ErrorMessage';
+import { Notice } from '../../../../../shared/Notice';
 
 interface IEditInitialValue {
   shipping: IAddressForm;
@@ -91,9 +91,7 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
           </form>
         )}
       </Formik>
-      {editError && (
-        <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
-      )}
+      {editError && <Notice text="Something bad happened... Try again! (つω`｡)" type="error" />}
     </div>
   );
 }

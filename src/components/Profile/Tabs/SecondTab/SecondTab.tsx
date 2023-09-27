@@ -18,7 +18,7 @@ import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../
 import { removeAddressThunk } from '../../../../store/user/thunks';
 import { setDefaultAddressIdThunk } from '../../../../store/user/thunks';
 import { addNewAddressThunk } from '../../../../store/user/thunks';
-import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { Notice } from '../../../shared/Notice';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 export interface IAddressesProfile {
@@ -173,17 +173,13 @@ function SecondTab(): ReactElement {
               </>
             )}
           </Formik>
-          {editError && (
-            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
-          )}
+          {editError && <Notice text="Something bad happened... Try again! (つω`｡)" type="error" />}
         </>
       )}
 
       {!isEditMode && (
         <div>
-          {isSuccess && (
-            <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
-          )}
+          {isSuccess && <Notice text={'Profile information was successfully updated ٩(｡•́‿•̀｡)۶'} type="success" />}
           <Button
             name="Add new address"
             className={styles.root__addAddressBtn}
@@ -206,9 +202,7 @@ function SecondTab(): ReactElement {
               );
             })}
           </ul>
-          {editError && (
-            <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
-          )}
+          {editError && <Notice text="Something bad happened... Try again! (つω`｡)" type="error" />}
         </div>
       )}
     </div>

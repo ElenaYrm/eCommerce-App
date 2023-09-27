@@ -17,7 +17,7 @@ import { getUserThunk, updUserThunk } from '../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
-import { ErrorMessage } from '../../../shared/ErrorMessage';
+import { Notice } from '../../../shared/Notice';
 import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 function FirstTab(): ReactElement {
@@ -88,9 +88,7 @@ function FirstTab(): ReactElement {
 
   return (
     <>
-      {editError && (
-        <ErrorMessage className={styles.errorResponse} text="Something bad happened... Try again! (つω`｡)" />
-      )}
+      {editError && <Notice text="Something bad happened... Try again! (つω`｡)" type="error" />}
       <Formik initialValues={user} validate={validateDate} onSubmit={handleSubmit} validateOnBlur={false}>
         {({ handleSubmit, errors, touched, setFieldTouched, handleChange, resetForm }): ReactElement => (
           <form
@@ -176,9 +174,7 @@ function FirstTab(): ReactElement {
           </form>
         )}
       </Formik>
-      {isSuccess && (
-        <div className={styles.successResponse}>Profile information was successfully updated ٩(｡•́‿•̀｡)۶</div>
-      )}
+      {isSuccess && <Notice text={'Profile information was successfully updated ٩(｡•́‿•̀｡)۶'} type="success" />}
     </>
   );
 }

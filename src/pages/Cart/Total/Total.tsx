@@ -6,7 +6,7 @@ import { selectCartData } from '../../../store/cart/selectors';
 import { Button } from '../../../components/shared/Button';
 import { IPromoCode } from '../../../store/cart/types';
 import { formatPrice } from '../../../utils';
-import { ErrorMessage } from '../../../components/shared/ErrorMessage';
+import { Notice } from '../../../components/shared/Notice';
 
 import styles from './total.module.scss';
 
@@ -140,7 +140,7 @@ export default function Total(): ReactElement {
           <Button type="submit" name="Apply" className={styles.promo__form_button} />
         </form>
 
-        {isError && <ErrorMessage text={CODE_ERROR} className={styles.promo__error} />}
+        {isError && <Notice text={CODE_ERROR} className={styles.promo__error} type="text" />}
 
         {basket.codes.length > 0 && (
           <ul className={styles.promo__codes}>
