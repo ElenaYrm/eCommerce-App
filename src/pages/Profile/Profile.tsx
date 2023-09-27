@@ -6,8 +6,8 @@ import { selectUserData, selectUserLoadingInfo } from '../../store/user/selector
 import { getUserThunk } from '../../store/user/thunks';
 import { Loader } from '../../components/shared/Loader';
 import { Notice } from '../../components/shared/Notice';
-import { Tabs } from '../../components/Profile/Tabs';
-import { GreetingTitle } from '../../components/Profile/GreetingTitle';
+import { ProfileTabs } from '../../components/ProfileTabs';
+import { GreetingTitle } from './GreetingTitle';
 import { selectIsAuthorized } from '../../store/auth/selectors';
 import { PATH } from '../../router/constants/paths.ts';
 import { Page } from '../../router/types';
@@ -43,7 +43,7 @@ export default function Profile(): ReactElement {
         {status === 'success' && !error && (
           <div className={styles.root__container}>
             {!isEditMode && <GreetingTitle />}
-            <Tabs />
+            <ProfileTabs />
           </div>
         )}
       </div>

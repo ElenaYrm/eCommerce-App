@@ -1,7 +1,7 @@
 import { IRegisterForm } from '../components/RegisterForm/RegisterForm';
 import { ILoginForm } from '../components/LoginForm/LoginForm';
 import { Input } from '../types/enums';
-import { IChangePassword } from '../components/Profile/Tabs/ThirdTab/ThirdTab';
+import { IChangePassword } from '../components/ProfileTabs/PasswordTab/PasswordTab.tsx';
 
 export const initialRegisterForm: IRegisterForm = {
   user: {
