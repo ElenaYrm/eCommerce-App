@@ -1,2 +1,2 @@
 export * from './useDebounce';
-export * from './useResetMessage';
+export * from './useResetError';
