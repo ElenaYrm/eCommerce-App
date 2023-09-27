@@ -12,6 +12,7 @@ import { Notice } from '../../components/shared/Notice';
 
 import styles from './cart.module.scss';
 import { useResetError } from '../../hooks';
+import { ModalWindow } from '../../components/shared/ModalWindow';
 
 export default function Cart(): ReactElement {
   const [isConfirmPopup, setIsConfirmPopup] = useState(false);
@@ -77,9 +78,12 @@ export default function Cart(): ReactElement {
         </div>
       )}
 
-      {isConfirmPopup && (
-        <div className={styles.popup}>
-          <div className={styles.popup__content}>
+      <ModalWindow
+        isOpen={isConfirmPopup}
+        isShowCloseBtn={false}
+        onClose={(): void => setIsConfirmPopup(false)}
+        children={
+          <>
             <h3 className={styles.popup__header}>Are you sure you want to clear the Cart?</h3>
             <div className={styles.popup__buttons}>
               <Button
@@ -95,9 +99,12 @@ export default function Cart(): ReactElement {
                 handleClick={clearCart}
               />
             </div>
-          </div>
-        </div>
-      )}
+          </>
+        }
+        borderType="round"
+        className={styles.popup__content}
+      />
+
       {error && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </div>
   );

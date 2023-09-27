@@ -1,16 +1,26 @@
 import { ReactElement, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import classnames from 'classnames';
 
 import styles from './modalWindow.module.scss';
 
 interface IModalWindow {
   children: ReactElement;
   isOpen: boolean;
-  isShowClosebtn: boolean;
+  isShowCloseBtn: boolean;
   onClose: () => void;
+  borderType?: 'round' | 'straight';
+  className?: string;
 }
 
-function ModalWindow({ children, isOpen, onClose, isShowClosebtn }: IModalWindow): ReactElement | null {
+function ModalWindow({
+  children,
+  isOpen,
+  onClose,
+  isShowCloseBtn,
+  className,
+  borderType = 'straight',
+}: IModalWindow): ReactElement | null {
   useEffect(() => {
     const handleBackdropClick = (e: MouseEvent): void => {
       if (isOpen && e.target === document.querySelector(`.${styles.root}`)) {
@@ -38,8 +48,14 @@ function ModalWindow({ children, isOpen, onClose, isShowClosebtn }: IModalWindow
 
   return createPortal(
     <div className={styles.root}>
-      <div className={styles.root__container}>
-        {isShowClosebtn && (
+      <div
+        className={classnames(
+          styles.root__container,
+          className,
+          borderType === 'round' ? styles.root__container_round : '',
+        )}
+      >
+        {isShowCloseBtn && (
           <button className={styles.root__closeBtn} type="button" onClick={onClose}>
             Close
           </button>

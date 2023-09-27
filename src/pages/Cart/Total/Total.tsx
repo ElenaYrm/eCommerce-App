@@ -9,6 +9,7 @@ import { PromoCodes } from '../PromoCodes';
 import { DELIVERY_PRICE } from '../../../constant';
 
 import styles from './total.module.scss';
+import { ModalWindow } from '../../../components/shared/ModalWindow';
 
 export default function Total(): ReactElement {
   const [isCheckoutPopup, setIsCheckoutPopup] = useState(false);
@@ -70,9 +71,9 @@ export default function Total(): ReactElement {
 
       <PromoCodes />
 
-      {isCheckoutPopup && (
-        <div className={styles.popup}>
-          <div className={styles.popup__content}>
+      <ModalWindow
+        children={
+          <>
             <h3 className={styles.popup__header}>You are awesome 😘😘😘</h3>
             <Button
               type="button"
@@ -80,9 +81,14 @@ export default function Total(): ReactElement {
               className={styles.popup__button}
               handleClick={(): void => setIsCheckoutPopup(false)}
             />
-          </div>
-        </div>
-      )}
+          </>
+        }
+        isOpen={isCheckoutPopup}
+        onClose={(): void => setIsCheckoutPopup(false)}
+        isShowCloseBtn={false}
+        className={styles.popup__content}
+        borderType="round"
+      />
     </div>
   );
 }
