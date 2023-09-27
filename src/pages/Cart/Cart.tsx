@@ -35,11 +35,7 @@ export default function Cart(): ReactElement {
   }, [error, dispatch]);
 
   useEffect(() => {
-    if (isConfirmPopup) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isConfirmPopup ? 'hidden' : '';
   }, [isConfirmPopup]);
 
   useEffect(() => {
@@ -90,6 +86,7 @@ export default function Cart(): ReactElement {
           <Total />
         </div>
       )}
+
       {isConfirmPopup && (
         <div className={styles.popup}>
           <div className={styles.popup__content}>
