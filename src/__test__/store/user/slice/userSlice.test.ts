@@ -1,7 +1,7 @@
 import { Action } from '@reduxjs/toolkit';
-import { userReducer, deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { userReducer, deleteSuccessState, resetEditError, resetUserData } from '../../../../store/user/slice';
 import { initialUserState } from '../../../../constant';
-import { resultUserSliceMock } from '../../../../__mocks__/store';
+import { initialUserMock, resultUserSliceMock } from '../../../../__mocks__/store';
 
 jest.mock('../../../../constant/metaData', () => {});
 jest.mock('../../../../services/sdk/auth/methods', () => {});
@@ -24,5 +24,12 @@ describe('Test redux user slice: ', () => {
     const result = userReducer(resultUserSliceMock, action);
     expect(result.error).toBe('');
     expect(result.status).toBe('initial');
+  });
+
+  test('should reset user data and status to initial values with "resetUserData" action', () => {
+    const action: Action = { type: resetUserData.type };
+    const result = userReducer(resultUserSliceMock, action);
+    expect(result.status).toBe('initial');
+    expect(result.user).toEqual(initialUserMock);
   });
 });

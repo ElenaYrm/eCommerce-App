@@ -15,6 +15,7 @@ import CartIcon from '../../assets/icons/icon-cart.svg';
 
 import classnames from 'classnames';
 import styles from './header.module.scss';
+import { resetUserData } from '../../store/user/slice';
 
 export default function Header(): ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,6 +40,7 @@ export default function Header(): ReactElement {
     e.preventDefault();
     dispatch(logoutThunk());
     dispatch(resetCart());
+    dispatch(resetUserData());
     navigate(PATH[Page.Home]);
     closeMenu();
   }
