@@ -1,13 +1,13 @@
 import { ReactElement, memo } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
 import { formatPrice } from '../../../utils';
 
 import styles from './productTitle.module.scss';
 import classnames from 'classnames';
+import { selectProduct } from '../../../store/cart/selectors';
 
 function ProductTitleComp(): ReactElement {
-  const { product } = useSelector((store: RootState) => store.product);
+  const { product } = useSelector(selectProduct);
 
   return (
     <>

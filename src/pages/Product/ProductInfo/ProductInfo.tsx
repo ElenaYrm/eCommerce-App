@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
+import { selectCart, selectCartError, selectCartLoadingStatus, selectProduct } from '../../../store/cart/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { Button } from '../../../components/shared/Button';
@@ -9,7 +9,6 @@ import { useResetError } from '../../../hooks';
 import { ProductTitle } from '../ProductTitle';
 import { ProductDescription } from '../ProductDescription';
 import { Loader } from '../../../components/shared/Loader';
-import { RootState } from '../../../store/store';
 
 import styles from './productInfo.module.scss';
 import classnames from 'classnames';
@@ -20,7 +19,7 @@ export default function ProductInfo(): ReactElement {
 
   const error = useSelector(selectCartError);
 
-  const { product } = useSelector((store: RootState) => store.product);
+  const { product } = useSelector(selectProduct);
   const { productId } = product;
 
   const dispatch = useAppDispatch();

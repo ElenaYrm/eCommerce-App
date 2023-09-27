@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { splitToParagraphs } from '../../../utils';
 import { Accordion } from '../../../components/shared/Accordion';
 import { productAccordionData } from '../../../constant';
-import { RootState } from '../../../store/store';
 
 import styles from './productDescription.module.scss';
+import { selectProduct } from '../../../store/cart/selectors';
 
 function ProductDescriptionComp(): ReactElement {
-  const { product } = useSelector((store: RootState) => store.product);
+  const { product } = useSelector(selectProduct);
 
   return (
     <div className={styles.info}>

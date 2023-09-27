@@ -1,7 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from '../../store/store';
 import { productThunk } from '../../store/product/thunks';
 import { useAppDispatch } from '../../store/store';
 import { Slider } from '../../components/Slider';
@@ -10,11 +9,12 @@ import { Loader } from '../../components/shared/Loader';
 import { NotFound } from '../NotFound';
 
 import styles from './product.module.scss';
+import { selectProduct } from '../../store/cart/selectors';
 
 export default function Product(): ReactElement {
   const id = useParams().id || '';
 
-  const { product, status, error } = useSelector((store: RootState) => store.product);
+  const { product, status, error } = useSelector(selectProduct);
   const { productId } = product;
 
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ export default function Product(): ReactElement {
 
   return (
     <div className={styles.product} data-testid="product">
-      {status === 'loading' && <Loader type="spinner" />}
+      {status === 'loading' && <Loader type="text" />}
       {error && <NotFound />}
       {status === 'success' && (
         <>
