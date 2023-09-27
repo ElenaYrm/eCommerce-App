@@ -1,6 +1,7 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart, selectCartError, selectCartLoadingStatus, selectProduct } from '../../../store/cart/selectors';
+import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
+import { selectProduct } from '../../../store/product/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { Button } from '../../../components/shared/Button';

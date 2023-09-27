@@ -4,7 +4,7 @@ import { formatPrice } from '../../../utils';
 
 import styles from './productTitle.module.scss';
 import classnames from 'classnames';
-import { selectProduct } from '../../../store/cart/selectors';
+import { selectProduct } from '../../../store/product/selectors';
 
 function ProductTitleComp(): ReactElement {
   const { product } = useSelector(selectProduct);

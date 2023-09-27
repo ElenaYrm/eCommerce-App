@@ -9,7 +9,7 @@ import { Loader } from '../../components/shared/Loader';
 import { NotFound } from '../NotFound';
 
 import styles from './product.module.scss';
-import { selectProduct } from '../../store/cart/selectors';
+import { selectProduct } from '../../store/product/selectors';
 
 export default function Product(): ReactElement {
   const id = useParams().id || '';
