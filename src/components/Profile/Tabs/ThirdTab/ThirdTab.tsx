@@ -1,18 +1,18 @@
 import { Formik } from 'formik';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { PasswordField } from '../../../shared/PasswordField';
 import { Input } from '../../../../types/enums';
 import { Button } from '../../../shared/Button';
 import styles from './thirdTab.module.scss';
 import { initialChangePassord } from '../../../../constant';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
-import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
+import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk, updPasswordThunk } from '../../../../store/user/thunks';
+import { updPasswordThunk } from '../../../../store/user/thunks';
 import { IUpdPasswordData } from '../../../../store/user/types';
 import { Notice } from '../../../shared/Notice';
-import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 
 export interface IChangePassword {
   password: string;
@@ -20,38 +20,9 @@ export interface IChangePassword {
 }
 
 function ThirdTab(): ReactElement {
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
-  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-
-  useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
-    if (editStatus === 'success') {
-      updateEditMode();
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
-    if (editError) {
-      const timer = setTimeout(() => {
-        dispatch(resetEditError());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IChangePassword): void {
     const updPassData: IUpdPasswordData = {
@@ -74,7 +45,7 @@ function ThirdTab(): ReactElement {
             <div className={styles.root__label}>Password</div>
             <input className={styles.root__input} type="password" value="********" disabled />
           </div>
-          <button className={styles.root__editBtn} type="button" onClick={(): void => updateEditMode()}>
+          <button className={styles.root__editBtn} type="button" onClick={toggleEditMode}>
             Change password
           </button>
           {isSuccess && <Notice text={'Profile information was successfully updated ٩(｡•́‿•̀｡)۶'} type="success" />}
@@ -106,11 +77,11 @@ function ThirdTab(): ReactElement {
                 />
                 <Button
                   type="submit"
-                  name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                  name={editStatus === 'loading' ? <Loader type="points" /> : 'Save changes'}
                   className={styles.form__button}
                   disabled={editStatus === 'loading'}
                 />
-                <button type="button" className={styles.rootEdit__closeBtn} onClick={(): void => updateEditMode(false)}>
+                <button type="button" className={styles.rootEdit__closeBtn} onClick={toggleEditMode}>
                   Close
                 </button>
               </form>

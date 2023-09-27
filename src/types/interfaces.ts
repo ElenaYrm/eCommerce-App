@@ -44,7 +44,6 @@ export interface INewAddress {
   id?: string;
 }
 
-export interface IAuthAddress extends INewAddress {}
 export interface ITabsList {
   label: string;
   content: string | ReactElement;
@@ -64,15 +63,4 @@ export interface IProduct {
   price: number;
   discountPrice?: number;
   color: string;
-}
-
-export interface IAboutDataTabs {
-  profilePicture: string;
-  stName: string;
-  role: string;
-  github: string;
-  body: {
-    textAbout: string;
-    recommendations: string[];
-  };
 }

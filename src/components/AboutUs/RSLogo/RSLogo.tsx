@@ -2,8 +2,7 @@ import { ReactElement } from 'react';
 import RS_Logo from '../../../assets/icons/rs_logo.svg';
 
 import styles from './rsLogo.module.scss';
-
-const SCHOOL_LINK = 'https://rs.school';
+import { SCHOOL_LINK } from '../../../constant/aboutus';
 
 function RSLogo(): ReactElement {
   return (

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { IAccordionItem } from './AccordionItem/AccordionItem';
 import { AccordionItem } from './AccordionItem';
 
-export interface IAccordionProps {
+interface IAccordionProps {
   data: IAccordionItem[];
   className: string;
 }

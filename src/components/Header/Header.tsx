@@ -77,46 +77,59 @@ export default function Header(): ReactElement {
 
         <div className={styles.header__nav}>
           <Link
-            to={''}
+            to={'#'}
             onClick={toggleMenu}
-            className={classnames(styles.nav__link, styles.header__nav_button, menuOpen ? styles.nav__link_active : '')}
+            className={classnames(styles.header__nav_button, menuOpen ? styles.header__nav_buttonActive : '')}
           >
             Menu
           </Link>
 
           {!isAuthPage && (
             <nav className={classnames(styles.nav, menuOpen ? styles.open : '')}>
-              {isAuthorized ? (
-                <>
-                  <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
+              <ul className={classnames(styles.nav__list, styles.list)}>
+                <li className={styles.list__item}>
+                  <NavLink to={PATH[Page.Catalog]} className={styles.list__item_link} onClick={closeMenu}>
                     Catalog
                   </NavLink>
-                  <NavLink to={PATH[Page.Profile]} className={styles.nav__link} onClick={closeMenu}>
-                    Profile
-                  </NavLink>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About
-                  </NavLink>
-                  <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.nav__link}>
-                    Logout
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <NavLink to={PATH[Page.Catalog]} className={styles.nav__link} onClick={closeMenu}>
-                    Catalog
-                  </NavLink>
-                  <NavLink to={PATH[Page.About]} className={styles.nav__link} onClick={closeMenu}>
-                    About
-                  </NavLink>
-                  <NavLink to={PATH[Page.Login]} className={styles.nav__link} onClick={closeMenu}>
-                    Login
-                  </NavLink>
-                  <NavLink to={PATH[Page.Register]} className={styles.nav__link} onClick={closeMenu}>
-                    Register
-                  </NavLink>
-                </>
-              )}
+                </li>
+                {!isAuthorized ? (
+                  <>
+                    <li className={styles.list__item}>
+                      <NavLink to={PATH[Page.About]} className={styles.list__item_link} onClick={closeMenu}>
+                        About
+                      </NavLink>
+                    </li>
+                    <li className={styles.list__item}>
+                      <NavLink to={PATH[Page.Login]} className={styles.list__item_link} onClick={closeMenu}>
+                        Login
+                      </NavLink>
+                    </li>
+                    <li className={styles.list__item}>
+                      <NavLink to={PATH[Page.Register]} className={styles.list__item_link} onClick={closeMenu}>
+                        Register
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className={styles.list__item}>
+                      <NavLink to={PATH[Page.Profile]} className={styles.list__item_link} onClick={closeMenu}>
+                        Profile
+                      </NavLink>
+                    </li>
+                    <li className={styles.list__item}>
+                      <NavLink to={PATH[Page.About]} className={styles.list__item_link} onClick={closeMenu}>
+                        About
+                      </NavLink>
+                    </li>
+                    <li className={styles.list__item}>
+                      <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.list__item_link}>
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
             </nav>
           )}
 

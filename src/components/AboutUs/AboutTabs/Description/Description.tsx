@@ -1,7 +1,8 @@
-import styles from './description.module.scss';
-import { IAboutDataTabs } from '../../../../types/interfaces';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
+import { IAboutDataTabs } from '../types';
+
+import styles from './description.module.scss';
 
 interface IDescription {
   student: IAboutDataTabs;

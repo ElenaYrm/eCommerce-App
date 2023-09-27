@@ -1,5 +1,5 @@
 import styles from './editCard.module.scss';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { Input } from '../../../../../../types/enums';
 import { Formik } from 'formik';
 import { Button } from '../../../../../shared/Button';
@@ -7,11 +7,11 @@ import { AddressForm } from '../../../../../RegisterForm/AddressForm';
 import { Address } from '@commercetools/platform-sdk';
 import { IAddressForm } from '../../../../../RegisterForm/AddressForm/AddressForm';
 import { useSelector } from 'react-redux';
-import { selectEditError, selectUserData } from '../../../../../../store/user/selectors';
+import { selectEditError, selectEditStatus, selectUserData } from '../../../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../../../store/store';
-import { getUserThunk } from '../../../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../../../services/sdk/customer/types';
 import { changeAddressThunk } from '../../../../../../store/user/thunks';
+import { Loader } from '../../../../../shared/Loader';
 import { Notice } from '../../../../../shared/Notice';
 
 interface IEditInitialValue {
@@ -29,12 +29,7 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
   const editError = useSelector(selectEditError);
-
-  useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-  }, [user, dispatch]);
+  const status = useSelector(selectEditStatus);
 
   const initialValue: IEditInitialValue = {
     shipping: {
@@ -87,7 +82,11 @@ function EditCard({ values, isShipping, addressId }: IEditCard): ReactElement {
               setFieldTouched={setFieldTouched}
               className={styles.root__addressForm}
             />
-            <Button className={styles.root__btn} type="submit" name="Save address" />
+            <Button
+              className={styles.root__btn}
+              type="submit"
+              name={status === 'loading' ? <Loader type="points" /> : 'Save address'}
+            />
           </form>
         )}
       </Formik>

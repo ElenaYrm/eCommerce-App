@@ -1,18 +1,21 @@
 @import '../../styles/common/';
 
 .header {
+  display: flex;
+  position: fixed;
   width: 100%;
   height: 6rem;
-  display: flex;
+  top: 0;
+  left: 0;
   justify-content: space-between;
   align-items: center;
   background-color: $light;
   border-bottom: 1px solid $dark;
-
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 100;
+
+  @media(max-width:480px) {
+    height: 5rem;
+  }
 
   &__container {
     padding: 0 2rem;
@@ -20,6 +23,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media(max-width:480px) {
+      padding: 0 1rem;
+    }
   }
 }
 
@@ -29,6 +36,10 @@
   justify-content: center;
   align-items: center;
   color: $dark;
+
+  @media(max-width:480px) {
+    width: 12rem;
+  }
 
   &::after {
     display: none;
@@ -52,44 +63,63 @@
     display: none;
   }
 
-  @media all and (max-width: 650px) {
+  @media (max-width: 650px) {
     flex-direction: row-reverse;
-    gap: 1.5rem;
+    gap: 0.8rem;
 
     &_button {
       display: block;
-    }
-  }
-}
+      @include link();
 
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
-  &__link {
-    @include link();
-
-    &::after {
-      bottom: -0.1rem;
-      opacity: 0;
-
-      transition: all 0.2s ease-in;
-    }
-
-    &:hover {
       &::after {
+        bottom: -0.1rem;
+        opacity: 0;
+
+        transition: opacity $transition-set, background-color $transition-set;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &_buttonActive {
+      color: $primary;
+
+      &::after {
+        background-color: $primary;
         opacity: 1;
       }
     }
   }
+}
 
-  &__link_active {
-    color: $primary;
 
-    &::after {
-      background-color: $primary;
-      opacity: 1;
+
+.nav {
+
+  &.open &__list {
+
+    @media (max-width: 650px) {
+      display: flex;
+      position: absolute;
+      padding: 2rem;
+      top: 6rem;
+      left: 0;
+      right: 0;
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: flex-end;
+      background-color: $light;
+      box-shadow: 0px 5px 8px rgba($primary, 1);
+      z-index: 1;
+    }
+
+    @media (max-width: 480px) {
+      top: 5rem;
+      padding: 2rem 1rem;
     }
   }
 
@@ -101,7 +131,7 @@
     }
 
     &:hover {
-      svg > * {
+      svg>* {
         fill: $primary;
       }
     }
@@ -121,48 +151,48 @@
       align-items: center;
     }
   }
+}
 
-  @media all and (max-width: 650px) {
+.list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 650px) {
     display: none;
   }
 
-  &.open {
-    @media all and (max-width: 650px) {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.5rem;
-      padding: 2rem;
-      position: absolute;
-      top: 6rem;
-      left: 0;
-      right: 0;
-      background-color: $light;
-      box-shadow: 0px 5px 8px rgba($primary, 1);
-      z-index: 1;
-    }
-
-    @media all and (max-width: 480px) {
-      top: 5rem;
-      padding: 2rem 1rem;
-    }
-  }
-}
-
-@media all and (max-width: 480px) {
-  .header {
-    height: 5rem;
-
-    &__container {
-      padding: 0 1rem;
-    }
-  }
-
-  .logo {
-    width: 12rem;
-  }
-
-  .nav {
+  @media(max-width: 480px) {
     gap: 1.5rem;
+  }
+
+  &__item {
+    display: flex
+  }
+
+  &__item_link {
+    @include link();
+
+    &::after {
+      bottom: -0.1rem;
+      opacity: 0;
+
+      transition: opacity $transition-set, background-color $transition-set;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__link_active {
+    color: $primary;
+
+    &::after {
+      background-color: $primary;
+      opacity: 1;
+    }
   }
 }

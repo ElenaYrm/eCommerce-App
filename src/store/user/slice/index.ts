@@ -14,6 +14,7 @@ const userSlice = createSlice({
       state.editError = '';
     },
     deleteSuccessState: (state): void => {
+      state.editStatus = 'initial';
       state.isSuccess = false;
     },
   },

@@ -1,0 +1,86 @@
+@import '../../../styles/common/';
+
+.promo {
+  width: 100%;
+  padding: 2rem 2.5rem 2.5rem;
+  background-color: rgba($primary, 0.1);
+  border-radius: 2rem;
+  font-size: 1.8rem;
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+
+    &_input,
+    &_button {
+      height: 4.4rem;
+      border-radius: 0;
+      border: 1px solid $dark;
+    }
+
+    &_input {
+      flex-grow: 1;
+      padding: 0 1rem;
+      min-width: 100px;
+      border-right: none;
+
+      &::placeholder {
+        color: $dark;
+        opacity: 0.3;
+      }
+    }
+
+    &_button {
+      flex-shrink: 0;
+      padding: 0 1.5rem 0.2rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+      background-color: $dark;
+      box-shadow: none;
+
+      &:active,
+      &:hover {
+        background-color: $primary;
+        border: 1px solid $primary;
+      }
+    }
+  }
+
+  &__codes {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+
+    .code__item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 1rem 0.5rem;
+      background-color: rgba($primary, 0.15);
+      border-radius: 0.6rem;
+
+      &_button {
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        font-size: 1.8rem;
+        color: rgba($dark, 0.3);
+
+        &:hover {
+          color: rgba($primary, 1);
+        }
+      }
+    }
+  }
+
+  &__error {
+    margin: 0.5rem 0 -0.5rem;
+    text-align: right;
+  }
+}

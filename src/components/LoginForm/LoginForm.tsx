@@ -13,6 +13,8 @@ import { Input } from '../../types/enums';
 import { emailValidate } from '../../utils/validation';
 
 import styles from './loginForm.module.scss';
+import { selectAuthLoadingStatus } from '../../store/auth/selectors';
+import { Loader } from '../shared/Loader';
 
 export interface ILoginForm {
   email: string;
@@ -22,6 +24,7 @@ export interface ILoginForm {
 function LoginForm(): ReactElement {
   const cart = useSelector(selectCart);
   const dispatch = useAppDispatch();
+  const status = useSelector(selectAuthLoadingStatus);
 
   function handleSubmit(values: ILoginForm): void {
     const user: UserAuthOptions = {
@@ -59,7 +62,7 @@ function LoginForm(): ReactElement {
             className={styles.form__password}
           />
 
-          <Button type="submit" name="Login ( ^ω^)" />
+          <Button type="submit" name={status === 'loading' ? <Loader type="points" /> : 'Login ( ^ω^)'} />
         </form>
       )}
     </Formik>

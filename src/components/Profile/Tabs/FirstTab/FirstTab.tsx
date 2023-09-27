@@ -4,65 +4,30 @@ import classNames from 'classnames';
 import { Formik, FormikErrors } from 'formik';
 import { Input } from '../../../../types/enums';
 import { InputField } from '../../../shared/InputField';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { dateMYValidate, emailValidate, lastNameValidate, nameValidate } from '../../../../utils/validation';
 import { IUser } from '../../../../types/interfaces';
 import { UserDateOfBirth } from './UserDateOfBirth';
 import { Button } from '../../../shared/Button';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { useSelector } from 'react-redux';
-import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
+import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk, updUserThunk } from '../../../../store/user/thunks';
+import { updUserThunk } from '../../../../store/user/thunks';
 import { IUpdateUser } from '../../../../services/sdk/customer/types';
 import { months } from '../../../../constant';
 import { getMonthIndex } from '../../../../utils';
+import { resetEditError } from '../../../../store/user/slice';
+import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 import { Notice } from '../../../shared/Notice';
-import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
 
 function FirstTab(): ReactElement {
-  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
-    if (editStatus === 'success') {
-      updateEditMode();
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
-    if (editError) {
-      const timer = setTimeout(() => {
-        dispatch(resetEditError());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [user, dispatch, editStatus, editError]);
-
   function handleSubmit(values: IUser): void {
     const { year, month, date } = values;
-    const newMonth = getMonthIndex(month);
-    const dateOfBirth =
-      year +
-      '-' +
-      (String(newMonth).length === 1 ? `0${newMonth}` : newMonth) +
-      '-' +
-      (date.length === 1 ? `0${date}` : date);
     const newValue: IUpdateUser = {
       id: user.id,
       version: user.version,
@@ -70,7 +35,7 @@ function FirstTab(): ReactElement {
         { action: 'setFirstName', firstName: values.firstName },
         { action: 'setLastName', lastName: values.lastName },
         { action: 'changeEmail', email: values.email },
-        { action: 'setDateOfBirth', dateOfBirth: dateOfBirth },
+        { action: 'setDateOfBirth', dateOfBirth: `${year}-${getMonthIndex(month)}-${date}` },
       ],
     };
 
@@ -137,7 +102,7 @@ function FirstTab(): ReactElement {
               hideLabel={!isEditMode}
               isDisabled={editStatus === 'loading' || !isEditMode}
             />
-            {isEditMode && (
+            {isEditMode ? (
               <UserDateOfBirth
                 touched={touched}
                 handleChange={handleChange}
@@ -146,13 +111,14 @@ function FirstTab(): ReactElement {
                 setFieldTouched={setFieldTouched}
                 isDisabled={editStatus === 'loading' || !isEditMode}
               />
+            ) : (
+              <div className={styles.form__dateOfBirth}>{`${user.date} ${user.month} ${user.year}`}</div>
             )}
-            {!isEditMode && <div className={styles.form__dateOfBirth}>{`${user.date}.${user.month}.${user.year}`}</div>}
 
-            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={(): void => updateEditMode()} />}
+            {!isEditMode && <Button name="Edit  ( ´･ω･)" type="button" handleClick={toggleEditMode} />}
             {isEditMode && (
               <Button
-                name={editStatus === 'loading' ? 'Loading...' : 'Save changes'}
+                name={editStatus === 'loading' ? <Loader type="points" /> : 'Save changes'}
                 type="submit"
                 className={styles.formEdit__btn}
                 disabled={editStatus === 'loading'}
@@ -163,7 +129,7 @@ function FirstTab(): ReactElement {
                 type="button"
                 className={styles.formEdit__closeBtn}
                 onClick={(): void => {
-                  updateEditMode(false);
+                  toggleEditMode();
                   resetForm();
                   dispatch(resetEditError());
                 }}

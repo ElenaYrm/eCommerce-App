@@ -1,11 +1,10 @@
 import { ReactElement, SyntheticEvent } from 'react';
-import { IAboutDataTabs } from '../../../../types/interfaces';
-
-import styles from './tab.module.scss';
 import classNames from 'classnames';
 import { Description } from '../Description';
+import { IMG_DEFAULT } from '../../../../constant/aboutus';
+import { IAboutDataTabs } from '../types';
 
-const IMG_DEFAULT = '/images/ph-default.jpg';
+import styles from './tab.module.scss';
 
 interface ITab {
   isActive: boolean;

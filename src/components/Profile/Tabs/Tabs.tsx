@@ -1,12 +1,13 @@
-import styles from './tabs.module.scss';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useIsEditMode } from '../../../pages/Profile/profileContext';
 import { tabsList } from '../../../constant/profile';
+import { ModeContext } from '../../../context/mode/ModeContext';
+
+import styles from './tabs.module.scss';
 
 function Tabs(): ReactElement {
   const [activeTab, setActiveTab] = useState(0);
-  const isTabListHidden = useIsEditMode();
+  const { isEditMode } = useContext(ModeContext);
 
   useEffect(() => {
     const storedActiveTab = localStorage.getItem('activeTab');
@@ -22,10 +23,8 @@ function Tabs(): ReactElement {
 
   return (
     <div className={classNames(styles.root)}>
-      {isTabListHidden && <h2 className={classNames(styles.root__title)}>{tabsList[activeTab].title}</h2>}
-      <div
-        className={classNames(styles.root__tabsList, { [styles.tabsList_hidden]: isTabListHidden }, styles.tabsList)}
-      >
+      {isEditMode && <h2 className={classNames(styles.root__title)}>{tabsList[activeTab].title}</h2>}
+      <div className={classNames(styles.root__tabsList, { [styles.tabsList_hidden]: isEditMode }, styles.tabsList)}>
         {tabsList.map((tab, index) => {
           return (
             <div
