@@ -82,28 +82,22 @@ export default function Cart(): ReactElement {
         isOpen={isConfirmPopup}
         isShowCloseBtn={false}
         onClose={(): void => setIsConfirmPopup(false)}
-        children={
-          <>
-            <h3 className={styles.popup__header}>Are you sure you want to clear the Cart?</h3>
-            <div className={styles.popup__buttons}>
-              <Button
-                type="button"
-                name="Cancel"
-                className={styles.popup__buttons_cancel}
-                handleClick={(): void => setIsConfirmPopup(false)}
-              />
-              <Button
-                type="button"
-                name="Yes, clear"
-                className={styles.popup__buttons_confirm}
-                handleClick={clearCart}
-              />
-            </div>
-          </>
-        }
         borderType="round"
         className={styles.popup__content}
-      />
+      >
+        <>
+          <h3 className={styles.popup__header}>Are you sure you want to clear the Cart?</h3>
+          <div className={styles.popup__buttons}>
+            <Button
+              type="button"
+              name="Cancel"
+              className={styles.popup__buttons_cancel}
+              handleClick={(): void => setIsConfirmPopup(false)}
+            />
+            <Button type="button" name="Yes, clear" className={styles.popup__buttons_confirm} handleClick={clearCart} />
+          </div>
+        </>
+      </ModalWindow>
 
       {error && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </div>

@@ -72,23 +72,22 @@ export default function CartTotal(): ReactElement {
       <PromoCodes />
 
       <ModalWindow
-        children={
-          <>
-            <h3 className={styles.popup__header}>You are awesome 😘😘😘</h3>
-            <Button
-              type="button"
-              name="Yes, I am"
-              className={styles.popup__button}
-              handleClick={(): void => setIsCheckoutPopup(false)}
-            />
-          </>
-        }
         isOpen={isCheckoutPopup}
         onClose={(): void => setIsCheckoutPopup(false)}
         isShowCloseBtn={false}
         className={styles.popup__content}
         borderType="round"
-      />
+      >
+        <>
+          <h3 className={styles.popup__header}>You are awesome 😘😘😘</h3>
+          <Button
+            type="button"
+            name="Yes, I am"
+            className={styles.popup__button}
+            handleClick={(): void => setIsCheckoutPopup(false)}
+          />
+        </>
+      </ModalWindow>
     </div>
   );
 }

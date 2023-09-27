@@ -45,12 +45,9 @@ function AddressItem({ addressId, values, deleteAddress, setDefaultAddress }: IA
         <button className={styles.configureBtns__btn} onClick={(): void => setIsModalOpen(true)}>
           Edit
         </button>
-        <ModalWindow
-          children={<AddressModal values={values} isShipping={true} addressId={addressId} />}
-          isOpen={isModalOpen}
-          onClose={(): void => setIsModalOpen(!isModalOpen)}
-          isShowCloseBtn={true}
-        />
+        <ModalWindow isOpen={isModalOpen} onClose={(): void => setIsModalOpen(!isModalOpen)} isShowCloseBtn={true}>
+          <AddressModal values={values} isShipping={true} addressId={addressId} />
+        </ModalWindow>
         <button className={styles.configureBtns__btn} onClick={(): void => deleteAddress(addressId)}>
           Delete
         </button>
