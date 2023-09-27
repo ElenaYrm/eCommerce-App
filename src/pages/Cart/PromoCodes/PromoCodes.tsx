@@ -1,23 +1,21 @@
-import { ReactElement, FormEvent, useState, useEffect } from 'react';
-import { AppDispatch } from '../../../store/store';
+import { ReactElement, FormEvent, useState, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk, getDiscountsThunk } from '../../../store/cart/thunks';
+import { selectCartData } from '../../../store/cart/selectors';
 import { Button } from '../../../components/shared/Button';
-import { ICart, IDiscount, IPromoCode } from '../../../store/cart/types';
+import { IPromoCode } from '../../../store/cart/types';
 import { ErrorMessage } from '../../../components/shared/ErrorMessage';
+import { CODE_ERROR } from '../../../constant';
 
 import styles from './promoCodes.module.scss';
 
-const CODE_ERROR = 'The code you entered is not valid.';
-
-interface IPromoCodesProps {
-  basket: ICart;
-  discounts: IDiscount[];
-  dispatch: AppDispatch;
-}
-
-export default function PromoCodes({ basket, discounts, dispatch }: IPromoCodesProps): ReactElement {
+export default function PromoCodes(): ReactElement {
   const [code, setCode] = useState('');
   const [isError, setIsError] = useState(false);
+
+  const { basket, discounts } = useSelector(selectCartData);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (discounts.length === 0) {
@@ -31,48 +29,54 @@ export default function PromoCodes({ basket, discounts, dispatch }: IPromoCodesP
     return code?.code;
   }
 
-  function applyCode(e: FormEvent<HTMLFormElement>): void {
-    e.preventDefault();
+  const applyCode = useCallback(
+    (e: FormEvent<HTMLFormElement>): void => {
+      e.preventDefault();
 
-    const isCodeValid = discounts.find((item) => item.code === code);
+      const isCodeValid = discounts.find((item) => item.code === code);
 
-    if (!isCodeValid) {
-      setIsError(true);
-      return;
-    }
+      if (!isCodeValid) {
+        setIsError(true);
+        return;
+      }
 
-    dispatch(
-      updateCartThunk({
-        id: basket.id,
-        version: basket.version,
-        actions: [
-          {
-            action: 'addDiscountCode',
-            code: code,
-          },
-        ],
-      }),
-    );
-    setCode('');
-  }
-
-  function removeCode(item: IPromoCode): void {
-    dispatch(
-      updateCartThunk({
-        id: basket.id,
-        version: basket.version,
-        actions: [
-          {
-            action: 'removeDiscountCode',
-            discountCode: {
-              typeId: 'discount-code',
-              id: item.id,
+      dispatch(
+        updateCartThunk({
+          id: basket.id,
+          version: basket.version,
+          actions: [
+            {
+              action: 'addDiscountCode',
+              code: code,
             },
-          },
-        ],
-      }),
-    );
-  }
+          ],
+        }),
+      );
+      setCode('');
+    },
+    [basket, code, dispatch, discounts, setIsError, setCode],
+  );
+
+  const removeCode = useCallback(
+    (item: IPromoCode): void => {
+      dispatch(
+        updateCartThunk({
+          id: basket.id,
+          version: basket.version,
+          actions: [
+            {
+              action: 'removeDiscountCode',
+              discountCode: {
+                typeId: 'discount-code',
+                id: item.id,
+              },
+            },
+          ],
+        }),
+      );
+    },
+    [basket, dispatch],
+  );
 
   return (
     <div className={styles.promo}>

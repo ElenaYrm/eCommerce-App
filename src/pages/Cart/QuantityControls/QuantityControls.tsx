@@ -1,44 +1,57 @@
-import { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { Button } from '../../../components/shared/Button';
-import { ICart, IItemCart } from '../../../store/cart/types';
+import { IItemCart } from '../../../store/cart/types';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
+import { selectCartData } from '../../../store/cart/selectors';
+import { MAX_QUANTITY } from '../../../constant';
 
 import styles from './quantityControls.module.scss';
 
 interface IQuantityControlsProps {
-  basket: ICart;
   item: IItemCart;
 }
 
-export default function QuantityControls({ basket, item }: IQuantityControlsProps): ReactElement {
+export default function QuantityControls({ item }: IQuantityControlsProps): ReactElement {
+  const { basket } = useSelector(selectCartData);
+
   const dispatch = useAppDispatch();
 
-  function handleAddQuantity(item: IItemCart): void {
-    if (item.quantity === 10) return;
-    updateQuantity(item, item.quantity + 1);
-  }
+  const updateQuantity = useCallback(
+    (item: IItemCart, quantity: number): void => {
+      dispatch(
+        updateCartThunk({
+          id: basket.id,
+          version: basket.version,
+          actions: [
+            {
+              action: 'changeLineItemQuantity',
+              lineItemId: item.itemId,
+              quantity: quantity,
+            },
+          ],
+        }),
+      );
+    },
+    [basket, dispatch],
+  );
 
-  function handleRemoveQuantity(item: IItemCart): void {
-    if (item.quantity === 1) return;
-    updateQuantity(item, item.quantity - 1);
-  }
+  const handleAddQuantity = useCallback(
+    (item: IItemCart): void => {
+      if (item.quantity === MAX_QUANTITY) return;
+      updateQuantity(item, item.quantity + 1);
+    },
+    [updateQuantity],
+  );
 
-  function updateQuantity(item: IItemCart, quantity: number): void {
-    dispatch(
-      updateCartThunk({
-        id: basket.id,
-        version: basket.version,
-        actions: [
-          {
-            action: 'changeLineItemQuantity',
-            lineItemId: item.itemId,
-            quantity: quantity,
-          },
-        ],
-      }),
-    );
-  }
+  const handleRemoveQuantity = useCallback(
+    (item: IItemCart): void => {
+      if (item.quantity === 1) return;
+      updateQuantity(item, item.quantity - 1);
+    },
+    [updateQuantity],
+  );
 
   return (
     <div className={styles.quantity__controls}>

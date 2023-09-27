@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/store';
 import { deleteCartThunk, getCartThunk, updateCartThunk } from '../../store/cart/thunks';
@@ -9,30 +9,21 @@ import { Total } from './Total';
 import { CartList } from './CartList';
 import { IItemCart } from '../../store/cart/types';
 import { ErrorMessage } from '../../components/shared/ErrorMessage';
-import { resetCartError } from '../../store/cart/slice';
 
 import styles from './cart.module.scss';
+import { useResetError } from '../../hooks';
 
 export default function Cart(): ReactElement {
   const [isConfirmPopup, setIsConfirmPopup] = useState(false);
 
   const { basket } = useSelector(selectCartData);
   const { status, error } = useSelector(selectCartLoadingInfo);
-  const isEmpty = basket.lineItems.length === 0;
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        dispatch(resetCartError());
-      }, 3000);
+  const isEmpty = basket.lineItems.length === 0;
 
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [error, dispatch]);
+  useResetError(error, 3000);
 
   useEffect(() => {
     document.body.style.overflow = isConfirmPopup ? 'hidden' : '';
@@ -42,30 +33,29 @@ export default function Cart(): ReactElement {
     dispatch(getCartThunk());
   }, [dispatch]);
 
-  function openConfirmPopup(): void {
-    setIsConfirmPopup(true);
-  }
-
-  function clearCart(): void {
+  const clearCart = useCallback(() => {
     setIsConfirmPopup(false);
     dispatch(deleteCartThunk({ id: basket.id, version: basket.version }));
-  }
+  }, [dispatch, basket.id, basket.version]);
 
-  function removeCartItem(item: IItemCart): void {
-    dispatch(
-      updateCartThunk({
-        id: basket.id,
-        version: basket.version,
-        actions: [
-          {
-            action: 'removeLineItem',
-            lineItemId: item.itemId,
-            quantity: item.quantity,
-          },
-        ],
-      }),
-    );
-  }
+  const removeCartItem = useCallback(
+    (item: IItemCart) => {
+      dispatch(
+        updateCartThunk({
+          id: basket.id,
+          version: basket.version,
+          actions: [
+            {
+              action: 'removeLineItem',
+              lineItemId: item.itemId,
+              quantity: item.quantity,
+            },
+          ],
+        }),
+      );
+    },
+    [dispatch, basket],
+  );
 
   return (
     <div className={styles.cart}>
@@ -79,7 +69,7 @@ export default function Cart(): ReactElement {
               type="button"
               name="Clear Cart"
               className={styles.items__button_clear}
-              handleClick={openConfirmPopup}
+              handleClick={(): void => setIsConfirmPopup(true)}
               disabled={isEmpty}
             />
           </div>

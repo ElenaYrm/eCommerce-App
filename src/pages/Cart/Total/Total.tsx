@@ -1,4 +1,4 @@
-import { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../store/store';
 import { getDiscountsThunk } from '../../../store/cart/thunks';
@@ -6,10 +6,9 @@ import { selectCartData } from '../../../store/cart/selectors';
 import { Button } from '../../../components/shared/Button';
 import { formatPrice } from '../../../utils';
 import { PromoCodes } from '../PromoCodes';
+import { DELIVERY_PRICE } from '../../../constant';
 
 import styles from './total.module.scss';
-
-const DELIVERY_PRICE = 120;
 
 export default function Total(): ReactElement {
   const [isCheckoutPopup, setIsCheckoutPopup] = useState(false);
@@ -24,25 +23,21 @@ export default function Total(): ReactElement {
   }, [dispatch, discounts]);
 
   useEffect(() => {
-    if (isCheckoutPopup) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isCheckoutPopup ? 'hidden' : '';
   }, [isCheckoutPopup]);
 
-  function countSubtotal(): number {
+  const subtotalCount = useMemo(() => {
     const subtotal = basket.lineItems.reduce((acc, item) => {
       const price = ((item.discountedPrice || item.price) / 100) * item.quantity;
       return acc + price;
     }, 0);
 
     return subtotal;
-  }
+  }, [basket]);
 
-  function countCodeDiscount(): number {
-    return basket.totalPrice / 100 - countSubtotal();
-  }
+  const discountCount = useMemo(() => {
+    return basket.totalPrice / 100 - subtotalCount;
+  }, [basket, subtotalCount]);
 
   return (
     <div className={styles.total}>
@@ -50,7 +45,7 @@ export default function Total(): ReactElement {
       <ul className={styles.total__list}>
         <li className={styles.total__list_item}>
           <span>Subtotal</span>
-          <span>{formatPrice(countSubtotal())}</span>
+          <span>{formatPrice(subtotalCount)}</span>
         </li>
         <li className={styles.total__list_item}>
           <span>Delivery</span>
@@ -58,7 +53,7 @@ export default function Total(): ReactElement {
         </li>
         <li className={styles.total__list_item}>
           <span>Code Discount</span>
-          <span>{formatPrice(countCodeDiscount())}</span>
+          <span>{formatPrice(discountCount)}</span>
         </li>
         <li className={styles.total__list_item}>
           <span>Total</span>
@@ -73,7 +68,7 @@ export default function Total(): ReactElement {
         handleClick={(): void => setIsCheckoutPopup(true)}
       />
 
-      <PromoCodes basket={basket} discounts={discounts} dispatch={dispatch} />
+      <PromoCodes />
 
       {isCheckoutPopup && (
         <div className={styles.popup}>

@@ -39,7 +39,7 @@ export default function CartList({ basket, handleRemoveCartItem }: ICartListProp
                   </div>
                 </div>
 
-                <QuantityControls basket={basket} item={item} />
+                <QuantityControls item={item} />
               </div>
 
               <div className={styles.footer}>
