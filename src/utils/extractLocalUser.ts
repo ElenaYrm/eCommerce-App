@@ -1,5 +1,6 @@
 import { Customer } from '@commercetools/platform-sdk';
 import { IUser } from '../types/interfaces';
+import { months } from '../constant';
 
 export function extractLocalUser(customer: Customer): IUser {
   const dateOfBirth = customer.dateOfBirth;
@@ -17,8 +18,8 @@ export function extractLocalUser(customer: Customer): IUser {
     firstName: customer.firstName || '',
     lastName: customer.lastName || '',
     password: customer.password || '',
-    date: date || '',
-    month: month || '',
+    date: Number(date) ? Number(date).toString() : '',
+    month: months[Number(month) - 1] || '',
     year: year || '',
     defaultShippingAddressId: customer.defaultShippingAddressId || '',
     defaultBillingAddressId: customer.defaultBillingAddressId || '',

@@ -1,4 +1,4 @@
-import { IAboutDataTabs } from '../types/interfaces';
+import { IAboutDataTabs } from '../components/AboutUs/AboutTabs/types';
 
 export const IMG_DEFAULT = '/images/ph-default.jpg';
 export const SCHOOL_LINK = 'https://rs.school';

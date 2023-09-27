@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
 import * as routerHooks from 'react-router-dom';
 import { Profile } from './index';
-import { EditingProvider } from './profileContext.tsx';
 import { initialUserMock } from '../../__mocks__/store';
+import { ModeProvider } from '../../context/mode/ModeProvider';
 
 jest.mock('react-redux');
 jest.mock('react-router-dom');
@@ -28,9 +28,9 @@ describe('Test Profile page: ', () => {
       .mockReturnValueOnce(() => ({ status: 'success', error: '' }));
 
     render(
-      <EditingProvider>
+      <ModeProvider>
         <Profile />
-      </EditingProvider>,
+      </ModeProvider>,
     );
     expect(screen.getByTestId('profile')).toBeInTheDocument();
   });

@@ -1,25 +1,24 @@
 import styles from './secondTab.module.scss';
 import { Formik } from 'formik';
-import { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import { MouseEvent, ReactElement, useState } from 'react';
 import { Button } from '../../../shared/Button';
 import { initialEditAddresses } from '../../../../constant';
 import { CustomerAddress } from './CustomerAdress';
 import { AddressForm } from '../../../RegisterForm/AddressForm';
 import classNames from 'classnames';
 import { IAddressForm } from '../../../RegisterForm/AddressForm/AddressForm';
-import { useIsEditMode, useUpdateEditMode } from '../../../../pages/Profile/profileContext';
 import { Radiobtn } from './Radiobtn';
 import { useSelector } from 'react-redux';
-import { selectEditUserInfo, selectUserData } from '../../../../store/user/selectors';
+import { selectUserData } from '../../../../store/user/selectors';
 import { useAppDispatch } from '../../../../store/store';
-import { getUserThunk } from '../../../../store/user/thunks';
 import { Address } from '@commercetools/platform-sdk';
 import { IAddNewAddress, IRemoveAddress, ISetDefaultAddress } from '../../../../services/sdk/customer/types';
 import { removeAddressThunk } from '../../../../store/user/thunks';
 import { setDefaultAddressIdThunk } from '../../../../store/user/thunks';
 import { addNewAddressThunk } from '../../../../store/user/thunks';
 import { ErrorMessage } from '../../../shared/ErrorMessage';
-import { deleteSuccessState, resetEditError } from '../../../../store/user/slice';
+import { useProfileMessages } from '../../../../hooks';
+import { Loader } from '../../../shared/Loader';
 
 export interface IAddressesProfile {
   shipping: IAddressForm;
@@ -28,48 +27,9 @@ export interface IAddressesProfile {
 
 function SecondTab(): ReactElement {
   const [isShipping, setIsShipping] = useState(true);
-  const isEditMode = useIsEditMode();
-  const updateEditMode = useUpdateEditMode();
+  const [editStatus, editError, isSuccess, isEditMode, toggleEditMode] = useProfileMessages();
   const user = useSelector(selectUserData);
   const dispatch = useAppDispatch();
-  const { editStatus, editError, isSuccess } = useSelector(selectEditUserInfo);
-
-  useEffect(() => {
-    if (!user.id) {
-      dispatch(getUserThunk());
-    }
-
-    if (editStatus === 'success' && isEditMode) {
-      updateEditMode();
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
-    if (editStatus === 'success' && !isEditMode) {
-      const timer = setTimeout(() => {
-        dispatch(deleteSuccessState());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
-    if (editError) {
-      const timer = setTimeout(() => {
-        dispatch(resetEditError());
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [user, dispatch, editStatus, editError]);
 
   function handleSubmit(values: IAddressesProfile): void {
     const isShippingAddress = values.shipping.city !== '';
@@ -159,13 +119,13 @@ function SecondTab(): ReactElement {
                   {isEditMode && (
                     <Button
                       type="submit"
-                      name={editStatus === 'loading' ? 'Loading...' : 'Save address'}
+                      name={editStatus === 'loading' ? <Loader type="points" /> : 'Save address'}
                       className={styles.root__btn}
                       disabled={editStatus === 'loading'}
                     />
                   )}
                   {isEditMode && (
-                    <button type="button" className={styles.root__closeBtn} onClick={(): void => updateEditMode(false)}>
+                    <button type="button" className={styles.root__closeBtn} onClick={toggleEditMode}>
                       Close
                     </button>
                   )}
@@ -188,7 +148,7 @@ function SecondTab(): ReactElement {
             name="Add new address"
             className={styles.root__addAddressBtn}
             type="button"
-            handleClick={(): void => updateEditMode(!isEditMode)}
+            handleClick={toggleEditMode}
           />
           <ul>
             {user.addresses.map((addressData: Address, index: number) => {
