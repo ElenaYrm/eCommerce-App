@@ -42,7 +42,3 @@
     }
   }
 }
-
-.error__message {
-  @include bottom-page-message($light, $error-color);
-}

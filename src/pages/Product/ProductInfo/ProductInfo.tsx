@@ -1,18 +1,18 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { selectCart, selectCartError, selectCartLoadingStatus } from '../../../store/cart/selectors';
 import { selectProduct } from '../../../store/product/selectors';
 import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk } from '../../../store/cart/thunks';
 import { Button } from '../../../components/shared/Button';
-import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 import { useResetError } from '../../../hooks';
 import { ProductTitle } from '../ProductTitle';
 import { ProductDescription } from '../ProductDescription';
 import { Loader } from '../../../components/shared/Loader';
 
 import styles from './productInfo.module.scss';
-import classnames from 'classnames';
+import { Notice } from '../../../components/shared/Notice';
 
 export default function ProductInfo(): ReactElement {
   const cart = useSelector(selectCart);
@@ -87,7 +87,7 @@ export default function ProductInfo(): ReactElement {
 
         <ProductDescription />
       </div>
-      {error && <ErrorMessage text={'Something wrong with Cart. Try again!'} className={styles.error__message} />}
+      {error && <Notice text={'Something wrong with Cart. Try again!'} type="error" />}
     </>
   );
 }

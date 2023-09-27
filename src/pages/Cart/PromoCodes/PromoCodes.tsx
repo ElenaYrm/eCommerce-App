@@ -4,8 +4,8 @@ import { useAppDispatch } from '../../../store/store';
 import { updateCartThunk, getDiscountsThunk } from '../../../store/cart/thunks';
 import { selectCartData } from '../../../store/cart/selectors';
 import { Button } from '../../../components/shared/Button';
+import { Notice } from '../../../components/shared/Notice';
 import { IPromoCode } from '../../../store/cart/types';
-import { ErrorMessage } from '../../../components/shared/ErrorMessage';
 import { CODE_ERROR } from '../../../constant';
 
 import styles from './promoCodes.module.scss';
@@ -92,7 +92,7 @@ export default function PromoCodes(): ReactElement {
         <Button type="submit" name="Apply" className={styles.promo__form_button} />
       </form>
 
-      {isError && <ErrorMessage text={CODE_ERROR} className={styles.promo__error} />}
+      {isError && <Notice text={CODE_ERROR} className={styles.promo__error} type="text" />}
 
       {basket.codes.length > 0 && (
         <ul className={styles.promo__codes}>
