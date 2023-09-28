@@ -95,14 +95,14 @@ function AddressTab(): ReactElement {
                     value={'shipping'}
                     label="Shipping address"
                     callback={resetForm}
-                  ></RadioButton>
+                  />
                   <RadioButton
                     isShipping={!isShipping}
                     setIsShipping={(): void => setIsShipping(false)}
                     value={'billing'}
                     label="Billing address"
                     callback={resetForm}
-                  ></RadioButton>
+                  />
                 </div>
                 <form className={styles.root__formContainer} onSubmit={handleSubmit} noValidate>
                   <AddressForm

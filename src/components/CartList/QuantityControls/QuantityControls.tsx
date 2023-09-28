@@ -1,6 +1,5 @@
 import { ReactElement, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '../../shared/Button';
 import { IItemCart } from '../../../store/cart/types';
 import { useAppDispatch } from '../../../store/store.ts';
 import { updateCartThunk } from '../../../store/cart/thunks';
@@ -58,19 +57,19 @@ export default function QuantityControls({ item }: IQuantityControlsProps): Reac
       <span>Qt:</span>
       <span className={styles.controls__count}>{item.quantity}</span>
       <div className={styles.controls__buttons}>
-        <Button
+        <button
           type="button"
-          name=""
           className={styles.controls__buttons_btn}
           disabled={item.quantity === 1}
-          handleClick={(): void => handleRemoveQuantity(item)}
+          onClick={(): void => handleRemoveQuantity(item)}
+          aria-label="Decrease quantity"
         />
-        <Button
+        <button
           type="button"
-          name=""
           className={styles.controls__buttons_btn}
           disabled={item.quantity === 10}
-          handleClick={(): void => handleAddQuantity(item)}
+          onClick={(): void => handleAddQuantity(item)}
+          aria-label="Increase quantity"
         />
       </div>
     </div>

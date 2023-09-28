@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import { Button } from '../shared/Button';
 import { ICart, IItemCart } from '../../store/cart/types';
 import { formatPrice } from '../../utils';
 import { Link } from 'react-router-dom';
@@ -43,12 +42,13 @@ export default function CartList({ basket, handleRemoveCartItem }: ICartListProp
               </div>
 
               <div className={styles.footer}>
-                <Button
+                <button
                   type="button"
-                  name="Remove"
                   className={styles.item__button_remove}
-                  handleClick={(): void => handleRemoveCartItem(item)}
-                />
+                  onClick={(): void => handleRemoveCartItem(item)}
+                >
+                  Remove
+                </button>
                 <div className={styles.footer__total}>
                   {formatPrice(((item.discountedPrice || item.price) / 100) * item.quantity)}
                 </div>

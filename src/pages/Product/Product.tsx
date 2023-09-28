@@ -41,7 +41,12 @@ export default function Product(): ReactElement {
       {error && <NotFound />}
       {status === 'success' && (
         <>
-          <Slider images={product.images} fullscreen={fullscreen} handleClick={handleFullScreen} />
+          <Slider
+            images={product.images}
+            fullscreen={fullscreen}
+            handleClick={handleFullScreen}
+            label={product.title}
+          />
           <ProductInfo />
         </>
       )}

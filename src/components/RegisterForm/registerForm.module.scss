@@ -12,6 +12,16 @@
     @include check-field();
     width: max-content;
     padding-top: 1rem;
+
+    span {
+      transition: opacity 0.2s;
+    }
+
+    &:hover {
+      span {
+        opacity: 0.6;
+      }
+    }
   }
 
   &__checkbox {
