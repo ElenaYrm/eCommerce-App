@@ -14,10 +14,11 @@ export interface SliderProps {
   images: string[] | undefined;
   handleClick: () => void;
   fullscreen: boolean;
+  label: string;
   className?: string;
 }
 
-function Slider({ images, fullscreen, handleClick, className }: SliderProps): ReactElement {
+function Slider({ images, fullscreen, handleClick, className, label }: SliderProps): ReactElement {
   return (
     <div className={styles.product__slider}>
       {fullscreen && (
@@ -47,7 +48,7 @@ function Slider({ images, fullscreen, handleClick, className }: SliderProps): Re
       >
         {images?.map((image) => (
           <SwiperSlide className={styles.slide} key={image}>
-            <img src={image} />
+            <img src={image} alt={label} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -25,6 +25,7 @@ function RadioButton({ isShipping, setIsShipping, value, label, callback }: IBtn
   return (
     <div className={classNames(styles.toggleShipping__btn, isShipping ? styles.toggleShipping__btn_active : '')}>
       <input
+        id={label}
         className={styles.toggleShipping__radio}
         type="radio"
         value={value}
@@ -33,7 +34,7 @@ function RadioButton({ isShipping, setIsShipping, value, label, callback }: IBtn
         onChange={(): void => setIsShipping(!isShipping)}
         onClick={handleRadioChange}
       />
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
     </div>
   );
 }
