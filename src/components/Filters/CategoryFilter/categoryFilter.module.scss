@@ -1,4 +1,4 @@
-@import '../../../styles/common/';
+@import 'src/styles/common';
 
 .category {
   &__list {
@@ -15,7 +15,7 @@
     button {
       position: relative;
 
-      transition: all 0.1s;
+      transition: all 0.2s ease-in-out;
 
       &::after {
         content: '';
@@ -26,7 +26,7 @@
         height: 2px;
         background-color: $primary;
 
-        transition: all 0.1s;
+        transition: all 0.2s ease-in-out;
       }
     }
 
