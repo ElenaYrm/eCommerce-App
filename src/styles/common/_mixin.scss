@@ -6,7 +6,6 @@
 
   font-weight: map-get(variables.$font-weight-map, $weight);
   font-size: nth($font-type, 1);
-  line-height: nth($font-type, 2);
   color: $color;
 }
 
@@ -114,7 +113,7 @@
 }
 
 @mixin btn-secondary {
-  @include font(semibold, h2, $dark);
+  @include font(medium, h2, $dark);
   width: 100%;
   height: 8rem;
   display: flex;

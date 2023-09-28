@@ -8,13 +8,12 @@
     justify-content: flex-start;
   }
 
-
   &__item {
-    margin-bottom: 0.5rem;
+    line-height: 1;
 
     button {
       position: relative;
-
+      font-weight: 600;
       transition: all 0.1s;
 
       &::after {

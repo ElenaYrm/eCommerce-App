@@ -9,13 +9,13 @@ import { selectCart } from '../../store/cart/selectors';
 import { PATH } from '../../router/constants/paths';
 import { Page } from '../../router/types';
 import { getCartThunk } from '../../store/cart/thunks';
+import { resetUserData } from '../../store/user/slice';
 
 import Logo from '../../assets/icons/logo.svg';
 import CartIcon from '../../assets/icons/icon-cart.svg';
 
 import classnames from 'classnames';
 import styles from './header.module.scss';
-import { resetUserData } from '../../store/user/slice';
 
 export default function Header(): ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -77,73 +77,74 @@ export default function Header(): ReactElement {
           <Logo />
         </Link>
 
-        <div className={styles.header__nav}>
+        <nav className={styles.header__nav}>
           <Link
             to={'#'}
             onClick={toggleMenu}
-            className={classnames(styles.header__nav_button, menuOpen ? styles.header__nav_buttonActive : '')}
+            className={classnames(styles.header__nav_button, menuOpen ? styles.active : '')}
           >
             Menu
           </Link>
 
           {!isAuthPage && (
-            <nav className={classnames(styles.nav, menuOpen ? styles.open : '')}>
-              <ul className={classnames(styles.nav__list, styles.list)}>
-                <li className={styles.list__item}>
-                  <NavLink to={PATH[Page.Catalog]} className={styles.list__item_link} onClick={closeMenu}>
+            <div className={classnames(styles.links)}>
+              <ul className={classnames(styles.links__list, menuOpen ? styles.open : '')}>
+                <li className={styles.links__item}>
+                  <NavLink to={PATH[Page.Catalog]} className={styles.links__item_link} onClick={closeMenu}>
                     Catalog
                   </NavLink>
                 </li>
+
                 {!isAuthorized ? (
                   <>
-                    <li className={styles.list__item}>
-                      <NavLink to={PATH[Page.About]} className={styles.list__item_link} onClick={closeMenu}>
+                    <li className={styles.links__item}>
+                      <NavLink to={PATH[Page.About]} className={styles.links__item_link} onClick={closeMenu}>
                         About
                       </NavLink>
                     </li>
-                    <li className={styles.list__item}>
-                      <NavLink to={PATH[Page.Login]} className={styles.list__item_link} onClick={closeMenu}>
+                    <li className={styles.links__item}>
+                      <NavLink to={PATH[Page.Login]} className={styles.links__item_link} onClick={closeMenu}>
                         Login
                       </NavLink>
                     </li>
-                    <li className={styles.list__item}>
-                      <NavLink to={PATH[Page.Register]} className={styles.list__item_link} onClick={closeMenu}>
+                    <li className={styles.links__item}>
+                      <NavLink to={PATH[Page.Register]} className={styles.links__item_link} onClick={closeMenu}>
                         Register
                       </NavLink>
                     </li>
                   </>
                 ) : (
                   <>
-                    <li className={styles.list__item}>
-                      <NavLink to={PATH[Page.Profile]} className={styles.list__item_link} onClick={closeMenu}>
+                    <li className={styles.links__item}>
+                      <NavLink to={PATH[Page.Profile]} className={styles.links__item_link} onClick={closeMenu}>
                         Profile
                       </NavLink>
                     </li>
-                    <li className={styles.list__item}>
-                      <NavLink to={PATH[Page.About]} className={styles.list__item_link} onClick={closeMenu}>
+                    <li className={styles.links__item}>
+                      <NavLink to={PATH[Page.About]} className={styles.links__item_link} onClick={closeMenu}>
                         About
                       </NavLink>
                     </li>
-                    <li className={styles.list__item}>
-                      <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.list__item_link}>
+                    <li className={styles.links__item}>
+                      <Link to={PATH[Page.Home]} onClick={handleLogout} className={styles.links__item_link}>
                         Logout
                       </Link>
                     </li>
                   </>
                 )}
               </ul>
-            </nav>
+            </div>
           )}
 
           <NavLink
             to={PATH[Page.Cart]}
-            className={classnames(styles.nav__link, styles.nav__link_cart)}
+            className={classnames(styles.links__item_link, styles.links__item_cart)}
             onClick={closeMenu}
           >
             <CartIcon />
             <span className={styles.icon__count}>{basket.lineItems.length}</span>
           </NavLink>
-        </div>
+        </nav>
       </div>
     </header>
   );

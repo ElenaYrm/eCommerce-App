@@ -28,7 +28,7 @@
   }
 
   &__input {
-    @include font(semibold, p1, $dark);
+    @include font(medium, p1, $dark);
     min-width: 20rem;
     appearance: none;
     -webkit-appearance: none;
@@ -39,6 +39,7 @@
     border: none;
     border-bottom: 0.1rem solid $dark;
     background-color: transparent;
+    border-radius: 0;
     text-transform: capitalize;
     margin: 0;
     cursor: pointer;
