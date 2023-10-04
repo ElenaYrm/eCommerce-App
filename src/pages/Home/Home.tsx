@@ -1,7 +1,8 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import classnames from 'classnames';
+
+import classNames from 'classnames';
 import { selectIsNewUser } from '../../store/auth/selectors';
 import { useAppDispatch } from '../../store/store';
 import { Page } from '../../router/types';
@@ -10,10 +11,13 @@ import { deleteNotice } from '../../store/auth/slice';
 
 import styles from './home.module.scss';
 import { Notice } from '../../components/shared/Notice';
+import PromoBtn from './PromoBtn/PromoBtn.tsx';
+import { promoBtnProps } from '../../constant/home.ts';
 
 export default function Home(): ReactElement {
   const isNewUser = useSelector(selectIsNewUser);
   const dispatch = useAppDispatch();
+  const [isCopied, setCopied] = useState(false);
 
   useEffect(() => {
     if (isNewUser) {
@@ -27,51 +31,34 @@ export default function Home(): ReactElement {
     }
   }, [isNewUser, dispatch]);
 
+  function handleCopyBtnClick(): void {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1000);
+  }
+
   return (
     <div className={styles.home} data-testid="home">
-      <div className={styles.home__content}>
-        <div className={classnames(styles.home__content_container, styles.links)}>
-          <Link to={PATH[Page.Home]} className={classnames(styles.home__link, 'active')}>
-            Main
-          </Link>
-          <Link to={PATH[Page.Catalog]} className={styles.home__link}>
-            Catalog
-          </Link>
-          <Link to={PATH[Page.Login]} className={styles.home__link}>
-            Login
-          </Link>
-          <Link to={PATH[Page.Register]} className={styles.home__link}>
-            Register
-          </Link>
-          <Link to={PATH[Page.Profile]} className={styles.home__link}>
-            Profile
-          </Link>
-          <Link to={PATH[Page.Cart]} className={styles.home__link}>
-            Cart
-          </Link>
-          <Link to={PATH[Page.About]} className={styles.home__link}>
-            About
-          </Link>
-        </div>
-      </div>
-
-      <div className={styles.home__content}>
-        <div className={classnames(styles.home__content_container, styles.info)}>
-          <p>
-            To keep the project's concept clean, we use word ⭑<em>"Artists"</em>⋆｡★ instead of "Brands".
-          </p>
-          <p>
-            For ☆｡<em>discounted</em>⭑ products check these artists: Cédrix Crespel, KAWS
-          </p>
-          <p>
-            For ⭑<em>a single image</em>⋆｡★ in the slider check these artists: Jef Verheyen, Masoami Raku
-          </p>
-          <p>
-            For ☆｡<em>a promo code</em>★ use these codes: ART (-10%) and Special (-5%) for all items in a cart
+      <div className={styles.home__backgroundMobile} />
+      <div className={classNames(styles.home__content, styles.content)}>
+        <div className={classNames(styles.content__greetings, styles.greetings)}>
+          <h1 className={styles.greetings__title}>Welcome to Scoop!</h1>
+          <p className={styles.greetings__subTitle}>
+            Discover a vast collection of modern artworks from renowned artists around the world. Scoop carefully
+            curates its selection, ensuring access to the most exceptional and thought-provoking pieces.
           </p>
         </div>
+        <Link className={styles.content__link} to={PATH[Page.Catalog]}>
+          Explore the Art
+        </Link>
+        <div className={classNames(styles.home__footer, styles.footer)}>
+          <div className={styles.footer__promoContainer}>PROMO CODES:</div>
+          <div className={styles.footer__btnsContainer} onClick={handleCopyBtnClick}>
+            {isCopied && <div className={styles.isCopied}>Copied!</div>}
+            <PromoBtn {...promoBtnProps.ART}>ART</PromoBtn>
+            <PromoBtn {...promoBtnProps.SPECIAL}>SPECIAL</PromoBtn>
+          </div>
+        </div>
       </div>
-
       {isNewUser && <Notice text="Hello and welcome!ヾ(☆▽☆)" type="success" />}
     </div>
   );
