@@ -33,6 +33,7 @@
       background-size: 50%;
       background-repeat: no-repeat;
       background-position: center;
+      transition: background-color 0.2s ease-in;
 
       &:last-child {
         background-image: url('../../../assets/icons/ic-plus.svg');

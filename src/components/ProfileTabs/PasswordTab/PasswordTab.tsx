@@ -43,7 +43,7 @@ function PasswordTab(): ReactElement {
         <div>
           <div>
             <div className={styles.root__label}>Password</div>
-            <input className={styles.root__input} type="password" value="********" disabled />
+            <input className={styles.root__input} type="password" value="********" disabled aria-label="password" />
           </div>
           <button className={styles.root__editBtn} type="button" onClick={toggleEditMode}>
             Change password

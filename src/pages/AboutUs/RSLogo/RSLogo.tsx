@@ -8,7 +8,7 @@ function RSLogo(): ReactElement {
   return (
     <div className={styles.root}>
       <div className={styles.root__link}>
-        <a className={styles.link} href={SCHOOL_LINK} target="_blank">
+        <a className={styles.link} href={SCHOOL_LINK} target="_blank" aria-label="RS School">
           <div className={styles.shape}>
             {[...Array(6)].map((_, index) => (
               <div key={index} className={styles.shape__item}></div>

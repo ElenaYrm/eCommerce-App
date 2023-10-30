@@ -88,6 +88,7 @@ export default function PromoCodes(): ReactElement {
           value={code}
           onInput={(event: React.FormEvent<HTMLInputElement>): void => setCode(event.currentTarget.value)}
           onChange={(): void => setIsError(false)}
+          aria-label="Type promo code"
         />
         <Button type="submit" name="Apply" className={styles.promo__form_button} />
       </form>

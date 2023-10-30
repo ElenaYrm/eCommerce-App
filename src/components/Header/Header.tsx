@@ -45,8 +45,7 @@ export default function Header(): ReactElement {
     closeMenu();
   }
 
-  function toggleMenu(e: MouseEvent<HTMLAnchorElement>): void {
-    e.preventDefault();
+  function toggleMenu(): void {
     setMenuOpen(!menuOpen);
   }
 
@@ -73,18 +72,18 @@ export default function Header(): ReactElement {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
-        <Link to={PATH[Page.Home]} className={styles.logo} onClick={closeMenu}>
+        <Link to={PATH[Page.Home]} className={styles.logo} onClick={closeMenu} aria-label="Scoop logo">
           <Logo />
         </Link>
 
         <div className={styles.header__nav}>
-          <Link
-            to={'#'}
+          <button
+            type="button"
             onClick={toggleMenu}
             className={classnames(styles.header__nav_button, menuOpen ? styles.header__nav_buttonActive : '')}
           >
             Menu
-          </Link>
+          </button>
 
           {!isAuthPage && (
             <nav className={classnames(styles.nav, menuOpen ? styles.open : '')}>
@@ -139,6 +138,7 @@ export default function Header(): ReactElement {
             to={PATH[Page.Cart]}
             className={classnames(styles.nav__link, styles.nav__link_cart)}
             onClick={closeMenu}
+            aria-label="Cart"
           >
             <CartIcon />
             <span className={styles.icon__count}>{basket.lineItems.length}</span>
